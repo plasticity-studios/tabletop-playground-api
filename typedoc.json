@@ -1,0 +1,8 @@
+{
+    "target": "ES6",
+    "mode": "file",
+    "includeDeclarations": true,
+    "excludeExternals": true,
+    "hideGenerator": true,
+    "name": "Tabletop Playground API"
+}

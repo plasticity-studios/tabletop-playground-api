@@ -1,0 +1,606 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Card | Tabletop Playground API</title>
+	<meta name="description" content="Documentation for Tabletop Playground API">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">Tabletop Playground API</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="../modules/__tabletop_playground_api_.html">&quot;@tabletop-playground/api&quot;</a>
+				</li>
+				<li>
+					<a href="__tabletop_playground_api_.card.html">Card</a>
+				</li>
+			</ul>
+			<h1>Class Card</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A card or card stack</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">Card</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="__tabletop_playground_api_.card.html#addcards" class="tsd-kind-icon">add<wbr>Cards</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="__tabletop_playground_api_.card.html#deal" class="tsd-kind-icon">deal</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="__tabletop_playground_api_.card.html#getcarddetails" class="tsd-kind-icon">get<wbr>Card<wbr>Details</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="__tabletop_playground_api_.card.html#getholder" class="tsd-kind-icon">get<wbr>Holder</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="__tabletop_playground_api_.card.html#getstacksize" class="tsd-kind-icon">get<wbr>Stack<wbr>Size</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="__tabletop_playground_api_.card.html#isfaceup" class="tsd-kind-icon">is<wbr>Face<wbr>Up</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="__tabletop_playground_api_.card.html#isinhand" class="tsd-kind-icon">is<wbr>InHand</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="__tabletop_playground_api_.card.html#isinholder" class="tsd-kind-icon">is<wbr>InHolder</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="__tabletop_playground_api_.card.html#removefromholder" class="tsd-kind-icon">remove<wbr>From<wbr>Holder</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="__tabletop_playground_api_.card.html#setinheritscript" class="tsd-kind-icon">set<wbr>Inherit<wbr>Script</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="__tabletop_playground_api_.card.html#shuffle" class="tsd-kind-icon">shuffle</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="__tabletop_playground_api_.card.html#takecards" class="tsd-kind-icon">take<wbr>Cards</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="addcards" class="tsd-anchor"></a>
+					<h3>add<wbr>Cards</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Cards<span class="tsd-signature-symbol">(</span>cards<span class="tsd-signature-symbol">: </span><a href="__tabletop_playground_api_.card.html" class="tsd-signature-type">Card</a>, toFront<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/b432513/index.d.ts#L540">index.d.ts:540</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Add cards to the stack. Returns whether the cards have been added successfully. Will not succeed if
+									the shape or size of the cards does not match, or if this card is in a card holder.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>cards: <a href="__tabletop_playground_api_.card.html" class="tsd-signature-type">Card</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Card (stack) to add to the stack</p>
+									</div>
+								</li>
+								<li>
+									<h5>toFront: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>If true, add new cards to</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="deal" class="tsd-anchor"></a>
+					<h3>deal</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">deal<span class="tsd-signature-symbol">(</span>count<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, slots<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span>, faceDown<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/b432513/index.d.ts#L533">index.d.ts:533</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Deal a number of cards from this stack to all hands</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>count: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The number of cards to deal to each card holder. Defaults to 1.</p>
+									</div>
+								</li>
+								<li>
+									<h5>slots: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A set of slots to identify which players receive cards. If empty, all players will receive cards.</p>
+									</div>
+								</li>
+								<li>
+									<h5>faceDown: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>When true, cards are dealt to holders with their faces down</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getcarddetails" class="tsd-anchor"></a>
+					<h3>get<wbr>Card<wbr>Details</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Card<wbr>Details<span class="tsd-signature-symbol">(</span>index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="__tabletop_playground_api_.carddetails.html" class="tsd-signature-type">CardDetails</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/b432513/index.d.ts#L526">index.d.ts:526</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return details for a card in the stack. Return undefined for an invalid index.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>index: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The index in the stack for which to retrieve details. Index 0 is the front card of which the face is visible.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="__tabletop_playground_api_.carddetails.html" class="tsd-signature-type">CardDetails</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getholder" class="tsd-anchor"></a>
+					<h3>get<wbr>Holder</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Holder<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="__tabletop_playground_api_.cardholder.html" class="tsd-signature-type">CardHolder</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/b432513/index.d.ts#L521">index.d.ts:521</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the card holder this card is in.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="__tabletop_playground_api_.cardholder.html" class="tsd-signature-type">CardHolder</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getstacksize" class="tsd-anchor"></a>
+					<h3>get<wbr>Stack<wbr>Size</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Stack<wbr>Size<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/b432513/index.d.ts#L517">index.d.ts:517</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the number of cards in the stack. A single card has a stack size of 1.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isfaceup" class="tsd-anchor"></a>
+					<h3>is<wbr>Face<wbr>Up</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Face<wbr>Up<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/b432513/index.d.ts#L513">index.d.ts:513</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return whether the front face of the card currently showing (pointing upwards)</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isinhand" class="tsd-anchor"></a>
+					<h3>is<wbr>InHand</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>InHand<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/b432513/index.d.ts#L509">index.d.ts:509</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return whether the card is currently in the hand (primary holder) of a player</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isinholder" class="tsd-anchor"></a>
+					<h3>is<wbr>InHolder</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>InHolder<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/b432513/index.d.ts#L505">index.d.ts:505</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return whether the card is currently in a card holder</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="removefromholder" class="tsd-anchor"></a>
+					<h3>remove<wbr>From<wbr>Holder</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>From<wbr>Holder<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/b432513/index.d.ts#L501">index.d.ts:501</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Remove card from its current card holder. Does change the position of the card and does nothing if the card is not currently in a card holder.
+									While cards are in card holders, their physical properties can&#39;t be changed and no physical forces or impulses can be applied to them.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setinheritscript" class="tsd-anchor"></a>
+					<h3>set<wbr>Inherit<wbr>Script</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Inherit<wbr>Script<span class="tsd-signature-symbol">(</span>inherit<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/b432513/index.d.ts#L496">index.d.ts:496</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set whether this card stack inherits its configured script to cards taken from it (by players or using scripting). Default: false
+									Note: This property is not saved in states.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>inherit: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="shuffle" class="tsd-anchor"></a>
+					<h3>shuffle</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">shuffle<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/b432513/index.d.ts#L491">index.d.ts:491</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Shuffle the card stack.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="takecards" class="tsd-anchor"></a>
+					<h3>take<wbr>Cards</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">take<wbr>Cards<span class="tsd-signature-symbol">(</span>numCards<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, fromFront<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="__tabletop_playground_api_.card.html" class="tsd-signature-type">Card</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/b432513/index.d.ts#L487">index.d.ts:487</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Take a stack of cards from the stack. The new stack will be positioned directly above the original stack.
+										If the number of cards to take is as large as the stack or larger, one card will remain in the original stack.
+									Returns undefined if this object is only a single card.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>numCards: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Number of cards to take. Defaults to 1.</p>
+									</div>
+								</li>
+								<li>
+									<h5>fromFront: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>If true, take the cards from the front of the stack instead of the back.</p>
+									</div>
+								</li>
+								<li>
+									<h5>offset: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Number of cards to leave at the back (or front when fromFront is true) before taking cards. Defaults to 0.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="__tabletop_playground_api_.card.html" class="tsd-signature-type">Card</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class="current tsd-kind-namespace">
+						<a href="../modules/__tabletop_playground_api_.html">&quot;@tabletop-<wbr>playground/api&quot;</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class tsd-parent-kind-namespace">
+						<a href="__tabletop_playground_api_.card.html" class="tsd-kind-icon">Card</a>
+						<ul>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="__tabletop_playground_api_.card.html#addcards" class="tsd-kind-icon">add<wbr>Cards</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="__tabletop_playground_api_.card.html#deal" class="tsd-kind-icon">deal</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="__tabletop_playground_api_.card.html#getcarddetails" class="tsd-kind-icon">get<wbr>Card<wbr>Details</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="__tabletop_playground_api_.card.html#getholder" class="tsd-kind-icon">get<wbr>Holder</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="__tabletop_playground_api_.card.html#getstacksize" class="tsd-kind-icon">get<wbr>Stack<wbr>Size</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="__tabletop_playground_api_.card.html#isfaceup" class="tsd-kind-icon">is<wbr>Face<wbr>Up</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="__tabletop_playground_api_.card.html#isinhand" class="tsd-kind-icon">is<wbr>InHand</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="__tabletop_playground_api_.card.html#isinholder" class="tsd-kind-icon">is<wbr>InHolder</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="__tabletop_playground_api_.card.html#removefromholder" class="tsd-kind-icon">remove<wbr>From<wbr>Holder</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="__tabletop_playground_api_.card.html#setinheritscript" class="tsd-kind-icon">set<wbr>Inherit<wbr>Script</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="__tabletop_playground_api_.card.html#shuffle" class="tsd-kind-icon">shuffle</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="__tabletop_playground_api_.card.html#takecards" class="tsd-kind-icon">take<wbr>Cards</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-class tsd-parent-kind-namespace">
+						<a href="__tabletop_playground_api_.carddetails.html" class="tsd-kind-icon">Card<wbr>Details</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-namespace">
+						<a href="__tabletop_playground_api_.cardholder.html" class="tsd-kind-icon">Card<wbr>Holder</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-namespace">
+						<a href="__tabletop_playground_api_.color.html" class="tsd-kind-icon">Color</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-namespace">
+						<a href="__tabletop_playground_api_.container.html" class="tsd-kind-icon">Container</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-namespace tsd-has-type-parameter">
+						<a href="__tabletop_playground_api_.delegate.html" class="tsd-kind-icon">Delegate</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-namespace">
+						<a href="__tabletop_playground_api_.dice.html" class="tsd-kind-icon">Dice</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-namespace">
+						<a href="__tabletop_playground_api_.gameobject.html" class="tsd-kind-icon">Game<wbr>Object</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-namespace">
+						<a href="__tabletop_playground_api_.gameworld.html" class="tsd-kind-icon">Game<wbr>World</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-namespace">
+						<a href="__tabletop_playground_api_.globalscriptingevents.html" class="tsd-kind-icon">Global<wbr>Scripting<wbr>Events</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-namespace">
+						<a href="__tabletop_playground_api_.jsconsole.html" class="tsd-kind-icon">JSConsole</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-namespace tsd-has-type-parameter">
+						<a href="__tabletop_playground_api_.multicastdelegate.html" class="tsd-kind-icon">Multicast<wbr>Delegate</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-namespace">
+						<a href="__tabletop_playground_api_.multistateobject.html" class="tsd-kind-icon">Multistate<wbr>Object</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-namespace">
+						<a href="__tabletop_playground_api_.player.html" class="tsd-kind-icon">Player</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-namespace">
+						<a href="__tabletop_playground_api_.rotator.html" class="tsd-kind-icon">Rotator</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-namespace">
+						<a href="__tabletop_playground_api_.snappoint.html" class="tsd-kind-icon">Snap<wbr>Point</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-namespace">
+						<a href="__tabletop_playground_api_.tracehit.html" class="tsd-kind-icon">Trace<wbr>Hit</a>
+					</li>
+					<li class=" tsd-kind-class tsd-parent-kind-namespace">
+						<a href="__tabletop_playground_api_.vector.html" class="tsd-kind-icon">Vector</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-namespace">
+						<a href="../modules/__tabletop_playground_api_.html#globalevents" class="tsd-kind-icon">global<wbr>Events</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-namespace">
+						<a href="../modules/__tabletop_playground_api_.html#refcard" class="tsd-kind-icon">ref<wbr>Card</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-namespace">
+						<a href="../modules/__tabletop_playground_api_.html#refcontainer" class="tsd-kind-icon">ref<wbr>Container</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-namespace">
+						<a href="../modules/__tabletop_playground_api_.html#refdice" class="tsd-kind-icon">ref<wbr>Dice</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-namespace">
+						<a href="../modules/__tabletop_playground_api_.html#refholder" class="tsd-kind-icon">ref<wbr>Holder</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-namespace">
+						<a href="../modules/__tabletop_playground_api_.html#refmultistate" class="tsd-kind-icon">ref<wbr>Multistate</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-namespace">
+						<a href="../modules/__tabletop_playground_api_.html#refobject" class="tsd-kind-icon">ref<wbr>Object</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-parent-kind-namespace">
+						<a href="../modules/__tabletop_playground_api_.html#world" class="tsd-kind-icon">world</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer>
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
