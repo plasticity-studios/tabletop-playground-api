@@ -475,7 +475,7 @@ declare module '@tabletop-playground/api' {
 	/**
 	 * A card or card stack
 	*/
-	class Card { 
+	class Card extends GameObject { 
 		/**
 		 * Take a stack of cards from the stack. The new stack will be positioned directly above the original stack.
 		 * If the number of cards to take is as large as the stack or larger, one card will remain in the original stack.
@@ -543,7 +543,7 @@ declare module '@tabletop-playground/api' {
 	/**
 	 * A card holder
 	*/
-	class CardHolder { 
+	class CardHolder extends GameObject { 
 		/**
 		 * Called when a card is dropped onto the holder by a player
 		 * @param {CardHolder} holder - The container in which the objects are dropped
@@ -772,7 +772,7 @@ declare module '@tabletop-playground/api' {
 	/**
 	 * A container that can hold other objects
 	*/
-	class Container { 
+	class Container extends GameObject { 
 		/**
 		 * Called when objects are dropped into the container by a player
 		 * @param {Container} container - The container in which the objects are dropped
