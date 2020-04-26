@@ -484,7 +484,7 @@ declare module '@tabletop-playground/api' {
 		 * @param {boolean} fromFront - If true, take the cards from the front of the stack instead of the back.
 		 * @param {number} offset - Number of cards to leave at the back (or front when fromFront is true) before taking cards. Defaults to 0.
 		*/
-		takeCards(numCards: number,fromFront: boolean,offset: number): Card;
+		takeCards(numCards?: number, fromFront?: boolean, offset?: number): Card;
 		/**
 		 * Shuffle the card stack.
 		*/
@@ -523,21 +523,21 @@ declare module '@tabletop-playground/api' {
 		 * Return details for a card in the stack. Return undefined for an invalid index.
 		 * @param {number} index - The index in the stack for which to retrieve details. Index 0 is the front card of which the face is visible.
 		*/
-		getCardDetails(index: number): CardDetails;
+		getCardDetails(index?: number): CardDetails;
 		/**
 		 * Deal a number of cards from this stack to all hands
 		 * @param {number} count - The number of cards to deal to each card holder. Defaults to 1.
 		 * @param {Set<number>} slots - A set of slots to identify which players receive cards. If empty, all players will receive cards.
 		 * @param {boolean} faceDown - When true, cards are dealt to holders with their faces down
 		*/
-		deal(count: number,slots: number[],faceDown: boolean): void;
+		deal(count?: number, slots?: number[], faceDown?: boolean): void;
 		/**
 		 * Add cards to the stack. Returns whether the cards have been added successfully. Will not succeed if
 		 * the shape or size of the cards does not match, or if this card is in a card holder.
 		 * @param {Card} cards - Card (stack) to add to the stack
-		 * @param {boolean} toFront - If true, add new cards to
+		 * @param {boolean} toFront - If true, add new cards to front of the stack
 		*/
-		addCards(cards: Card,toFront: boolean): boolean;
+		addCards(cards: Card, toFront: boolean): boolean;
 	}
 
 	/**
@@ -580,13 +580,13 @@ declare module '@tabletop-playground/api' {
 		 * @param {Card} card - The card to move
 		 * @param {number} index - New index for the card
 		*/
-		moveCard(card: Card,index: number): void;
+		moveCard(card: Card, index: number): void;
 		/**
 		 * Insert a card into the holder. Return whether the card was inserted successfully
 		 * @param {Card} card - Card to insert
 		 * @param {number} index - The index at which the new objects will be inserted. By default, it will be inserted at start (index 0)
 		*/
-		insert(card: Card,index: number): boolean;
+		insert(card: Card, index: number): boolean;
 		/**
 		 * Does the card holder hold the given card?
 		 * @param {Card} card - Card to check
@@ -652,7 +652,7 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Send a message to the player's chat
 		*/
-		sendChatMessage(message: string,color: Color): void;
+		sendChatMessage(message: string, color: Color): void;
 		/**
 		 * Return whether the player is valid. A player becomes invalid when it drops out from the game
 		*/
@@ -664,7 +664,7 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Return whether the player is currently holding the specified object
 		*/
-		isHoldingObject(UObject: GameObject): boolean;
+		isHoldingObject(object: GameObject): boolean;
 		/**
 		 * Return whether the player is currently holding objects
 		*/
@@ -732,10 +732,6 @@ declare module '@tabletop-playground/api' {
 	*/
 	class SnapPoint { 
 		/**
-		 * Index of the snap point at the object
-		*/
-		index: number;
-		/**
 		 * Return whether the snap point also snaps rotation
 		*/
 		snapsRotation(): boolean;
@@ -794,7 +790,7 @@ declare module '@tabletop-playground/api' {
 		 * @param {Vector} position - The position where the item should appear
 		 * @param {boolean} hideAnimation - If true, don't show take animation and don't play sound
 		*/
-		takeAt(index: number,position: Vector,hideAnimation: boolean): GameObject;
+		takeAt(index: number, position: Vector, hideAnimation?: boolean): GameObject;
 		/**
 		 * Set the type of the container. Possible values are:
 		 * 0 - Random
@@ -816,7 +812,7 @@ declare module '@tabletop-playground/api' {
 		 * @param {number} index - The index at which the new objects will be inserted. By default, it will be inserted at start (index 0)
 		 * @param {boolean} hideAnimation - If true, don't show insert animation and don't play sound
 		*/
-		insert(objects: GameObject[],index: number,hideAnimation: boolean): void;
+		insert(objects: GameObject[], index: number, hideAnimation?: boolean): void;
 		/**
 		 * Return the type of the container. Possible values are:
 		 * 0 - Random
@@ -849,44 +845,44 @@ declare module '@tabletop-playground/api' {
 		 * Called when the object is created (from the object library, loading a game, copy & paste, dragging from an infinite container or stack...)
 		 * @param {GameObject} object - The new object
 		*/
-		onCreated: MulticastDelegate<(UObject: GameObject) => void>;
+		onCreated: MulticastDelegate<(object: GameObject) => void>;
 		/**
 		 * Called when the object is destroyed
 		 * @param {GameObject} object - The destroyed object
 		*/
-		onDestroyed: MulticastDelegate<(UObject: GameObject) => void>;
+		onDestroyed: MulticastDelegate<(object: GameObject) => void>;
 		/**
 		 * Called every tick.
 		 * @param {GameObject} object - The reference object
 		 * @param {number} milliseconds - Duration of the previous tick
 		*/
-		onTick: MulticastDelegate<(UObject: GameObject, deltaTime: number) => void>;
+		onTick: MulticastDelegate<(object: GameObject, deltaTime: number) => void>;
 		/**
 		 * Called when the object is picked up
 		 * @param {GameObject} object - The object being grabbed
 		 * @param {Player} player - The player that grabbed the object
 		*/
-		onGrab: MulticastDelegate<(UObject: GameObject, player: Player) => void>;
+		onGrab: MulticastDelegate<(object: GameObject, player: Player) => void>;
 		/**
 		 * Called when the object is released (but not snapped or reset).
 		 * @param {GameObject} object - The object being released
 		 * @param {Player} player - The player that released the object
 		 * @param {bool} thrown - True if the object was thrown (released above a threshold velocity) instead of being dropped
 		*/
-		onReleased: MulticastDelegate<(UObject: GameObject, player: Player, thrown: boolean) => void>;
+		onReleased: MulticastDelegate<(object: GameObject, player: Player, thrown: boolean) => void>;
 		/**
 		 * Called when the object is snapped on releasing.
 		 * @param {GameObject} object - The object being released
 		 * @param {Player} player - The player that released the object
 		 * @param {SnapPoint} snapPoint - The point that the object is moved to
 		*/
-		onSnapped: MulticastDelegate<(UObject: GameObject, player: Player, snapPoint: SnapPoint) => void>;
+		onSnapped: MulticastDelegate<(object: GameObject, player: Player, snapPoint: SnapPoint) => void>;
 		/**
 		 * Called when the object is reset to its position before being picked up.
 		 * @param {GameObject} object - The object being reset
 		 * @param {Player} player - The player that reset the object
 		*/
-		onReset: MulticastDelegate<(UObject: GameObject, player: Player) => void>;
+		onReset: MulticastDelegate<(object: GameObject, player: Player) => void>;
 		/**
 		 * Called when the object is hit by another object or hits another object. Gets called for both objects involved in a collision. Only called for collisions that cause an impact sound to be played.
 		 * @param {GameObject} object - The first object in the collision
@@ -895,7 +891,7 @@ declare module '@tabletop-playground/api' {
 		 * @param {Vector} impactPoint - The position at which the two objects collided
 		 * @param {Vector} impulse - Direction and magnitude of the impulse generated by the collision on the first object. Invert to get impulse on the second object.
 		*/
-		onHit: MulticastDelegate<(UObject: GameObject, otherObject: GameObject, first: boolean, impactPoint: Vector, impulse: Vector) => void>;
+		onHit: MulticastDelegate<(object: GameObject, otherObject: GameObject, first: boolean, impactPoint: Vector, impulse: Vector) => void>;
 		/**
 		 * Called a player executes the primary action on an object by pressing the respective button (default mapping "R").
 		 * Will be called even if the object has a defined behavior for primary actions (like dice or multistate objects),
@@ -903,7 +899,7 @@ declare module '@tabletop-playground/api' {
 		 * @param {GameObject} object - The object on which the action is executed
 		 * @param {Player} player - The player that executed the action
 		*/
-		onPrimaryAction: MulticastDelegate<(UObject: GameObject, player: Player) => void>;
+		onPrimaryAction: MulticastDelegate<(object: GameObject, player: Player) => void>;
 		/**
 		 * Called a player executes the secondary action on an object by pressing the respective button (default mapping "Ctrl+R").
 		 * Will be called even if the object has a defined behavior for primary actions (like card stacks or multistate objects),
@@ -911,7 +907,7 @@ declare module '@tabletop-playground/api' {
 		 * @param {GameObject} object - The object on which the action is executed
 		 * @param {Player} player - The player that executed the action
 		*/
-		onSecondaryAction: MulticastDelegate<(UObject: GameObject, player: Player) => void>;
+		onSecondaryAction: MulticastDelegate<(object: GameObject, player: Player) => void>;
 		/**
 		 * Called a player executes a number action on the object (by highlighting or selecting it and pressing number keys).
 		 * Will be called even if the object has a defined behavior for number actions (like dice or multistate objects), after
@@ -919,7 +915,7 @@ declare module '@tabletop-playground/api' {
 		 * @param {GameObject} object - The object on which the action is executed
 		 * @param {Player} player - The player that executed the action
 		*/
-		onNumberAction: MulticastDelegate<(UObject: GameObject, player: Player, number: number) => void>;
+		onNumberAction: MulticastDelegate<(object: GameObject, player: Player, number: number) => void>;
 		/**
 		 * Tranform a world rotation to an object rotation
 		*/
@@ -1151,37 +1147,37 @@ declare module '@tabletop-playground/api' {
 		 * @param {Vector} torque - The axis of rotation and magnitude of the torque to apply in kg*cm^2/s^2.
 		 * @param {boolean} useMass - If false (default), ignore the mass of the object and apply the force directly as change of angular acceleration in cm^2/s^2.
 		*/
-		applyTorque(torque: Vector,useMass: boolean): void;
+		applyTorque(torque: Vector, useMass?: boolean): void;
 		/**
 		 * Apply an impulse to the object. Works as an instant change of velocity.
 		 * @param {Vector} impulse - The direction and magnitude of the impulse to apply in kg*cm/s
-		 * @param {number} position - The position where to apply the impulse, relative to the object origin. If this is not equal to the center of mass, the force will not create angular velocity.
+		 * @param {number} position - The position where to apply the impulse, relative to the object origin. If this is not equal to the center of mass, the force will create angular velocity.
 		*/
-		applyImpulseAtPosition(impulse: Vector,position: Vector): void;
+		applyImpulseAtPosition(impulse: Vector, position: Vector): void;
 		/**
 		 * Apply an impulse to the object. Works as an instant change of velocity.
 		 * @param {Vector} impulse - The direction and magnitude of the impulse to apply in kg*cm/s.
 		 * @param {boolean} useMass - If false (default), ignore the mass of the object and apply the impulse directly as change of velocity in cm/s.
 		*/
-		applyImpulse(impulse: Vector,useMass: boolean): void;
+		applyImpulse(impulse: Vector, useMass?: boolean): void;
 		/**
 		 * Apply a force to the object. Works like 'thruster' and should be called every tick for the duration of the force.
 		 * @param {Vector} force - The direction and magnitude of the force to apply in kg*cm\s^2.
-		 * @param {Vector} position - The position where to apply the force, relative to the object origin. If this is not equal to the center of mass, the force will not create angular acceleration.
+		 * @param {Vector} position - The position where to apply the force, relative to the object origin. If this is not equal to the center of mass, the force will create angular acceleration.
 		*/
-		applyForceAtPosition(force: Vector,position: Vector): void;
+		applyForceAtPosition(force: Vector, position: Vector): void;
 		/**
 		 * Apply a force to the object. Works like 'thruster' and should be called every tick for the duration of the force.
 		 * @param {Vector} force - The direction and magnitude of the force to apply in kg*cm/s^2.
 		 * @param {boolean} useMass - If false (default), ignore the mass of the object and apply the force directly as change of acceleration in cm/s^2.
 		*/
-		applyForce(force: Vector,useMass: boolean): void;
+		applyForce(force: Vector, useMass?: boolean): void;
 		/**
 		 * Apply a torque to the object. Works as an instant change of angular velocity.
 		 * @param {Vector} impulse - The axis of rotation and magnitude of the impulse to apply in kg*cm^2/s.
 		 * @param {boolean} useMass - If false (default), ignore the mass of the object and apply the force directly as change of angular velocity in cm^2/s.
 		*/
-		applyAngularImpulse(impulse: Vector,useMass: boolean): void;
+		applyAngularImpulse(impulse: Vector, useMass?: boolean): void;
 	}
 
 	/**
@@ -1191,7 +1187,7 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * The object that was hit
 		*/
-		UObject: GameObject;
+		object: GameObject;
 		/**
 		 * The distance from the start of the trace to the Location in world space. This value is 0 if there was an initial overlap (trace started inside another colliding object).
 		*/
@@ -1253,7 +1249,7 @@ declare module '@tabletop-playground/api' {
 		 * Roll in place.
 		 * @param {Player} player - Optional: the player that initiated the dice roll. Only rolls by players get included in the OnDiceRolled event.
 		*/
-		roll(player: Player): void;
+		roll(player?: Player): void;
 		/**
 		 * Return the number of faces for this dice type
 		*/
@@ -1295,20 +1291,20 @@ declare module '@tabletop-playground/api' {
 		 *       "port": 9229
 		 * }
 		*/
-		startDebugMode(port: number): void;
+		startDebugMode(port?: number): void;
 		/**
 		 * Find all objects hits with a sphere that is moved along a line, ordered by distance to start
 		 * @param {Vector} start - Starting point of the sphere
 		 * @param {Vector} end - End point of the sphere movement
 		 * @param {number} radius - Radius of the sphere
 		*/
-		sphereTrace(start: Vector,end: Vector,radius: number): TraceHit[];
+		sphereTrace(start: Vector, end: Vector, radius: number): TraceHit[];
 		/**
 		 * Find all objects that would collide with a sphere
 		 * @param {Vector} position - Center of the sphere
 		 * @param {number} radius - Radius of the sphere
 		*/
-		sphereOverlap(position: Vector,radius: number): GameObject[];
+		sphereOverlap(position: Vector, radius: number): GameObject[];
 		/**
 		 * Reset scripting environment and reload all scripts
 		*/
@@ -1322,7 +1318,7 @@ declare module '@tabletop-playground/api' {
 		 * @param {Vector} start - Starting point of the line
 		 * @param {Vector} end - End point of the line
 		*/
-		lineTrace(start: Vector,end: Vector): TraceHit[];
+		lineTrace(start: Vector, end: Vector): TraceHit[];
 		/**
 		 * Return the player occupying the specified slot
 		 * @param {number} slot - The player slot (0-9)
@@ -1348,7 +1344,7 @@ declare module '@tabletop-playground/api' {
 		 * @param {Color} color - Color of the point
 		 * @param {number} duration - Amount of time in seconds to show the point. Can be 0 to show for one frame only.
 		*/
-		drawDebugPoint(position: Vector,size: number,color: Color,duration: number): void;
+		drawDebugPoint(position: Vector, size: number, color: Color, duration: number): void;
 		/**
 		 * Draw a line in 3d space. The line will only be visible on for the host!
 		 * @param {Vector} start - Starting point of the line
@@ -1357,19 +1353,19 @@ declare module '@tabletop-playground/api' {
 		 * @param {number} duration - Amount of time in seconds to show the line. Can be 0 to show for one frame only
 		 * @param {number} thickness - Thickness of the line. One pixel thick if 0, cm thickness for values > 0.
 		*/
-		drawDebugLine(start: Vector,end: Vector,color: Color,duration: number,thickness: number): void;
+		drawDebugLine(start: Vector, end: Vector, color: Color, duration: number, thickness?: number): void;
 		/**
 		 * Create a new object from a template
 		 * @param {string} templateId - Template GUID for the new object
 		 * @param {Vector} position - Starting position
 		*/
-		createObjectFromTemplate(templateId: string,position: Vector): GameObject;
+		createObjectFromTemplate(templateId: string, position: Vector): GameObject;
 		/**
 		 * Create a new object from a JSON string
 		 * @param {string} jsonString - String containing Json representation of an object (can be obtained by calling toJSONString() on an object)
 		 * @param {Vector} position - Starting position
 		*/
-		createObjectFromJSON(jsonString: string,position: Vector): GameObject;
+		createObjectFromJSON(jsonString: string, position: Vector): GameObject;
 		/**
 		 * Find all objects hits with a capsule that is moved along a line, ordered by distance to start
 		 * @param {Vector} start - Starting point of the capsule
@@ -1377,20 +1373,20 @@ declare module '@tabletop-playground/api' {
 		 * @param {Vector} extent - Dimensions of the capsule
 		 * @param {Rotator} orientation - Orientation of the capsule
 		*/
-		capsuleTrace(start: Vector,end: Vector,extent: Vector,orientation: Rotator): TraceHit[];
+		capsuleTrace(start: Vector, end: Vector, extent: Vector, orientation?: Rotator): TraceHit[];
 		/**
 		 * Find all objects that would collide with a capsule
 		 * @param {Vector} position - Center of the capsule
 		 * @param {Vector} extent - Dimensions of the capsule
 		 * @param {Rotator} orientation - Orientation of the capsule
 		*/
-		capsuleOverlap(position: Vector,extent: Vector,orientation: Rotator): GameObject[];
+		capsuleOverlap(position: Vector, extent: Vector, orientation?: Rotator): GameObject[];
 		/**
 		 * Send a chat message to all players
 		 * @param {string} slot - Message to send
 		 * @param {Color} slot - Color of the message
 		*/
-		broadcastChatMessage(message: string,color: Color): void;
+		broadcastChatMessage(message: string, color: Color): void;
 		/**
 		 * Find all object hits with a box that is moved along a line, ordered by distance to start
 		 * @param {Vector} start - Starting point of the box
@@ -1398,14 +1394,14 @@ declare module '@tabletop-playground/api' {
 		 * @param {Vector} extent - Dimensions of the box
 		 * @param {Rotator} orientation - Orientation of the box
 		*/
-		boxTrace(start: Vector,end: Vector,extent: Vector,orientation: Rotator): TraceHit[];
+		boxTrace(start: Vector, end: Vector, extent: Vector, orientation?: Rotator): TraceHit[];
 		/**
 		 * Find all objects that would collide with a box
 		 * @param {Vector} position - Center of the box
 		 * @param {Vector} extent - Dimensions of the box
 		 * @param {Rotator} orientation - Orientation of the box
 		*/
-		boxOverlap(position: Vector,extent: Vector,orientation: Rotator): GameObject[];
+		boxOverlap(position: Vector, extent: Vector, orientation?: Rotator): GameObject[];
 	}
 
 	/**
@@ -1455,12 +1451,12 @@ declare module '@tabletop-playground/api' {
 		 * Called when an object is created (from the object library, loading a game, copy & paste, dragging from a container or stack...)
 		 * @param {GameObject} object - The new object
 		*/
-		onObjectCreated: MulticastDelegate<(UObject: GameObject) => void>;
+		onObjectCreated: MulticastDelegate<(object: GameObject) => void>;
 		/**
 		 * Called when an object is destroyed
 		 * @param {GameObject} object - The destroyed object
 		*/
-		onObjectDestroyed: MulticastDelegate<(UObject: GameObject) => void>;
+		onObjectDestroyed: MulticastDelegate<(object: GameObject) => void>;
 		/**
 		 * Called when a player has rolled dice, once the dice have come to rest. Called directly after the dice roll message is sent.
 		 * @param {Player} player - Player that rolled the dice
