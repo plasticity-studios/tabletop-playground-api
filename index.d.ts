@@ -67,7 +67,7 @@ declare module '@tabletop-playground/api' {
 		* @param {number} b - Blue component
 		* @param {number} a - Alpha component
 		*/
-		constructor(r: number,g: number,b: number,a: number);
+		constructor(r: number, g: number, b: number, a: number);
 		
 		/**
 		* Red component
@@ -128,14 +128,14 @@ declare module '@tabletop-playground/api' {
 		* @param {number} deltaTime - Time since last tick
 		* @param {number} interpSpeed - Interpolation speed          
 		*/
-		static interpolateTo(current: Color,target: Color,deltaTime: number,interpSpeed: number): Color;
+		static interpolateTo(current: Color, target: Color, deltaTime: number, interpSpeed: number): Color;
 		/**
 		* Linearly interpolate between a and b based on alpha 
 		* @param {Color} a - First color
 		* @param {Color} b - Second color
 		* @param {number} alpha - Result is 100% of a when alpha=0 and 100% of b when alpha=1
 		*/
-		static lerp(a: Color,b: Color,alpha: number): Color;
+		static lerp(a: Color, b: Color, alpha: number): Color;
 	}
 	
 	/**
@@ -148,7 +148,7 @@ declare module '@tabletop-playground/api' {
 		* @param {number} pitch - Rotation around Y axis in degrees
 		* @param {number} yaw - Rotation around Z axis in degrees
 		*/
-		constructor(roll: number,pitch: number,yaw: number);
+		constructor(roll: number, pitch: number, yaw: number);
 		
 		/**
 		* Pitch (degrees) around Y axis
@@ -199,7 +199,7 @@ declare module '@tabletop-playground/api' {
 		* @param {Rotator} b - Rotator to compare to
 		* @param {number} errorTolerance - Maximum total difference
 		*/
-		equals(b: Rotator,errorTolerance: number): boolean;
+		equals(b: Rotator, errorTolerance: number): boolean;
 		/**
 		* Return world forward vector rotated by this rotation
 		*/
@@ -228,7 +228,7 @@ declare module '@tabletop-playground/api' {
 		* @param {number} deltaTime - Time since last tick
 		* @param {number} interpSpeed - Interpolation speed     
 		*/
-		static interpolateTo(current: Rotator,target: Rotator,deltaTime: number,interpSpeed: number): Rotator;
+		static interpolateTo(current: Rotator, target: Rotator, deltaTime: number, interpSpeed: number): Rotator;
 		/**
 		* Smoothly interpolate towards a varying target rotation at a constant rate
 		* @param {Rotator} current - Current rotation
@@ -236,20 +236,20 @@ declare module '@tabletop-playground/api' {
 		* @param {number} deltaTime - Time since last tick
 		* @param {number} interpSpeed - Interpolation speed   
 		*/
-		static interpolateToConstant(current: Rotator,target: Rotator,deltaTime: number,interpSpeed: number): Rotator;
+		static interpolateToConstant(current: Rotator, target: Rotator, deltaTime: number, interpSpeed: number): Rotator;
 		/**
 		* Linearly interpolate between a and b based on alpha 
 		* @param {Rotator} a - First rotation
 		* @param {Rotator} b - Second rotation
 		* @param {number} alpha - Result is 100% of a when alpha=0 and 100% of b when alpha=1 
 		*/
-		static lerp(a: Rotator,b: Rotator,alpha: number,bShortestPath: boolean): Rotator;
+		static lerp(a: Rotator, b: Rotator, alpha: number, bShortestPath: boolean): Rotator;
 		/**
 		* Create a rotation from an axis and and angle
 		* @param {Vector} axis - The axis to rotate around
 		* @param {number} angle - The amount of rotation in degrees
 		*/
-		static fromAxisAngle(axis: Vector,angle: number): Rotator;
+		static fromAxisAngle(axis: Vector, angle: number): Rotator;
 	}
 	
 	/**
@@ -310,7 +310,7 @@ declare module '@tabletop-playground/api' {
 		* @param {number} min - Minimum length of resulting vector
 		* @param {number} max - Maximum length of resulting vector
 		*/
-		clampVectorMagnitude(min: number,max: number): Vector;
+		clampVectorMagnitude(min: number, max: number): Vector;
 		/**
 		* Convert to a Color with r=x g=y b=z
 		*/
@@ -334,19 +334,19 @@ declare module '@tabletop-playground/api' {
 		* @param {Vector} b - Vector to compare to
 		* @param {number} errorTolerance - Maximum total difference
 		*/
-		equals(b: Vector,errorTolerance: number): boolean;
+		equals(b: Vector, errorTolerance: number): boolean;
 		/**
 		* Find the closest point on an infinite line
 		* @param {Vector} lineOrigin - Point of reference on the line
 		* @param {Vector} lineDirection - Direction of the line
 		*/
-		findClosestPointOnLine(lineOrigin: Vector,lineDirection: Vector): Vector;
+		findClosestPointOnLine(lineOrigin: Vector, lineDirection: Vector): Vector;
 		/**
 		* Find the closest point to this vector on a line segment
 		* @param {Vector} segmentStart - Start of the segment
 		* @param {Vector} segmentEnd - End of the segment
 		*/
-		findClosestPointOnSegment(segmentStart: Vector,segmentEnd: Vector): Vector;
+		findClosestPointOnSegment(segmentStart: Vector, segmentEnd: Vector): Vector;
 		/**
 		* Find a rotation for an object at this location to point at a target location
 		* @param {Vector} target - Target location to point at
@@ -365,13 +365,13 @@ declare module '@tabletop-playground/api' {
 		* @param {Vector} lineOrigin - Point of reference on the line
 		* @param {Vector} lineDirection - Direction of the line
 		*/
-		getDistanceToLine(lineOrigin: Vector,lineDirection: Vector): number;
+		getDistanceToLine(lineOrigin: Vector, lineDirection: Vector): number;
 		/**
 		* Find the distance to the closest point on a line segment
 		* @param {Vector} segmentStart - Start of the segment
 		* @param {Vector} segmentEnd - End of the segment
 		*/
-		getDistanceToSegment(segmentStart: Vector,segmentEnd: Vector): number;
+		getDistanceToSegment(segmentStart: Vector, segmentEnd: Vector): number;
 		/**
 		* Returns this vector reflected across the given surface normal
 		* @param {Vector} surfaceNormal - A normal of the surface to reflect on
@@ -382,7 +382,7 @@ declare module '@tabletop-playground/api' {
 		* @param {Vector} boxOrigin - Origin of the box
 		* @param {Vector} boxExtent - Extent of the box (distance in each axis from box origin)
 		*/
-		isInBox(boxOrigin: Vector,boxExtent: Vector): boolean;
+		isInBox(boxOrigin: Vector, boxExtent: Vector): boolean;
 		/**
 		* Multipley element-wise (f*x, f*y, f*z)
 		*/
@@ -400,7 +400,7 @@ declare module '@tabletop-playground/api' {
 		* @param {number} angleDeg - Angle to rotate in degrees
 		* @param {Vector} axis - Axis to rotate around
 		*/
-		rotateAngleAxis(angleDeg: number,axis: Vector): Vector;
+		rotateAngleAxis(angleDeg: number, axis: Vector): Vector;
 		/**
 		* Subtract another vector and return the result
 		* @param {Vector} b - Vector to subtract
@@ -415,11 +415,16 @@ declare module '@tabletop-playground/api' {
 		*/
 		magnitudeSquared(): number;
 		/**
+		* Compute the distance to another vector
+		* @param {Vector} b - Vector to compute the distance to
+		*/
+		distance(b: Vector): number;
+		/**
 		* Return a random point within the specified bounding box
 		* @param {Vector} origin - Origin of the box
 		* @param {Vector} boxExtent - Extent of the box (distance in each axis from box origin)
 		*/
-		static randomPointInBoundingBox(origin: Vector,boxExtent: Vector): Vector;
+		static randomPointInBoundingBox(origin: Vector, boxExtent: Vector): Vector;
 		/**
 		* Smoothly interpolate towards a varying target vector
 		* @param {Vector} current - Current vector
@@ -427,7 +432,7 @@ declare module '@tabletop-playground/api' {
 		* @param {number} deltaTime - Time since last tick
 		* @param {number} interpSpeed - Interpolation speed     
 		*/
-		static interpolateTo(current: Vector,target: Vector,deltaTime: number,interpSpeed: number): Vector;
+		static interpolateTo(current: Vector, target: Vector, deltaTime: number, interpSpeed: number): Vector;
 		/**
 		* Smoothly interpolate towards a varying target vector at a constant rate
 		* @param {Vector} current - Current vector
@@ -435,14 +440,14 @@ declare module '@tabletop-playground/api' {
 		* @param {number} deltaTime - Time since last tick
 		* @param {number} interpSpeed - Interpolation speed     
 		*/
-		static interpolateToConstant(current: Vector,target: Vector,deltaTime: number,interpSpeed: number): Vector;
+		static interpolateToConstant(current: Vector, target: Vector, deltaTime: number, interpSpeed: number): Vector;
 		/**
 		* Linearly interpolate between a and b based on alpha 
 		* @param {Vector} a - First vector
 		* @param {Vector} b - Second vector
 		* @param {number} alpha - Result is 100% of a when alpha=0 and 100% of b when alpha=1 
 		*/
-		static lerp(a: Vector,b: Vector,alpha: number): Vector;
+		static lerp(a: Vector, b: Vector, alpha: number): Vector;
 		/**
 		* Find the average of an array of vectors
 		* @param {Vector[]} vectors - An array of vectors to average
@@ -868,15 +873,19 @@ declare module '@tabletop-playground/api' {
 		 * @param {GameObject} object - The object being released
 		 * @param {Player} player - The player that released the object
 		 * @param {bool} thrown - True if the object was thrown (released above a threshold velocity) instead of being dropped
+		 * @param {Vector} grabPosition - The position where this object was when it was grabbed. Zero if it hasn't been grabbed (for example when it was dragged from the object library).
+		 * @param {Rotator} grabRotation - The rotation this object had when it was grabbed.
 		*/
-		onReleased: MulticastDelegate<(object: GameObject, player: Player, thrown: boolean) => void>;
+		onReleased: MulticastDelegate<(object: GameObject, player: Player, thrown: boolean, grabPosition: Vector, grabRotation: Rotator) => void>;
 		/**
 		 * Called when the object is snapped on releasing.
 		 * @param {GameObject} object - The object being released
 		 * @param {Player} player - The player that released the object
 		 * @param {SnapPoint} snapPoint - The point that the object is moved to
+		 * @param {Vector} grabPosition - The position where this object was when it was grabbed. Zero if it hasn't been grabbed (for example when it was dragged from the object library)
+		 * @param {Rotator} grabRotation - The rotation this object had when it was grabbed.
 		*/
-		onSnapped: MulticastDelegate<(object: GameObject, player: Player, snapPoint: SnapPoint) => void>;
+		onSnapped: MulticastDelegate<(object: GameObject, player: Player, snapPoint: SnapPoint, grabPosition: Vector, grabRotation: Rotator) => void>;
 		/**
 		 * Called when the object is reset to its position before being picked up.
 		 * @param {GameObject} object - The object being reset
@@ -918,10 +927,12 @@ declare module '@tabletop-playground/api' {
 		onNumberAction: MulticastDelegate<(object: GameObject, player: Player, number: number) => void>;
 		/**
 		 * Tranform a world rotation to an object rotation
+		 * @param {Rotator} rotation - The rotation in world space to transform to relative to the object
 		*/
 		worldRotationToLocal(rotation: Rotator): Rotator;
 		/**
 		 * Tranform a world position to an object position
+		 * @param {Vector} position - The position in world space to transform to relative to the object
 		*/
 		worldPositionToLocal(position: Vector): Vector;
 		/**
@@ -934,35 +945,52 @@ declare module '@tabletop-playground/api' {
 		*/
 		toggleLock(): void;
 		/**
+		 * Snap the object to the ground below it.
+		*/
+		snapToGround(): void;
+		/**
+		 * Snap the object as if it was dropped at its current position. Does nothing if no snap point is in range below the object.
+		 * Snapping in this way does not trigger the onSnapped callback. Returns the snapped point if the object was snapped.
+		*/
+		snap(): SnapPoint;
+		/**
 		 * Set surface type
+		 * @param {string} - The new surface type.
 		*/
 		setSurfaceType(surfaceType: string): void;
 		/**
 		 * Set whether the object is allowed to snap
+		 * @param {boolean} allowed - Whether snapping will be allowed
 		*/
 		setSnappingAllowed(allowed: boolean): void;
 		/**
-		 * Get the object's primary color
+		 * Set the object's secondary color
+		 * @param {Color} color - The new secondary color
 		*/
 		setSecondaryColor(color: Color): void;
 		/**
 		 * Set the object's scale instantly
+		 * @param {Vector} scale - The new scale
 		*/
 		setScale(scale: Vector): void;
 		/**
-		 * Get the object's roughness value
+		 * Set the object's roughness value. Lower roughness makes the object more shiny.
+		 * @param {number} roughness - The new roughness value, from 0 to 1
 		*/
 		setRoughness(roughness: number): void;
 		/**
 		 * Set the object's rotation instantly
+		 * @param {Rotator} rotation - The new rotation
 		*/
 		setRotation(rotation: Rotator): void;
 		/**
-		 * Get the object's primary color
+		 * Set the object's primary color
+		 * @param {Color} color - The new primary color
 		*/
 		setPrimaryColor(color: Color): void;
 		/**
 		 * Set the object's position instantly
+		 * @param {Vector} position - The new position
 		*/
 		setPosition(position: Vector): void;
 		/**
@@ -970,52 +998,64 @@ declare module '@tabletop-playground/api' {
 		 * 0: Regular
 		 * 1: Ground
 		 * 2: Penetrable
+		 * @param {number} type - The new object type
 		*/
 		setObjectType(type: number): void;
 		/**
 		 * Set the object's user visible name
+		 * @param {string} name - The new name
 		*/
 		setName(name: string): void;
 		/**
-		 * Get the object's roughness value
+		 * Set the object's metallic value
+		 * @param {number} metallic - The new metallic value, from 0 to 1
 		*/
 		setMetallic(metallic: number): void;
 		/**
 		 * Set the object's linear velocity in cm/second.
 		 * Note that setting velocity directly can lead make the physics simulation unstable, you should prefer to apply impulese or force to the object.
+		 * @param {Vector} velocity - The new velocity
 		*/
 		setLinearVelocity(velocity: Vector): void;
 		/**
 		 * Set the object's unique id. Returns whether the Id was changed successfully.
+		 * @param {string} id - The new unique id
 		*/
 		setId(iD: string): boolean;
 		/**
 		 * Set the object's friction value
+		 * @param {number} friction - The new friction value, from 0 to 1
 		*/
 		setFriction(friction: number): void;
 		/**
 		 * Set the object's description
+		 * @param {string} description - The new object description
 		*/
 		setDescription(description: string): void;
 		/**
 		 * Set the object's density value
+		 * @param {number} density - The new density value
 		*/
 		setDensity(density: number): void;
 		/**
 		 * Set the object's bounciness value
+		 * @param {number} bounciness - The new bounciness value, from 0 to 1
 		*/
 		setBounciness(bounciness: number): void;
 		/**
 		 * Set the object's angular (rotational) velocity in degrees/second.
 		 * Note that setting velocity directly can lead make the physics simulation unstable, you should prefer to apply impulse, torque, or force to the object.
+		 * @param {Rotator} velocity - The new angular velocity
 		*/
 		setAngularVelocity(velocity: Rotator): void;
 		/**
 		 * Transform an object rotation to a world rotation
+		 * @param {Rotator} rotation - The rotation relative to the object center to transform to world space
 		*/
 		localRotationToWorld(rotation: Rotator): Rotator;
 		/**
 		 * Transform an object position to a world position
+		 * @param {Vector} position - The position relative to the object center to transform to world space
 		*/
 		localPositionToWorld(position: Vector): Vector;
 		/**
@@ -1035,7 +1075,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		getTemplateId(): string;
 		/**
-		 * Get surface type
+		 * Return surface type. Only affects sound effects when colliding with other objects.
 		*/
 		getSurfaceType(): string;
 		/**
@@ -1044,7 +1084,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		getSnapPoint(index: number): SnapPoint;
 		/**
-		 * Get the object's primary color
+		 * Return the object's secondary color
 		*/
 		getSecondaryColor(): Color;
 		/**
@@ -1052,7 +1092,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		getScale(): Vector;
 		/**
-		 * Get the object's roughness value
+		 * Return the object's roughness value. Lower roughness makes the object more shiny.
 		*/
 		getRoughness(): number;
 		/**
@@ -1060,7 +1100,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		getRotation(): Rotator;
 		/**
-		 * Get the object's primary color
+		 * Return the object's primary color
 		*/
 		getPrimaryColor(): Color;
 		/**
@@ -1087,7 +1127,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		getName(): string;
 		/**
-		 * Get the object's roughness value
+		 * Return the object's metallic value.
 		*/
 		getMetallic(): number;
 		/**
@@ -1110,6 +1150,14 @@ declare module '@tabletop-playground/api' {
 		 * * Get the object extent
 		*/
 		getExtent(): Vector;
+		/**
+		 * Used when executing an object script to determine why it was executed.
+		 * Possible return values:
+		 * "Create" - The object was newly created, for example from the object library or through copy and paste
+		 * "ScriptReload" - The script was reloaded, for example because it was set on the object for the first time, or because the scripting environment was reset
+		 * "StateLoad" - A game state that contained the object was loaded
+		*/
+		getExecutionReason(): string;
 		/**
 		 * Return the object's description
 		*/
@@ -1330,6 +1378,14 @@ declare module '@tabletop-playground/api' {
 		*/
 		getObjectById(objectId: string): GameObject;
 		/**
+		 * Used while executing the global script to determine why it was executed.
+		 * Possible return values:
+		 * "ScriptReload" - The script was reloaded, for example because it was set in the session options, or because the scripting environment was reset
+		 * "StateLoad" - A game state that has the script set as global script was loaded
+		 * "" - If called at other times
+		*/
+		getExecutionReason(): string;
+		/**
 		 * Return all players currently in the game
 		*/
 		getAllPlayers(): Player[];
@@ -1414,7 +1470,8 @@ declare module '@tabletop-playground/api' {
 		*/
 		onTick: MulticastDelegate<(milliseconds: number) => void>;
 		/**
-		 * Called when a player presses a script action button.
+		 * Called when a player presses a script action button. Per default, the script buttons are mapped to the numpad.
+		 * Players can re-assign them in the interface settings.
 		 * @param {Player} player - Player that pressed the button
 		 * @param {number} index - Index of the action (1-10)
 		*/
