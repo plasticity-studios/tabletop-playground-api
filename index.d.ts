@@ -556,14 +556,14 @@ declare module '@tabletop-playground/api' {
 		 * @param {Player} player - The player who dropped the card
 		 * @param {number} index - The index at which the card is inserted
 		*/
-		onInserted: MulticastDelegate<(holder: CardHolder, insertedCard: Card, player: Player, index: number) => void>;
+		onInserted: MulticastDelegate<(holder: this, insertedCard: Card, player: Player, index: number) => void>;
 		/**
 		 * Called when a card is dragged from the holder by a player
 		 * @param {Container} container - The holder in which the objects are dropped
 		 * @param {GameObject} object - The removed object (now grabbed by the player)
 		 * @param {Player} player - The player who removed the object
 		*/
-		onRemoved: MulticastDelegate<(holder: CardHolder, removedCard: Card, player: Player) => void>;
+		onRemoved: MulticastDelegate<(holder: this, removedCard: Card, player: Player) => void>;
 		/**
 		 * set the player slot that owns the holder. Set to -1 to remove owner.
 		 * @param {number} slot - The new owning player slot
@@ -780,14 +780,14 @@ declare module '@tabletop-playground/api' {
 		 * @param {GameObject[]} object - The newly inserted objects
 		 * @param {Player} player - The player who dropped the objects
 		*/
-		onInserted: MulticastDelegate<(container: Container, insertedObjects: GameObject[], player: Player) => void>;
+		onInserted: MulticastDelegate<(container: this, insertedObjects: GameObject[], player: Player) => void>;
 		/**
 		 * Called when an object is dragged from the container by a player
 		 * @param {Container} container - The container from which the object is removed
 		 * @param {GameObject} object - The removed object (now grabbed by the player)
 		 * @param {Player} player - The player who removed the object
 		*/
-		onRemoved: MulticastDelegate<(container: Container, removedObject: GameObject, player: Player) => void>;
+		onRemoved: MulticastDelegate<(container: this, removedObject: GameObject, player: Player) => void>;
 		/**
 		 * Remove an item from the container, move it to the provided position, and return it.
 		 * Note that the item will be removed from the container even for infinite containers.
@@ -850,24 +850,24 @@ declare module '@tabletop-playground/api' {
 		 * Called when the object is created (from the object library, loading a game, copy & paste, dragging from an infinite container or stack...)
 		 * @param {GameObject} object - The new object
 		*/
-		onCreated: MulticastDelegate<(object: GameObject) => void>;
+		onCreated: MulticastDelegate<(object: this) => void>;
 		/**
 		 * Called when the object is destroyed
 		 * @param {GameObject} object - The destroyed object
 		*/
-		onDestroyed: MulticastDelegate<(object: GameObject) => void>;
+		onDestroyed: MulticastDelegate<(object: this) => void>;
 		/**
 		 * Called every tick.
 		 * @param {GameObject} object - The reference object
 		 * @param {number} milliseconds - Duration of the previous tick
 		*/
-		onTick: MulticastDelegate<(object: GameObject, deltaTime: number) => void>;
+		onTick: MulticastDelegate<(object: this, deltaTime: number) => void>;
 		/**
 		 * Called when the object is picked up
 		 * @param {GameObject} object - The object being grabbed
 		 * @param {Player} player - The player that grabbed the object
 		*/
-		onGrab: MulticastDelegate<(object: GameObject, player: Player) => void>;
+		onGrab: MulticastDelegate<(object: this, player: Player) => void>;
 		/**
 		 * Called when the object is released (but not snapped or reset).
 		 * @param {GameObject} object - The object being released
@@ -876,7 +876,7 @@ declare module '@tabletop-playground/api' {
 		 * @param {Vector} grabPosition - The position where this object was when it was grabbed. Zero if it hasn't been grabbed (for example when it was dragged from the object library).
 		 * @param {Rotator} grabRotation - The rotation this object had when it was grabbed.
 		*/
-		onReleased: MulticastDelegate<(object: GameObject, player: Player, thrown: boolean, grabPosition: Vector, grabRotation: Rotator) => void>;
+		onReleased: MulticastDelegate<(object: this, player: Player, thrown: boolean, grabPosition: Vector, grabRotation: Rotator) => void>;
 		/**
 		 * Called when the object is snapped on releasing.
 		 * @param {GameObject} object - The object being released
@@ -885,13 +885,13 @@ declare module '@tabletop-playground/api' {
 		 * @param {Vector} grabPosition - The position where this object was when it was grabbed. Zero if it hasn't been grabbed (for example when it was dragged from the object library)
 		 * @param {Rotator} grabRotation - The rotation this object had when it was grabbed.
 		*/
-		onSnapped: MulticastDelegate<(object: GameObject, player: Player, snapPoint: SnapPoint, grabPosition: Vector, grabRotation: Rotator) => void>;
+		onSnapped: MulticastDelegate<(object: this, player: Player, snapPoint: SnapPoint, grabPosition: Vector, grabRotation: Rotator) => void>;
 		/**
 		 * Called when the object is reset to its position before being picked up.
 		 * @param {GameObject} object - The object being reset
 		 * @param {Player} player - The player that reset the object
 		*/
-		onReset: MulticastDelegate<(object: GameObject, player: Player) => void>;
+		onReset: MulticastDelegate<(object: this, player: Player) => void>;
 		/**
 		 * Called when the object is hit by another object or hits another object. Gets called for both objects involved in a collision. Only called for collisions that cause an impact sound to be played.
 		 * @param {GameObject} object - The first object in the collision
@@ -900,7 +900,7 @@ declare module '@tabletop-playground/api' {
 		 * @param {Vector} impactPoint - The position at which the two objects collided
 		 * @param {Vector} impulse - Direction and magnitude of the impulse generated by the collision on the first object. Invert to get impulse on the second object.
 		*/
-		onHit: MulticastDelegate<(object: GameObject, otherObject: GameObject, first: boolean, impactPoint: Vector, impulse: Vector) => void>;
+		onHit: MulticastDelegate<(object: this, otherObject: GameObject, first: boolean, impactPoint: Vector, impulse: Vector) => void>;
 		/**
 		 * Called a player executes the primary action on an object by pressing the respective button (default mapping "R").
 		 * Will be called even if the object has a defined behavior for primary actions (like dice or multistate objects),
@@ -908,7 +908,7 @@ declare module '@tabletop-playground/api' {
 		 * @param {GameObject} object - The object on which the action is executed
 		 * @param {Player} player - The player that executed the action
 		*/
-		onPrimaryAction: MulticastDelegate<(object: GameObject, player: Player) => void>;
+		onPrimaryAction: MulticastDelegate<(object: this, player: Player) => void>;
 		/**
 		 * Called a player executes the secondary action on an object by pressing the respective button (default mapping "Ctrl+R").
 		 * Will be called even if the object has a defined behavior for primary actions (like card stacks or multistate objects),
@@ -916,7 +916,7 @@ declare module '@tabletop-playground/api' {
 		 * @param {GameObject} object - The object on which the action is executed
 		 * @param {Player} player - The player that executed the action
 		*/
-		onSecondaryAction: MulticastDelegate<(object: GameObject, player: Player) => void>;
+		onSecondaryAction: MulticastDelegate<(object: this, player: Player) => void>;
 		/**
 		 * Called a player executes a number action on the object (by highlighting or selecting it and pressing number keys).
 		 * Will be called even if the object has a defined behavior for number actions (like dice or multistate objects), after
@@ -924,7 +924,7 @@ declare module '@tabletop-playground/api' {
 		 * @param {GameObject} object - The object on which the action is executed
 		 * @param {Player} player - The player that executed the action
 		*/
-		onNumberAction: MulticastDelegate<(object: GameObject, player: Player, number: number) => void>;
+		onNumberAction: MulticastDelegate<(object: this, player: Player, number: number) => void>;
 		/**
 		 * Tranform a world rotation to an object rotation
 		 * @param {Rotator} rotation - The rotation in world space to transform to relative to the object
@@ -1532,7 +1532,7 @@ declare module '@tabletop-playground/api' {
 		 * @param {number} newState - The new state
 		 * @param {number} oldState - The state the object was in before the change
 		*/
-		onStateChanged: MulticastDelegate<(multistateObject: MultistateObject, newState: number, oldState: number) => void>;
+		onStateChanged: MulticastDelegate<(multistateObject: this, newState: number, oldState: number) => void>;
 		/**
 		 * Set the state of the object
 		 * @param {number} state - The new state of the object. State will not change if the state index is not valid for this object.
