@@ -4,9 +4,9 @@ declare function gc() : void;
 /** Handle that identifies an active timeout */
 declare type timeout_handle = any;
 /** Execute a function after a timeout in milliseconds. The timeout in milliseconds is passed as argument to the function. */
-declare function setTimeout(fn : (milliseconds: number) => void, timeout : number) : timeout_handle;
+declare function setTimeout(fn: (milliseconds: number) => void, timeout : number): timeout_handle;
 /** Cancel a timeout if it has not been executed yet */
-declare function clearTimeout(handle : timeout_handle) : void;
+declare function clearTimeout(handle: timeout_handle): void;
 /**
  *  Cancel all timeouts that have not been executed yet.
  * Warning: Using this function can lead to complex bugs when used in a script. Prefer to cancel single timeouts using clearTimeout instead.
@@ -16,9 +16,9 @@ declare function clearAllTimeouts() : void;
 /** Handle that identifies an active interval */
 declare type interval_handle = any;
 /** Execute a function repeatedly after a fixed delay in milliseconds. The delay in milliseconds is passed as argument. */
-declare function setInterval(fn : (milliseconds: number) => void, delay : number) : interval_handle;
+declare function setInterval(fn: (milliseconds: number) => void, delay : number) : interval_handle;
 /** Cancel an active interval */
-declare function clearInterval(handle : interval_handle) : void;
+declare function clearInterval(handle: interval_handle) : void;
 /**
  *  Cancel all active intervals.
  * Warning: Using this function can lead to complex bugs when used in a script. Prefer to cancel single intervals using clearInterval instead.
@@ -36,10 +36,13 @@ declare class Process {
 declare var process : Process;
 
 declare module '@tabletop-playground/api' {
+	/** The object type used in {@link GameObject.getObjectType} and {@link GameObject.setObjectType}*/
+	enum ObjectType {Regular=0, Ground, Penetrable}
+
 	/** Represent for a single callback function. Use the add() method or the assignment operator = to set the function to call. */
 	class Delegate<T> {
 		/** Set the function to call. When called multiple times, only the final added function will be called. */
-		add(fn : T): void;
+		add(fn: T): void;
 		/** Remove the given function from the callback. Doesn't do anything if the function is not set as callback. */
 		remove(fn : T): void;
 		/** Clear the callback so no function will get called. */
@@ -49,15 +52,15 @@ declare module '@tabletop-playground/api' {
 	/** Represent one or more callback functions. Use the assignment operator = to set a single function to call, or the add() method to add multiple functions. */
 	class MulticastDelegate<T> {
 		/** Add a function to call. When called multiple times, all added function will be called. */
-		add(fn : T): void;
+		add(fn: T): void;
 		/** Remove the given function from the callback. Doesn't do anything if the function is not set as callback. */
-		remove(fn : T): void;
+		remove(fn: T): void;
 		/** Clear the callback so no function will get called. */
 		clear(): void;
 	}
 
 	/**
-	* A color represented by RGB components
+	* A color represented by RGB components. The range for each component is from 0 to 1.
 	*/
 	class Color implements Iterable<number> { 
 		/**
@@ -926,6 +929,11 @@ declare module '@tabletop-playground/api' {
 		*/
 		onNumberAction: MulticastDelegate<(object: this, player: Player, number: number) => void>;
 		/**
+		 * Called when the object comes to rest. For ground objects or when the session is set to locked physics, the object
+		 * has been locked right before this event is triggered.
+		*/
+		onMovementStopped: MulticastDelegate<(object: this) => void>;
+		/**
 		 * Tranform a world rotation to an object rotation
 		 * @param {Rotator} rotation - The rotation in world space to transform to relative to the object
 		*/
@@ -994,9 +1002,9 @@ declare module '@tabletop-playground/api' {
 		*/
 		setPosition(position: Vector): void;
 		/**
-		 * Set the object's type. Available options are
-		 * 0: Regular
-		 * 1: Ground
+		 * Set the object's type. Available options are defined in {@link ObjectType}:<br>
+		 * 0: Regular<br>
+		 * 1: Ground<br>
 		 * 2: Penetrable
 		 * @param {number} type - The new object type
 		*/
@@ -1116,9 +1124,9 @@ declare module '@tabletop-playground/api' {
 		*/
 		getPackageId(): string;
 		/**
-		 * Get the object's type. Possible values are
-		 * 0: Regular
-		 * 1: Ground
+		 * Get the object's type. Possible values are defined in {@link ObjectType}:<br>  
+		 * 0: Regular<br>
+		 * 1: Ground<br>
 		 * 2: Penetrable
 		*/
 		getObjectType(): number;
@@ -1147,14 +1155,19 @@ declare module '@tabletop-playground/api' {
 		*/
 		getFriction(): number;
 		/**
-		 * * Get the object extent
+		 * * Get the center of the object extent: an axis-aligned bounding box encompassing the object.
+		 * * This will often be the same position as returned by GetPosition, but will differ for objects with their physical center not at their volume center.
+		*/
+		getExtentCenter(): Vector;
+		/**
+		 * * Get the object extent: half-size of an axis-aligned bounding box encompassing the object.
+		 * * Adding this vector to the position returned by GetExtentCenter gives a corner of the bounding box.
 		*/
 		getExtent(): Vector;
 		/**
-		 * Used when executing an object script to determine why it was executed.
-		 * Possible return values:
-		 * "Create" - The object was newly created, for example from the object library or through copy and paste
-		 * "ScriptReload" - The script was reloaded, for example because it was set on the object for the first time, or because the scripting environment was reset
+		 * Used when executing an object script to determine why it was executed. Possible return values:<br>
+		 * "Create" - The object was newly created, for example from the object library or through copy and paste<br>
+		 * "ScriptReload" - The script was reloaded, for example because it was set on the object for the first time, or because the scripting environment was reset<br>
 		 * "StateLoad" - A game state that contained the object was loaded
 		*/
 		getExecutionReason(): string;
@@ -1378,10 +1391,13 @@ declare module '@tabletop-playground/api' {
 		*/
 		getObjectById(objectId: string): GameObject;
 		/**
-		 * Used while executing the global script to determine why it was executed.
-		 * Possible return values:
-		 * "ScriptReload" - The script was reloaded, for example because it was set in the session options, or because the scripting environment was reset
-		 * "StateLoad" - A game state that has the script set as global script was loaded
+		 * Return the time in seconds since the game session was started
+		*/
+		getGameTime(): number;
+		/**
+		 * Used while executing the global script to determine why it was executed. Possible return values:<br>
+		 * "ScriptReload" - The script was reloaded, for example because it was set in the session options, or because the scripting environment was reset<br>
+		 * "StateLoad" - A game state that has the script set as global script was loaded<br>
 		 * "" - If called at other times
 		*/
 		getExecutionReason(): string;
@@ -1410,6 +1426,16 @@ declare module '@tabletop-playground/api' {
 		 * @param {number} thickness - Thickness of the line. One pixel thick if 0, cm thickness for values > 0.
 		*/
 		drawDebugLine(start: Vector, end: Vector, color: Color, duration: number, thickness?: number): void;
+		/**
+		 * Draw a line in 3d space. The line will only be visible on for the host!
+		 * @param {Vector} min - Minimum point of the box
+		 * @param {Vector} max - Maximum point of the box
+		 * @param {Rotator}
+		 * @param {Color} color - Color of the box
+		 * @param {number} duration - Amount of time in seconds to show the box. Can be 0 to show for one frame only
+		 * @param {number} thickness - Thickness of the line. One pixel thick if 0, cm thickness for values > 0.
+		*/
+		drawDebugBox(center: Vector, extent: Vector, orientation: Rotator, color: Color, duration: number, thickness?: number): void;
 		/**
 		 * Create a new object from a template
 		 * @param {string} templateId - Template GUID for the new object
@@ -1534,12 +1560,12 @@ declare module '@tabletop-playground/api' {
 		*/
 		onStateChanged: MulticastDelegate<(multistateObject: this, newState: number, oldState: number) => void>;
 		/**
-		 * Set the state of the object
+		 * Set the state of the object. Will not trigger the onStateChanged event.
 		 * @param {number} state - The new state of the object. State will not change if the state index is not valid for this object.
 		*/
 		setState(state: number): void;
 		/**
-		 * Set the object to a random state
+		 * Set the object to a random state. Will not trigger the onStateChanged event.
 		*/
 		setRandomState(): void;
 		/**
