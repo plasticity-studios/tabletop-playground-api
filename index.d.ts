@@ -1075,6 +1075,11 @@ declare module '@tabletop-playground/api' {
 		*/
 		isSnappingAllowed(): boolean;
 		/**
+		 * Return whether the object is currently simulating physics. If false, the object is stuck in place and won't move when hit by other objects.
+		 * This can happen with stationary ground mode objects or with locked physics sessions.
+		*/
+		isSimulatingPhysics(): boolean;
+		/**
 		 * Return the name of the object's template
 		*/
 		getTemplateName(): string;
@@ -1124,7 +1129,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		getPackageId(): string;
 		/**
-		 * Get the object's type. Possible values are defined in {@link ObjectType}:<br>  
+		 * Get the object's type. Possible values are defined in {@link ObjectType}:<br>
 		 * 0: Regular<br>
 		 * 1: Ground<br>
 		 * 2: Penetrable
@@ -1162,8 +1167,9 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * * Get the object extent: half-size of an axis-aligned bounding box encompassing the object.
 		 * * Adding this vector to the position returned by GetExtentCenter gives a corner of the bounding box.
+		 * * @param {boolean} CurrentRotation - If true, return the extent of an axis-aligned bounding box around the object at its current rotation. If false, return for the default rotation.
 		*/
-		getExtent(): Vector;
+		getExtent(currentRotation: boolean): Vector;
 		/**
 		 * Used when executing an object script to determine why it was executed. Possible return values:<br>
 		 * "Create" - The object was newly created, for example from the object library or through copy and paste<br>
@@ -1410,10 +1416,19 @@ declare module '@tabletop-playground/api' {
 		*/
 		getAllObjects(): GameObject[];
 		/**
+		 * Draw a point. The sphere will only be visible on for the host!
+		 * @param {Vector} position - Position of the point
+		 * @param {number} size - Radius of the sphere in cm
+		 * @param {Color} color - Color of the sphere. Alpha value is not used.
+		 * @param {number} duration - Amount of time in seconds to show the point. Can be 0 to show for one frame only.
+		 * @param {number} thickness - Thickness of the lines. One pixel thick if 0, cm thickness for values > 0.
+		*/
+		drawDebugSphere(position: Vector, radius: number, color: Color, duration: number, thickness?: number): void;
+		/**
 		 * Draw a point. The point will only be visible on for the host!
 		 * @param {Vector} position - Position of the point
 		 * @param {number} size - Size of the point in cm
-		 * @param {Color} color - Color of the point
+		 * @param {Color} color - Color of the point. Alpha value is not used.
 		 * @param {number} duration - Amount of time in seconds to show the point. Can be 0 to show for one frame only.
 		*/
 		drawDebugPoint(position: Vector, size: number, color: Color, duration: number): void;
@@ -1421,19 +1436,19 @@ declare module '@tabletop-playground/api' {
 		 * Draw a line in 3d space. The line will only be visible on for the host!
 		 * @param {Vector} start - Starting point of the line
 		 * @param {Vector} end - End point of the line
-		 * @param {Color} color - Color of the line
+		 * @param {Color} color - Color of the line. Alpha value is not used.
 		 * @param {number} duration - Amount of time in seconds to show the line. Can be 0 to show for one frame only
 		 * @param {number} thickness - Thickness of the line. One pixel thick if 0, cm thickness for values > 0.
 		*/
 		drawDebugLine(start: Vector, end: Vector, color: Color, duration: number, thickness?: number): void;
 		/**
-		 * Draw a line in 3d space. The line will only be visible on for the host!
-		 * @param {Vector} min - Minimum point of the box
-		 * @param {Vector} max - Maximum point of the box
-		 * @param {Rotator}
-		 * @param {Color} color - Color of the box
-		 * @param {number} duration - Amount of time in seconds to show the box. Can be 0 to show for one frame only
-		 * @param {number} thickness - Thickness of the line. One pixel thick if 0, cm thickness for values > 0.
+		 * Draw a box in 3d space. The box will only be visible on for the host!
+		 * @param {Vector} center - The center of the box
+		 * @param {Vector} extent - Maximum point of the box
+		 * @param {Rotator} orientation - The rotation of the box
+		 * @param {Color} color - Color of the box. Alpha value is not used.
+		 * @param {number} duration - Amount of time in seconds to show the box. Can be 0 to show for one frame only.
+		 * @param {number} thickness - Thickness of the lines. One pixel thick if 0, cm thickness for values > 0.
 		*/
 		drawDebugBox(center: Vector, extent: Vector, orientation: Rotator, color: Color, duration: number, thickness?: number): void;
 		/**
@@ -1459,7 +1474,7 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Find all objects that would collide with a capsule
 		 * @param {Vector} position - Center of the capsule
-		 * @param {Vector} extent - Dimensions of the capsule
+		 * @param {Vector} extent - Dimensions of the capsule (from center to one of the corners of the surrounding box)
 		 * @param {Rotator} orientation - Orientation of the capsule
 		*/
 		capsuleOverlap(position: Vector, extent: Vector, orientation?: Rotator): GameObject[];
@@ -1473,14 +1488,14 @@ declare module '@tabletop-playground/api' {
 		 * Find all object hits with a box that is moved along a line, ordered by distance to start
 		 * @param {Vector} start - Starting point of the box
 		 * @param {Vector} end - End point of box movement
-		 * @param {Vector} extent - Dimensions of the box
+		 * @param {Vector} extent - Dimensions of the box (from center to on of the corners)
 		 * @param {Rotator} orientation - Orientation of the box
 		*/
 		boxTrace(start: Vector, end: Vector, extent: Vector, orientation?: Rotator): TraceHit[];
 		/**
 		 * Find all objects that would collide with a box
 		 * @param {Vector} position - Center of the box
-		 * @param {Vector} extent - Dimensions of the box
+		 * @param {Vector} extent - Dimensions of the box (from center to on of the corners)
 		 * @param {Rotator} orientation - Orientation of the box
 		*/
 		boxOverlap(position: Vector, extent: Vector, orientation?: Rotator): GameObject[];
