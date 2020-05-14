@@ -3,8 +3,8 @@ declare function gc() : void;
 
 /** Handle that identifies an active timeout */
 declare type timeout_handle = any;
-/** Execute a function after a timeout in milliseconds. The timeout in milliseconds is passed as argument to the function. */
-declare function setTimeout(fn: (milliseconds: number) => void, timeout : number): timeout_handle;
+/** Execute a function after a timeout in milliseconds. Additional arguments are passed through to the function. */
+declare function setTimeout(fn: (...args: any[]) => void, timeout : number, ...args: any[]): timeout_handle;
 /** Cancel a timeout if it has not been executed yet */
 declare function clearTimeout(handle: timeout_handle): void;
 /**
@@ -15,8 +15,8 @@ declare function clearAllTimeouts() : void;
 
 /** Handle that identifies an active interval */
 declare type interval_handle = any;
-/** Execute a function repeatedly after a fixed delay in milliseconds. The delay in milliseconds is passed as argument. */
-declare function setInterval(fn: (milliseconds: number) => void, delay : number) : interval_handle;
+/** Execute a function repeatedly after a fixed delay in milliseconds. Additional arguments are passed through to the function. */
+declare function setInterval(fn: (...args: any[]) => void, delay : number, ...args: any[]) : interval_handle;
 /** Cancel an active interval */
 declare function clearInterval(handle: interval_handle) : void;
 /**
@@ -224,6 +224,14 @@ declare module '@tabletop-playground/api' {
 		* Return negated rotator
 		*/
 		negate(): Rotator;
+		/**
+		* Return a vector rotated by this rotation
+		*/
+		rotateVector(v: Vector): Vector;
+		/**
+		* Return a vector rotated by the inverse of this rotation
+		*/
+		unrotateVector(v: Vector): Vector;
 		/**
 		* Smoothly interpolate towards a varying target rotation
 		* @param {Rotator} current - Current rotation
@@ -544,8 +552,9 @@ declare module '@tabletop-playground/api' {
 		 * the shape or size of the cards does not match, or if this card is in a card holder.
 		 * @param {Card} cards - Card (stack) to add to the stack
 		 * @param {boolean} toFront - If true, add new cards to front of the stack
+		 * @param {number} offset - Number of cards to skip at the back (or front when toFront is true) before adding cards. Defaults to 0.
 		*/
-		addCards(cards: Card, toFront: boolean): boolean;
+		addCards(cards: Card, toFront: boolean, offset?: number): boolean;
 	}
 
 	/**
@@ -669,6 +678,10 @@ declare module '@tabletop-playground/api' {
 		 * Return whether a script action key is held by the player
 		*/
 		isScriptKeyDown(index: number): boolean;
+		/**
+		 * Return whether this player is the host of the current game
+		*/
+		isHost(): boolean;
 		/**
 		 * Return whether the player is currently holding the specified object
 		*/
@@ -1031,6 +1044,11 @@ declare module '@tabletop-playground/api' {
 		*/
 		setId(iD: string): boolean;
 		/**
+		 * Set the object's group id. Objects with the same group id are always picked up together.
+		 * @param {number} groupId - The new group id. Set to -1 to remove the object from all groups.
+		*/
+		setGroupId(groupID: number): void;
+		/**
 		 * Set the object's friction value
 		 * @param {number} friction - The new friction value, from 0 to 1
 		*/
@@ -1155,6 +1173,11 @@ declare module '@tabletop-playground/api' {
 		 * Return the object's unique id
 		*/
 		getId(): string;
+		/**
+		 * Return the object's group id. Objects with the same group id are always picked up together.
+		 * Returns -1 if the object is not part of a group.
+		*/
+		getGroupId(): number;
 		/**
 		 * Return the object's friction value
 		*/
@@ -1391,6 +1414,15 @@ declare module '@tabletop-playground/api' {
 		 * @param {number} slot - The player slot (0-9)
 		*/
 		getPlayerBySlot(slot: number): Player;
+		/**
+		 * Return an array of all objects with a given object group id.
+		 * @param {number} groupId - The group id to query
+		*/
+		getObjectsByGroupId(groupID: number): GameObject[];
+		/**
+		 * Return an array of all currently used object group ids.  Objects with the same group id are always picked up together.
+		*/
+		getObjectGroupIds(): number[];
 		/**
 		 * Return the game object with the specified Id
 		 * @param {string} objectId - The unique id of the object
