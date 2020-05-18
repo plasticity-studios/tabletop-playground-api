@@ -813,6 +813,14 @@ declare module '@tabletop-playground/api' {
 		*/
 		takeAt(index: number, position: Vector, hideAnimation?: boolean): GameObject;
 		/**
+		 * Remove an item from the container, move it to the provided position, and return whether it was removed.
+		 * Note that the item will be removed from the container even for infinite containers.
+		 * @param {objectToRemove} GameObject - The object to remove
+		 * @param {Vector} position - The position where the item should appear
+		 * @param {boolean} hideAnimation - If true, don't show take animation and don't play sound
+		*/
+		take(objectToRemove: GameObject, position: Vector, hideAnimation?: boolean): boolean;
+		/**
 		 * Set the type of the container. Possible values are:
 		 * 0 - Random
 		 * 1 - Infinite
@@ -823,12 +831,8 @@ declare module '@tabletop-playground/api' {
 		*/
 		setType(newType: number): void;
 		/**
-		 * Remove an item from the container
-		 * @param {number} index - The index of the object to remove
-		*/
-		removeAt(index: number): void;
-		/**
-		 * Insert an array of objects into the container.
+		 * Insert an array of objects into the container. If objects are in another container,
+		 * they are removed from their current container before inserting.
 		 * @param {GameObject[]} objects - Objects to insert
 		 * @param {number} index - The index at which the new objects will be inserted. By default, it will be inserted at start (index 0)
 		 * @param {boolean} hideAnimation - If true, don't show insert animation and don't play sound
