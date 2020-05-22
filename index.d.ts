@@ -553,8 +553,9 @@ declare module '@tabletop-playground/api' {
 		 * @param {Card} cards - Card (stack) to add to the stack
 		 * @param {boolean} toFront - If true, add new cards to front of the stack
 		 * @param {number} offset - Number of cards to skip at the back (or front when toFront is true) before adding cards. Defaults to 0.
+		 * @param {boolean} animate - If true, play card drop sound and animate the new cards flying to the stack. The animation takes some time, so the new cards aren't added to the stack instantly.
 		*/
-		addCards(cards: Card, toFront: boolean, offset?: number): boolean;
+		addCards(cards: Card, toFront: boolean, offset?: number, animate?: boolean): boolean;
 	}
 
 	/**
@@ -1004,20 +1005,26 @@ declare module '@tabletop-playground/api' {
 		*/
 		setRoughness(roughness: number): void;
 		/**
-		 * Set the object's rotation instantly
+		 * Set the object's rotation. Optionally show an animation of the object rotating toward the new orientation.
+		 * The animation is only visual, the physical rotation of the object is changed instantly.
+		 * Does not have an effect if a player is currently holding the object.
 		 * @param {Rotator} rotation - The new rotation
+		 * @param {number} animationSpeed - If larger than 0, show animation. A value of 1 gives a reasonable, quick animation. Value range clamped to [0.1, 5.0].
 		*/
-		setRotation(rotation: Rotator): void;
+		setRotation(rotation: Rotator, animationSpeed: number): void;
 		/**
 		 * Set the object's primary color
 		 * @param {Color} color - The new primary color
 		*/
 		setPrimaryColor(color: Color): void;
 		/**
-		 * Set the object's position instantly
+		 * Set the object's position. Optionally show an animation of the object flying toward the new location.
+		 * The animation is only visual, the physical location of the object is changed instantly.
+		 * Does not have an effect if a player is currently holding the object.
 		 * @param {Vector} position - The new position
+		 * @param {number} animationSpeed - If larger than 0, show animation. A value of 1 gives a reasonable, quick animation. Value range clamped to [0.1, 5.0].
 		*/
-		setPosition(position: Vector): void;
+		setPosition(position: Vector, animationSpeed: number): void;
 		/**
 		 * Set the object's type. Available options are defined in {@link ObjectType}:<br>
 		 * 0: Regular<br>
@@ -1101,6 +1108,10 @@ declare module '@tabletop-playground/api' {
 		 * This can happen with stationary ground mode objects or with locked physics sessions.
 		*/
 		isSimulatingPhysics(): boolean;
+		/**
+		 * Return if the object is currently held by a player
+		*/
+		isHeld(): boolean;
 		/**
 		 * Return the name of the object's template
 		*/
