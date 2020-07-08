@@ -652,6 +652,7 @@ declare module '@tabletop-playground/api' {
 		setSecondaryColor(newColor: Color): void;
 		/**
 		 * Set the player's rotation. Doesn't do anything for VR players.
+		 * DEPRECATED: Will be removed in a future version, use setPositionAndRotation instead.
 		*/
 		setRotation(rotation: Rotator): void;
 		/**
@@ -660,6 +661,12 @@ declare module '@tabletop-playground/api' {
 		setPrimaryColor(newColor: Color): void;
 		/**
 		 * Set the player's position. Doesn't do anything for VR players.
+		 * After using for a VR player, won't do anything for that player for one second to prevent making players sick.
+		*/
+		setPositionAndRotation(position: Vector, rotation: Rotator): void;
+		/**
+		 * Set the player's position. Doesn't do anything for VR players.
+		 * DEPRECATED: Will be removed in a future version, use setPositionAndRotation instead.
 		*/
 		setPosition(position: Vector): void;
 		/**
@@ -980,7 +987,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		snap(): SnapPoint;
 		/**
-		 * Set surface type
+		 * Set surface type.  Only affects sound effects when colliding with other objects.
 		 * @param {string} - The new surface type.
 		*/
 		setSurfaceType(surfaceType: string): void;
@@ -1200,8 +1207,9 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * * Get the center of the object extent: an axis-aligned bounding box encompassing the object.
 		 * * This will often be the same position as returned by GetPosition, but will differ for objects with their physical center not at their volume center.
+		 * * @param {boolean} CurrentRotation - If true, return the extent of an axis-aligned bounding box around the object at its current rotation. If false, return for the default rotation.
 		*/
-		getExtentCenter(): Vector;
+		getExtentCenter(currentRotation: boolean): Vector;
 		/**
 		 * * Get the object extent: half-size of an axis-aligned bounding box encompassing the object.
 		 * * Adding this vector to the position returned by GetExtentCenter gives a corner of the bounding box.
