@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>TraceHit | Tabletop Playground API</title>
+	<title>Widget | Tabletop Playground API</title>
 	<meta name="description" content="Documentation for Tabletop Playground API">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,10 +57,10 @@
 					<a href="../modules/__tabletop_playground_api_.html">&quot;@tabletop-playground/api&quot;</a>
 				</li>
 				<li>
-					<a href="__tabletop_playground_api_.tracehit.html">TraceHit</a>
+					<a href="__tabletop_playground_api_.widget.html">Widget</a>
 				</li>
 			</ul>
-			<h1>Class TraceHit</h1>
+			<h1>Class Widget</h1>
 		</div>
 	</div>
 </header>
@@ -70,7 +70,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A result from a trace</p>
+						<p>Superclass for UI elements</p>
 					</div>
 				</div>
 			</section>
@@ -78,7 +78,33 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">TraceHit</span>
+						<span class="target">Widget</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<a href="__tabletop_playground_api_.border.html" class="tsd-signature-type">Border</a>
+							</li>
+							<li>
+								<a href="__tabletop_playground_api_.button.html" class="tsd-signature-type">Button</a>
+							</li>
+							<li>
+								<a href="__tabletop_playground_api_.checkbox.html" class="tsd-signature-type">CheckBox</a>
+							</li>
+							<li>
+								<a href="__tabletop_playground_api_.progressbar.html" class="tsd-signature-type">ProgressBar</a>
+							</li>
+							<li>
+								<a href="__tabletop_playground_api_.selectionbox.html" class="tsd-signature-type">SelectionBox</a>
+							</li>
+							<li>
+								<a href="__tabletop_playground_api_.slider.html" class="tsd-signature-type">Slider</a>
+							</li>
+							<li>
+								<a href="__tabletop_playground_api_.text.html" class="tsd-signature-type">Text</a>
+							</li>
+							<li>
+								<a href="__tabletop_playground_api_.textbox.html" class="tsd-signature-type">TextBox</a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -87,121 +113,60 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="__tabletop_playground_api_.tracehit.html#distance" class="tsd-kind-icon">distance</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="__tabletop_playground_api_.tracehit.html#impactposition" class="tsd-kind-icon">impact<wbr>Position</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="__tabletop_playground_api_.tracehit.html#normal" class="tsd-kind-icon">normal</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="__tabletop_playground_api_.tracehit.html#object" class="tsd-kind-icon">object</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="__tabletop_playground_api_.tracehit.html#position" class="tsd-kind-icon">position</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="__tabletop_playground_api_.tracehit.html#clone" class="tsd-kind-icon">clone</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="__tabletop_playground_api_.widget.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="__tabletop_playground_api_.widget.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a></li>
 							</ul>
 						</section>
-					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="distance" class="tsd-anchor"></a>
-					<h3>distance</h3>
-					<div class="tsd-signature tsd-kind-icon">distance<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/eed7222/index.d.ts#L1381">index.d.ts:1381</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The distance from the start of the trace to the Location in world space. This value is 0 if there was an initial overlap (trace started inside another colliding object).</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="impactposition" class="tsd-anchor"></a>
-					<h3>impact<wbr>Position</h3>
-					<div class="tsd-signature tsd-kind-icon">impact<wbr>Position<span class="tsd-signature-symbol">:</span> <a href="__tabletop_playground_api_.vector.html" class="tsd-signature-type">Vector</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/eed7222/index.d.ts#L1391">index.d.ts:1391</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Position of the actual contact of the trace shape (box, sphere, line) with the impacted object.
-							Example: for a sphere trace test, this is the point where the surface of the sphere touches the other object.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="normal" class="tsd-anchor"></a>
-					<h3>normal</h3>
-					<div class="tsd-signature tsd-kind-icon">normal<span class="tsd-signature-symbol">:</span> <a href="__tabletop_playground_api_.vector.html" class="tsd-signature-type">Vector</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/eed7222/index.d.ts#L1396">index.d.ts:1396</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Normal of the hit in world space, for the object that was hit by the sweep, if any.
-							For example if a box hits a flat plane, this is a normalized vector pointing out from the plane.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="object" class="tsd-anchor"></a>
-					<h3>object</h3>
-					<div class="tsd-signature tsd-kind-icon">object<span class="tsd-signature-symbol">:</span> <a href="__tabletop_playground_api_.gameobject.html" class="tsd-signature-type">GameObject</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/eed7222/index.d.ts#L1377">index.d.ts:1377</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The object that was hit</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="position" class="tsd-anchor"></a>
-					<h3>position</h3>
-					<div class="tsd-signature tsd-kind-icon">position<span class="tsd-signature-symbol">:</span> <a href="__tabletop_playground_api_.vector.html" class="tsd-signature-type">Vector</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/eed7222/index.d.ts#L1386">index.d.ts:1386</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The position where the moving shape would end up against the impacted object. Equal to the point of impact for line tests.
-							Example: for a sphere trace test, this is the point where the center of the sphere would be located when it touched the other object.</p>
-						</div>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="clone" class="tsd-anchor"></a>
-					<h3>clone</h3>
+					<a name="getowningobject" class="tsd-anchor"></a>
+					<h3>get<wbr>Owning<wbr>Object</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">clone<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="__tabletop_playground_api_.tracehit.html" class="tsd-signature-type">TraceHit</a></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Owning<wbr>Object<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="__tabletop_playground_api_.gameobject.html" class="tsd-signature-type">GameObject</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/eed7222/index.d.ts#L1397">index.d.ts:1397</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/eed7222/index.d.ts#L1330">index.d.ts:1330</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="__tabletop_playground_api_.tracehit.html" class="tsd-signature-type">TraceHit</a></h4>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the game object that this UI element is attached to.
+									Returns undefined if the element isn&#39;t attached to a game object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="__tabletop_playground_api_.gameobject.html" class="tsd-signature-type">GameObject</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getparent" class="tsd-anchor"></a>
+					<h3>get<wbr>Parent</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Parent<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="__tabletop_playground_api_.widget.html" class="tsd-signature-type">Widget</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/eed7222/index.d.ts#L1325">index.d.ts:1325</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the widget that contains this widget, for example a border that wraps a check box.
+									Returns undefined if this object has no parent.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="__tabletop_playground_api_.widget.html" class="tsd-signature-type">Widget</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -295,42 +260,30 @@
 					<li class=" tsd-kind-class tsd-parent-kind-namespace">
 						<a href="__tabletop_playground_api_.textbox.html" class="tsd-kind-icon">Text<wbr>Box</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-class tsd-parent-kind-namespace">
+					<li class=" tsd-kind-class tsd-parent-kind-namespace">
 						<a href="__tabletop_playground_api_.tracehit.html" class="tsd-kind-icon">Trace<wbr>Hit</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="__tabletop_playground_api_.tracehit.html#distance" class="tsd-kind-icon">distance</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="__tabletop_playground_api_.tracehit.html#impactposition" class="tsd-kind-icon">impact<wbr>Position</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="__tabletop_playground_api_.tracehit.html#normal" class="tsd-kind-icon">normal</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="__tabletop_playground_api_.tracehit.html#object" class="tsd-kind-icon">object</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="__tabletop_playground_api_.tracehit.html#position" class="tsd-kind-icon">position</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="__tabletop_playground_api_.tracehit.html#clone" class="tsd-kind-icon">clone</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-parent-kind-namespace">
 						<a href="__tabletop_playground_api_.uielement.html" class="tsd-kind-icon">UIElement</a>
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-namespace">
 						<a href="__tabletop_playground_api_.vector.html" class="tsd-kind-icon">Vector</a>
 					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-namespace">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class tsd-parent-kind-namespace">
 						<a href="__tabletop_playground_api_.widget.html" class="tsd-kind-icon">Widget</a>
+						<ul>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="__tabletop_playground_api_.widget.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="__tabletop_playground_api_.widget.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-variable tsd-parent-kind-namespace">
 						<a href="../modules/__tabletop_playground_api_.html#globalevents" class="tsd-kind-icon">global<wbr>Events</a>
 					</li>
@@ -365,7 +318,6 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 		</div>

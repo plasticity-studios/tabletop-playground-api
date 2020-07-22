@@ -900,7 +900,7 @@ declare module '@tabletop-playground/api' {
 		 * Called when the object is released (but not snapped or reset).
 		 * @param {GameObject} object - The object being released
 		 * @param {Player} player - The player that released the object
-		 * @param {bool} thrown - True if the object was thrown (released above a threshold velocity) instead of being dropped
+		 * @param {boolean} thrown - True if the object was thrown (released above a threshold velocity) instead of being dropped
 		 * @param {Vector} grabPosition - The position where this object was when it was grabbed. Zero if it hasn't been grabbed (for example when it was dragged from the object library).
 		 * @param {Rotator} grabRotation - The rotation this object had when it was grabbed.
 		*/
@@ -986,6 +986,12 @@ declare module '@tabletop-playground/api' {
 		 * Snapping in this way does not trigger the onSnapped callback. Returns the snapped point if the object was snapped.
 		*/
 		snap(): SnapPoint;
+		/**
+		 * Replace an attached UI element. Will not do anything if called with an index that doesn't have a UI element
+		 * @param {number} - The index of the UI element to replace
+		 * @param {UIElement} - The UI element to be stored at the index
+		*/
+		setUI(index: number, element: UIElement): void;
 		/**
 		 * Set surface type.  Only affects sound effects when colliding with other objects.
 		 * @param {string} - The new surface type.
@@ -1092,6 +1098,11 @@ declare module '@tabletop-playground/api' {
 		 * @param {Rotator} velocity - The new angular velocity
 		*/
 		setAngularVelocity(velocity: Rotator): void;
+		/**
+		 * Remove an attached UI element.
+		 * @param {index} index - The index of the UI element to remove
+		*/
+		removeUI(index: number): void;
 		/**
 		 * Transform an object rotation to a world rotation
 		 * @param {Rotator} rotation - The rotation relative to the object center to transform to world space
@@ -1205,15 +1216,15 @@ declare module '@tabletop-playground/api' {
 		*/
 		getFriction(): number;
 		/**
-		 * * Get the center of the object extent: an axis-aligned bounding box encompassing the object.
-		 * * This will often be the same position as returned by GetPosition, but will differ for objects with their physical center not at their volume center.
-		 * * @param {boolean} CurrentRotation - If true, return the extent of an axis-aligned bounding box around the object at its current rotation. If false, return for the default rotation.
+		 * Get the center of the object extent: an axis-aligned bounding box encompassing the object.
+		 * This will often be the same position as returned by GetPosition, but will differ for objects with their physical center not at their volume center.
+		 * @param {boolean} currentRotation - If true, return the extent of an axis-aligned bounding box around the object at its current rotation. If false, return for the default rotation.
 		*/
 		getExtentCenter(currentRotation: boolean): Vector;
 		/**
-		 * * Get the object extent: half-size of an axis-aligned bounding box encompassing the object.
-		 * * Adding this vector to the position returned by GetExtentCenter gives a corner of the bounding box.
-		 * * @param {boolean} CurrentRotation - If true, return the extent of an axis-aligned bounding box around the object at its current rotation. If false, return for the default rotation.
+		 * Get the object extent: half-size of an axis-aligned bounding box encompassing the object.
+		 * Adding this vector to the position returned by GetExtentCenter gives a corner of the bounding box.
+		 * @param {boolean} currentRotation - If true, return the extent of an axis-aligned bounding box around the object at its current rotation. If false, return for the default rotation.
 		*/
 		getExtent(currentRotation: boolean): Vector;
 		/**
@@ -1244,6 +1255,11 @@ declare module '@tabletop-playground/api' {
 		*/
 		getBounciness(): number;
 		/**
+		 * Get an array of all attached UI elements. Modifying the array won't change
+		 * the actual UIs, use {@link SetUI} to update.
+		*/
+		getAttachedUIs(): UIElement[];
+		/**
 		 * Return the object's angular (rotational) velocity in degrees/s
 		*/
 		getAngularVelocity(): Rotator;
@@ -1255,6 +1271,11 @@ declare module '@tabletop-playground/api' {
 		 * Destroy the object
 		*/
 		destroy(): void;
+		/**
+		 * Attach a new UI element object to this object.
+		 * @param {UIElement} element - The UI element to attach
+		*/
+		attachUI(element: UIElement): void;
 		/**
 		 * Apply a torque to the object. Works like 'thruster' and should be called every tick for the duration of the torque.
 		 * @param {Vector} torque - The axis of rotation and magnitude of the torque to apply in kg*cm^2/s^2.
@@ -1291,6 +1312,59 @@ declare module '@tabletop-playground/api' {
 		 * @param {boolean} useMass - If false (default), ignore the mass of the object and apply the force directly as change of angular velocity in cm^2/s.
 		*/
 		applyAngularImpulse(impulse: Vector, useMass?: boolean): void;
+	}
+
+	/**
+	 * Superclass for UI elements
+	*/
+	class Widget { 
+		/**
+		 * Return the widget that contains this widget, for example a border that wraps a check box.
+		 * Returns undefined if this object has no parent.
+		*/
+		getParent(): Widget;
+		/**
+		 * Return the game object that this UI element is attached to.
+		 * Returns undefined if the element isn't attached to a game object.
+		*/
+		getOwningObject(): GameObject;
+	}
+
+	/**
+	 * Script UIElement
+	*/
+	class UIElement { 
+		/**
+		 * The main widget of this component
+		*/
+		widget: Widget;
+		/**
+		 * The center position of the component. Relative to the object center when attached to an object.
+		*/
+		position: Vector;
+		/**
+		 * The rotation for this component. Relative to the object rotation when attached to an object.
+		 * On the default zero rotation, the UI is facing upwards.
+		*/
+		rotation: Rotator;
+		/**
+		 * The scale of this component. At scale 1, one pixel of width or heigth corresponds to one millimeter.
+		 * Relative to the object scale when attached to an object. Default: 1
+		*/
+		scale: number;
+		/**
+		 * If true, use the natural size of the UI instead of the specified width and height. Default: true
+		*/
+		useWidgetSize: boolean;
+		/**
+		 * Width in pixels to use for rendering the UI. Only used when UseWidgetSize is false. Default: 160
+		*/
+		width: number;
+		/**
+		 * Height in pixels to use for rendering the UI. Only used when UseWidgetSize is true. Default: 90
+		*/
+		height: number;
+		clone() : UIElement;
 	}
 
 	/**
@@ -1419,9 +1493,20 @@ declare module '@tabletop-playground/api' {
 		*/
 		sphereOverlap(position: Vector, radius: number): GameObject[];
 		/**
+		 * Replace a global UI element. Will not do anything if called with an index that doesn't have a UI element
+		 * @param {number} - The index of the UI element to replace
+		 * @param {UIElement} - The UI element to be stored at the index
+		*/
+		setUI(index: number, element: UIElement): void;
+		/**
 		 * Reset scripting environment and reload all scripts
 		*/
 		resetScripting(): void;
+		/**
+		 * Remove a global UI element.
+		 * @param {index} index - The index of the UI element to remove
+		*/
+		removeUI(index: number): void;
 		/**
 		 * Reload all scripts: global script and all object scripts
 		*/
@@ -1432,6 +1517,11 @@ declare module '@tabletop-playground/api' {
 		 * @param {Vector} end - End point of the line
 		*/
 		lineTrace(start: Vector, end: Vector): TraceHit[];
+		/**
+		 * Get an array of all global UI elements. Modifying the array won't change
+		 * the actual UIs, use {@link SetUI} to update.
+		*/
+		getUIs(): UIElement[];
 		/**
 		 * Return the player occupying the specified slot
 		 * @param {number} slot - The player slot (0-9)
@@ -1554,6 +1644,11 @@ declare module '@tabletop-playground/api' {
 		 * @param {Rotator} orientation - Orientation of the box
 		*/
 		boxOverlap(position: Vector, extent: Vector, orientation?: Rotator): GameObject[];
+		/**
+		 * Add a new global UI element in the world
+		 * @param {UIElement} element - The UI element to add
+		*/
+		addUI(element: UIElement): void;
 	}
 
 	/**
@@ -1648,7 +1743,232 @@ declare module '@tabletop-playground/api' {
 		getNumStates(): number;
 	}
 
+	/**
+	 * A colored border (and background) around another widget
+	*/
+	class Border extends Widget { 
+		/**
+		 * Set the background color of the border
+		*/
+		setColor(color: Color): Border;
+		/**
+		 * Set the child widget
+		*/
+		setChild(child: Widget): Border;
+		/**
+		 * Return the current background color
+		*/
+		getColor(): Color;
+		/**
+		 * Return the child widget. Returns undefined if no child has been set for this border
+		*/
+		getChild(): Widget;
+	}
+
+	/**
+	 * A UI button.
+	*/
+	class Button extends Widget { 
+		/**
+		 * Called when the button is clicked.
+		 * @param {ScriptButton} button - The button that was clicked
+		 * @param {Player} player - The player who clicked the button
+		*/
+		onClicked: MulticastDelegate<(button: this, player: Player) => void>;
+		/**
+		 * Set the text of this button.
+		*/
+		setText(text: string): Button;
+		/**
+		 * Return the currently displayed text
+		*/
+		getText(): string;
+	}
+
+	/**
+	 * Check box UI element
+	*/
+	class CheckBox extends Widget { 
+		/**
+		 * Called when the check state changes. Not called when the state is changed through {@link setIsChecked}.
+		 * @param {Checkbox} checkBox - The check box for which the state changed.
+		 * @param {Player} player - The player who initiated the change
+		 * @param {boolean} isChecked - The new check state of the check box
+		*/
+		onCheckStateChanged: MulticastDelegate<(checkBox: this, player: Player, isChecked: boolean) => void>;
+		/**
+		 * Set the displayed text. Can include "\n" to indicate new lines.
+		 * @param {string} text - The new text
+		*/
+		setText(text: string): CheckBox;
+		/**
+		 * Set whether the check box is currently checked
+		 * @param {boolean} checked - The new checked state
+		*/
+		setIsChecked(checked: boolean): CheckBox;
+		/**
+		 * Return whether the check box is currently checked
+		*/
+		isChecked(): boolean;
+		/**
+		 * Return the currently displayed text.
+		*/
+		getText(): string;
+	}
+
+	/**
+	 * Progress bar UI element
+	*/
+	class ProgressBar extends Widget { 
+		/**
+		 * Set the displayed text. Can include "\n" to indicate new lines.
+		*/
+		setText(text: string): ProgressBar;
+		/**
+		 * Set the displayed progressed. 0 is not progress, 1 shows the full bar
+		*/
+		setProgress(progress: number): ProgressBar;
+		/**
+		 * Return the currently displayed text
+		*/
+		getText(): string;
+		/**
+		 * Return the currently displayed progress (0 to 1)
+		*/
+		getProgress(): number;
+	}
+
+	/**
+	 * Selection box UI element
+	*/
+	class SelectionBox extends Widget { 
+		/**
+		 * Called when the selection is changed by a player
+		 * @param {SelectionBox} selectionBox - The selection box that was changed
+		 * @param {Player} player - The player who changed the selection
+		 * @param {Player} index - The selected index
+		 * @param {Player} option - The selected option
+		*/
+		onSelectionChanged: MulticastDelegate<(selectionBox: this, player: Player, index: number, option: string) => void>;
+		/**
+		 * Set the currently selected option. Will not have an effect if no such option exists.
+		*/
+		setSelectedOption(text: string): SelectionBox;
+		/**
+		 * Set the index of the currently selected option. Will have no effect if there is no option at that index.
+		*/
+		setSelectedIndex(index: number): SelectionBox;
+		/**
+		 * Return the currently selected option
+		*/
+		getSelectedOption(): string;
+		/**
+		 * Get the index of the currently selected option. -1 if nothing is selected because this selection box has no options.
+		*/
+		getSelectedIndex(): number;
+		/**
+		 * Add an option at the end
+		*/
+		addOption(option: string): SelectionBox;
+	}
+
+	/**
+	 * Slider UI element
+	*/
+	class Slider extends Widget { 
+		/**
+		 * Called when the value is changed by a player
+		 * @param {SelectionBox} slider - The slider that was changed
+		 * @param {Player} player - The player who changed the value
+		 * @param {Player} index - The new value
+		*/
+		onValueChanged: MulticastDelegate<(slider: this, player: Player, value: number) => void>;
+		/**
+		 * Set the current slider value
+		*/
+		setValue(value: number): Slider;
+		/**
+		 * Set the width of the text box. Can be 0 to hide the text box.
+		*/
+		setTextBoxWidth(width: number): Slider;
+		/**
+		 * Set the slider step size. Default: 0.01
+		*/
+		setStepSize(stepSize: number): Slider;
+		/**
+		 * Set the minimum slider value. Default: 0
+		*/
+		setMinValue(minValue: number): Slider;
+		/**
+		 * Set the maximum slider value. Default: 1
+		*/
+		setMaxValue(maxValue: number): Slider;
+		/**
+		 * Return the current value
+		*/
+		getValue(): number;
+		/**
+		 * Return the width of the text box. Default: 35
+		*/
+		getTextBoxWidth(): number;
+		/**
+		 * Return the slider step size
+		*/
+		getStepSize(): number;
+		/**
+		 * Return the minimum slider value
+		*/
+		getMinValue(): number;
+		/**
+		 * Return the maximum slider value
+		*/
+		getMaxValue(): number;
+	}
+
+	/**
+	 * Text UI element
+	*/
+	class Text extends Widget { 
+		/**
+		 * Set the displayed text. Can include "\n" to indicate new lines.
+		 * @param {string} text - The new text
+		*/
+		setText(text: string): Text;
+		/**
+		 * Set the font size. The default size is 12.
+		 * @param {number} size - The new font size
+		*/
+		setFontSize(size: number): Text;
+		/**
+		 * Return the currently displayed text.
+		*/
+		getText(): string;
+	}
+
+	/**
+	 * An editable text box UI element
+	*/
+	class TextBox extends Widget { 
+		/**
+		 * Called when the edited text changes.
+		 * @param {TextBox} textBox - The text box where the text changed
+		 * @param {Player} player - The player that changed the text
+		 * @param {string} text - The new text
+		*/
+		onTextChanged: MulticastDelegate<(textBox: this, player: Player, text: string) => void>;
+		/**
+		 * Set the edited text.
+		 * @param {string} text - The new text
+		*/
+		setText(text: string): TextBox;
+		/**
+		 * Return the currently displayed text.
+		*/
+		getText(): string;
+	}
+
 	var globalEvents : GlobalScriptingEvents;
+	var refObject : GameObject;
 	var world : GameWorld;
 
 	/** Only available in object scripts (for all object types) */

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SnapPoint | Tabletop Playground API</title>
+	<title>Border | Tabletop Playground API</title>
 	<meta name="description" content="Documentation for Tabletop Playground API">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,10 +57,10 @@
 					<a href="../modules/__tabletop_playground_api_.html">&quot;@tabletop-playground/api&quot;</a>
 				</li>
 				<li>
-					<a href="__tabletop_playground_api_.snappoint.html">SnapPoint</a>
+					<a href="__tabletop_playground_api_.border.html">Border</a>
 				</li>
 			</ul>
-			<h1>Class SnapPoint</h1>
+			<h1>Class Border</h1>
 		</div>
 	</div>
 </header>
@@ -70,7 +70,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A snap point connected to an object</p>
+						<p>A colored border (and background) around another widget</p>
 					</div>
 				</div>
 			</section>
@@ -78,7 +78,12 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">SnapPoint</span>
+						<a href="__tabletop_playground_api_.widget.html" class="tsd-signature-type">Widget</a>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">Border</span>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -89,14 +94,12 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="__tabletop_playground_api_.snappoint.html#getglobalposition" class="tsd-kind-icon">get<wbr>Global<wbr>Position</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="__tabletop_playground_api_.snappoint.html#getindex" class="tsd-kind-icon">get<wbr>Index</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="__tabletop_playground_api_.snappoint.html#getlocalposition" class="tsd-kind-icon">get<wbr>Local<wbr>Position</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="__tabletop_playground_api_.snappoint.html#getparentobject" class="tsd-kind-icon">get<wbr>Parent<wbr>Object</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="__tabletop_playground_api_.snappoint.html#getrange" class="tsd-kind-icon">get<wbr>Range</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="__tabletop_playground_api_.snappoint.html#getsnaprotation" class="tsd-kind-icon">get<wbr>Snap<wbr>Rotation</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="__tabletop_playground_api_.snappoint.html#isvalid" class="tsd-kind-icon">is<wbr>Valid</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="__tabletop_playground_api_.snappoint.html#snapsrotation" class="tsd-kind-icon">snaps<wbr>Rotation</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="__tabletop_playground_api_.border.html#getchild" class="tsd-kind-icon">get<wbr>Child</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="__tabletop_playground_api_.border.html#getcolor" class="tsd-kind-icon">get<wbr>Color</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="__tabletop_playground_api_.border.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="__tabletop_playground_api_.border.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="__tabletop_playground_api_.border.html#setchild" class="tsd-kind-icon">set<wbr>Child</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="__tabletop_playground_api_.border.html#setcolor" class="tsd-kind-icon">set<wbr>Color</a></li>
 							</ul>
 						</section>
 					</div>
@@ -105,178 +108,150 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getglobalposition" class="tsd-anchor"></a>
-					<h3>get<wbr>Global<wbr>Position</h3>
+					<a name="getchild" class="tsd-anchor"></a>
+					<h3>get<wbr>Child</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Global<wbr>Position<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="__tabletop_playground_api_.vector.html" class="tsd-signature-type">Vector</a></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Child<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="__tabletop_playground_api_.widget.html" class="tsd-signature-type">Widget</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/eed7222/index.d.ts#L794">index.d.ts:794</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/eed7222/index.d.ts#L1765">index.d.ts:1765</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Get the position of the snap point in world space</p>
+									<p>Return the child widget. Returns undefined if no child has been set for this border</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="__tabletop_playground_api_.vector.html" class="tsd-signature-type">Vector</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="__tabletop_playground_api_.widget.html" class="tsd-signature-type">Widget</a></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getindex" class="tsd-anchor"></a>
-					<h3>get<wbr>Index</h3>
+					<a name="getcolor" class="tsd-anchor"></a>
+					<h3>get<wbr>Color</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Index<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Color<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="__tabletop_playground_api_.color.html" class="tsd-signature-type">Color</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/eed7222/index.d.ts#L790">index.d.ts:790</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/eed7222/index.d.ts#L1761">index.d.ts:1761</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Return the index of the snap point in the list of snap points for the object (as defined in the editor)</p>
+									<p>Return the current background color</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="__tabletop_playground_api_.color.html" class="tsd-signature-type">Color</a></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getlocalposition" class="tsd-anchor"></a>
-					<h3>get<wbr>Local<wbr>Position</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Local<wbr>Position<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="__tabletop_playground_api_.vector.html" class="tsd-signature-type">Vector</a></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="getowningobject" class="tsd-anchor"></a>
+					<h3>get<wbr>Owning<wbr>Object</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Owning<wbr>Object<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="__tabletop_playground_api_.gameobject.html" class="tsd-signature-type">GameObject</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Inherited from <a href="__tabletop_playground_api_.widget.html">Widget</a>.<a href="__tabletop_playground_api_.widget.html#getowningobject">getOwningObject</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/eed7222/index.d.ts#L786">index.d.ts:786</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/eed7222/index.d.ts#L1330">index.d.ts:1330</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Get the position of the snap point relative to its parent object</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <a href="__tabletop_playground_api_.vector.html" class="tsd-signature-type">Vector</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getparentobject" class="tsd-anchor"></a>
-					<h3>get<wbr>Parent<wbr>Object</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Parent<wbr>Object<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="__tabletop_playground_api_.gameobject.html" class="tsd-signature-type">GameObject</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/eed7222/index.d.ts#L782">index.d.ts:782</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Return the object to which the snap point is connected</p>
+									<p>Return the game object that this UI element is attached to.
+									Returns undefined if the element isn&#39;t attached to a game object.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="__tabletop_playground_api_.gameobject.html" class="tsd-signature-type">GameObject</a></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getrange" class="tsd-anchor"></a>
-					<h3>get<wbr>Range</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Range<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="getparent" class="tsd-anchor"></a>
+					<h3>get<wbr>Parent</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Parent<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="__tabletop_playground_api_.widget.html" class="tsd-signature-type">Widget</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Inherited from <a href="__tabletop_playground_api_.widget.html">Widget</a>.<a href="__tabletop_playground_api_.widget.html#getparent">getParent</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/eed7222/index.d.ts#L778">index.d.ts:778</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/eed7222/index.d.ts#L1325">index.d.ts:1325</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Return the snapping range of the snap point</p>
+									<p>Return the widget that contains this widget, for example a border that wraps a check box.
+									Returns undefined if this object has no parent.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="__tabletop_playground_api_.widget.html" class="tsd-signature-type">Widget</a></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getsnaprotation" class="tsd-anchor"></a>
-					<h3>get<wbr>Snap<wbr>Rotation</h3>
+					<a name="setchild" class="tsd-anchor"></a>
+					<h3>set<wbr>Child</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Snap<wbr>Rotation<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Child<span class="tsd-signature-symbol">(</span>child<span class="tsd-signature-symbol">: </span><a href="__tabletop_playground_api_.widget.html" class="tsd-signature-type">Widget</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="__tabletop_playground_api_.border.html" class="tsd-signature-type">Border</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/eed7222/index.d.ts#L774">index.d.ts:774</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/eed7222/index.d.ts#L1757">index.d.ts:1757</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Return the relative rotation around the Z axis to which the snap point snaps (if rotation snapping is active)</p>
+									<p>Set the child widget</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>child: <a href="__tabletop_playground_api_.widget.html" class="tsd-signature-type">Widget</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="__tabletop_playground_api_.border.html" class="tsd-signature-type">Border</a></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="isvalid" class="tsd-anchor"></a>
-					<h3>is<wbr>Valid</h3>
+					<a name="setcolor" class="tsd-anchor"></a>
+					<h3>set<wbr>Color</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">is<wbr>Valid<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Color<span class="tsd-signature-symbol">(</span>color<span class="tsd-signature-symbol">: </span><a href="__tabletop_playground_api_.color.html" class="tsd-signature-type">Color</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="__tabletop_playground_api_.border.html" class="tsd-signature-type">Border</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/eed7222/index.d.ts#L770">index.d.ts:770</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/eed7222/index.d.ts#L1753">index.d.ts:1753</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Return whether the object is valid. A snap point becomes invalid after the object it belongs to has been destroyed</p>
+									<p>Set the background color of the border</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="snapsrotation" class="tsd-anchor"></a>
-					<h3>snaps<wbr>Rotation</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">snaps<wbr>Rotation<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/eed7222/index.d.ts#L766">index.d.ts:766</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Return whether the snap point also snaps rotation</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>color: <a href="__tabletop_playground_api_.color.html" class="tsd-signature-type">Color</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="__tabletop_playground_api_.border.html" class="tsd-signature-type">Border</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -298,9 +273,33 @@
 					<li class=" tsd-kind-enum tsd-parent-kind-namespace">
 						<a href="../enums/__tabletop_playground_api_.objecttype.html" class="tsd-kind-icon">Object<wbr>Type</a>
 					</li>
-					<li class=" tsd-kind-class tsd-parent-kind-namespace">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class tsd-parent-kind-namespace">
 						<a href="__tabletop_playground_api_.border.html" class="tsd-kind-icon">Border</a>
+						<ul>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="__tabletop_playground_api_.border.html#getchild" class="tsd-kind-icon">get<wbr>Child</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="__tabletop_playground_api_.border.html#getcolor" class="tsd-kind-icon">get<wbr>Color</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="__tabletop_playground_api_.border.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="__tabletop_playground_api_.border.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="__tabletop_playground_api_.border.html#setchild" class="tsd-kind-icon">set<wbr>Child</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="__tabletop_playground_api_.border.html#setcolor" class="tsd-kind-icon">set<wbr>Color</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-parent-kind-namespace">
 						<a href="__tabletop_playground_api_.button.html" class="tsd-kind-icon">Button</a>
 					</li>
@@ -361,39 +360,9 @@
 					<li class=" tsd-kind-class tsd-parent-kind-namespace">
 						<a href="__tabletop_playground_api_.slider.html" class="tsd-kind-icon">Slider</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-class tsd-parent-kind-namespace">
+					<li class=" tsd-kind-class tsd-parent-kind-namespace">
 						<a href="__tabletop_playground_api_.snappoint.html" class="tsd-kind-icon">Snap<wbr>Point</a>
-						<ul>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="__tabletop_playground_api_.snappoint.html#getglobalposition" class="tsd-kind-icon">get<wbr>Global<wbr>Position</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="__tabletop_playground_api_.snappoint.html#getindex" class="tsd-kind-icon">get<wbr>Index</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="__tabletop_playground_api_.snappoint.html#getlocalposition" class="tsd-kind-icon">get<wbr>Local<wbr>Position</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="__tabletop_playground_api_.snappoint.html#getparentobject" class="tsd-kind-icon">get<wbr>Parent<wbr>Object</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="__tabletop_playground_api_.snappoint.html#getrange" class="tsd-kind-icon">get<wbr>Range</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="__tabletop_playground_api_.snappoint.html#getsnaprotation" class="tsd-kind-icon">get<wbr>Snap<wbr>Rotation</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="__tabletop_playground_api_.snappoint.html#isvalid" class="tsd-kind-icon">is<wbr>Valid</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="__tabletop_playground_api_.snappoint.html#snapsrotation" class="tsd-kind-icon">snaps<wbr>Rotation</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-class tsd-parent-kind-namespace">
 						<a href="__tabletop_playground_api_.text.html" class="tsd-kind-icon">Text</a>
 					</li>
@@ -447,6 +416,9 @@
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
 			</ul>
 		</div>
 	</div>
