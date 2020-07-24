@@ -1256,7 +1256,7 @@ declare module '@tabletop-playground/api' {
 		getBounciness(): number;
 		/**
 		 * Get an array of all attached UI elements. Modifying the array won't change
-		 * the actual UIs, use {@link SetUI} to update.
+		 * the actual UIs, use {@link setUI} to update.
 		*/
 		getAttachedUIs(): UIElement[];
 		/**
@@ -1519,7 +1519,7 @@ declare module '@tabletop-playground/api' {
 		lineTrace(start: Vector, end: Vector): TraceHit[];
 		/**
 		 * Get an array of all global UI elements. Modifying the array won't change
-		 * the actual UIs, use {@link SetUI} to update.
+		 * the actual UIs, use {@link setUI} to update.
 		*/
 		getUIs(): UIElement[];
 		/**
