@@ -65,12 +65,12 @@ declare module '@tabletop-playground/api' {
 	class Color implements Iterable<number> { 
 		/**
 		* Make a color from individual color components (RGB space)
-		* @param {number} r - Red component
-		* @param {number} g - Green component
-		* @param {number} b - Blue component
-		* @param {number} a - Alpha component
+		* @param {number} r - Red component.
+		* @param {number} g - Green component.
+		* @param {number} b - Blue component.
+		* @param {number} a - Alpha component. Default: 1
 		*/
-		constructor(r: number, g: number, b: number, a: number);
+		constructor(r: number, g: number, b: number, a?: number);
 		
 		/**
 		* Red component
@@ -839,6 +839,12 @@ declare module '@tabletop-playground/api' {
 		*/
 		setType(newType: number): void;
 		/**
+		 * Set the maximum number of contained objects. Currently contained objects stay in the container
+		 * even if the new maximum is lower than the current count.
+		 * @param {number} maxItems - The new maximum. Must be between 1 and 500.
+		*/
+		setMaxItems(maxItems: number): void;
+		/**
 		 * Insert an array of objects into the container. If objects are in another container,
 		 * they are removed from their current container before inserting.
 		 * @param {GameObject[]} objects - Objects to insert
@@ -859,6 +865,10 @@ declare module '@tabletop-playground/api' {
 		 * Return number of contained objects
 		*/
 		getNumItems(): number;
+		/**
+		 * Return the current maximum number of contained objects
+		*/
+		getMaxItems(): number;
 		/**
 		 * Return contained objects. Manipulating objects in the array changes the object in the container, but manipulating the array
 		 * (e.g. removing or adding objects) does not change the contents of the container!
@@ -1467,7 +1477,7 @@ declare module '@tabletop-playground/api' {
 		 * Start debug mode on the given port. You can use the Chrome DevTools or the Visual Studio Code debugger
 		 * to connect to the specified port and debug your scripts.
 		 * For example, with port 9229 (the default), open the following URL to open the DevTools:
-		 * devtools://devtools/bundled/inspector.html?experiments=true&v8only=true&ws=localhost:9229
+		 * devtools://devtools/bundled/inspector.html?v8only=true&ws=localhost:9229
 		 * For Visual Studio Code, add the following to your debug configurations:
 		 * {
 		 *   "name": "Inspector",
