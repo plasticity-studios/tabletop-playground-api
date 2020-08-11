@@ -502,6 +502,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		takeCards(numCards?: number, fromFront?: boolean, offset?: number): Card;
 		/**
+		 * Split the deck into a fixed number of smaller decks with equal size. Some of the decks will have one card more than others if the stack size is not divisible by the number of decks.
+		*/
+		split(numDecks: number): void;
+		/**
 		 * Shuffle the card stack.
 		*/
 		shuffle(): void;
@@ -540,6 +544,10 @@ declare module '@tabletop-playground/api' {
 		 * @param {number} index - The index in the stack for which to retrieve details. Index 0 is the front card of which the face is visible.
 		*/
 		getCardDetails(index?: number): CardDetails;
+		/**
+		 * Divide the deck into a number of smaller decks, each with the given number of cards. One of the decks will be smaller if the stack size is not divisible by the number of cards.
+		*/
+		divide(numCards: number): void;
 		/**
 		 * Deal a number of cards from this stack to all hands
 		 * @param {number} count - The number of cards to deal to each card holder. Defaults to 1.
@@ -1023,6 +1031,13 @@ declare module '@tabletop-playground/api' {
 		*/
 		setScale(scale: Vector): void;
 		/**
+		 * Set the data that will stored in save game states. The data is available using {@link getSavedData} when the object
+		 * script is run after loading a save state. Try to keep this data small and don't change it frequently, it needs to
+		 * be sent over the network to all clients.
+		 * @param {string} data - Data to store, maximum length 1023 characters
+		*/
+		setSavedData(data: string): void;
+		/**
 		 * Set the object's roughness value. Lower roughness makes the object more shiny.
 		 * @param {number} roughness - The new roughness value, from 0 to 1
 		*/
@@ -1089,7 +1104,7 @@ declare module '@tabletop-playground/api' {
 		setFriction(friction: number): void;
 		/**
 		 * Set the object's description
-		 * @param {string} description - The new object description
+		 * @param {string} description - The new object description. Maximum length is 1023 characters
 		*/
 		setDescription(description: string): void;
 		/**
@@ -1165,6 +1180,10 @@ declare module '@tabletop-playground/api' {
 		 * Return the object's scale
 		*/
 		getScale(): Vector;
+		/**
+		 * Return data that was stored using {@link setSavedData} or loaded from a saved state.
+		*/
+		getSavedData(): string;
 		/**
 		 * Return the object's roughness value. Lower roughness makes the object more shiny.
 		*/
@@ -1509,6 +1528,13 @@ declare module '@tabletop-playground/api' {
 		*/
 		setUI(index: number, element: UIElement): void;
 		/**
+		 * Set the data that will stored in save game states. The data is available using {@link getSavedData} when the global
+		 * script is run after loading a save state. Try to keep this data small and don't change it frequently, it needs to
+		 * be sent over the network to all clients.
+		 * @param {string} data - Data to store, maximum length 1023 characters
+		*/
+		setSavedData(data: string): void;
+		/**
 		 * Reset scripting environment and reload all scripts
 		*/
 		resetScripting(): void;
@@ -1532,6 +1558,10 @@ declare module '@tabletop-playground/api' {
 		 * the actual UIs, use {@link setUI} to update.
 		*/
 		getUIs(): UIElement[];
+		/**
+		 * Return data that was stored using {@link setSavedData} or loaded from a saved state.
+		*/
+		getSavedData(): string;
 		/**
 		 * Return the player occupying the specified slot
 		 * @param {number} slot - The player slot (0-9)
