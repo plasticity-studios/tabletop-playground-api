@@ -1005,7 +1005,9 @@ declare module '@tabletop-playground/api' {
 		*/
 		snap(): SnapPoint;
 		/**
-		 * Replace an attached UI element. Will not do anything if called with an index that doesn't have a UI element
+		 * Replace an attached UI element. Will not do anything if called with an index that doesn't have a UI element.
+		 * You can also use this function when you update an UIElement (for example by changing the position or size),
+		 * simply set it to its previous index.
 		 * @param {number} - The index of the UI element to replace
 		 * @param {UIElement} - The UI element to be stored at the index
 		*/
@@ -1522,7 +1524,9 @@ declare module '@tabletop-playground/api' {
 		*/
 		sphereOverlap(position: Vector, radius: number): GameObject[];
 		/**
-		 * Replace a global UI element. Will not do anything if called with an index that doesn't have a UI element
+		 * Replace a global UI element. Will not do anything if called with an index that doesn't have a UI element.
+		 * You can also use this function when you update an UIElement (for example by changing the position or size),
+		 * simply set it to its previous index.
 		 * @param {number} - The index of the UI element to replace
 		 * @param {UIElement} - The UI element to be stored at the index
 		*/
