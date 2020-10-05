@@ -60,6 +60,68 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
+	* Options for an HTTP request
+	*/
+	interface FetchOptions {
+		/**
+		 * The payload to send with the request
+		 */
+		body?: string;
+			
+		/**
+		 * HTTP headers used for the request
+		 */
+		headers?: Record<string, string>;
+
+		/**
+		 * A string to set request's method. If undefined, GET will be used.
+		 */
+		method?: "GET" | "SET" | "PUT" | "DELETE";
+	}
+	
+	/**
+	* Represents a response to an HTTP request
+	*/
+	class FetchResponse {
+		/**
+		* HTTP status code
+		*/
+		status: number;
+
+		/**
+		* True if the request was successful (status in range 200-299)
+		*/
+		ok: boolean;
+		
+		/**
+		* The URL that was used for the request
+		*/
+        url: string;
+
+		/**
+		* Return the response content as plain text
+		*/
+		text(): string;
+
+		/**
+		* Return the response as a JSON object
+		*/
+		json(): object;
+	}
+	
+	/**
+	* Fetch resources from a url according to the given options, returning a promise
+	* that will resolve to the response.
+	*
+	* Example usage: `fetch('https://postman-echo.com/get?foo1=bar1&foo2=bar2').then(res => console.log(JSON.stringify(res.json())))`
+	*
+	* @param {string} url - The URL to fetch
+	* @param {FetchOptions} options - Options for how to call the URL
+	* @returns {Promise<FetchResponse>} - A promise that resolves to a response object once the request has finished
+	*/
+	function fetch(url: string, options?: FetchOptions): Promise<FetchResponse>;
+	
+	/**
 	* A color represented by RGB components. The range for each component is from 0 to 1.
 	*/
 	class Color implements Iterable<number> { 
@@ -598,7 +660,7 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Remove a card from the holder. The removed card does not change its position.
 		 * @param {number} index - The index of the card to remove
-		 * @return {Card} - The removed card
+		 * @returns {Card} - The removed card
 		*/
 		removeAt(index: number): Card;
 		/**
@@ -1305,8 +1367,9 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Attach a new UI element object to this object.
 		 * @param {UIElement} element - The UI element to attach
+		 * @returns {number} - The index of the attached UI element
 		*/
-		attachUI(element: UIElement): void;
+		attachUI(element: UIElement): number;
 		/**
 		 * Apply a torque to the object. Works like 'thruster' and should be called every tick for the duration of the torque.
 		 * @param {Vector} torque - The axis of rotation and magnitude of the torque to apply in kg*cm^2/s^2.
@@ -1691,8 +1754,9 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Add a new global UI element in the world
 		 * @param {UIElement} element - The UI element to add
+		 * @returns {number} - The index of the added UI element
 		*/
-		addUI(element: UIElement): void;
+		addUI(element: UIElement): number;
 	}
 
 	/**
@@ -1755,6 +1819,86 @@ declare module '@tabletop-playground/api' {
 		 * @param {Dice[]} dice - Array of Dice objects that were rolled
 		*/
 		onDiceRolled: MulticastDelegate<(player: Player, dice: Dice[]) => void>;
+	}
+
+	/**
+	 * An HTTP request. For most purposes, {@link fetch} will be easier to use, but you can use this class when
+	 * you want to check progress of a request while it is running (using {@link onProgress}).
+	*/
+	class HttpRequest { 
+		/**
+		 * Called when an HTTP request completes
+		 * @param {boolean} successful - Indicates whether or not the request was able to connect successfully
+		*/
+		onComplete: Delegate<(successful: boolean) => void>;
+		/**
+		 * Delegate called per tick to update an HTTP request upload or download size progress
+		 * @param {number} sent - The number of bytes uploaded in the request so far
+		 * @param {number} received - The number of bytes downloaded in the response so far
+		*/
+		onProgress: Delegate<(sent: number, received: number) => void>;
+		/**
+		 * Set the URL for the request (e.g. https://postman-echo.com/get?foo1=bar1&foo2=bar2)
+		 * Must be set before calling {@link process}.
+		 * @param {string} url - URL to use
+		*/
+		setURL(uRL: string): void;
+		/**
+		 * Set the method used by the request. Allowed methods are GET, PUT, POST, and DELETE.
+		 * Should be set before calling {@link process}. If not specified, GET is assumed.
+		 * @param {string} verb - Method to use
+		*/
+		setMethod(verb: string): void;
+		/**
+		 * Set optional header info. Content-Length is the only header automatically set for you.
+		 * Required headers depend on the request itself, e.g. "multipart/form-data" is needed for a form post.
+		 * @param {string} headerName - Name of the header (Content-Type)
+		 * @param {string} headerValue - Value of the header
+		*/
+		setHeader(headerName: string, headerValue: string): void;
+		/**
+		 * Set the content of the request as a string encoded as UTF8.
+		 * @param {string} contentString - Payload to set.
+		*/
+		setContent(contentString: string): void;
+		/**
+		 * Call to begin processing the request. A request object can be re-used but not while still being processed.
+		*/
+		process(): void;
+		/**
+		 * Return the current status of the request being processed.
+		 * @returns {string} - The current status. Possible values: NotStarted, Processing, Failed, Succeeded
+		*/
+		getStatus(): string;
+		/**
+		 * Return the HTTP response status code returned by the requested server.
+		 * @returns {number} - The response code
+		*/
+		getResponseCode(): number;
+		/**
+		 * Return the method (GET, PUT, POST, DELETE) used by the request.
+		 * @returns {string} - The method used
+		*/
+		getMethod(): string;
+		/**
+		 * Return the time that it took for the server to fully respond to the request.
+		 * @returns {number} - Elapsed time in seconds
+		*/
+		getElapsedTime(): number;
+		/**
+		 * Return the size of the payload.
+		 * @returns {number} - The payload size in bytes
+		*/
+		getContentLength(): number;
+		/**
+		 * Return the payload as a string, assuming the payload is UTF8.
+		 * @returns {string} - The payload as a string.
+		*/
+		getContent(): string;
+		/**
+		 * Cancel a request that is still being processed
+		*/
+		cancel(): void;
 	}
 
 	/**
