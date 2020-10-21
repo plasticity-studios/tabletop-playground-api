@@ -648,11 +648,6 @@ declare module '@tabletop-playground/api' {
 		*/
 		onRemoved: MulticastDelegate<(holder: this, removedCard: Card, player: Player) => void>;
 		/**
-		 * set the player slot that owns the holder. Set to -1 to remove owner.
-		 * @param {number} slot - The new owning player slot
-		*/
-		setOwningPlayerSlot(slot: number): void;
-		/**
 		 * Rotate a card on the holder (upside down). Does nothing if the card is not in the holder.
 		 * @param {Card} card - The card to rotate
 		*/
@@ -680,14 +675,6 @@ declare module '@tabletop-playground/api' {
 		 * @param {Card} card - Card to check
 		*/
 		holds(card: Card): boolean;
-		/**
-		 * Return the player slot that owns the holder. Returns -1 for holders without owner.
-		*/
-		getOwningPlayerSlot(): number;
-		/**
-		 * Return the player slot that owns the holder. Returns -1 for holders without owner.
-		*/
-		getOwningPlayer(): Player;
 		/**
 		 * Return number of cards in the holder
 		*/
@@ -1128,6 +1115,11 @@ declare module '@tabletop-playground/api' {
 		*/
 		setPosition(position: Vector, animationSpeed: number): void;
 		/**
+		 * Set the player slot that owns the object. Set to -1 to remove owner.
+		 * @param {number} slot - The new owning player slot
+		*/
+		setOwningPlayerSlot(slot: number): void;
+		/**
 		 * Set the object's type. Available options are defined in {@link ObjectType}:<br>
 		 * 0: Regular<br>
 		 * 1: Ground<br>
@@ -1272,6 +1264,14 @@ declare module '@tabletop-playground/api' {
 		 * Return the id of the package that the object's template belongs to
 		*/
 		getPackageId(): string;
+		/**
+		 * Return the player slot that owns the object. Returns -1 for holders without owner.
+		*/
+		getOwningPlayerSlot(): number;
+		/**
+		 * Return the player slot that owns the object. Returns undefined for objects without owner.
+		*/
+		getOwningPlayer(): Player;
 		/**
 		 * Get the object's type. Possible values are defined in {@link ObjectType}:<br>
 		 * 0: Regular<br>
