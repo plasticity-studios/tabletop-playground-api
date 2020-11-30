@@ -830,6 +830,14 @@ declare module '@tabletop-playground/api' {
 		*/
 		getSnapRotation(): number;
 		/**
+		 * Return the object that is snapped to this point. Returns undefined if no object is found.
+		 * Objects are not bound to snap points when they are snapped, only their position is adjusted. Therefore, this
+		 * method is not guaranteed to work correctly. It uses a line trace upwards from the snap point, and if that doesn't find
+		 * anything a sphere overlap centered at the snap point. The closest object found in either of the traces is returned.
+		 * @param {number} sphereRadius - Radius to use for the sphere overlap. If not specified, a quarter of the snap point range is used.
+		*/
+		getSnappedObject(sphereRadius?: number): GameObject;
+		/**
 		 * Return the snapping range of the snap point
 		*/
 		getRange(): number;
@@ -2150,9 +2158,37 @@ declare module '@tabletop-playground/api' {
 		*/
 		setText(text: string): TextBox;
 		/**
+		 * Set the maximum number of characters allowed for this text box
+		 * @param {number} length - Maximum number of characters. Must be between 1 and 255. Default: 100
+		*/
+		setMaxLength(length: number): TextBox;
+		/**
+		 * Set the type of input this text box accepts.
+		 * 0 - Any string
+		 * 1 - Real numbers, positive or negative
+		 * 2 - Real numbers, positive only
+		 * 3 - Whole numbers, positive or negative
+		 * 4 - Whole numbers, positive only
+		 * @param {number} type - The new input type
+		*/
+		setInputType(type: number): TextBox;
+		/**
 		 * Return the currently displayed text.
 		*/
 		getText(): string;
+		/**
+		 * Return the maximum number of characters allowed for this text box
+		*/
+		getMaxLength(): number;
+		/**
+		 * Return the type of input this text box accepts.
+		 * 0 - Any string
+		 * 1 - Real numbers, positive or negative
+		 * 2 - Real numbers, positive only
+		 * 3 - Whole numbers, positive or negative
+		 * 4 - Whole numbers, positive only
+		*/
+		getInputType(): number;
 	}
 
 	var globalEvents : GlobalScriptingEvents;
