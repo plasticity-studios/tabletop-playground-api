@@ -112,7 +112,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Chat<wbr>Message<span class="tsd-signature-symbol">:</span> <a href="_api_.multicastdelegate.html" class="tsd-signature-type">MulticastDelegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>sender<span class="tsd-signature-symbol">: </span><a href="_api_.player.html" class="tsd-signature-type">Player</a>, message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/09271b5/index.d.ts#L1797">index.d.ts:1797</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/1e4bcb8/index.d.ts#L1843">index.d.ts:1843</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -135,12 +135,13 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Dice<wbr>Rolled<span class="tsd-signature-symbol">:</span> <a href="_api_.multicastdelegate.html" class="tsd-signature-type">MulticastDelegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>player<span class="tsd-signature-symbol">: </span><a href="_api_.player.html" class="tsd-signature-type">Player</a>, dice<span class="tsd-signature-symbol">: </span><a href="_api_.dice.html" class="tsd-signature-type">Dice</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/09271b5/index.d.ts#L1829">index.d.ts:1829</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/1e4bcb8/index.d.ts#L1876">index.d.ts:1876</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Called when a player has rolled dice, once the dice have come to rest. Called directly after the dice roll message is sent.</p>
+							<p>Called when a player has rolled dice, once the dice have come to rest. Called directly before the dice roll message is sent,
+							so you can use <a href="_api_.gameworld.html#setshowdicerollmessages">GameWorld.setShowDiceRollMessages</a> to determine whether the regular message should be sent.</p>
 						</div>
 						<dl class="tsd-comment-tags">
 							<dt>param</dt>
@@ -158,7 +159,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Object<wbr>Created<span class="tsd-signature-symbol">:</span> <a href="_api_.multicastdelegate.html" class="tsd-signature-type">MulticastDelegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><a href="_api_.gameobject.html" class="tsd-signature-type">GameObject</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/09271b5/index.d.ts#L1818">index.d.ts:1818</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/1e4bcb8/index.d.ts#L1864">index.d.ts:1864</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -178,7 +179,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Object<wbr>Destroyed<span class="tsd-signature-symbol">:</span> <a href="_api_.multicastdelegate.html" class="tsd-signature-type">MulticastDelegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><a href="_api_.gameobject.html" class="tsd-signature-type">GameObject</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/09271b5/index.d.ts#L1823">index.d.ts:1823</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/1e4bcb8/index.d.ts#L1869">index.d.ts:1869</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -198,7 +199,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Player<wbr>Joined<span class="tsd-signature-symbol">:</span> <a href="_api_.multicastdelegate.html" class="tsd-signature-type">MulticastDelegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>player<span class="tsd-signature-symbol">: </span><a href="_api_.player.html" class="tsd-signature-type">Player</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/09271b5/index.d.ts#L1802">index.d.ts:1802</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/1e4bcb8/index.d.ts#L1848">index.d.ts:1848</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -218,7 +219,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Player<wbr>Left<span class="tsd-signature-symbol">:</span> <a href="_api_.multicastdelegate.html" class="tsd-signature-type">MulticastDelegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>player<span class="tsd-signature-symbol">: </span><a href="_api_.player.html" class="tsd-signature-type">Player</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/09271b5/index.d.ts#L1807">index.d.ts:1807</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/1e4bcb8/index.d.ts#L1853">index.d.ts:1853</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -238,7 +239,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Player<wbr>Switched<wbr>Slots<span class="tsd-signature-symbol">:</span> <a href="_api_.multicastdelegate.html" class="tsd-signature-type">MulticastDelegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>player<span class="tsd-signature-symbol">: </span><a href="_api_.player.html" class="tsd-signature-type">Player</a>, index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/09271b5/index.d.ts#L1813">index.d.ts:1813</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/1e4bcb8/index.d.ts#L1859">index.d.ts:1859</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -261,7 +262,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Script<wbr>Button<wbr>Pressed<span class="tsd-signature-symbol">:</span> <a href="_api_.multicastdelegate.html" class="tsd-signature-type">MulticastDelegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>player<span class="tsd-signature-symbol">: </span><a href="_api_.player.html" class="tsd-signature-type">Player</a>, index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/09271b5/index.d.ts#L1785">index.d.ts:1785</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/1e4bcb8/index.d.ts#L1831">index.d.ts:1831</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -285,7 +286,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Script<wbr>Button<wbr>Released<span class="tsd-signature-symbol">:</span> <a href="_api_.multicastdelegate.html" class="tsd-signature-type">MulticastDelegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>player<span class="tsd-signature-symbol">: </span><a href="_api_.player.html" class="tsd-signature-type">Player</a>, index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/09271b5/index.d.ts#L1791">index.d.ts:1791</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/1e4bcb8/index.d.ts#L1837">index.d.ts:1837</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -308,7 +309,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Tick<span class="tsd-signature-symbol">:</span> <a href="_api_.multicastdelegate.html" class="tsd-signature-type">MulticastDelegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>milliseconds<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/09271b5/index.d.ts#L1778">index.d.ts:1778</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/1e4bcb8/index.d.ts#L1824">index.d.ts:1824</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">

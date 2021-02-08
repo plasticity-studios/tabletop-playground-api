@@ -910,6 +910,16 @@ declare module '@tabletop-playground/api' {
 		*/
 		setMaxItems(maxItems: number): void;
 		/**
+		 * Remove an item from the container and delete it. Returns whether something was removed.
+		 * @param {number} index - The index of the object to remove
+		*/
+		removeAt(index: number): boolean;
+		/**
+		 * Remove an item from the container and delete it. Only deletes the item if it was in the container, and returns whether it was deleted.
+		 * @param {objectToRemove} GameObject - The object to remove
+		*/
+		remove(objectToRemove: GameObject): boolean;
+		/**
 		 * Insert an array of objects into the container. If objects are in another container,
 		 * they are removed from their current container before inserting.
 		 * @param {GameObject[]} objects - Objects to insert
@@ -1034,15 +1044,21 @@ declare module '@tabletop-playground/api' {
 		*/
 		onMovementStopped: MulticastDelegate<(object: this) => void>;
 		/**
-		 * Tranform a world rotation to an object rotation
+		 * Transform a world rotation to an object rotation
 		 * @param {Rotator} rotation - The rotation in world space to transform to relative to the object
 		*/
 		worldRotationToLocal(rotation: Rotator): Rotator;
 		/**
-		 * Tranform a world position to an object position
+		 * Transform a world position to an object position
 		 * @param {Vector} position - The position in world space to transform to relative to the object
 		*/
 		worldPositionToLocal(position: Vector): Vector;
+		/**
+		 * Update an attached UI element. Will not do anything if called with a UI element that is not attached to
+		 * the object.
+		 * @param {UIElement} - The UI element to be updated
+		*/
+		updateUI(element: UIElement): void;
 		/**
 		 * Return a Json string representing the object. Can be used to spawn copies.
 		*/
@@ -1063,8 +1079,6 @@ declare module '@tabletop-playground/api' {
 		snap(): SnapPoint;
 		/**
 		 * Replace an attached UI element. Will not do anything if called with an index that doesn't have a UI element.
-		 * You can also use this function when you update an UIElement (for example by changing the position or size),
-		 * simply set it to its previous index.
 		 * @param {number} - The index of the UI element to replace
 		 * @param {UIElement} - The UI element to be stored at the index
 		*/
@@ -1147,12 +1161,13 @@ declare module '@tabletop-playground/api' {
 		setMetallic(metallic: number): void;
 		/**
 		 * Set the object's linear velocity in cm/second.
-		 * Note that setting velocity directly can lead make the physics simulation unstable, you should prefer to apply impulese or force to the object.
+		 * Note that setting velocity directly can lead make the physics simulation unstable, you should prefer to apply impulse or force to the object.
 		 * @param {Vector} velocity - The new velocity
 		*/
 		setLinearVelocity(velocity: Vector): void;
 		/**
-		 * Set the object's unique id. Returns whether the Id was changed successfully.
+		 * Set the object's unique id. Returns whether the id was changed successfully.
+		 * Fails if the id is already used by another object.
 		 * @param {string} id - The new unique id
 		*/
 		setId(iD: string): boolean;
@@ -1160,7 +1175,7 @@ declare module '@tabletop-playground/api' {
 		 * Set the object's group id. Objects with the same group id are always picked up together.
 		 * @param {number} groupId - The new group id. Set to -1 to remove the object from all groups.
 		*/
-		setGroupId(groupID: number): void;
+		setGroupId(groupId: number): void;
 		/**
 		 * Set the object's friction value
 		 * @param {number} friction - The new friction value, from 0 to 1
@@ -1188,7 +1203,12 @@ declare module '@tabletop-playground/api' {
 		*/
 		setAngularVelocity(velocity: Rotator): void;
 		/**
-		 * Remove an attached UI element.
+		 * Remove an attached UI element. Does not have any effect if the passed UI element is not attached to the object.
+		 * @param {UIElement} - The UI element to be removed
+		*/
+		removeUIElement(element: UIElement): void;
+		/**
+		 * Remove attached UI element at the given index.
 		 * @param {index} index - The index of the UI element to remove
 		*/
 		removeUI(index: number): void;
@@ -1219,6 +1239,11 @@ declare module '@tabletop-playground/api' {
 		 * Return if the object is currently held by a player
 		*/
 		isHeld(): boolean;
+		/**
+		 * Get an array of all attached UI elements. Modifying the array won't change
+		 * the actual UIs, use {@link updateUI} or {@link setUI} to update.
+		*/
+		getUIs(): UIElement[];
 		/**
 		 * Return the name of the object's template
 		*/
@@ -1334,7 +1359,7 @@ declare module '@tabletop-playground/api' {
 		 * "ScriptReload" - The script was reloaded, for example because it was set on the object for the first time, or because the scripting environment was reset<br>
 		 * "StateLoad" - A game state that contained the object was loaded
 		*/
-		getExecutionReason(): string;
+		static getExecutionReason(): string;
 		/**
 		 * Return the object's description
 		*/
@@ -1356,8 +1381,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		getBounciness(): number;
 		/**
-		 * Get an array of all attached UI elements. Modifying the array won't change
-		 * the actual UIs, use {@link setUI} to update.
+		 * Deprecated alias for {@getUIs}
 		*/
 		getAttachedUIs(): UIElement[];
 		/**
@@ -1373,7 +1397,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		destroy(): void;
 		/**
-		 * Attach a new UI element object to this object.
+		 * Deprecated alias for {@link addUI}
 		 * @param {UIElement} element - The UI element to attach
 		 * @returns {number} - The index of the attached UI element
 		*/
@@ -1414,6 +1438,12 @@ declare module '@tabletop-playground/api' {
 		 * @param {boolean} useMass - If false (default), ignore the mass of the object and apply the force directly as change of angular velocity in cm^2/s.
 		*/
 		applyAngularImpulse(impulse: Vector, useMass?: boolean): void;
+		/**
+		 * Attach a new UI element object to this object.
+		 * @param {UIElement} element - The UI element to attach
+		 * @returns {number} - The index of the attached UI element
+		*/
+		addUI(element: UIElement): number;
 	}
 
 	/**
@@ -1450,7 +1480,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		rotation: Rotator;
 		/**
-		 * The scale of this component. At scale 1, one pixel of width or heigth corresponds to one millimeter.
+		 * The scale of this component. At scale 1, one pixel of width or height corresponds to one millimeter.
 		 * Relative to the object scale when attached to an object. Default: 1
 		*/
 		scale: number;
@@ -1566,6 +1596,12 @@ declare module '@tabletop-playground/api' {
 	*/
 	class GameWorld { 
 		/**
+		 * Update a global UI element. Will not do anything if called with a UI element that is not currently part of
+		 * the global UI elements.
+		 * @param {UIElement} - The UI element to be updated
+		*/
+		updateUI(element: UIElement): void;
+		/**
 		 * Start debug mode on the given port. You can use the Chrome DevTools or the Visual Studio Code debugger
 		 * to connect to the specified port and debug your scripts.
 		 * For example, with port 9229 (the default), open the following URL to open the DevTools:
@@ -1578,7 +1614,6 @@ declare module '@tabletop-playground/api' {
 		 *       "request": "attach",
 		 *       "address": "localhost",
 		 *       "port": 9229
-		 * }
 		*/
 		startDebugMode(port?: number): void;
 		/**
@@ -1596,12 +1631,14 @@ declare module '@tabletop-playground/api' {
 		sphereOverlap(position: Vector, radius: number): GameObject[];
 		/**
 		 * Replace a global UI element. Will not do anything if called with an index that doesn't have a UI element.
-		 * You can also use this function when you update an UIElement (for example by changing the position or size),
-		 * simply set it to its previous index.
 		 * @param {number} - The index of the UI element to replace
 		 * @param {UIElement} - The UI element to be stored at the index
 		*/
 		setUI(index: number, element: UIElement): void;
+		/**
+		 * Set whether a message with results is shown whenever rolled dice come to rest
+		*/
+		setShowDiceRollMessages(show: boolean): void;
 		/**
 		 * Set the data that will stored in save game states. The data is available using {@link getSavedData} when the global
 		 * script is run after loading a save state. Try to keep this data small and don't change it frequently, it needs to
@@ -1613,6 +1650,11 @@ declare module '@tabletop-playground/api' {
 		 * Reset scripting environment and reload all scripts
 		*/
 		resetScripting(): void;
+		/**
+		 * Remove a global UI element.
+		 * @param {UIElement} - The UI element to be removed
+		*/
+		removeUIElement(element: UIElement): void;
 		/**
 		 * Remove a global UI element.
 		 * @param {index} index - The index of the UI element to remove
@@ -1630,9 +1672,13 @@ declare module '@tabletop-playground/api' {
 		lineTrace(start: Vector, end: Vector): TraceHit[];
 		/**
 		 * Get an array of all global UI elements. Modifying the array won't change
-		 * the actual UIs, use {@link setUI} to update.
+		 * the actual UIs, use {@link setUI} or {@link updateUI} to update.
 		*/
 		getUIs(): UIElement[];
+		/**
+		 * Return whether a message with results is shown whenever rolled dice come to rest
+		*/
+		getShowDiceRollMessages(show: boolean): boolean;
 		/**
 		 * Return data that was stored using {@link setSavedData} or loaded from a saved state.
 		*/
@@ -1646,7 +1692,7 @@ declare module '@tabletop-playground/api' {
 		 * Return an array of all objects with a given object group id.
 		 * @param {number} groupId - The group id to query
 		*/
-		getObjectsByGroupId(groupID: number): GameObject[];
+		getObjectsByGroupId(groupId: number): GameObject[];
 		/**
 		 * Return an array of all currently used object group ids.  Objects with the same group id are always picked up together.
 		*/
@@ -1666,7 +1712,7 @@ declare module '@tabletop-playground/api' {
 		 * "StateLoad" - A game state that has the script set as global script was loaded<br>
 		 * "" - If called at other times
 		*/
-		getExecutionReason(): string;
+		static getExecutionReason(): string;
 		/**
 		 * Return all players currently in the game
 		*/
@@ -1822,7 +1868,8 @@ declare module '@tabletop-playground/api' {
 		*/
 		onObjectDestroyed: MulticastDelegate<(object: GameObject) => void>;
 		/**
-		 * Called when a player has rolled dice, once the dice have come to rest. Called directly after the dice roll message is sent.
+		 * Called when a player has rolled dice, once the dice have come to rest. Called directly before the dice roll message is sent,
+		 * so you can use {@link GameWorld.setShowDiceRollMessages} to determine whether the regular message should be sent.
 		 * @param {Player} player - Player that rolled the dice
 		 * @param {Dice[]} dice - Array of Dice objects that were rolled
 		*/
@@ -2192,7 +2239,6 @@ declare module '@tabletop-playground/api' {
 	}
 
 	var globalEvents : GlobalScriptingEvents;
-	var refObject : GameObject;
 	var world : GameWorld;
 
 	/** Only available in object scripts (for all object types) */
