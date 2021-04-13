@@ -548,6 +548,15 @@ declare module '@tabletop-playground/api' {
 		 * Name of this card
 		*/
 		name: string;
+		/**
+		 * URL for texture override. Used instead of regular front texture if not empty.
+		*/
+		textureOverrideURL: string;
+		/**
+		 * Is this card flipped compared to the orientation of the stack?
+		 * Single cards are never flipped.
+		*/
+		flipped: boolean;
 	}
 
 	/**
@@ -571,6 +580,19 @@ declare module '@tabletop-playground/api' {
 		 * Shuffle the card stack.
 		*/
 		shuffle(): void;
+		/**
+		 * Set the URL of the online texture override for a card in this stack.
+		 * @param {string} url - URL to use
+		 * @param {number} index - The index in the stack for which to update the texture override. Index 0 is the front card of which the face is visible.
+		*/
+		setTextureOverrideURLAt(url: string, index?: number): void;
+		/**
+		 * Set the URL of the online texture override for all cards in this stack. When called for card stacks where all cards don't use a texture
+		 * atlas (i.e. the whole image is used as the card front), the scale of the object is updated to reflect the correct aspect ratio of
+		 * the new image after it has been loaded.
+		 * @param {string} url - URL to use
+		*/
+		setTextureOverrideURL(url: string): void;
 		/**
 		 * Set whether this card stack inherits its configured script to cards taken from it (by players or using scripting). Default: false
 		 * Note: This property is not saved in states.
@@ -625,7 +647,7 @@ declare module '@tabletop-playground/api' {
 		 * @param {number} offset - Number of cards to skip at the back (or front when toFront is true) before adding cards. Defaults to 0.
 		 * @param {boolean} animate - If true, play card drop sound and animate the new cards flying to the stack. The animation takes some time, so the new cards aren't added to the stack instantly.
 		*/
-		addCards(cards: Card, toFront: boolean, offset?: number, animate?: boolean): boolean;
+		addCards(cards: Card, toFront: boolean, offset?: number, animate?: boolean, flipped?: boolean): boolean;
 	}
 
 	/**
@@ -1897,7 +1919,7 @@ declare module '@tabletop-playground/api' {
 		 * Must be set before calling {@link process}.
 		 * @param {string} url - URL to use
 		*/
-		setURL(uRL: string): void;
+		setURL(url: string): void;
 		/**
 		 * Set the method used by the request. Allowed methods are GET, PUT, POST, and DELETE.
 		 * Should be set before calling {@link process}. If not specified, GET is assumed.
