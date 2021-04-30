@@ -1469,7 +1469,7 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
-	 * Superclass for UI elements
+	 * Superclass for UI elements. Doesn't have functionality by itself, use child subclasses instead.
 	*/
 	class Widget { 
 		/**
@@ -1683,10 +1683,6 @@ declare module '@tabletop-playground/api' {
 		*/
 		removeUI(index: number): void;
 		/**
-		 * Reload all scripts: global script and all object scripts
-		*/
-		reloadScripts(): void;
-		/**
 		 * Find all object hits on the given line, ordered by distance to start
 		 * @param {Vector} start - Starting point of the line
 		 * @param {Vector} end - End point of the line
@@ -1811,7 +1807,7 @@ declare module '@tabletop-playground/api' {
 		 * @param {string} slot - Message to send
 		 * @param {Color} slot - Color of the message
 		*/
-		broadcastChatMessage(message: string, color: Color): void;
+		broadcastChatMessage(message: string, color?: Color): void;
 		/**
 		 * Find all object hits with a box that is moved along a line, ordered by distance to start
 		 * @param {Vector} start - Starting point of the box
@@ -2042,8 +2038,14 @@ declare module '@tabletop-playground/api' {
 		onClicked: MulticastDelegate<(button: this, player: Player) => void>;
 		/**
 		 * Set the text of this button.
+		 * @param {string} text - The new text
 		*/
 		setText(text: string): Button;
+		/**
+		 * Set the font size.
+		 * @param {number} size - The new font size. Default: 12
+		*/
+		setFontSize(size: number): Button;
 		/**
 		 * Return the currently displayed text
 		*/
@@ -2051,14 +2053,36 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
+	 * A widget that can contain other widgets at fixed coordinates. A canvas has no size of its own,
+	 * so you need to explicitly set the widget size in the {@link UIElement} when using it. Widget
+	 * coordinates are in pixels, at default scale one pixel corresponds to 1 mm in the game world.
+	*/
+	class Canvas extends Widget { 
+		/**
+		 * Remove the given child from the canvas
+		 * @param {Widget} child - The widget to remove
+		*/
+		removeChild(child: Widget): void;
+		/**
+		 * Add a child widget to the canvas.
+		 * @param {Widget} child - The widget to add
+		 * @param {number} x - The X coordinate in pixels
+		 * @param {number} y - The Y coordinate in pixels
+		 * @param {number} width - Width of the widget on the canvas in pixels
+		 * @param {number} height - Height of the widget on the canvas in pixels
+		*/
+		addChild(child: Widget, x: number, y: number, width: number, height: number): Canvas;
+	}
+
+	/**
 	 * Check box UI element
 	*/
 	class CheckBox extends Widget { 
 		/**
-		 * Called when the check state changes. Not called when the state is changed through {@link setIsChecked}.
+		 * Called when the check state changes.
 		 * @param {Checkbox} checkBox - The check box for which the state changed.
-		 * @param {Player} player - The player who initiated the change
-		 * @param {boolean} isChecked - The new check state of the check box
+		 * @param {Player} player - The player who initiated the change. undefined if the state was changed through {@link setIsChecked}.
+		 * @param {boolean} isChecked - The new check state of the check box.
 		*/
 		onCheckStateChanged: MulticastDelegate<(checkBox: this, player: Player, isChecked: boolean) => void>;
 		/**
@@ -2072,6 +2096,11 @@ declare module '@tabletop-playground/api' {
 		*/
 		setIsChecked(checked: boolean): CheckBox;
 		/**
+		 * Set the font size.
+		 * @param {number} size - The new font size. Default: 12
+		*/
+		setFontSize(size: number): CheckBox;
+		/**
 		 * Return whether the check box is currently checked
 		*/
 		isChecked(): boolean;
@@ -2082,17 +2111,107 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
+	 * Superclass for UI widgets that contain multiple other UI widgets in a list. Doesn't have functionality by itself, use subclasses instead.
+	*/
+	class Panel extends Widget { 
+		/**
+		 * Set if the size of each widget should be equal instead of each widget using its default size.
+		 * @param {boolean} equal - Should widget sizes be equal? Default: false
+		*/
+		setEqualChildSize(equal: boolean): Panel;
+		/**
+		 * Set distance (margin) between child widgets.
+		 * @param {number} distance - Widget distance. Default: 1
+		*/
+		setChildDistance(distance: number): Panel;
+		/**
+		 * Remove the child at the given index
+		 * @param {number} index - Index where to remove the child widget
+		*/
+		removeChildAt(index: number): void;
+		/**
+		 * Remove the given child
+		 * @param {Widget} child - The widget to remove
+		*/
+		removeChild(child: Widget): void;
+		/**
+		 * Insert a child widget at the given index. Inserts at the end if the index is not valid.
+		 * @param {Widget} child - The widget to insert
+		 * @param {number} index - Index at which to insert the new child
+		*/
+		insertChild(child: Widget, index: number): Panel;
+		/**
+		 * Return the child widget at the given index. Returns undefined if no child exists at the index.
+		 * @param {number} index - Index where to get the child widget
+		*/
+		getChildAt(index: number): Widget;
+		/**
+		 * Add a child widget at the end
+		*/
+		addChild(child: Widget): Panel;
+	}
+
+	/**
+	 * A widget that contains other widgets and orders its children horizontally
+	*/
+	class HorizontalBox extends Panel { 
+	}
+
+	/**
+	 * An editable text box UI element
+	*/
+	class MultilineTextBox extends Widget { 
+		/**
+		 * Called when the edited text changes.
+		 * @param {TextBox} textBox - The text box where the text changed
+		 * @param {Player} player - The player that changed the text. undefined if the text was changed through {@link setText}.
+		 * @param {string} text - The new text
+		*/
+		onTextChanged: MulticastDelegate<(textBox: this, player: Player, text: string) => void>;
+		/**
+		 * Set the edited text.
+		 * @param {string} text - The new text
+		*/
+		setText(text: string): MultilineTextBox;
+		/**
+		 * Set the maximum number of characters allowed for this text box
+		 * @param {number} length - Maximum number of characters. Must be between 1 and 2000. Default: 200
+		*/
+		setMaxLength(length: number): MultilineTextBox;
+		/**
+		 * Set the font size.
+		 * @param {number} size - The new font size. Default: 12
+		*/
+		setFontSize(size: number): MultilineTextBox;
+		/**
+		 * Return the currently displayed text.
+		*/
+		getText(): string;
+		/**
+		 * Return the maximum number of characters allowed for this text box
+		*/
+		getMaxLength(): number;
+	}
+
+	/**
 	 * Progress bar UI element
 	*/
 	class ProgressBar extends Widget { 
 		/**
 		 * Set the displayed text. Can include "\n" to indicate new lines.
+		 * @param {string} text - The new text
 		*/
 		setText(text: string): ProgressBar;
 		/**
-		 * Set the displayed progressed. 0 is not progress, 1 shows the full bar
+		 * Set the displayed progressed.
+		 * @param {number} progress - Progress to show. 0 is not progress, 1 shows the full bar.
 		*/
 		setProgress(progress: number): ProgressBar;
+		/**
+		 * Set the font size.
+		 * @param {number} size - The new font size. Default: 12
+		*/
+		setFontSize(size: number): ProgressBar;
 		/**
 		 * Return the currently displayed text
 		*/
@@ -2108,9 +2227,9 @@ declare module '@tabletop-playground/api' {
 	*/
 	class SelectionBox extends Widget { 
 		/**
-		 * Called when the selection is changed by a player
+		 * Called when the selection is changed.
 		 * @param {SelectionBox} selectionBox - The selection box that was changed
-		 * @param {Player} player - The player who changed the selection
+		 * @param {Player} player - The player who changed the selection. undefined if selection is changed by {@link setSelectedOption} or {@link setSelectedIndex}.
 		 * @param {Player} index - The selected index
 		 * @param {Player} option - The selected option
 		*/
@@ -2123,6 +2242,11 @@ declare module '@tabletop-playground/api' {
 		 * Set the index of the currently selected option. Will have no effect if there is no option at that index.
 		*/
 		setSelectedIndex(index: number): SelectionBox;
+		/**
+		 * Set the font size.
+		 * @param {number} size - The new font size. Default: 12
+		*/
+		setFontSize(size: number): SelectionBox;
 		/**
 		 * Return the currently selected option
 		*/
@@ -2144,7 +2268,7 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Called when the value is changed by a player
 		 * @param {SelectionBox} slider - The slider that was changed
-		 * @param {Player} player - The player who changed the value
+		 * @param {Player} player - The player who changed the value. undefined if the value was changed through {@link setValue}.
 		 * @param {Player} index - The new value
 		*/
 		onValueChanged: MulticastDelegate<(slider: this, player: Player, value: number) => void>;
@@ -2168,6 +2292,11 @@ declare module '@tabletop-playground/api' {
 		 * Set the maximum slider value. Default: 1
 		*/
 		setMaxValue(maxValue: number): Slider;
+		/**
+		 * Set the font size.
+		 * @param {number} size - The new font size. Default: 12
+		*/
+		setFontSize(size: number): Slider;
 		/**
 		 * Return the current value
 		*/
@@ -2200,8 +2329,8 @@ declare module '@tabletop-playground/api' {
 		*/
 		setText(text: string): Text;
 		/**
-		 * Set the font size. The default size is 12.
-		 * @param {number} size - The new font size
+		 * Set the font size.
+		 * @param {number} size - The new font size. Default: 12
 		*/
 		setFontSize(size: number): Text;
 		/**
@@ -2217,7 +2346,7 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Called when the edited text changes.
 		 * @param {TextBox} textBox - The text box where the text changed
-		 * @param {Player} player - The player that changed the text
+		 * @param {Player} player - The player that changed the text. undefined if the text was changed through {@link setText}.
 		 * @param {string} text - The new text
 		*/
 		onTextChanged: MulticastDelegate<(textBox: this, player: Player, text: string) => void>;
@@ -2242,6 +2371,11 @@ declare module '@tabletop-playground/api' {
 		*/
 		setInputType(type: number): TextBox;
 		/**
+		 * Set the font size.
+		 * @param {number} size - The new font size. Default: 12
+		*/
+		setFontSize(size: number): TextBox;
+		/**
 		 * Return the currently displayed text.
 		*/
 		getText(): string;
@@ -2258,6 +2392,12 @@ declare module '@tabletop-playground/api' {
 		 * 4 - Whole numbers, positive only
 		*/
 		getInputType(): number;
+	}
+
+	/**
+	 * A widget that contains other widgets and orders its children vertically
+	*/
+	class VerticalBox extends Panel { 
 	}
 
 	var globalEvents : GlobalScriptingEvents;

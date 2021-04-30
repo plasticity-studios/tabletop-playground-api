@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Widget | Tabletop Playground API</title>
+	<title>Canvas | Tabletop Playground API</title>
 	<meta name="description" content="Documentation for Tabletop Playground API">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,10 +57,10 @@
 					<a href="../modules/_api_.html">&quot;api&quot;</a>
 				</li>
 				<li>
-					<a href="_api_.widget.html">Widget</a>
+					<a href="_api_.canvas.html">Canvas</a>
 				</li>
 			</ul>
-			<h1>Class Widget</h1>
+			<h1>Class Canvas</h1>
 		</div>
 	</div>
 </header>
@@ -70,7 +70,9 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Superclass for UI elements. Doesn&#39;t have functionality by itself, use child subclasses instead.</p>
+						<p>A widget that can contain other widgets at fixed coordinates. A canvas has no size of its own,
+							so you need to explicitly set the widget size in the <a href="_api_.uielement.html">UIElement</a> when using it. Widget
+						coordinates are in pixels, at default scale one pixel corresponds to 1 mm in the game world.</p>
 					</div>
 				</div>
 			</section>
@@ -78,40 +80,10 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Widget</span>
+						<a href="_api_.widget.html" class="tsd-signature-type">Widget</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<a href="_api_.border.html" class="tsd-signature-type">Border</a>
-							</li>
-							<li>
-								<a href="_api_.button.html" class="tsd-signature-type">Button</a>
-							</li>
-							<li>
-								<a href="_api_.canvas.html" class="tsd-signature-type">Canvas</a>
-							</li>
-							<li>
-								<a href="_api_.checkbox.html" class="tsd-signature-type">CheckBox</a>
-							</li>
-							<li>
-								<a href="_api_.panel.html" class="tsd-signature-type">Panel</a>
-							</li>
-							<li>
-								<a href="_api_.multilinetextbox.html" class="tsd-signature-type">MultilineTextBox</a>
-							</li>
-							<li>
-								<a href="_api_.progressbar.html" class="tsd-signature-type">ProgressBar</a>
-							</li>
-							<li>
-								<a href="_api_.selectionbox.html" class="tsd-signature-type">SelectionBox</a>
-							</li>
-							<li>
-								<a href="_api_.slider.html" class="tsd-signature-type">Slider</a>
-							</li>
-							<li>
-								<a href="_api_.text.html" class="tsd-signature-type">Text</a>
-							</li>
-							<li>
-								<a href="_api_.textbox.html" class="tsd-signature-type">TextBox</a>
+								<span class="target">Canvas</span>
 							</li>
 						</ul>
 					</li>
@@ -124,8 +96,10 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.widget.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.widget.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.canvas.html#addchild" class="tsd-kind-icon">add<wbr>Child</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.canvas.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.canvas.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.canvas.html#removechild" class="tsd-kind-icon">remove<wbr>Child</a></li>
 							</ul>
 						</section>
 					</div>
@@ -134,14 +108,70 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="addchild" class="tsd-anchor"></a>
+					<h3>add<wbr>Child</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Child<span class="tsd-signature-symbol">(</span>child<span class="tsd-signature-symbol">: </span><a href="_api_.widget.html" class="tsd-signature-type">Widget</a>, x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, width<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, height<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.canvas.html" class="tsd-signature-type">Canvas</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2074">index.d.ts:2074</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Add a child widget to the canvas.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>child: <a href="_api_.widget.html" class="tsd-signature-type">Widget</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The widget to add</p>
+									</div>
+								</li>
+								<li>
+									<h5>x: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The X coordinate in pixels</p>
+									</div>
+								</li>
+								<li>
+									<h5>y: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The Y coordinate in pixels</p>
+									</div>
+								</li>
+								<li>
+									<h5>width: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Width of the widget on the canvas in pixels</p>
+									</div>
+								</li>
+								<li>
+									<h5>height: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Height of the widget on the canvas in pixels</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.canvas.html" class="tsd-signature-type">Canvas</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="getowningobject" class="tsd-anchor"></a>
 					<h3>get<wbr>Owning<wbr>Object</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">get<wbr>Owning<wbr>Object<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.gameobject.html" class="tsd-signature-type">GameObject</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Inherited from <a href="_api_.widget.html">Widget</a>.<a href="_api_.widget.html#getowningobject">getOwningObject</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L1484">index.d.ts:1484</a></li>
 								</ul>
@@ -156,15 +186,16 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="getparent" class="tsd-anchor"></a>
 					<h3>get<wbr>Parent</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 						<li class="tsd-signature tsd-kind-icon">get<wbr>Parent<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.widget.html" class="tsd-signature-type">Widget</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Inherited from <a href="_api_.widget.html">Widget</a>.<a href="_api_.widget.html#getparent">getParent</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L1479">index.d.ts:1479</a></li>
 								</ul>
@@ -176,6 +207,37 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="_api_.widget.html" class="tsd-signature-type">Widget</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="removechild" class="tsd-anchor"></a>
+					<h3>remove<wbr>Child</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Child<span class="tsd-signature-symbol">(</span>child<span class="tsd-signature-symbol">: </span><a href="_api_.widget.html" class="tsd-signature-type">Widget</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2065">index.d.ts:2065</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Remove the given child from the canvas</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>child: <a href="_api_.widget.html" class="tsd-signature-type">Widget</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The widget to remove</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -197,13 +259,19 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-module">
-						<a href="_api_.widget.html" class="tsd-kind-icon">Widget</a>
+						<a href="_api_.canvas.html" class="tsd-kind-icon">Canvas</a>
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.widget.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a>
+								<a href="_api_.canvas.html#addchild" class="tsd-kind-icon">add<wbr>Child</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_api_.canvas.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_api_.canvas.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.widget.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a>
+								<a href="_api_.canvas.html#removechild" class="tsd-kind-icon">remove<wbr>Child</a>
 							</li>
 						</ul>
 					</li>
@@ -232,6 +300,9 @@
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
 			</ul>
 		</div>
 	</div>

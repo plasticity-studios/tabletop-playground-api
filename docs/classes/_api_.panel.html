@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>TextBox | Tabletop Playground API</title>
+	<title>Panel | Tabletop Playground API</title>
 	<meta name="description" content="Documentation for Tabletop Playground API">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,10 +57,10 @@
 					<a href="../modules/_api_.html">&quot;api&quot;</a>
 				</li>
 				<li>
-					<a href="_api_.textbox.html">TextBox</a>
+					<a href="_api_.panel.html">Panel</a>
 				</li>
 			</ul>
-			<h1>Class TextBox</h1>
+			<h1>Class Panel</h1>
 		</div>
 	</div>
 </header>
@@ -70,7 +70,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>An editable text box UI element</p>
+						<p>Superclass for UI widgets that contain multiple other UI widgets in a list. Doesn&#39;t have functionality by itself, use subclasses instead.</p>
 					</div>
 				</div>
 			</section>
@@ -81,7 +81,15 @@
 						<a href="_api_.widget.html" class="tsd-signature-type">Widget</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">TextBox</span>
+								<span class="target">Panel</span>
+								<ul class="tsd-hierarchy">
+									<li>
+										<a href="_api_.horizontalbox.html" class="tsd-signature-type">HorizontalBox</a>
+									</li>
+									<li>
+										<a href="_api_.verticalbox.html" class="tsd-signature-type">VerticalBox</a>
+									</li>
+								</ul>
 							</li>
 						</ul>
 					</li>
@@ -92,105 +100,80 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_.textbox.html#ontextchanged" class="tsd-kind-icon">on<wbr>Text<wbr>Changed</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.textbox.html#getinputtype" class="tsd-kind-icon">get<wbr>Input<wbr>Type</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.textbox.html#getmaxlength" class="tsd-kind-icon">get<wbr>Max<wbr>Length</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.textbox.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.textbox.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.textbox.html#gettext" class="tsd-kind-icon">get<wbr>Text</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.textbox.html#setfontsize" class="tsd-kind-icon">set<wbr>Font<wbr>Size</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.textbox.html#setinputtype" class="tsd-kind-icon">set<wbr>Input<wbr>Type</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.textbox.html#setmaxlength" class="tsd-kind-icon">set<wbr>Max<wbr>Length</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.textbox.html#settext" class="tsd-kind-icon">set<wbr>Text</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.panel.html#addchild" class="tsd-kind-icon">add<wbr>Child</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.panel.html#getchildat" class="tsd-kind-icon">get<wbr>Child<wbr>At</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.panel.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.panel.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.panel.html#insertchild" class="tsd-kind-icon">insert<wbr>Child</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.panel.html#removechild" class="tsd-kind-icon">remove<wbr>Child</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.panel.html#removechildat" class="tsd-kind-icon">remove<wbr>Child<wbr>At</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.panel.html#setchilddistance" class="tsd-kind-icon">set<wbr>Child<wbr>Distance</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.panel.html#setequalchildsize" class="tsd-kind-icon">set<wbr>Equal<wbr>Child<wbr>Size</a></li>
 							</ul>
 						</section>
-					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="ontextchanged" class="tsd-anchor"></a>
-					<h3>on<wbr>Text<wbr>Changed</h3>
-					<div class="tsd-signature tsd-kind-icon">on<wbr>Text<wbr>Changed<span class="tsd-signature-symbol">:</span> <a href="_api_.multicastdelegate.html" class="tsd-signature-type">MulticastDelegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>textBox<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span>, player<span class="tsd-signature-symbol">: </span><a href="_api_.player.html" class="tsd-signature-type">Player</a>, text<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2352">index.d.ts:2352</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Called when the edited text changes.</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>The text box where the text changed</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The player that changed the text. undefined if the text was changed through <a href="_api_.textbox.html#settext">setText</a>.</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The new text</p>
-							</dd>
-						</dl>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getinputtype" class="tsd-anchor"></a>
-					<h3>get<wbr>Input<wbr>Type</h3>
+					<a name="addchild" class="tsd-anchor"></a>
+					<h3>add<wbr>Child</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Input<wbr>Type<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Child<span class="tsd-signature-symbol">(</span>child<span class="tsd-signature-symbol">: </span><a href="_api_.widget.html" class="tsd-signature-type">Widget</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.panel.html" class="tsd-signature-type">Panel</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2394">index.d.ts:2394</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2151">index.d.ts:2151</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Return the type of input this text box accepts.
-										0 - Any string
-										1 - Real numbers, positive or negative
-										2 - Real numbers, positive only
-										3 - Whole numbers, positive or negative
-									4 - Whole numbers, positive only</p>
+									<p>Add a child widget at the end</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>child: <a href="_api_.widget.html" class="tsd-signature-type">Widget</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.panel.html" class="tsd-signature-type">Panel</a></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getmaxlength" class="tsd-anchor"></a>
-					<h3>get<wbr>Max<wbr>Length</h3>
+					<a name="getchildat" class="tsd-anchor"></a>
+					<h3>get<wbr>Child<wbr>At</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Max<wbr>Length<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Child<wbr>At<span class="tsd-signature-symbol">(</span>index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.widget.html" class="tsd-signature-type">Widget</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2385">index.d.ts:2385</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2147">index.d.ts:2147</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Return the maximum number of characters allowed for this text box</p>
+									<p>Return the child widget at the given index. Returns undefined if no child exists at the index.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>index: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Index where to get the child widget</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.widget.html" class="tsd-signature-type">Widget</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -243,153 +226,163 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="gettext" class="tsd-anchor"></a>
-					<h3>get<wbr>Text</h3>
+					<a name="insertchild" class="tsd-anchor"></a>
+					<h3>insert<wbr>Child</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Text<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">insert<wbr>Child<span class="tsd-signature-symbol">(</span>child<span class="tsd-signature-symbol">: </span><a href="_api_.widget.html" class="tsd-signature-type">Widget</a>, index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.panel.html" class="tsd-signature-type">Panel</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2381">index.d.ts:2381</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2142">index.d.ts:2142</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Return the currently displayed text.</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="setfontsize" class="tsd-anchor"></a>
-					<h3>set<wbr>Font<wbr>Size</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Font<wbr>Size<span class="tsd-signature-symbol">(</span>size<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.textbox.html" class="tsd-signature-type">TextBox</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2377">index.d.ts:2377</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Set the font size.</p>
+									<p>Insert a child widget at the given index. Inserts at the end if the index is not valid.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>size: <span class="tsd-signature-type">number</span></h5>
+									<h5>child: <a href="_api_.widget.html" class="tsd-signature-type">Widget</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The new font size. Default: 12</p>
+										<p>The widget to insert</p>
+									</div>
+								</li>
+								<li>
+									<h5>index: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Index at which to insert the new child</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_api_.textbox.html" class="tsd-signature-type">TextBox</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.panel.html" class="tsd-signature-type">Panel</a></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="setinputtype" class="tsd-anchor"></a>
-					<h3>set<wbr>Input<wbr>Type</h3>
+					<a name="removechild" class="tsd-anchor"></a>
+					<h3>remove<wbr>Child</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Input<wbr>Type<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.textbox.html" class="tsd-signature-type">TextBox</a></li>
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Child<span class="tsd-signature-symbol">(</span>child<span class="tsd-signature-symbol">: </span><a href="_api_.widget.html" class="tsd-signature-type">Widget</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2372">index.d.ts:2372</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2136">index.d.ts:2136</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Set the type of input this text box accepts.
-										0 - Any string
-										1 - Real numbers, positive or negative
-										2 - Real numbers, positive only
-										3 - Whole numbers, positive or negative
-									4 - Whole numbers, positive only</p>
+									<p>Remove the given child</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>type: <span class="tsd-signature-type">number</span></h5>
+									<h5>child: <a href="_api_.widget.html" class="tsd-signature-type">Widget</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The new input type</p>
+										<p>The widget to remove</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_api_.textbox.html" class="tsd-signature-type">TextBox</a></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="setmaxlength" class="tsd-anchor"></a>
-					<h3>set<wbr>Max<wbr>Length</h3>
+					<a name="removechildat" class="tsd-anchor"></a>
+					<h3>remove<wbr>Child<wbr>At</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Max<wbr>Length<span class="tsd-signature-symbol">(</span>length<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.textbox.html" class="tsd-signature-type">TextBox</a></li>
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Child<wbr>At<span class="tsd-signature-symbol">(</span>index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2362">index.d.ts:2362</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2131">index.d.ts:2131</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Set the maximum number of characters allowed for this text box</p>
+									<p>Remove the child at the given index</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>length: <span class="tsd-signature-type">number</span></h5>
+									<h5>index: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Maximum number of characters. Must be between 1 and 255. Default: 100</p>
+										<p>Index where to remove the child widget</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_api_.textbox.html" class="tsd-signature-type">TextBox</a></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="settext" class="tsd-anchor"></a>
-					<h3>set<wbr>Text</h3>
+					<a name="setchilddistance" class="tsd-anchor"></a>
+					<h3>set<wbr>Child<wbr>Distance</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Text<span class="tsd-signature-symbol">(</span>text<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.textbox.html" class="tsd-signature-type">TextBox</a></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Child<wbr>Distance<span class="tsd-signature-symbol">(</span>distance<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.panel.html" class="tsd-signature-type">Panel</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2357">index.d.ts:2357</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2126">index.d.ts:2126</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Set the edited text.</p>
+									<p>Set distance (margin) between child widgets.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>text: <span class="tsd-signature-type">string</span></h5>
+									<h5>distance: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The new text</p>
+										<p>Widget distance. Default: 1</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_api_.textbox.html" class="tsd-signature-type">TextBox</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.panel.html" class="tsd-signature-type">Panel</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setequalchildsize" class="tsd-anchor"></a>
+					<h3>set<wbr>Equal<wbr>Child<wbr>Size</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Equal<wbr>Child<wbr>Size<span class="tsd-signature-symbol">(</span>equal<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.panel.html" class="tsd-signature-type">Panel</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2121">index.d.ts:2121</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set if the size of each widget should be equal instead of each widget using its default size.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>equal: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Should widget sizes be equal? Default: false</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.panel.html" class="tsd-signature-type">Panel</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -411,37 +404,34 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-module">
-						<a href="_api_.textbox.html" class="tsd-kind-icon">Text<wbr>Box</a>
+						<a href="_api_.panel.html" class="tsd-kind-icon">Panel</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_api_.textbox.html#ontextchanged" class="tsd-kind-icon">on<wbr>Text<wbr>Changed</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.panel.html#addchild" class="tsd-kind-icon">add<wbr>Child</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.textbox.html#getinputtype" class="tsd-kind-icon">get<wbr>Input<wbr>Type</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.textbox.html#getmaxlength" class="tsd-kind-icon">get<wbr>Max<wbr>Length</a>
+								<a href="_api_.panel.html#getchildat" class="tsd-kind-icon">get<wbr>Child<wbr>At</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.textbox.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a>
+								<a href="_api_.panel.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.textbox.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a>
+								<a href="_api_.panel.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.textbox.html#gettext" class="tsd-kind-icon">get<wbr>Text</a>
+								<a href="_api_.panel.html#insertchild" class="tsd-kind-icon">insert<wbr>Child</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.textbox.html#setfontsize" class="tsd-kind-icon">set<wbr>Font<wbr>Size</a>
+								<a href="_api_.panel.html#removechild" class="tsd-kind-icon">remove<wbr>Child</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.textbox.html#setinputtype" class="tsd-kind-icon">set<wbr>Input<wbr>Type</a>
+								<a href="_api_.panel.html#removechildat" class="tsd-kind-icon">remove<wbr>Child<wbr>At</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.textbox.html#setmaxlength" class="tsd-kind-icon">set<wbr>Max<wbr>Length</a>
+								<a href="_api_.panel.html#setchilddistance" class="tsd-kind-icon">set<wbr>Child<wbr>Distance</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.textbox.html#settext" class="tsd-kind-icon">set<wbr>Text</a>
+								<a href="_api_.panel.html#setequalchildsize" class="tsd-kind-icon">set<wbr>Equal<wbr>Child<wbr>Size</a>
 							</li>
 						</ul>
 					</li>
@@ -459,7 +449,6 @@
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
 				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 			<ul class="tsd-legend">

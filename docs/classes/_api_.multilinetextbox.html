@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>CheckBox | Tabletop Playground API</title>
+	<title>MultilineTextBox | Tabletop Playground API</title>
 	<meta name="description" content="Documentation for Tabletop Playground API">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,10 +57,10 @@
 					<a href="../modules/_api_.html">&quot;api&quot;</a>
 				</li>
 				<li>
-					<a href="_api_.checkbox.html">CheckBox</a>
+					<a href="_api_.multilinetextbox.html">MultilineTextBox</a>
 				</li>
 			</ul>
-			<h1>Class CheckBox</h1>
+			<h1>Class MultilineTextBox</h1>
 		</div>
 	</div>
 </header>
@@ -70,7 +70,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Check box UI element</p>
+						<p>An editable text box UI element</p>
 					</div>
 				</div>
 			</section>
@@ -81,7 +81,7 @@
 						<a href="_api_.widget.html" class="tsd-signature-type">Widget</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">CheckBox</span>
+								<span class="target">MultilineTextBox</span>
 							</li>
 						</ul>
 					</li>
@@ -94,19 +94,19 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_.checkbox.html#oncheckstatechanged" class="tsd-kind-icon">on<wbr>Check<wbr>State<wbr>Changed</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_.multilinetextbox.html#ontextchanged" class="tsd-kind-icon">on<wbr>Text<wbr>Changed</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.checkbox.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.checkbox.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.checkbox.html#gettext" class="tsd-kind-icon">get<wbr>Text</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.checkbox.html#ischecked" class="tsd-kind-icon">is<wbr>Checked</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.checkbox.html#setfontsize" class="tsd-kind-icon">set<wbr>Font<wbr>Size</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.checkbox.html#setischecked" class="tsd-kind-icon">set<wbr>IsChecked</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.checkbox.html#settext" class="tsd-kind-icon">set<wbr>Text</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.multilinetextbox.html#getmaxlength" class="tsd-kind-icon">get<wbr>Max<wbr>Length</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.multilinetextbox.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.multilinetextbox.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.multilinetextbox.html#gettext" class="tsd-kind-icon">get<wbr>Text</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.multilinetextbox.html#setfontsize" class="tsd-kind-icon">set<wbr>Font<wbr>Size</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.multilinetextbox.html#setmaxlength" class="tsd-kind-icon">set<wbr>Max<wbr>Length</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.multilinetextbox.html#settext" class="tsd-kind-icon">set<wbr>Text</a></li>
 							</ul>
 						</section>
 					</div>
@@ -115,27 +115,27 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="oncheckstatechanged" class="tsd-anchor"></a>
-					<h3>on<wbr>Check<wbr>State<wbr>Changed</h3>
-					<div class="tsd-signature tsd-kind-icon">on<wbr>Check<wbr>State<wbr>Changed<span class="tsd-signature-symbol">:</span> <a href="_api_.multicastdelegate.html" class="tsd-signature-type">MulticastDelegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>checkBox<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span>, player<span class="tsd-signature-symbol">: </span><a href="_api_.player.html" class="tsd-signature-type">Player</a>, isChecked<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="ontextchanged" class="tsd-anchor"></a>
+					<h3>on<wbr>Text<wbr>Changed</h3>
+					<div class="tsd-signature tsd-kind-icon">on<wbr>Text<wbr>Changed<span class="tsd-signature-symbol">:</span> <a href="_api_.multicastdelegate.html" class="tsd-signature-type">MulticastDelegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>textBox<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span>, player<span class="tsd-signature-symbol">: </span><a href="_api_.player.html" class="tsd-signature-type">Player</a>, text<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2087">index.d.ts:2087</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2170">index.d.ts:2170</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Called when the check state changes.</p>
+							<p>Called when the edited text changes.</p>
 						</div>
 						<dl class="tsd-comment-tags">
 							<dt>param</dt>
-							<dd><p>The check box for which the state changed.</p>
+							<dd><p>The text box where the text changed</p>
 							</dd>
 							<dt>param</dt>
-							<dd><p>The player who initiated the change. undefined if the state was changed through <a href="_api_.checkbox.html#setischecked">setIsChecked</a>.</p>
+							<dd><p>The player that changed the text. undefined if the text was changed through <a href="_api_.multilinetextbox.html#settext">setText</a>.</p>
 							</dd>
 							<dt>param</dt>
-							<dd><p>The new check state of the check box.</p>
+							<dd><p>The new text</p>
 							</dd>
 						</dl>
 					</div>
@@ -143,6 +143,28 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getmaxlength" class="tsd-anchor"></a>
+					<h3>get<wbr>Max<wbr>Length</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Max<wbr>Length<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2193">index.d.ts:2193</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the maximum number of characters allowed for this text box</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="getowningobject" class="tsd-anchor"></a>
 					<h3>get<wbr>Owning<wbr>Object</h3>
@@ -201,7 +223,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2110">index.d.ts:2110</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2189">index.d.ts:2189</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -214,38 +236,16 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="ischecked" class="tsd-anchor"></a>
-					<h3>is<wbr>Checked</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">is<wbr>Checked<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2106">index.d.ts:2106</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Return whether the check box is currently checked</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="setfontsize" class="tsd-anchor"></a>
 					<h3>set<wbr>Font<wbr>Size</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Font<wbr>Size<span class="tsd-signature-symbol">(</span>size<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.checkbox.html" class="tsd-signature-type">CheckBox</a></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Font<wbr>Size<span class="tsd-signature-symbol">(</span>size<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.multilinetextbox.html" class="tsd-signature-type">MultilineTextBox</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2102">index.d.ts:2102</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2185">index.d.ts:2185</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -262,38 +262,38 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_api_.checkbox.html" class="tsd-signature-type">CheckBox</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.multilinetextbox.html" class="tsd-signature-type">MultilineTextBox</a></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="setischecked" class="tsd-anchor"></a>
-					<h3>set<wbr>IsChecked</h3>
+					<a name="setmaxlength" class="tsd-anchor"></a>
+					<h3>set<wbr>Max<wbr>Length</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>IsChecked<span class="tsd-signature-symbol">(</span>checked<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.checkbox.html" class="tsd-signature-type">CheckBox</a></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Max<wbr>Length<span class="tsd-signature-symbol">(</span>length<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.multilinetextbox.html" class="tsd-signature-type">MultilineTextBox</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2097">index.d.ts:2097</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2180">index.d.ts:2180</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Set whether the check box is currently checked</p>
+									<p>Set the maximum number of characters allowed for this text box</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>checked: <span class="tsd-signature-type">boolean</span></h5>
+									<h5>length: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The new checked state</p>
+										<p>Maximum number of characters. Must be between 1 and 2000. Default: 200</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_api_.checkbox.html" class="tsd-signature-type">CheckBox</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.multilinetextbox.html" class="tsd-signature-type">MultilineTextBox</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -301,18 +301,18 @@
 					<a name="settext" class="tsd-anchor"></a>
 					<h3>set<wbr>Text</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Text<span class="tsd-signature-symbol">(</span>text<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.checkbox.html" class="tsd-signature-type">CheckBox</a></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Text<span class="tsd-signature-symbol">(</span>text<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.multilinetextbox.html" class="tsd-signature-type">MultilineTextBox</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2092">index.d.ts:2092</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/42bff4d/index.d.ts#L2175">index.d.ts:2175</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Set the displayed text. Can include &quot;\n&quot; to indicate new lines.</p>
+									<p>Set the edited text.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -324,7 +324,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_api_.checkbox.html" class="tsd-signature-type">CheckBox</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.multilinetextbox.html" class="tsd-signature-type">MultilineTextBox</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -346,31 +346,31 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-module">
-						<a href="_api_.checkbox.html" class="tsd-kind-icon">Check<wbr>Box</a>
+						<a href="_api_.multilinetextbox.html" class="tsd-kind-icon">Multiline<wbr>Text<wbr>Box</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_api_.checkbox.html#oncheckstatechanged" class="tsd-kind-icon">on<wbr>Check<wbr>State<wbr>Changed</a>
+								<a href="_api_.multilinetextbox.html#ontextchanged" class="tsd-kind-icon">on<wbr>Text<wbr>Changed</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.multilinetextbox.html#getmaxlength" class="tsd-kind-icon">get<wbr>Max<wbr>Length</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.checkbox.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a>
+								<a href="_api_.multilinetextbox.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.checkbox.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a>
+								<a href="_api_.multilinetextbox.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.checkbox.html#gettext" class="tsd-kind-icon">get<wbr>Text</a>
+								<a href="_api_.multilinetextbox.html#gettext" class="tsd-kind-icon">get<wbr>Text</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.checkbox.html#ischecked" class="tsd-kind-icon">is<wbr>Checked</a>
+								<a href="_api_.multilinetextbox.html#setfontsize" class="tsd-kind-icon">set<wbr>Font<wbr>Size</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.checkbox.html#setfontsize" class="tsd-kind-icon">set<wbr>Font<wbr>Size</a>
+								<a href="_api_.multilinetextbox.html#setmaxlength" class="tsd-kind-icon">set<wbr>Max<wbr>Length</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.checkbox.html#setischecked" class="tsd-kind-icon">set<wbr>IsChecked</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.checkbox.html#settext" class="tsd-kind-icon">set<wbr>Text</a>
+								<a href="_api_.multilinetextbox.html#settext" class="tsd-kind-icon">set<wbr>Text</a>
 							</li>
 						</ul>
 					</li>
