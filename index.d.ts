@@ -564,6 +564,24 @@ declare module '@tabletop-playground/api' {
 	*/
 	class Card extends GameObject { 
 		/**
+		 * Called after a card (or stack) is dropped onto the card by a player
+		 * @param {Card} card - The card on which the card is dropped
+		 * @param {Card} insertedCard - The newly inserted card
+		 * @param {number} position - The position in the stack at which the card was inserted. 0 when dropped to the front,
+		 * number of cards in the stack before inserting when dropped to the back
+		 * @param {Player} player - The player who dropped the card
+		*/
+		onInserted: MulticastDelegate<(card: this, insertedCard: Card, position: number, player: Player) => void>;
+		/**
+		 * Called after a card is dragged from the stack by a player
+		 * @param {Card} card - The card stack from which the object is removed
+		 * @param {Card} removedCard - The removed card (now grabbed by the player)
+		 * @param {number} position - The position in the stack from which the card was removed. 0 when removed from the front,
+		 * number of cards in the after removing when removed from the back
+		 * @param {Player} player - The player who removed the card
+		*/
+		onRemoved: MulticastDelegate<(card: this, removedCard: Card, position: number, player: Player) => void>;
+		/**
 		 * Take a stack of cards from the stack. The new stack will be positioned directly above the original stack.
 		 * If the number of cards to take is as large as the stack or larger, one card will remain in the original stack.
 		 * Returns undefined if this object is only a single card.
@@ -718,7 +736,9 @@ declare module '@tabletop-playground/api' {
 	class Player { 
 		/**
 		 * Switch the player to a new slot. Returns whether the switch was successful
-		 * (it fails if another player already occupies the chosen slot)
+		 * (it fails if another player already occupies the chosen slot or if the slot number
+		 * is invalid)
+		 * @param {number} newSlot - The new player slot, between 0 and 17
 		*/
 		switchSlot(newSlot: number): boolean;
 		/**
@@ -730,29 +750,23 @@ declare module '@tabletop-playground/api' {
 		*/
 		setSecondaryColor(newColor: Color): void;
 		/**
-		 * Set the player's rotation. Doesn't do anything for VR players.
-		 * DEPRECATED: Will be removed in a future version, use setPositionAndRotation instead.
-		*/
-		setRotation(rotation: Rotator): void;
-		/**
 		 * Set the player's primary color
 		*/
 		setPrimaryColor(newColor: Color): void;
 		/**
-		 * Set the player's position. Doesn't do anything for VR players.
-		 * After using for a VR player, won't do anything for that player for one second to prevent making players sick.
+		 * Set the player's position. After using for a VR player, won't do anything for that
+		 * player for one second to prevent making players sick.
 		*/
 		setPositionAndRotation(position: Vector, rotation: Rotator): void;
-		/**
-		 * Set the player's position. Doesn't do anything for VR players.
-		 * DEPRECATED: Will be removed in a future version, use setPositionAndRotation instead.
-		*/
-		setPosition(position: Vector): void;
 		/**
 		 * Set the card holder that represents the hand of the player.
 		 * Can only be set to a holder that is owned by this player or a holder that has no owner.
 		*/
 		setHandHolder(hand: CardHolder): void;
+		/**
+		 * Set whether this player is blindfolded
+		*/
+		setBlindfolded(on: boolean): void;
 		/**
 		 * Send a message to the player's chat
 		*/
@@ -778,7 +792,11 @@ declare module '@tabletop-playground/api' {
 		*/
 		isHolding(): boolean;
 		/**
-		 * Return the player slot of this player (a number from 0 to 9).
+		 * Return whether this player is currently blindfolded
+		*/
+		isBlindfolded(): boolean;
+		/**
+		 * Return the player slot of this player (a number from 0 to 17).
 		*/
 		getSlot(): number;
 		/**
@@ -886,14 +904,14 @@ declare module '@tabletop-playground/api' {
 	*/
 	class Container extends GameObject { 
 		/**
-		 * Called when objects are dropped into the container by a player
+		 * Called after objects are dropped into the container by a player
 		 * @param {Container} container - The container in which the objects are dropped
 		 * @param {GameObject[]} object - The newly inserted objects
 		 * @param {Player} player - The player who dropped the objects
 		*/
 		onInserted: MulticastDelegate<(container: this, insertedObjects: GameObject[], player: Player) => void>;
 		/**
-		 * Called when an object is dragged from the container by a player
+		 * Called after an object is dragged from the container by a player
 		 * @param {Container} container - The container from which the object is removed
 		 * @param {GameObject} object - The removed object (now grabbed by the player)
 		 * @param {Player} player - The player who removed the object
@@ -1669,6 +1687,13 @@ declare module '@tabletop-playground/api' {
 		*/
 		setSavedData(data: string): void;
 		/**
+		 * Set the gravity multiplier. 1 is standard gravity, 0 will disable gravity. Wakes up physics
+		 * simulation for all objects that are not locked (for example because they are ground objects,
+		 * or because the locked physics option is active)
+		 * @param {number} multiplier - The new gravity multiplier, between 0 and 2
+		*/
+		setGravityMultiplier(multiplier: number): void;
+		/**
 		 * Reset scripting environment and reload all scripts
 		*/
 		resetScripting(): void;
@@ -1720,6 +1745,10 @@ declare module '@tabletop-playground/api' {
 		 * @param {string} objectId - The unique id of the object
 		*/
 		getObjectById(objectId: string): GameObject;
+		/**
+		 * Return the current gravity multiplier
+		*/
+		getGravityMultiplier(): number;
 		/**
 		 * Return the time in seconds since the game session was started
 		*/
@@ -2401,6 +2430,7 @@ declare module '@tabletop-playground/api' {
 	}
 
 	var globalEvents : GlobalScriptingEvents;
+	var refObject : GameObject;
 	var world : GameWorld;
 
 	/** Only available in object scripts (for all object types) */
