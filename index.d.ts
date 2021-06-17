@@ -564,12 +564,14 @@ declare module '@tabletop-playground/api' {
 	*/
 	class Card extends GameObject { 
 		/**
-		 * Called after a card (or stack) is dropped onto the card by a player
-		 * @param {Card} card - The card on which the card is dropped
-		 * @param {Card} insertedCard - The newly inserted card
+		 * Called after a card (or stack of cards) is added to this card.
+		 * Not called immediately when a player drops a card, but when the animation finishes.
+		 * @param {Card} card - The target card, with the new card already inserted.
+		 * @param {Card} insertedCard - The newly inserted card. Only used for information about what was inserted,
+		 * this object gets deleted immediately after the call ends.
 		 * @param {number} position - The position in the stack at which the card was inserted. 0 when dropped to the front,
 		 * number of cards in the stack before inserting when dropped to the back
-		 * @param {Player} player - The player who dropped the card
+		 * @param {Player} player - The player who added a card. undefined if the card was added through scripting.
 		*/
 		onInserted: MulticastDelegate<(card: this, insertedCard: Card, position: number, player: Player) => void>;
 		/**
@@ -586,10 +588,10 @@ declare module '@tabletop-playground/api' {
 		 * If the number of cards to take is as large as the stack or larger, one card will remain in the original stack.
 		 * Returns undefined if this object is only a single card.
 		 * @param {number} numCards - Number of cards to take. Defaults to 1.
-		 * @param {boolean} fromFront - If true, take the cards from the front of the stack instead of the back.
+		 * @param {boolean} fromFront - If true, take the cards from the front of the stack instead of the back. Default: false.
 		 * @param {number} offset - Number of cards to leave at the back (or front when fromFront is true) before taking cards. Defaults to 0.
 		*/
-		takeCards(numCards?: number, fromFront?: boolean, offset?: number): Card;
+		takeCards(numCards?: number, fromFront?: boolean, offset?: number): Card | undefined;
 		/**
 		 * Split the deck into a fixed number of smaller decks with equal size. Some of the decks will have one card more than others if the stack size is not divisible by the number of decks.
 		*/
@@ -612,8 +614,8 @@ declare module '@tabletop-playground/api' {
 		*/
 		setTextureOverrideURL(url: string): void;
 		/**
-		 * Set whether this card stack inherits its configured script to cards taken from it (by players or using scripting). Default: false
-		 * Note: This property is not saved in states.
+		 * Set whether this card stack inherits its configured script to cards taken from it (by players or using scripting). By default, script inheritance
+		 * is enabled. Note: This property is not saved in states.
 		*/
 		setInheritScript(inherit: boolean): void;
 		/**
@@ -640,12 +642,12 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Return the card holder this card is in.
 		*/
-		getHolder(): CardHolder;
+		getHolder(): CardHolder | undefined;
 		/**
 		 * Return details for a card in the stack. Return undefined for an invalid index.
-		 * @param {number} index - The index in the stack for which to retrieve details. Index 0 is the front card of which the face is visible.
+		 * @param {number} index - The index in the stack for which to retrieve details. Index 0 is the front card of which the face is visible. Defaults to 0.
 		*/
-		getCardDetails(index?: number): CardDetails;
+		getCardDetails(index?: number): CardDetails | undefined;
 		/**
 		 * Divide the deck into a number of smaller decks, each with the given number of cards. One of the decks will be smaller if the stack size is not divisible by the number of cards.
 		*/
@@ -654,18 +656,20 @@ declare module '@tabletop-playground/api' {
 		 * Deal a number of cards from this stack to all hands
 		 * @param {number} count - The number of cards to deal to each card holder. Defaults to 1.
 		 * @param {Set<number>} slots - A set of slots to identify which players receive cards. If empty, all players will receive cards.
-		 * @param {boolean} faceDown - When true, cards are dealt to holders with their faces down
+		 * @param {boolean} faceDown - When true, cards are dealt to holders with their faces down. Default: false
 		*/
 		deal(count?: number, slots?: number[], faceDown?: boolean): void;
 		/**
 		 * Add cards to the stack. Returns whether the cards have been added successfully. Will not succeed if
 		 * the shape or size of the cards does not match, or if this card is in a card holder.
 		 * @param {Card} cards - Card (stack) to add to the stack
-		 * @param {boolean} toFront - If true, add new cards to front of the stack
+		 * @param {boolean} toFront - If true, add new cards to front of the stack. Default: false.
 		 * @param {number} offset - Number of cards to skip at the back (or front when toFront is true) before adding cards. Defaults to 0.
-		 * @param {boolean} animate - If true, play card drop sound and animate the new cards flying to the stack. The animation takes some time, so the new cards aren't added to the stack instantly.
+		 * @param {boolean} animate - If true, play card drop sound and animate the new cards flying to the stack.
+		 * The animation takes some time, so the new cards aren't added to the stack instantly. If you need to react when the cards are added, you can use {@link onInserted}. Default: false.
+		 * @param {boolean} flipped - If true, add the cards flipped compared to the front card of the stack. Only has an effect if all involved cards allow flipping in stacks. Default: false.
 		*/
-		addCards(cards: Card, toFront: boolean, offset?: number, animate?: boolean, flipped?: boolean): boolean;
+		addCards(cards: Card, toFront?: boolean, offset?: number, animate?: boolean, flipped?: boolean): boolean;
 	}
 
 	/**
@@ -697,7 +701,7 @@ declare module '@tabletop-playground/api' {
 		 * @param {number} index - The index of the card to remove
 		 * @returns {Card} - The removed card
 		*/
-		removeAt(index: number): Card;
+		removeAt(index: number): Card | undefined;
 		/**
 		 * Move a card on the holder to a new position
 		 * @param {Card} card - The card to move
@@ -830,7 +834,7 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Return the object that the player has currently highlighted
 		*/
-		getHighlightedObject(): GameObject;
+		getHighlightedObject(): GameObject | undefined;
 		/**
 		 * Return the objects that the player is currently holding
 		*/
@@ -838,7 +842,7 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Get the card holder that represents the hand of the player
 		*/
-		getHandHolder(): CardHolder;
+		getHandHolder(): CardHolder | undefined;
 		/**
 		 * Get the card holder that represents the hand of the player
 		*/
@@ -876,7 +880,7 @@ declare module '@tabletop-playground/api' {
 		 * anything a sphere overlap centered at the snap point. The closest object found in either of the traces is returned.
 		 * @param {number} sphereRadius - Radius to use for the sphere overlap. If not specified, a quarter of the snap point range is used.
 		*/
-		getSnappedObject(sphereRadius?: number): GameObject;
+		getSnappedObject(sphereRadius?: number): GameObject | undefined;
 		/**
 		 * Return the snapping range of the snap point
 		*/
@@ -922,17 +926,17 @@ declare module '@tabletop-playground/api' {
 		 * Note that the item will be removed from the container even for infinite containers.
 		 * @param {number} index - The index of the object to take
 		 * @param {Vector} position - The position where the item should appear
-		 * @param {boolean} hideAnimation - If true, don't show take animation and don't play sound
+		 * @param {boolean} showAnimation - If false, don't show take animation and don't play sound. Default: false
 		*/
-		takeAt(index: number, position: Vector, hideAnimation?: boolean): GameObject;
+		takeAt(index: number, position: Vector, showAnimation?: boolean): GameObject | undefined;
 		/**
 		 * Remove an item from the container, move it to the provided position, and return whether it was removed.
 		 * Note that the item will be removed from the container even for infinite containers.
 		 * @param {objectToRemove} GameObject - The object to remove
 		 * @param {Vector} position - The position where the item should appear
-		 * @param {boolean} hideAnimation - If true, don't show take animation and don't play sound
+		 * @param {boolean} showAnimation - If false, don't show take animation and don't play sound. Default: false
 		*/
-		take(objectToRemove: GameObject, position: Vector, hideAnimation?: boolean): boolean;
+		take(objectToRemove: GameObject, position: Vector, showAnimation?: boolean): boolean;
 		/**
 		 * Set the type of the container. Possible values are:
 		 * 0 - Random
@@ -960,13 +964,9 @@ declare module '@tabletop-playground/api' {
 		*/
 		remove(objectToRemove: GameObject): boolean;
 		/**
-		 * Insert an array of objects into the container. If objects are in another container,
-		 * they are removed from their current container before inserting.
-		 * @param {GameObject[]} objects - Objects to insert
-		 * @param {number} index - The index at which the new objects will be inserted. By default, it will be inserted at start (index 0)
-		 * @param {boolean} hideAnimation - If true, don't show insert animation and don't play sound
+		 * Alias for {@link addObjects}
 		*/
-		insert(objects: GameObject[], index: number, hideAnimation?: boolean): void;
+		insert(objects: GameObject[], index: number, showAnimation?: boolean): void;
 		/**
 		 * Return the type of the container. Possible values are:
 		 * 0 - Random
@@ -993,6 +993,14 @@ declare module '@tabletop-playground/api' {
 		 * Remove all contained objects
 		*/
 		clear(): void;
+		/**
+		 * Add an array of objects into the container. If objects are in another container,
+		 * they are removed from their current container before inserting.
+		 * @param {GameObject[]} objects - Objects to insert
+		 * @param {number} index - The index at which the new objects will be inserted. By default, they will be inserted at start (index 0)
+		 * @param {boolean} showAnimation - If false, don't show insert animation and don't play sound. Default: false
+		*/
+		addObjects(objects: GameObject[], index: number, showAnimation?: boolean): void;
 	}
 
 	/**
@@ -1076,8 +1084,16 @@ declare module '@tabletop-playground/api' {
 		 * any object defined behavior.
 		 * @param {GameObject} object - The object on which the action is executed
 		 * @param {Player} player - The player that executed the action
+		 * @param {number} number - The number pressed by the player
 		*/
 		onNumberAction: MulticastDelegate<(object: this, player: Player, number: number) => void>;
+		/**
+		 * Called when a custom action defined through {@link addCustomAction} is executed.
+		 * @param {GameObject} object - The object on which the action is executed
+		 * @param {Player} player - The player that executed the action
+		 * @param {string} name - The name of the executed action
+		*/
+		onCustomAction: MulticastDelegate<(object: this, player: Player, name: string) => void>;
 		/**
 		 * Called when the object comes to rest. For ground objects or when the session is set to locked physics, the object
 		 * has been locked right before this event is triggered.
@@ -1116,7 +1132,7 @@ declare module '@tabletop-playground/api' {
 		 * Snap the object as if it was dropped at its current position. Does nothing if no snap point is in range below the object.
 		 * Snapping in this way does not trigger the onSnapped callback. Returns the snapped point if the object was snapped.
 		*/
-		snap(): SnapPoint;
+		snap(): SnapPoint | undefined;
 		/**
 		 * Replace an attached UI element. Will not do anything if called with an index that doesn't have a UI element.
 		 * @param {number} - The index of the UI element to replace
@@ -1253,6 +1269,11 @@ declare module '@tabletop-playground/api' {
 		*/
 		removeUI(index: number): void;
 		/**
+		 * Remove a custom action
+		 * @param {string} name - The name of the action to remove
+		*/
+		removeCustomAction(name: string): void;
+		/**
 		 * Transform an object rotation to a world rotation
 		 * @param {Rotator} rotation - The rotation relative to the object center to transform to world space
 		*/
@@ -1300,7 +1321,7 @@ declare module '@tabletop-playground/api' {
 		 * Return a snap point of the object
 		 * @param {number} index - Index of the snap point
 		*/
-		getSnapPoint(index: number): SnapPoint;
+		getSnapPoint(index: number): SnapPoint | undefined;
 		/**
 		 * Return the object's secondary color
 		*/
@@ -1344,7 +1365,7 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Return the player slot that owns the object. Returns undefined for objects without owner.
 		*/
-		getOwningPlayer(): Player;
+		getOwningPlayer(): Player | undefined;
 		/**
 		 * Get the object's type. Possible values are defined in {@link ObjectType}:<br>
 		 * 0: Regular<br>
@@ -1411,7 +1432,7 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Returned the container that this object is in. Return undefined if the object is not in a container.
 		*/
-		getContainer(): Container;
+		getContainer(): Container | undefined;
 		/**
 		 * Return the object's center of mass
 		*/
@@ -1421,7 +1442,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		getBounciness(): number;
 		/**
-		 * Deprecated alias for {@getUIs}
+		 * @deprecated alias for {@getUIs}
 		*/
 		getAttachedUIs(): UIElement[];
 		/**
@@ -1433,11 +1454,17 @@ declare module '@tabletop-playground/api' {
 		*/
 		getAllSnapPoints(): SnapPoint[];
 		/**
+		 * Flip the object or rotate it to its default orientation, depending on the object. Uses animation and physics.
+		 * Calling this does the same thing as a player pressing the flip/upright key for highlighted or selected objects.
+		 * Cards in holders are also flipped, but held objects are not affected.
+		*/
+		flipOrUpright(): void;
+		/**
 		 * Destroy the object
 		*/
 		destroy(): void;
 		/**
-		 * Deprecated alias for {@link addUI}
+		 * @deprecated alias for {@link addUI}
 		 * @param {UIElement} element - The UI element to attach
 		 * @returns {number} - The index of the attached UI element
 		*/
@@ -1484,6 +1511,12 @@ declare module '@tabletop-playground/api' {
 		 * @returns {number} - The index of the attached UI element
 		*/
 		addUI(element: UIElement): number;
+		/**
+		 * Add a custom action that appears in the context menu of the object.
+		 * @param {string} name - The name for the action in the context menu
+		 * @param {string} tooltip - The tooltip text to show for the custom action
+		*/
+		addCustomAction(name: string, tooltip?: string): void;
 	}
 
 	/**
@@ -1491,15 +1524,26 @@ declare module '@tabletop-playground/api' {
 	*/
 	class Widget { 
 		/**
+		 * Set whether the widget is enabled. When a widget is disabled, users can't interact with it and it is greyed
+		 * out. When a widget that contains other widgets (like {@link VerticalBox}) is disabled, all its children
+		 * behave as if disabled, too. By default, widgets are enabled.
+		 * @param {boolean} enabled - Whether to enable the widget.
+		*/
+		setEnabled(enabled: boolean): Widget;
+		/**
+		 * Return whether the widget is currently enabled (see {@link setEnabled}).
+		*/
+		isEnabled(): boolean;
+		/**
 		 * Return the widget that contains this widget, for example a border that wraps a check box.
 		 * Returns undefined if this object has no parent.
 		*/
-		getParent(): Widget;
+		getParent(): Widget | undefined;
 		/**
 		 * Return the game object that this UI element is attached to.
 		 * Returns undefined if the element isn't attached to a game object.
 		*/
-		getOwningObject(): GameObject;
+		getOwningObject(): GameObject | undefined;
 	}
 
 	/**
@@ -1730,7 +1774,7 @@ declare module '@tabletop-playground/api' {
 		 * Return the player occupying the specified slot
 		 * @param {number} slot - The player slot (0-9)
 		*/
-		getPlayerBySlot(slot: number): Player;
+		getPlayerBySlot(slot: number): Player | undefined;
 		/**
 		 * Return an array of all objects with a given object group id.
 		 * @param {number} groupId - The group id to query
@@ -1744,7 +1788,7 @@ declare module '@tabletop-playground/api' {
 		 * Return the game object with the specified Id
 		 * @param {string} objectId - The unique id of the object
 		*/
-		getObjectById(objectId: string): GameObject;
+		getObjectById(objectId: string): GameObject | undefined;
 		/**
 		 * Return the current gravity multiplier
 		*/
@@ -1809,13 +1853,13 @@ declare module '@tabletop-playground/api' {
 		 * @param {string} templateId - Template GUID for the new object
 		 * @param {Vector} position - Starting position
 		*/
-		createObjectFromTemplate(templateId: string, position: Vector): GameObject;
+		createObjectFromTemplate(templateId: string, position: Vector): GameObject | undefined;
 		/**
 		 * Create a new object from a JSON string
 		 * @param {string} jsonString - String containing Json representation of an object (can be obtained by calling toJSONString() on an object)
 		 * @param {Vector} position - Starting position
 		*/
-		createObjectFromJSON(jsonString: string, position: Vector): GameObject;
+		createObjectFromJSON(jsonString: string, position: Vector): GameObject | undefined;
 		/**
 		 * Find all objects hits with a capsule that is moved along a line, ordered by distance to start
 		 * @param {Vector} start - Starting point of the capsule
@@ -2052,7 +2096,7 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Return the child widget. Returns undefined if no child has been set for this border
 		*/
-		getChild(): Widget;
+		getChild(): Widget | undefined;
 	}
 
 	/**
@@ -2173,7 +2217,7 @@ declare module '@tabletop-playground/api' {
 		 * Return the child widget at the given index. Returns undefined if no child exists at the index.
 		 * @param {number} index - Index where to get the child widget
 		*/
-		getChildAt(index: number): Widget;
+		getChildAt(index: number): Widget | undefined;
 		/**
 		 * Add a child widget at the end
 		*/
@@ -2430,7 +2474,6 @@ declare module '@tabletop-playground/api' {
 	}
 
 	var globalEvents : GlobalScriptingEvents;
-	var refObject : GameObject;
 	var world : GameWorld;
 
 	/** Only available in object scripts (for all object types) */

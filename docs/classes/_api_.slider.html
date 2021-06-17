@@ -107,6 +107,8 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.slider.html#getstepsize" class="tsd-kind-icon">get<wbr>Step<wbr>Size</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.slider.html#gettextboxwidth" class="tsd-kind-icon">get<wbr>Text<wbr>Box<wbr>Width</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.slider.html#getvalue" class="tsd-kind-icon">get<wbr>Value</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.slider.html#isenabled" class="tsd-kind-icon">is<wbr>Enabled</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.slider.html#setenabled" class="tsd-kind-icon">set<wbr>Enabled</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.slider.html#setfontsize" class="tsd-kind-icon">set<wbr>Font<wbr>Size</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.slider.html#setmaxvalue" class="tsd-kind-icon">set<wbr>Max<wbr>Value</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.slider.html#setminvalue" class="tsd-kind-icon">set<wbr>Min<wbr>Value</a></li>
@@ -126,7 +128,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Value<wbr>Changed<span class="tsd-signature-symbol">:</span> <a href="_api_.multicastdelegate.html" class="tsd-signature-type">MulticastDelegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>slider<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span>, player<span class="tsd-signature-symbol">: </span><a href="_api_.player.html" class="tsd-signature-type">Player</a>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5e6f9d3/index.d.ts#L2303">index.d.ts:2303</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/b783e5b/index.d.ts#L2347">index.d.ts:2347</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -159,7 +161,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5e6f9d3/index.d.ts#L2348">index.d.ts:2348</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/b783e5b/index.d.ts#L2392">index.d.ts:2392</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -181,7 +183,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5e6f9d3/index.d.ts#L2344">index.d.ts:2344</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/b783e5b/index.d.ts#L2388">index.d.ts:2388</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -197,14 +199,14 @@
 					<a name="getowningobject" class="tsd-anchor"></a>
 					<h3>get<wbr>Owning<wbr>Object</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Owning<wbr>Object<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.gameobject.html" class="tsd-signature-type">GameObject</a></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Owning<wbr>Object<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.gameobject.html" class="tsd-signature-type">GameObject</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.widget.html">Widget</a>.<a href="_api_.widget.html#getowningobject">getOwningObject</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5e6f9d3/index.d.ts#L1502">index.d.ts:1502</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/b783e5b/index.d.ts#L1546">index.d.ts:1546</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -213,7 +215,7 @@
 									Returns undefined if the element isn&#39;t attached to a game object.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="_api_.gameobject.html" class="tsd-signature-type">GameObject</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.gameobject.html" class="tsd-signature-type">GameObject</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -221,14 +223,14 @@
 					<a name="getparent" class="tsd-anchor"></a>
 					<h3>get<wbr>Parent</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Parent<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.widget.html" class="tsd-signature-type">Widget</a></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Parent<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.widget.html" class="tsd-signature-type">Widget</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.widget.html">Widget</a>.<a href="_api_.widget.html#getparent">getParent</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5e6f9d3/index.d.ts#L1497">index.d.ts:1497</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/b783e5b/index.d.ts#L1541">index.d.ts:1541</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -237,7 +239,7 @@
 									Returns undefined if this object has no parent.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="_api_.widget.html" class="tsd-signature-type">Widget</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.widget.html" class="tsd-signature-type">Widget</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -251,7 +253,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5e6f9d3/index.d.ts#L2340">index.d.ts:2340</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/b783e5b/index.d.ts#L2384">index.d.ts:2384</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -273,7 +275,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5e6f9d3/index.d.ts#L2336">index.d.ts:2336</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/b783e5b/index.d.ts#L2380">index.d.ts:2380</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -295,7 +297,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5e6f9d3/index.d.ts#L2332">index.d.ts:2332</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/b783e5b/index.d.ts#L2376">index.d.ts:2376</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -304,6 +306,63 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="isenabled" class="tsd-anchor"></a>
+					<h3>is<wbr>Enabled</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Enabled<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_api_.widget.html">Widget</a>.<a href="_api_.widget.html#isenabled">isEnabled</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/b783e5b/index.d.ts#L1536">index.d.ts:1536</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return whether the widget is currently enabled (see <a href="_api_.slider.html#setenabled">setEnabled</a>).</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="setenabled" class="tsd-anchor"></a>
+					<h3>set<wbr>Enabled</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Enabled<span class="tsd-signature-symbol">(</span>enabled<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.widget.html" class="tsd-signature-type">Widget</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_api_.widget.html">Widget</a>.<a href="_api_.widget.html#setenabled">setEnabled</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/b783e5b/index.d.ts#L1532">index.d.ts:1532</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set whether the widget is enabled. When a widget is disabled, users can&#39;t interact with it and it is greyed
+										out. When a widget that contains other widgets (like <a href="_api_.verticalbox.html">VerticalBox</a>) is disabled, all its children
+									behave as if disabled, too. By default, widgets are enabled.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>enabled: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Whether to enable the widget.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.widget.html" class="tsd-signature-type">Widget</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -317,7 +376,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5e6f9d3/index.d.ts#L2328">index.d.ts:2328</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/b783e5b/index.d.ts#L2372">index.d.ts:2372</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -348,7 +407,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5e6f9d3/index.d.ts#L2323">index.d.ts:2323</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/b783e5b/index.d.ts#L2367">index.d.ts:2367</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -376,7 +435,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5e6f9d3/index.d.ts#L2319">index.d.ts:2319</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/b783e5b/index.d.ts#L2363">index.d.ts:2363</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -404,7 +463,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5e6f9d3/index.d.ts#L2315">index.d.ts:2315</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/b783e5b/index.d.ts#L2359">index.d.ts:2359</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -432,7 +491,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5e6f9d3/index.d.ts#L2311">index.d.ts:2311</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/b783e5b/index.d.ts#L2355">index.d.ts:2355</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -460,7 +519,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5e6f9d3/index.d.ts#L2307">index.d.ts:2307</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/b783e5b/index.d.ts#L2351">index.d.ts:2351</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -521,6 +580,12 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.slider.html#getvalue" class="tsd-kind-icon">get<wbr>Value</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_api_.slider.html#isenabled" class="tsd-kind-icon">is<wbr>Enabled</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_api_.slider.html#setenabled" class="tsd-kind-icon">set<wbr>Enabled</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.slider.html#setfontsize" class="tsd-kind-icon">set<wbr>Font<wbr>Size</a>
