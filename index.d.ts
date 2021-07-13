@@ -37,7 +37,13 @@ declare var process : Process;
 
 declare module '@tabletop-playground/api' {
 	/** The object type used in {@link GameObject.getObjectType} and {@link GameObject.setObjectType}*/
-	enum ObjectType {Regular=0, Ground, Penetrable}
+	enum ObjectType {Regular=0, Ground=1, Penetrable=2}
+
+	/** The zone shape used in {@link Zone.getShape} and {@link Zone.setShape}*/
+	enum ZoneShape {Box=0, Cylinder=1, Hexagon=2}
+
+	/** The zone permission types used in {@link Zone}*/
+	enum ZonePermission {Everybody=0, OwnersOnly=1, Nobody=2}
 
 	/** Represent for a single callback function. Use the add() method or the assignment operator = to set the function to call. */
 	class Delegate<T> {
@@ -573,7 +579,7 @@ declare module '@tabletop-playground/api' {
 		 * number of cards in the stack before inserting when dropped to the back
 		 * @param {Player} player - The player who added a card. undefined if the card was added through scripting.
 		*/
-		onInserted: MulticastDelegate<(card: this, insertedCard: Card, position: number, player: Player) => void>;
+		onInserted: MulticastDelegate<(card: this, insertedCard: Card, position: number, player: Player | undefined) => void>;
 		/**
 		 * Called after a card is dragged from the stack by a player
 		 * @param {Card} card - The card stack from which the object is removed
@@ -741,7 +747,7 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Switch the player to a new slot. Returns whether the switch was successful
 		 * (it fails if another player already occupies the chosen slot or if the slot number
-		 * is invalid)
+		 * is invalid). Switching slots changes the player's color.
 		 * @param {number} newSlot - The new player slot, between 0 and 17
 		*/
 		switchSlot(newSlot: number): boolean;
@@ -800,7 +806,8 @@ declare module '@tabletop-playground/api' {
 		*/
 		isBlindfolded(): boolean;
 		/**
-		 * Return the player slot of this player (a number from 0 to 17).
+		 * Return the player slot of this player (a number from 0 to 17). The slot
+		 * determines the color of the player and what objects they own.
 		*/
 		getSlot(): number;
 		/**
@@ -1160,7 +1167,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		setScale(scale: Vector): void;
 		/**
-		 * Set the data that will stored in save game states. The data is available using {@link getSavedData} when the object
+		 * Set the data that will be stored in save game states. The data is available using {@link getSavedData} when the object
 		 * script is run after loading a save state. Try to keep this data small and don't change it frequently, it needs to
 		 * be sent over the network to all clients.
 		 * @param {string} data - Data to store, maximum length 1023 characters
@@ -1676,6 +1683,189 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
+	 * An zone that changes game behavior in a defined part of the playing area
+	*/
+	class Zone { 
+		/**
+		 * Called when the zone is destroyed
+		 * @param {Zone} zone - The destroyed zone
+		*/
+		onDestroyed: MulticastDelegate<(zone: this) => void>;
+		/**
+		 * Called every tick.
+		 * @param {Zone} zone - The reference zone
+		 * @param {number} milliseconds - Duration of the previous tick
+		*/
+		onTick: MulticastDelegate<(zone: this, deltaTime: number) => void>;
+		/**
+		 * Called when an object enters the zone
+		*/
+		onBeginOverlap: MulticastDelegate<(zone: this, object: GameObject) => void>;
+		/**
+		 * Called when an object leaves the zone
+		*/
+		onEndOverlap: MulticastDelegate<(zone: this, object: GameObject) => void>;
+		/**
+		 * Return for which players objects are visible in the scene
+		 * @param {number} permission - The new permission, as defined by {@link ZonePermission}
+		*/
+		setStacking(permission: number): void;
+		/**
+		 * Set which players are allowed to snap objects in the zone
+		 * @param {number} permission - The new permission, as defined by {@link ZonePermission}
+		*/
+		setSnapping(permission: number): void;
+		/**
+		 * Set whether a player slot is an owner of the zone
+		*/
+		setSlotOwns(playerIndex: number, owner: boolean): void;
+		/**
+		 * Set the shape of the zone
+		 * @param {number} shape - The new shape, as defined by {@link ZoneShape}
+		*/
+		setShape(shape: number): void;
+		/**
+		 * Set the zone's scale instantly
+		 * @param {Vector} scale - The new scale
+		*/
+		setScale(scale: Vector): void;
+		/**
+		 * Set the data that will be stored in save game states. The data is available using {@link getSavedData} when the object
+		 * script is run after loading a save state. Try to keep this data small and don't change it frequently, it needs to
+		 * be sent over the network to all clients.
+		 * @param {string} data - Data to store, maximum length 1023 characters
+		*/
+		setSavedData(data: string): void;
+		/**
+		 * Set the zone's rotation.
+		 * @param {Rotator} rotation - The new rotation
+		*/
+		setRotation(rotation: Rotator): void;
+		/**
+		 * Set the zone's position.
+		 * @param {Vector} position - The new position
+		*/
+		setPosition(position: Vector): void;
+		/**
+		 * Set for which players objects in the zone are visible
+		 * @param {number} permission - The new permission, as defined by {@link ZonePermission}
+		*/
+		setObjectVisibility(permission: number): void;
+		/**
+		 * Return which players are allowed to interact with objects in the zone
+		 * @param {number} permission - The new permission, as defined by {@link ZonePermission}
+		*/
+		setObjectInteraction(permission: number): void;
+		/**
+		 * Return which players are allowed to insert into containers in the zone
+		 * @param {number} permission - The new permission, as defined by {@link ZonePermission}
+		*/
+		setInserting(permission: number): void;
+		/**
+		 * Set the zone's unique id. Returns whether the id was changed successfully.
+		 * Fails if the id is already used by another object or zone.
+		 * @param {string} id - The new unique id
+		*/
+		setId(iD: string): boolean;
+		/**
+		 * Set which cursors are hidden from other players while in the zone
+		 * @param {number} permission - The new permission, as defined by {@link ZonePermission}
+		*/
+		setCursorHidden(permission: number): void;
+		/**
+		 * Set the zone's primary color
+		 * @param {Color} color - The new color
+		*/
+		setColor(color: Color): void;
+		/**
+		 * Set whether the zone is visible when players are not in zone mode
+		 * @param {boolean} alwaysVisible - The new color
+		*/
+		setAlwaysVisible(alwaysVisible: boolean): void;
+		/**
+		 * Return whether the zone is valid. A zone becomes invalid after it has been destroyed
+		*/
+		isValid(): boolean;
+		/**
+		 * Return whether a given player slot is an owner of the zone
+		*/
+		isSlotOwner(playerIndex: number): boolean;
+		/**
+		 * Return whether an object overlaps the zone. Any object that touches a zone is considered to be in it.
+		 * @param {GameObject} object - The object to check for an overlap
+		*/
+		isOverlapping(object: GameObject): boolean;
+		/**
+		 * Return whether the zone is visible when players are not in zone mode
+		*/
+		isAlwaysVisible(): boolean;
+		/**
+		 * Return which players are allowed to stack cards in the zone, as defined by {@link ZonePermission}
+		*/
+		getStacking(): number;
+		/**
+		 * Return which players are allowed to snap objects in the zone, as defined by {@link ZonePermission}
+		*/
+		getSnapping(): number;
+		/**
+		 * Return the shape of the zone, as defined by {@link ZoneShape}
+		*/
+		getShape(): number;
+		/**
+		 * Return the zone's scale
+		*/
+		getScale(): Vector;
+		/**
+		 * Return data that was stored using {@link setSavedData} or loaded from a saved state.
+		*/
+		getSavedData(): string;
+		/**
+		 * Return the zone's rotation
+		*/
+		getRotation(): Rotator;
+		/**
+		 * Return the zone's position
+		*/
+		getPosition(): Vector;
+		/**
+		 * Return a list of the owning player slots of the zone
+		*/
+		getOwningSlots(): number[];
+		/**
+		 * Return all objects that in the zone. Any object that touches a zone is considered to be in it.
+		*/
+		getOverlappingObjects(): GameObject[];
+		/**
+		 * Return for which players objects in the zone are visible, as defined by {@link ZonePermission}
+		*/
+		getObjectVisibility(): number;
+		/**
+		 * Return which players are allowed to interact with objects in the zone, as defined by {@link ZonePermission}
+		*/
+		getObjectInteraction(): number;
+		/**
+		 * Return which players are allowed to insert into containers in the zone, as defined by {@link ZonePermission}
+		*/
+		getInserting(): number;
+		/**
+		 * Return the zone's unique id
+		*/
+		getId(): string;
+		/**
+		 * Return which cursors are hidden from other players while in the zone, as defined by {@link ZonePermission}
+		*/
+		getCursorHidden(): number;
+		/**
+		 * Return the zone's color
+		*/
+		getColor(): Color;
+		/**
+		 * Destroy the zone
+		*/
+		destroy(): void;
+	}
+
+	/**
 	 * The game world
 	*/
 	class GameWorld { 
@@ -1758,6 +1948,11 @@ declare module '@tabletop-playground/api' {
 		*/
 		lineTrace(start: Vector, end: Vector): TraceHit[];
 		/**
+		 * Return the zone with the specified Id
+		 * @param {string} objectId - The unique id of the zone
+		*/
+		getZoneById(zoneId: string): Zone | undefined;
+		/**
 		 * Get an array of all global UI elements. Modifying the array won't change
 		 * the actual UIs, use {@link setUI} or {@link updateUI} to update.
 		*/
@@ -1805,6 +2000,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		static getExecutionReason(): string;
 		/**
+		 * Get all zones currently in the game
+		*/
+		getAllZones(): Zone[];
+		/**
 		 * Return all players currently in the game
 		*/
 		getAllPlayers(): Player[];
@@ -1848,6 +2047,11 @@ declare module '@tabletop-playground/api' {
 		 * @param {number} thickness - Thickness of the lines. One pixel thick if 0, cm thickness for values > 0.
 		*/
 		drawDebugBox(center: Vector, extent: Vector, orientation: Rotator, color: Color, duration: number, thickness?: number): void;
+		/**
+		 * Create a new zone with default parameters and 1cm edge length
+		 * @param {Vector} position - The position of the new zone
+		*/
+		createZone(position: Vector): Zone;
 		/**
 		 * Create a new object from a template
 		 * @param {string} templateId - Template GUID for the new object
@@ -2474,6 +2678,7 @@ declare module '@tabletop-playground/api' {
 	}
 
 	var globalEvents : GlobalScriptingEvents;
+	var refObject : GameObject;
 	var world : GameWorld;
 
 	/** Only available in object scripts (for all object types) */

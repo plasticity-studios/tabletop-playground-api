@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>FetchOptions | Tabletop Playground API</title>
+	<title>ZoneShape | Tabletop Playground API</title>
 	<meta name="description" content="Documentation for Tabletop Playground API">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,10 +57,10 @@
 					<a href="../modules/_api_.html">&quot;api&quot;</a>
 				</li>
 				<li>
-					<a href="_api_.fetchoptions.html">FetchOptions</a>
+					<a href="_api_.zoneshape.html">ZoneShape</a>
 				</li>
 			</ul>
-			<h1>Interface FetchOptions</h1>
+			<h1>Enumeration ZoneShape</h1>
 		</div>
 	</div>
 </header>
@@ -70,79 +70,56 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Options for an HTTP request</p>
+						<p>The zone shape used in <a href="../classes/_api_.zone.html#getshape">Zone.getShape</a> and <a href="../classes/_api_.zone.html#setshape">Zone.setShape</a></p>
 					</div>
 				</div>
-			</section>
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="target">FetchOptions</span>
-					</li>
-				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
+							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_api_.fetchoptions.html#body" class="tsd-kind-icon">body</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_api_.fetchoptions.html#headers" class="tsd-kind-icon">headers</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_api_.fetchoptions.html#method" class="tsd-kind-icon">method</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_api_.zoneshape.html#box" class="tsd-kind-icon">Box</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_api_.zoneshape.html#cylinder" class="tsd-kind-icon">Cylinder</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_api_.zoneshape.html#hexagon" class="tsd-kind-icon">Hexagon</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="body" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> body</h3>
-					<div class="tsd-signature tsd-kind-icon">body<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<h2>Enumeration members</h2>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="box" class="tsd-anchor"></a>
+					<h3>Box</h3>
+					<div class="tsd-signature tsd-kind-icon">Box<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/74907cc/index.d.ts#L75">index.d.ts:75</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/74907cc/index.d.ts#L43">index.d.ts:43</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The payload to send with the request</p>
-						</div>
-					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="headers" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> headers</h3>
-					<div class="tsd-signature tsd-kind-icon">headers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="cylinder" class="tsd-anchor"></a>
+					<h3>Cylinder</h3>
+					<div class="tsd-signature tsd-kind-icon">Cylinder<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 1</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/74907cc/index.d.ts#L80">index.d.ts:80</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/74907cc/index.d.ts#L43">index.d.ts:43</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>HTTP headers used for the request</p>
-						</div>
-					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="method" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> method</h3>
-					<div class="tsd-signature tsd-kind-icon">method<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"GET"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"SET"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"PUT"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"DELETE"</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="hexagon" class="tsd-anchor"></a>
+					<h3>Hexagon</h3>
+					<div class="tsd-signature tsd-kind-icon">Hexagon<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 2</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/74907cc/index.d.ts#L85">index.d.ts:85</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/74907cc/index.d.ts#L43">index.d.ts:43</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>A string to set request&#39;s method. If undefined, GET will be used.</p>
-						</div>
-					</div>
 				</section>
 			</section>
 		</div>
@@ -161,17 +138,17 @@
 				<ul class="before-current">
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-module">
-						<a href="_api_.fetchoptions.html" class="tsd-kind-icon">Fetch<wbr>Options</a>
+					<li class="current tsd-kind-enum tsd-parent-kind-module">
+						<a href="_api_.zoneshape.html" class="tsd-kind-icon">Zone<wbr>Shape</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_api_.fetchoptions.html#body" class="tsd-kind-icon">body</a>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="_api_.zoneshape.html#box" class="tsd-kind-icon">Box</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_api_.fetchoptions.html#headers" class="tsd-kind-icon">headers</a>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="_api_.zoneshape.html#cylinder" class="tsd-kind-icon">Cylinder</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_api_.fetchoptions.html#method" class="tsd-kind-icon">method</a>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="_api_.zoneshape.html#hexagon" class="tsd-kind-icon">Hexagon</a>
 							</li>
 						</ul>
 					</li>
@@ -196,11 +173,10 @@
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
 			</ul>
 		</div>
 	</div>
