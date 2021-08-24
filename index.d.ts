@@ -214,12 +214,12 @@ declare module '@tabletop-playground/api' {
 	*/
 	class Rotator implements Iterable<number> {
 		/**
-		* Make a rotator {Roll, Pitch, Yaw} from rotation values
-		* @param {number} roll - Rotation around X axis in degrees
+		* Make a rotator {Pitch, Yaw, Roll} from rotation values
 		* @param {number} pitch - Rotation around Y axis in degrees
 		* @param {number} yaw - Rotation around Z axis in degrees
+		* @param {number} roll - Rotation around X axis in degrees
 		*/
-		constructor(roll: number, pitch: number, yaw: number);
+		constructor(pitch: number, yaw: number, roll: number);
 		
 		/**
 		* Pitch (degrees) around Y axis
@@ -539,30 +539,32 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
-	 * Detailed information about a card.
+	 * Detailed information about a card. Changing the properties in this class does not affect the card.
 	*/
 	class CardDetails { 
 		/**
-		 * Index of the card as defined in the editor
+		 * Index of the card as defined in the editor. Index 0 corresponds to the upper left card in the
+		 * card image.
 		*/
-		index: number;
+		readonly index: number;
 		/**
 		 * Id of the card's template
 		*/
-		templateId: string;
+		readonly templateId: string;
 		/**
-		 * Name of this card
+		 * Name of the card as defined in the editor. Not the same as the name of the object for single cards,
+		 * which is accessible through {@link GameObject.getName}
 		*/
-		name: string;
+		readonly name: string;
 		/**
 		 * URL for texture override. Used instead of regular front texture if not empty.
 		*/
-		textureOverrideURL: string;
+		readonly textureOverrideURL: string;
 		/**
-		 * Is this card flipped compared to the orientation of the stack?
+		 * Is the card flipped compared to the orientation of the stack?
 		 * Single cards are never flipped.
 		*/
-		flipped: boolean;
+		readonly flipped: boolean;
 	}
 
 	/**
@@ -595,13 +597,16 @@ declare module '@tabletop-playground/api' {
 		 * Returns undefined if this object is only a single card.
 		 * @param {number} numCards - Number of cards to take. Defaults to 1.
 		 * @param {boolean} fromFront - If true, take the cards from the front of the stack instead of the back. Default: false.
-		 * @param {number} offset - Number of cards to leave at the back (or front when fromFront is true) before taking cards. Defaults to 0.
+		 * @param {number} offset - Number of cards to leave at the back (or front when fromFront is true) before taking cards. Default: 0
 		*/
 		takeCards(numCards?: number, fromFront?: boolean, offset?: number): Card | undefined;
 		/**
-		 * Split the deck into a fixed number of smaller decks with equal size. Some of the decks will have one card more than others if the stack size is not divisible by the number of decks.
+		 * Split the card stack into a fixed number of smaller stacks with equal size. Some of the stacks will have one
+		 * card more than others if the current stack size is not divisible by the number of stacks.
+		 * @param {number} numStacks - Number of stacks to split into
+		 * @returns {Card[]} - The newly created stacks, starting with the stack at the bottom as the first item
 		*/
-		split(numDecks: number): void;
+		split(numStacks: number): Card[];
 		/**
 		 * Shuffle the card stack.
 		*/
@@ -610,6 +615,7 @@ declare module '@tabletop-playground/api' {
 		 * Set the URL of the online texture override for a card in this stack.
 		 * @param {string} url - URL to use
 		 * @param {number} index - The index in the stack for which to update the texture override. Index 0 is the front card of which the face is visible.
+		 * Default: 0
 		*/
 		setTextureOverrideURLAt(url: string, index?: number): void;
 		/**
@@ -624,6 +630,14 @@ declare module '@tabletop-playground/api' {
 		 * is enabled. Note: This property is not saved in states.
 		*/
 		setInheritScript(inherit: boolean): void;
+		/**
+		 * Set the card index of a card in the stack. This index corresponds to {@link CardDetails.index}, changing it will show a different card face.
+		 * @param {number} cardIndex - The new card index. Only indices that are used in the template for the card (as defined in the editor) are allowed.
+		 * Card index 0 corresponds to the upper left card on the card image.
+		 * @param {number} index -  The index in the stack for which to update the card index. Index 0 is the front card of which the face is visible.
+		 * Default: 0
+		*/
+		setCardIndexAt(cardIndex: number, index?: number): void;
 		/**
 		 * Remove card from its current card holder. Does change the position of the card and does nothing if the card is not currently in a card holder.
 		 * While cards are in card holders, their physical properties can't be changed and no physical forces or impulses can be applied to them.
@@ -651,13 +665,16 @@ declare module '@tabletop-playground/api' {
 		getHolder(): CardHolder | undefined;
 		/**
 		 * Return details for a card in the stack. Return undefined for an invalid index.
-		 * @param {number} index - The index in the stack for which to retrieve details. Index 0 is the front card of which the face is visible. Defaults to 0.
+		 * @param {number} index - The index in the stack for which to retrieve details. Index 0 is the front card of which the face is visible. Default: 0
 		*/
 		getCardDetails(index?: number): CardDetails | undefined;
 		/**
-		 * Divide the deck into a number of smaller decks, each with the given number of cards. One of the decks will be smaller if the stack size is not divisible by the number of cards.
+		 * Divide the card stack into a number of smaller stacks, each with the given number of cards. One of the stacks
+		 * will be smaller if the current stack size is not divisible by the number of cards.
+		 * @param {number} numCards - Number of cards in each stack
+		 * @returns {Card[]} - The newly created stacks, starting with the stack at the bottom as the first item
 		*/
-		divide(numCards: number): void;
+		divide(numCards: number): Card[];
 		/**
 		 * Deal a number of cards from this stack to all hands
 		 * @param {number} count - The number of cards to deal to each card holder. Defaults to 1.
@@ -670,7 +687,7 @@ declare module '@tabletop-playground/api' {
 		 * the shape or size of the cards does not match, or if this card is in a card holder.
 		 * @param {Card} cards - Card (stack) to add to the stack
 		 * @param {boolean} toFront - If true, add new cards to front of the stack. Default: false.
-		 * @param {number} offset - Number of cards to skip at the back (or front when toFront is true) before adding cards. Defaults to 0.
+		 * @param {number} offset - Number of cards to skip at the back (or front when toFront is true) before adding cards. Default: 0
 		 * @param {boolean} animate - If true, play card drop sound and animate the new cards flying to the stack.
 		 * The animation takes some time, so the new cards aren't added to the stack instantly. If you need to react when the cards are added, you can use {@link onInserted}. Default: false.
 		 * @param {boolean} flipped - If true, add the cards flipped compared to the front card of the stack. Only has an effect if all involved cards allow flipping in stacks. Default: false.
@@ -1330,6 +1347,15 @@ declare module '@tabletop-playground/api' {
 		*/
 		getSnapPoint(index: number): SnapPoint | undefined;
 		/**
+		 * Return the snap point that the object is snapped to (or more precisely, the snap point that the object would
+		 * snap to if it was snapped now). Return undefined if the object is not snapped to any points.
+		 * Objects are not bound to snap points when they are snapped, only their position is adjusted. Therefore, this
+		 * method is not guaranteed to work correctly. It uses the same mechanism that regular snapping uses to determine
+		 * where an object should snap. This could fail for snap points that are high above a surface: the object may have
+		 * fallen or snapped too far below the snap point.
+		*/
+		getSnappedToPoint(): SnapPoint | undefined;
+		/**
 		 * Return the object's secondary color
 		*/
 		getSecondaryColor(): Color;
@@ -1683,6 +1709,78 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
+	 * A sound that can be played. Create Sound objects by importing sound files using {@link GameWorld.importSound}
+	 * or {@link GameWorld.importSoundFromURL}.
+	*/
+	class Sound { 
+		/**
+		 * Called when the sound has finished or failed to load.
+		 * @param {boolean} success - True when the sound has loaded successfully and can be played, false if it has failed to load
+		*/
+		onLoadComplete: Delegate<(success: boolean) => void>;
+		/**
+		 * Called when playback of the sound has finished. Not called when the sound is interrupted (for example by calling {@link stop})
+		*/
+		onPlaybackFinished: Delegate<() => void>;
+		/**
+		 * Stop playing the sound
+		*/
+		stop(): void;
+		/**
+		 * Start playing the sound at the location of an object. It will move together with the object.
+		 * If the sound is already playing, the playback time will be moved.
+		 * If the sound isn't loaded yet when this method is called, the sound will be played as soon as loading has finished.
+		 * @param {GameObject} object - The object from which the sound should originate.
+		 * @param {number} startTime - The starting playback time. Set to 0 to play from the beginning. Default: 0
+		 * @param {number} volume - The volume multiplier at which to play the sound, 0 < volume < 2. Default: 1
+		*/
+		playAttached(object: GameObject, startTime?: number, volume?: number): void;
+		/**
+		 * Start playing the sound at a given position. If it is already playing, the playback time will be moved.
+		 * If the sound isn't loaded yet when this method is called, the sound will be played as soon as loading has finished.
+		 * @param {Vector} position - The position where the sound should originate.
+		 * @param {number} startTime - The starting playback time. Set to 0 to play from the beginning. Default: 0
+		 * @param {number} volume - The volume multiplier at which to play the sound, 0 < volume < 2. Default: 1
+		*/
+		playAtLocation(position: Vector, startTime?: number, volume?: number): void;
+		/**
+		 * Start playing the sound. It will not appear to come from any location. If it is already playing, the playback time will be moved.
+		 * If the sound isn't loaded yet when this method is called, the sound will be played as soon as loading has finished.
+		 * @param {number} startTime - The starting playback time. Set to 0 to play from the beginning. Default: 0
+		 * @param {number} volume - The volume multiplier at which to play the sound, 0 < volume < 2. Default: 1
+		*/
+		play(startTime?: number, volume?: number): void;
+		/**
+		 * Return whether the sound is currently playing
+		*/
+		isPlaying(): boolean;
+		/**
+		 * Return whether the sound has finished loading successfully and is ready to play
+		*/
+		isLoaded(): boolean;
+		/**
+		 * Return the current playback time of the sound in seconds. Will be 0 if the sound is not playing.
+		*/
+		getPlaybackTime(): number;
+		/**
+		 * Return the current playback time of the sound as a fraction of its duration. Will be 0 if the sound is not playing.
+		*/
+		getPlaybackFraction(): number;
+		/**
+		 * Return the duration of the sound in seconds. Will be 0 if the sound is not loaded.
+		*/
+		getDuration(): number;
+		/**
+		 * Destroy this sound and free its resources. Call this function when you don't need a loaded sound anymore.
+		 * The object will become non-functional, and it will be removed from the cache. Note that multiple calls to
+		 * {@link GameWorld.importSound} or {@link GameWorld.importSoundFromURL} with the same parameters return the
+		 * same object when using caching, so if you use the same sound at multiple places in your code, you should
+		 * be carefuly when you destroy it.
+		*/
+		destroy(): void;
+	}
+
+	/**
 	 * An zone that changes game behavior in a defined part of the playing area
 	*/
 	class Zone { 
@@ -1773,8 +1871,8 @@ declare module '@tabletop-playground/api' {
 		*/
 		setCursorHidden(permission: number): void;
 		/**
-		 * Set the zone's primary color
-		 * @param {Color} color - The new color
+		 * Set the zone's color
+		 * @param {Color} color - The new color. The alpha channel determines the zone's translucency. It can't be lower than 0.1, zone translucency will not be updated if the alpha channel is below 0.1
 		*/
 		setColor(color: Color): void;
 		/**
@@ -1856,7 +1954,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		getCursorHidden(): number;
 		/**
-		 * Return the zone's color
+		 * Return the zone's color, including its alpha value
 		*/
 		getColor(): Color;
 		/**
@@ -1866,7 +1964,7 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
-	 * The game world
+	 * The game world. Contains all global methods of the API.
 	*/
 	class GameWorld { 
 		/**
@@ -1903,6 +2001,13 @@ declare module '@tabletop-playground/api' {
 		 * @param {number} radius - Radius of the sphere
 		*/
 		sphereOverlap(position: Vector, radius: number): GameObject[];
+		/**
+		 * Show a ping for all players, similar to when a player places a ping.
+		 * @param {Vector} position - The position to ping
+		 * @param {Color} color - The color of the ping
+		 * @param {boolean} playSound - If true, the ping sound will be played for all players
+		*/
+		showPing(position: Vector, color: Color, playSound: boolean): void;
 		/**
 		 * Replace a global UI element. Will not do anything if called with an index that doesn't have a UI element.
 		 * @param {number} - The index of the UI element to replace
@@ -1948,6 +2053,29 @@ declare module '@tabletop-playground/api' {
 		*/
 		lineTrace(start: Vector, end: Vector): TraceHit[];
 		/**
+		 * Load a sound file from a web URL and store it in a sound object that can be played.
+		 * Supports WAV, MP3, and FLAC files.
+		 * @param {string} url - The URL from which to load the sound
+		 * @param {boolean} ignoreCache - If true, load a new {@link Sound} even if a cached version already exists.
+		 * Will take longer and take additional resources, only use if you need to play the same sound file multiple
+		 * times at the same time. Default: false
+		*/
+		importSoundFromURL(url: string, ignoreCache?: boolean): Sound;
+		/**
+		 * Load a sound file from the Sounds folder of a package and store it in a sound object that can be played.
+		 * Supports WAV, MP3, and FLAC files.
+		 * @param {string} filename - The filename of the sound
+		 * @param {string} packageId - The id of the package that contains the sound file (in the
+		 * Sounds folder). Can be empty when used from scripts to use the same package that contains
+		 * the script file (same as passing {@link refPackageId}). You can find package ids in the
+		 * manifest.json file in package folders. Usually you won't use this parameter, unless you have
+		 * a specific reason to load a sound from a different package than where the script is located.
+		 * @param {boolean} ignoreCache - If true, load a new {@link Sound} even if a cached version already exists.
+		 * Will take longer and take additional resources, only use if you need to play the same sound file multiple
+		 * times at the same time. Default: false
+		*/
+		importSound(filename: string, packageId?: string, ignoreCache?: boolean): Sound;
+		/**
 		 * Return the zone with the specified Id
 		 * @param {string} objectId - The unique id of the zone
 		*/
@@ -1957,6 +2085,14 @@ declare module '@tabletop-playground/api' {
 		 * the actual UIs, use {@link setUI} or {@link updateUI} to update.
 		*/
 		getUIs(): UIElement[];
+		/**
+		 * Return the package id of a template
+		*/
+		getTemplatePackageId(templateId: string): string;
+		/**
+		 * Return the name of a template
+		*/
+		getTemplateName(templateId: string): string;
 		/**
 		 * Return whether a message with results is shown whenever rolled dice come to rest
 		*/
@@ -1970,6 +2106,11 @@ declare module '@tabletop-playground/api' {
 		 * @param {number} slot - The player slot (0-9)
 		*/
 		getPlayerBySlot(slot: number): Player | undefined;
+		/**
+		 * Return all objects in the game with the specified template type
+		 * @param {string} templateId - The template id to search for
+		*/
+		getObjectsByTemplateId(templateId: string): GameObject[] | undefined;
 		/**
 		 * Return an array of all objects with a given object group id.
 		 * @param {number} groupId - The group id to query
@@ -2008,7 +2149,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		getAllPlayers(): Player[];
 		/**
-		 * Get all objects currently in the game
+		 * Return all objects currently in the game
 		*/
 		getAllObjects(): GameObject[];
 		/**
@@ -2178,9 +2319,9 @@ declare module '@tabletop-playground/api' {
 	class HttpRequest { 
 		/**
 		 * Called when an HTTP request completes
-		 * @param {boolean} successful - Indicates whether or not the request was able to connect successfully
+		 * @param {boolean} success - Indicates whether or not the request was able to connect successfully
 		*/
-		onComplete: Delegate<(successful: boolean) => void>;
+		onComplete: Delegate<(success: boolean) => void>;
 		/**
 		 * Delegate called per tick to update an HTTP request upload or download size progress
 		 * @param {number} sent - The number of bytes uploaded in the request so far
@@ -2435,6 +2576,110 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
+	 * Image element
+	*/
+	class ImageWidget extends Widget { 
+		/**
+		 * Set the displayed image file from a URL
+		 * @param {string} url - The filename of the image to load
+		*/
+		setImageURL(url: string): ImageWidget;
+		/**
+		 * Set the desired size of the image. If both axes are set to 0, the size will be the actual size of the image file.
+		 * If only one axis is set to 0, it will be set to a value that preserves the aspect ratio of the image, and the
+		 * other value above 0 will be fixed. Desired size can get overridden by the widget size on a {@link Canvas}
+		 * or the size of the {@link UIElement} when the image is the only widget and {@link UIElement.useWidgetSize} is false.
+		 * @param {number} width - Desired width of the image. Default: 0
+		 * @param {number} height - Desired height of the image. Default: 0
+		*/
+		setImageSize(width: number, height: number): ImageWidget;
+		/**
+		 * Set the displayed image file.
+		 * @param {string} textureName - The filename of the image to load
+		 * @param {string} packageId - The id of the package that contains the image file (in the
+		 * Textures folder). Can be empty when used from scripts to use the same package that contains
+		 * the script file (same as passing {@link refPackageId}). You can find package ids in the
+		 * manifest.json file in package folders. Usually you won't use this parameter, unless you have
+		 * a specific reason to load an image from a different package than where the script is located.
+		*/
+		setImage(textureName: string, packageId?: string): ImageWidget;
+		/**
+		 * Get the desired width of the image, as set by {@link setImageSize}
+		*/
+		getImageWidth(): number;
+		/**
+		 * Get the desired width of the image, as set by {@link setImageSize}
+		*/
+		getImageHeight(): number;
+		/**
+		 * Get the width of the displayed image file. Does not have to be identical to the desired width of the image,
+		 * use {@link getImageWidth} for that. Returns 0 if no texture has been set.
+		*/
+		getImageFileWidth(): number;
+		/**
+		 * Get the height of the displayed image file. Does not have to be identical to the desired height of the image,
+		 * use {@link getImageHeight} for that. Returns 0 if no texture has been set.
+		*/
+		getImageFileHeight(): number;
+	}
+
+	/**
+	 * A UI button.
+	*/
+	class ImageButton extends Widget { 
+		/**
+		 * Called when the button is clicked.
+		 * @param {ScriptButton} button - The button that was clicked
+		 * @param {Player} player - The player who clicked the button
+		*/
+		onClicked: MulticastDelegate<(button: this, player: Player) => void>;
+		/**
+		 * Set the displayed image file from a URL
+		 * @param {string} url - The filename of the image to load
+		*/
+		setImageURL(url: string): ImageButton;
+		/**
+		 * Set the desired size of the image. If both axes are set to 0, the size will be the actual size of the image file.
+		 * If only one axis is set to 0, it will be set to a value that preserves the aspect ratio of the image, and the
+		 * other value above 0 will be fixed. Desired size can get overridden by the widget size on a {@link Canvas}
+		 * or the size of the {@link UIElement} when the image is the only widget and {@link UIElement.useWidgetSize} is false.
+		 * The button has two pixels of padding around the image on all sides, so the total size of the button will be four pixels
+		 * larger on each axis.
+		 * @param {number} width - Desired width of the image. Default: 0
+		 * @param {number} height - Desired height of the image. Default: 0
+		*/
+		setImageSize(width: number, height: number): ImageButton;
+		/**
+		 * Set the displayed image file from a package.
+		 * @param {string} textureName - The filename of the image to load
+		 * @param {string} packageId - The id of the package that contains the image file (in the
+		 * texture folder). Can be empty when used from scripts to use the same package that contains
+		 * the script file (same as passing {@link refPackageId}). You can find package ids in the
+		 * manifest.json file in package folders. Usually you won't use this parameter, unless you
+		 * a specific reason to load an image from a different package than where the script is located.
+		*/
+		setImage(textureName: string, packageId?: string): ImageButton;
+		/**
+		 * Get the desired width of the image, as set by {@link setImageSize}
+		*/
+		getImageWidth(): number;
+		/**
+		 * Get the desired width of the image, as set by {@link setImageSize}
+		*/
+		getImageHeight(): number;
+		/**
+		 * Get the width of the displayed image file. Does not have to be identical to the desired width of the image,
+		 * use {@link getImageWidth} for that. Returns 0 if no texture has been set.
+		*/
+		getImageFileWidth(): number;
+		/**
+		 * Get the height of the displayed image file. Does not have to be identical to the desired height of the image,
+		 * use {@link getImageHeight} for that. Returns 0 if no texture has been set.
+		*/
+		getImageFileHeight(): number;
+	}
+
+	/**
 	 * An editable text box UI element
 	*/
 	class MultilineTextBox extends Widget { 
@@ -2678,11 +2923,13 @@ declare module '@tabletop-playground/api' {
 	}
 
 	var globalEvents : GlobalScriptingEvents;
-	var refObject : GameObject;
 	var world : GameWorld;
 
 	/** Only available in object scripts (for all object types) */
 	var refObject : GameObject;
+
+	/** Only available in object scripts: Package id of the package that contains the currently executed object script*/
+	var refPackageId : string;
 	/** Only available in card object scripts */
 	var refCard : Card;
 	/** Only available in card holder object scripts */
