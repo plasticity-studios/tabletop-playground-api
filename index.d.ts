@@ -2110,7 +2110,7 @@ declare module '@tabletop-playground/api' {
 		 * Return all objects in the game with the specified template type
 		 * @param {string} templateId - The template id to search for
 		*/
-		getObjectsByTemplateId(templateId: string): GameObject[] | undefined;
+		getObjectsByTemplateId(templateId: string): GameObject[];
 		/**
 		 * Return an array of all objects with a given object group id.
 		 * @param {number} groupId - The group id to query
