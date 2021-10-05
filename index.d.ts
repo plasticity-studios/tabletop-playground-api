@@ -568,7 +568,7 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
-	 * A card or card stack
+	 * A stack of cards. Also represents single cards as a stack of one card.
 	*/
 	class Card extends GameObject { 
 		/**
@@ -665,9 +665,17 @@ declare module '@tabletop-playground/api' {
 		getHolder(): CardHolder | undefined;
 		/**
 		 * Return details for a card in the stack. Return undefined for an invalid index.
-		 * @param {number} index - The index in the stack for which to retrieve details. Index 0 is the front card of which the face is visible. Default: 0
+		 * @param {number} index - The index in the stack for which to retrieve details. Index 0 is the front card of which the face is visible.
 		*/
-		getCardDetails(index?: number): CardDetails | undefined;
+		getCardDetails(index: number): CardDetails | undefined;
+		/**
+		 * Return details for the first card in the stack.
+		*/
+		getCardDetails(): CardDetails;
+		/**
+		 * Return details for all cards in the stack.
+		*/
+		getAllCardDetails(): CardDetails[];
 		/**
 		 * Divide the card stack into a number of smaller stacks, each with the given number of cards. One of the stacks
 		 * will be smaller if the current stack size is not divisible by the number of cards.
@@ -1178,6 +1186,17 @@ declare module '@tabletop-playground/api' {
 		 * @param {Color} color - The new secondary color
 		*/
 		setSecondaryColor(color: Color): void;
+		/**
+		 * Set the object's script. The script will be executed immediately.
+		 * @param {string} filename - The filename of the script. Pass an empty string to remove the current script.
+		 * @param {string} packageId - The id of the package that contains the script file (in the
+		 * Scripts folder). Can be empty when used from scripts to use the same package that contains
+		 * the script file (same as passing {@link refPackageId}). You can find package ids in the
+		 * manifest.json file in package folders. Usually you won't use this parameter, unless you have
+		 * a specific reason to set a script from a different package than where the script that
+		 * calls this method is located.
+		*/
+		setScript(filename: string, packageId?: string): void;
 		/**
 		 * Set the object's scale instantly
 		 * @param {Vector} scale - The new scale
@@ -2052,6 +2071,16 @@ declare module '@tabletop-playground/api' {
 		 * @param {Vector} end - End point of the line
 		*/
 		lineTrace(start: Vector, end: Vector): TraceHit[];
+		/**
+		 * Load a text file from the Scripts folder of a package and return the text as string.
+		 * @param {string} filename - The filename of the text file
+		 * @param {string} packageId - The id of the package that contains the text file (in the
+		 * Scripts folder). Can be empty when used from scripts to use the same package that contains
+		 * the script file (same as passing {@link refPackageId}). You can find package ids in the
+		 * manifest.json file in package folders. Usually you won't use this parameter, unless you have
+		 * a specific reason to load a text file from a different package than where the script is located.
+		*/
+		importText(filename: string, packageId?: string): string;
 		/**
 		 * Load a sound file from a web URL and store it in a sound object that can be played.
 		 * Supports WAV, MP3, and FLAC files.
