@@ -45,6 +45,9 @@ declare module '@tabletop-playground/api' {
 	/** The zone permission types used in {@link Zone}*/
 	enum ZonePermission {Everybody=0, OwnersOnly=1, Nobody=2}
 
+	/** Justification (alignment) used in {@link Text}*/
+	enum TextJustification {Left=0, Center=1, Right=2}
+
 	/** Represent for a single callback function. Use the add() method or the assignment operator = to set the function to call. */
 	class Delegate<T> {
 		/** Set the function to call. When called multiple times, only the final added function will be called. */
@@ -557,6 +560,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		readonly name: string;
 		/**
+		 * Metadata of the card. Set in the editor, can contain JSON encoded information.
+		*/
+		readonly metadata: string;
+		/**
 		 * URL for texture override. Used instead of regular front texture if not empty.
 		*/
 		readonly textureOverrideURL: string;
@@ -773,7 +780,7 @@ declare module '@tabletop-playground/api' {
 		 * Switch the player to a new slot. Returns whether the switch was successful
 		 * (it fails if another player already occupies the chosen slot or if the slot number
 		 * is invalid). Switching slots changes the player's color.
-		 * @param {number} newSlot - The new player slot, between 0 and 17
+		 * @param {number} newSlot - The new player slot, between 0 and 19
 		*/
 		switchSlot(newSlot: number): boolean;
 		/**
@@ -831,7 +838,11 @@ declare module '@tabletop-playground/api' {
 		*/
 		isBlindfolded(): boolean;
 		/**
-		 * Return the player slot of this player (a number from 0 to 17). The slot
+		 * Return the player's team (1-8). 0 means no team. To switch teams, use {@link GameWorld.setSlotTeam} for the player's slot.
+		*/
+		getTeam(): number;
+		/**
+		 * Return the player slot of this player (a number from 0 to 19). The slot
 		 * determines the color of the player and what objects they own.
 		*/
 		getSlot(): number;
@@ -1143,7 +1154,7 @@ declare module '@tabletop-playground/api' {
 		worldPositionToLocal(position: Vector): Vector;
 		/**
 		 * Update an attached UI element. Will not do anything if called with a UI element that is not attached to
-		 * the object.
+		 * the object. You need to call this method after modifying values in a {UIElement}.
 		 * @param {UIElement} - The UI element to be updated
 		*/
 		updateUI(element: UIElement): void;
@@ -1205,7 +1216,9 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Set the data that will be stored in save game states. The data is available using {@link getSavedData} when the object
 		 * script is run after loading a save state. Try to keep this data small and don't change it frequently, it needs to
-		 * be sent over the network to all clients.
+		 * be sent over the network to all clients. A similar method exists for global saved data: {@link GameWorld.setSavedData}. <br>
+		 * If you want to use custom data that is not a string, you can encode it to JSON using `JSON.stringify()`, and then
+		 * decode what you get from {@link getSavedData} using `JSON.parse()`.
 		 * @param {string} data - Data to store, maximum length 1023 characters
 		*/
 		setSavedData(data: string): void;
@@ -1352,6 +1365,10 @@ declare module '@tabletop-playground/api' {
 		 * Return the name of the object's template
 		*/
 		getTemplateName(): string;
+		/**
+		 * Return the metadata of the object's template (set in the editor). Can contain JSON encoded information.
+		*/
+		getTemplateMetadata(): string;
 		/**
 		 * Return the object's template id
 		*/
@@ -1572,7 +1589,7 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
-	 * Superclass for UI elements. Doesn't have functionality by itself, use child subclasses instead.
+	 * Base class for UI elements. Doesn't have functionality by itself, use subclasses instead.
 	*/
 	class Widget { 
 		/**
@@ -1599,7 +1616,14 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
-	 * Script UIElement
+	 * Represents a UI element in the game world. Can be attached to an object using {@link GameObject.addUI} or
+	 * directly added to the world with {@link GameWorld.addUI}. If you want to modify values of the UI element,
+	 * after adding it, for example to modify its location, you need to call {@link GameObject.updateUI} (or
+	 * {@link GameWorld.updateUI}) afterwards to apply the update.<br>
+	 * You can't modify the {@link widget} property as an update, but you can change properties of the widget
+	 * without needing to call updateUI.<br>
+	 * If you have multiple widgets on the same plane, it is usually easier and faster to use one UI element
+	 * with a {@link Canvas} widget instead of one UI element for each widget.
 	*/
 	class UIElement { 
 		/**
@@ -1625,11 +1649,11 @@ declare module '@tabletop-playground/api' {
 		*/
 		useWidgetSize: boolean;
 		/**
-		 * Width in pixels to use for rendering the UI. Only used when UseWidgetSize is false. Default: 160
+		 * Width in pixels to use for rendering the UI. Only used when {@link useWidgetSize} is false. Default: 160
 		*/
 		width: number;
 		/**
-		 * Height in pixels to use for rendering the UI. Only used when UseWidgetSize is true. Default: 90
+		 * Height in pixels to use for rendering the UI. Only used when {@link useWidgetSize} is false. Default: 90
 		*/
 		height: number;
 		clone() : UIElement;
@@ -1994,17 +2018,18 @@ declare module '@tabletop-playground/api' {
 		updateUI(element: UIElement): void;
 		/**
 		 * Start debug mode on the given port. You can use the Chrome DevTools or the Visual Studio Code debugger
-		 * to connect to the specified port and debug your scripts.
+		 * to connect to the specified port and debug your scripts.<br>
 		 * For example, with port 9229 (the default), open the following URL to open the DevTools:
-		 * devtools://devtools/bundled/inspector.html?v8only=true&ws=localhost:9229
-		 * For Visual Studio Code, add the following to your debug configurations:
-		 * {
+		 * <tt>devtools://devtools/bundled/inspector.html?v8only=true&ws=localhost:9229</tt><br>
+		 * For Visual Studio Code, add the following to your debug configurations:<br>
+		 * <pre>{
 		 *   "name": "Inspector",
 		 *       "type": "node",
 		 *       "protocol": "inspector",
 		 *       "request": "attach",
 		 *       "address": "localhost",
 		 *       "port": 9229
+		 * }</pre>
 		*/
 		startDebugMode(port?: number): void;
 		/**
@@ -2034,13 +2059,22 @@ declare module '@tabletop-playground/api' {
 		*/
 		setUI(index: number, element: UIElement): void;
 		/**
+		 * Set the team of a player slot
+		 * @param {number} slot - The player slot (0-19)
+		 * @param {number} team - The new team for the slot. Use 0 to not associate the slot with a team.
+		*/
+		setSlotTeam(slot: number, team: number): void;
+		/**
 		 * Set whether a message with results is shown whenever rolled dice come to rest
 		*/
 		setShowDiceRollMessages(show: boolean): void;
 		/**
 		 * Set the data that will stored in save game states. The data is available using {@link getSavedData} when the global
 		 * script is run after loading a save state. Try to keep this data small and don't change it frequently, it needs to
-		 * be sent over the network to all clients.
+		 * be sent over the network to all clients. A similar method exists for each game object:
+		 * {@link GameObject.setSavedData}. <br>
+		 * If you want to use custom data that is not a string, you can encode it to JSON using `JSON.stringify()`, and then
+		 * decode what you get from {@link getSavedData} using `JSON.parse()`.
 		 * @param {string} data - Data to store, maximum length 1023 characters
 		*/
 		setSavedData(data: string): void;
@@ -2123,6 +2157,11 @@ declare module '@tabletop-playground/api' {
 		*/
 		getTemplateName(templateId: string): string;
 		/**
+		 * Return the team (1-8) of a player slot. Returns 0 if the player slot is not associated to a team.
+		 * @param {number} slot - The player slot (0-19)
+		*/
+		getSlotTeam(slot: number): number;
+		/**
 		 * Return whether a message with results is shown whenever rolled dice come to rest
 		*/
 		getShowDiceRollMessages(show: boolean): boolean;
@@ -2132,7 +2171,7 @@ declare module '@tabletop-playground/api' {
 		getSavedData(): string;
 		/**
 		 * Return the player occupying the specified slot
-		 * @param {number} slot - The player slot (0-9)
+		 * @param {number} slot - The player slot (0-19)
 		*/
 		getPlayerBySlot(slot: number): Player | undefined;
 		/**
@@ -2307,6 +2346,13 @@ declare module '@tabletop-playground/api' {
 		*/
 		onChatMessage: MulticastDelegate<(sender: Player, message: string) => void>;
 		/**
+		 * Called when a player sends a team chat message
+		 * @param {Player} sender - Player that sent the message
+		 * @param {number} team - The index of the team where the message was sent (1-8)
+		 * @param {string} message - The chat message
+		*/
+		onTeamChatMessage: MulticastDelegate<(sender: Player, team: number, message: string) => void>;
+		/**
 		 * Called when a player joins the game
 		 * @param {Player} player - The new player
 		*/
@@ -2474,9 +2520,61 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
+	 * Base class for widgets that include text. Provides methods to change the appearance of the text.
+	 * Doesn't have functionality by itself, use subclasses instead.
+	*/
+	class TextWidgetBase extends Widget { 
+		/**
+		 * Set the color of the text
+		*/
+		setTextColor(color: Color): TextWidgetBase;
+		/**
+		 * Set if the text is italic
+		*/
+		setItalic(italic: boolean): TextWidgetBase;
+		/**
+		 * Set the font size.
+		 * @param {number} size - The new font size. Default: 12
+		*/
+		setFontSize(size: number): TextWidgetBase;
+		/**
+		 * Set the TrueType font file used for the text. If a custom font is used, the bold and italic
+		 * settings don't have an effect. Place your font files in the "Fonts" folder of your package.
+		 * @param {string} fontFileName - The filename of the TTF file to load. Set to empty string
+		 * to use the standard font (and enable bold and italic settings).
+		 * @param {string} packageId - The id of the package that contains the TTF file (in the
+		 * Fonts folder). Can be empty when used from scripts to use the same package that contains
+		 * the script file (same as passing {@link refPackageId}). You can find package ids in the
+		 * manifest.json file in package folders. Usually you won't use this parameter, unless you have
+		 * a specific reason to load a font from a different package than where the script is located.
+		*/
+		setFont(fontFilename: string, packageId?: string): TextWidgetBase;
+		/**
+		 * Set if the text is bold
+		*/
+		setBold(bold: boolean): TextWidgetBase;
+		/**
+		 * Return if the text is italic
+		*/
+		isItalic(): boolean;
+		/**
+		 * Return if the text is bold
+		*/
+		isBold(): boolean;
+		/**
+		 * Return the color of the text
+		*/
+		getTextColor(): Color;
+		/**
+		 * Return the font size
+		*/
+		getFontSize(): number;
+	}
+
+	/**
 	 * A UI button.
 	*/
-	class Button extends Widget { 
+	class Button extends TextWidgetBase { 
 		/**
 		 * Called when the button is clicked.
 		 * @param {ScriptButton} button - The button that was clicked
@@ -2489,11 +2587,6 @@ declare module '@tabletop-playground/api' {
 		*/
 		setText(text: string): Button;
 		/**
-		 * Set the font size.
-		 * @param {number} size - The new font size. Default: 12
-		*/
-		setFontSize(size: number): Button;
-		/**
 		 * Return the currently displayed text
 		*/
 		getText(): string;
@@ -2501,10 +2594,23 @@ declare module '@tabletop-playground/api' {
 
 	/**
 	 * A widget that can contain other widgets at fixed coordinates. A canvas has no size of its own,
-	 * so you need to explicitly set the widget size in the {@link UIElement} when using it. Widget
-	 * coordinates are in pixels, at default scale one pixel corresponds to 1 mm in the game world.
+	 * so you need to explicitly set the widget size in the {@link UIElement} and set
+	 * {@link UIElement.useWidgetSize} to false when using it. Widget coordinates are in pixels, at
+	 * default scale one pixel corresponds to 1 mm in the game world.
 	*/
 	class Canvas extends Widget { 
+		/**
+		 * Update coordinates of a child widget of the canvas. Will not do anything if called with a widget
+		 * that is not a child of the canvas.
+		 * @param {Widget} child - The widget to add
+		 * @param {number} x - The X coordinate in pixels. Can be undefined to keep the current X coordinate.
+		 * @param {number} y - The Y coordinate in pixels. Can be undefined to keep the current Y coordinate.
+		 * @param {number} width - Width of the widget on the canvas in pixels. Can be undefined to keep the
+		 * current width.
+		 * @param {number} height - Height of the widget on the canvas in pixels. Can be undefined to keep the
+		 * current height.
+		*/
+		updateChild(child: Widget, x: number, y: number, width: number, height: number): void;
 		/**
 		 * Remove the given child from the canvas
 		 * @param {Widget} child - The widget to remove
@@ -2524,7 +2630,7 @@ declare module '@tabletop-playground/api' {
 	/**
 	 * Check box UI element
 	*/
-	class CheckBox extends Widget { 
+	class CheckBox extends TextWidgetBase { 
 		/**
 		 * Called when the check state changes.
 		 * @param {Checkbox} checkBox - The check box for which the state changed.
@@ -2542,11 +2648,6 @@ declare module '@tabletop-playground/api' {
 		 * @param {boolean} checked - The new checked state
 		*/
 		setIsChecked(checked: boolean): CheckBox;
-		/**
-		 * Set the font size.
-		 * @param {number} size - The new font size. Default: 12
-		*/
-		setFontSize(size: number): CheckBox;
 		/**
 		 * Return whether the check box is currently checked
 		*/
@@ -2711,14 +2812,21 @@ declare module '@tabletop-playground/api' {
 	/**
 	 * An editable text box UI element
 	*/
-	class MultilineTextBox extends Widget { 
+	class MultilineTextBox extends TextWidgetBase { 
 		/**
 		 * Called when the edited text changes.
-		 * @param {TextBox} textBox - The text box where the text changed
+		 * @param {MultilineTextBox} textBox - The text box where the text changed
 		 * @param {Player} player - The player that changed the text. undefined if the text was changed through {@link setText}.
 		 * @param {string} text - The new text
 		*/
 		onTextChanged: MulticastDelegate<(textBox: this, player: Player, text: string) => void>;
+		/**
+		 * Called when the edited text is committed by deselecting the widget.
+		 * @param {MultilineTextBox} textBox - The text box where the text was committed
+		 * @param {Player} player - The player that committed the text. undefined if the text was committed through {@link setText}.
+		 * @param {string} text - The new text
+		*/
+		onTextCommitted: MulticastDelegate<(textBox: this, player: Player, text: string) => void>;
 		/**
 		 * Set the edited text.
 		 * @param {string} text - The new text
@@ -2730,10 +2838,15 @@ declare module '@tabletop-playground/api' {
 		*/
 		setMaxLength(length: number): MultilineTextBox;
 		/**
-		 * Set the font size.
-		 * @param {number} size - The new font size. Default: 12
+		 * Set whether the background is transparent. Can be used to show a custom text box style using an {@link ImageWidget}
+		 * behind the TextBox on a {@link Canvas}, for example.
+		 * @param {boolean} transparent - Set to true to remove the text box background and only show the text
 		*/
-		setFontSize(size: number): MultilineTextBox;
+		setBackgroundTransparent(transparent: boolean): MultilineTextBox;
+		/**
+		 * Return if the background is transparent
+		*/
+		isBackgroundTransparent(): boolean;
 		/**
 		 * Return the currently displayed text.
 		*/
@@ -2747,7 +2860,7 @@ declare module '@tabletop-playground/api' {
 	/**
 	 * Progress bar UI element
 	*/
-	class ProgressBar extends Widget { 
+	class ProgressBar extends TextWidgetBase { 
 		/**
 		 * Set the displayed text. Can include "\n" to indicate new lines.
 		 * @param {string} text - The new text
@@ -2759,11 +2872,6 @@ declare module '@tabletop-playground/api' {
 		*/
 		setProgress(progress: number): ProgressBar;
 		/**
-		 * Set the font size.
-		 * @param {number} size - The new font size. Default: 12
-		*/
-		setFontSize(size: number): ProgressBar;
-		/**
 		 * Return the currently displayed text
 		*/
 		getText(): string;
@@ -2774,9 +2882,12 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
-	 * Selection box UI element
+	 * This widget offers the player a choice between different options. You usually will use this widget
+	 * together with other widgets on a {@link Canvas}, it does not work well as a standalone widget
+	 * directly in a {@link UIElement} because it changes size when clicked, so it needs enough space
+	 * to unfold.
 	*/
-	class SelectionBox extends Widget { 
+	class SelectionBox extends TextWidgetBase { 
 		/**
 		 * Called when the selection is changed.
 		 * @param {SelectionBox} selectionBox - The selection box that was changed
@@ -2794,11 +2905,6 @@ declare module '@tabletop-playground/api' {
 		*/
 		setSelectedIndex(index: number): SelectionBox;
 		/**
-		 * Set the font size.
-		 * @param {number} size - The new font size. Default: 12
-		*/
-		setFontSize(size: number): SelectionBox;
-		/**
 		 * Return the currently selected option
 		*/
 		getSelectedOption(): string;
@@ -2815,7 +2921,7 @@ declare module '@tabletop-playground/api' {
 	/**
 	 * Slider UI element
 	*/
-	class Slider extends Widget { 
+	class Slider extends TextWidgetBase { 
 		/**
 		 * Called when the value is changed by a player
 		 * @param {SelectionBox} slider - The slider that was changed
@@ -2828,7 +2934,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		setValue(value: number): Slider;
 		/**
-		 * Set the width of the text box. Can be 0 to hide the text box.
+		 * Set the width of the text box. Can be set to 0 to hide the text box.
 		*/
 		setTextBoxWidth(width: number): Slider;
 		/**
@@ -2843,11 +2949,6 @@ declare module '@tabletop-playground/api' {
 		 * Set the maximum slider value. Default: 1
 		*/
 		setMaxValue(maxValue: number): Slider;
-		/**
-		 * Set the font size.
-		 * @param {number} size - The new font size. Default: 12
-		*/
-		setFontSize(size: number): Slider;
 		/**
 		 * Return the current value
 		*/
@@ -2873,27 +2974,31 @@ declare module '@tabletop-playground/api' {
 	/**
 	 * Text UI element
 	*/
-	class Text extends Widget { 
+	class Text extends TextWidgetBase { 
 		/**
 		 * Set the displayed text. Can include "\n" to indicate new lines.
 		 * @param {string} text - The new text
 		*/
 		setText(text: string): Text;
 		/**
-		 * Set the font size.
-		 * @param {number} size - The new font size. Default: 12
+		 * Set the justification (alignment) of the text
+		 * @param {number} justification - The new justification, as defined by {@link TextJustification}
 		*/
-		setFontSize(size: number): Text;
+		setJustification(justification: number): Text;
 		/**
 		 * Return the currently displayed text.
 		*/
 		getText(): string;
+		/**
+		 * Return the justification (alignment) of the text, as defined by {@link TextJustification}
+		*/
+		getJustification(): number;
 	}
 
 	/**
 	 * An editable text box UI element
 	*/
-	class TextBox extends Widget { 
+	class TextBox extends TextWidgetBase { 
 		/**
 		 * Called when the edited text changes.
 		 * @param {TextBox} textBox - The text box where the text changed
@@ -2901,6 +3006,13 @@ declare module '@tabletop-playground/api' {
 		 * @param {string} text - The new text
 		*/
 		onTextChanged: MulticastDelegate<(textBox: this, player: Player, text: string) => void>;
+		/**
+		 * Called when the edited text is committed (by pressing Enter or deselecting the widget).
+		 * @param {TextBox} textBox - The text box where the text was committed
+		 * @param {Player} player - The player that committed the text. undefined if the text was committed through {@link setText}.
+		 * @param {string} text - The new text
+		*/
+		onTextCommitted: MulticastDelegate<(textBox: this, player: Player, text: string) => void>;
 		/**
 		 * Set the edited text.
 		 * @param {string} text - The new text
@@ -2922,10 +3034,15 @@ declare module '@tabletop-playground/api' {
 		*/
 		setInputType(type: number): TextBox;
 		/**
-		 * Set the font size.
-		 * @param {number} size - The new font size. Default: 12
+		 * Set whether the background is transparent. Can be used to show a custom text box style using an {@link ImageWidget}
+		 * behind the TextBox on a {@link Canvas}, for example.
+		 * @param {boolean} transparent - Set to true to remove the text box background and only show the text
 		*/
-		setFontSize(size: number): TextBox;
+		setBackgroundTransparent(transparent: boolean): TextBox;
+		/**
+		 * Return if the background is transparent
+		*/
+		isBackgroundTransparent(): boolean;
 		/**
 		 * Return the currently displayed text.
 		*/

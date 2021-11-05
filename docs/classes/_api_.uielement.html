@@ -70,7 +70,14 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Script UIElement</p>
+						<p>Represents a UI element in the game world. Can be attached to an object using <a href="_api_.gameobject.html#addui">GameObject.addUI</a> or
+							directly added to the world with <a href="_api_.gameworld.html#addui">GameWorld.addUI</a>. If you want to modify values of the UI element,
+							after adding it, for example to modify its location, you need to call <a href="_api_.gameobject.html#updateui">GameObject.updateUI</a> (or
+							<a href="_api_.gameworld.html#updateui">GameWorld.updateUI</a>) afterwards to apply the update.<br>
+							You can&#39;t modify the <a href="_api_.uielement.html#widget">widget</a> property as an update, but you can change properties of the widget
+							without needing to call updateUI.<br>
+							If you have multiple widgets on the same plane, it is usually easier and faster to use one UI element
+						with a <a href="_api_.canvas.html">Canvas</a> widget instead of one UI element for each widget.</p>
 					</div>
 				</div>
 			</section>
@@ -115,12 +122,12 @@
 					<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ebc7da9/index.d.ts#L1634">index.d.ts:1634</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/8a117c4/index.d.ts#L1658">index.d.ts:1658</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Height in pixels to use for rendering the UI. Only used when UseWidgetSize is true. Default: 90</p>
+							<p>Height in pixels to use for rendering the UI. Only used when <a href="_api_.uielement.html#usewidgetsize">useWidgetSize</a> is false. Default: 90</p>
 						</div>
 					</div>
 				</section>
@@ -130,7 +137,7 @@
 					<div class="tsd-signature tsd-kind-icon">position<span class="tsd-signature-symbol">:</span> <a href="_api_.vector.html" class="tsd-signature-type">Vector</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ebc7da9/index.d.ts#L1612">index.d.ts:1612</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/8a117c4/index.d.ts#L1636">index.d.ts:1636</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -145,7 +152,7 @@
 					<div class="tsd-signature tsd-kind-icon">rotation<span class="tsd-signature-symbol">:</span> <a href="_api_.rotator.html" class="tsd-signature-type">Rotator</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ebc7da9/index.d.ts#L1617">index.d.ts:1617</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/8a117c4/index.d.ts#L1641">index.d.ts:1641</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -161,7 +168,7 @@
 					<div class="tsd-signature tsd-kind-icon">scale<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ebc7da9/index.d.ts#L1622">index.d.ts:1622</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/8a117c4/index.d.ts#L1646">index.d.ts:1646</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -177,7 +184,7 @@
 					<div class="tsd-signature tsd-kind-icon">use<wbr>Widget<wbr>Size<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ebc7da9/index.d.ts#L1626">index.d.ts:1626</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/8a117c4/index.d.ts#L1650">index.d.ts:1650</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -192,7 +199,7 @@
 					<div class="tsd-signature tsd-kind-icon">widget<span class="tsd-signature-symbol">:</span> <a href="_api_.widget.html" class="tsd-signature-type">Widget</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ebc7da9/index.d.ts#L1608">index.d.ts:1608</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/8a117c4/index.d.ts#L1632">index.d.ts:1632</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -207,12 +214,12 @@
 					<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ebc7da9/index.d.ts#L1630">index.d.ts:1630</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/8a117c4/index.d.ts#L1654">index.d.ts:1654</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Width in pixels to use for rendering the UI. Only used when UseWidgetSize is false. Default: 160</p>
+							<p>Width in pixels to use for rendering the UI. Only used when <a href="_api_.uielement.html#usewidgetsize">useWidgetSize</a> is false. Default: 160</p>
 						</div>
 					</div>
 				</section>
@@ -229,7 +236,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ebc7da9/index.d.ts#L1635">index.d.ts:1635</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/8a117c4/index.d.ts#L1659">index.d.ts:1659</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_api_.uielement.html" class="tsd-signature-type">UIElement</a></h4>

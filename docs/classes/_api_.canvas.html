@@ -71,8 +71,9 @@
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
 						<p>A widget that can contain other widgets at fixed coordinates. A canvas has no size of its own,
-							so you need to explicitly set the widget size in the <a href="_api_.uielement.html">UIElement</a> when using it. Widget
-						coordinates are in pixels, at default scale one pixel corresponds to 1 mm in the game world.</p>
+							so you need to explicitly set the widget size in the <a href="_api_.uielement.html">UIElement</a> and set
+							<a href="_api_.uielement.html#usewidgetsize">UIElement.useWidgetSize</a> to false when using it. Widget coordinates are in pixels, at
+						default scale one pixel corresponds to 1 mm in the game world.</p>
 					</div>
 				</div>
 			</section>
@@ -102,6 +103,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.canvas.html#isenabled" class="tsd-kind-icon">is<wbr>Enabled</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.canvas.html#removechild" class="tsd-kind-icon">remove<wbr>Child</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.canvas.html#setenabled" class="tsd-kind-icon">set<wbr>Enabled</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.canvas.html#updatechild" class="tsd-kind-icon">update<wbr>Child</a></li>
 							</ul>
 						</section>
 					</div>
@@ -119,7 +121,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ebc7da9/index.d.ts#L2521">index.d.ts:2521</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/8a117c4/index.d.ts#L2627">index.d.ts:2627</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -175,7 +177,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.widget.html">Widget</a>.<a href="_api_.widget.html#getowningobject">getOwningObject</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ebc7da9/index.d.ts#L1598">index.d.ts:1598</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/8a117c4/index.d.ts#L1615">index.d.ts:1615</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -199,7 +201,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.widget.html">Widget</a>.<a href="_api_.widget.html#getparent">getParent</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ebc7da9/index.d.ts#L1593">index.d.ts:1593</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/8a117c4/index.d.ts#L1610">index.d.ts:1610</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -223,7 +225,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.widget.html">Widget</a>.<a href="_api_.widget.html#isenabled">isEnabled</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ebc7da9/index.d.ts#L1588">index.d.ts:1588</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/8a117c4/index.d.ts#L1605">index.d.ts:1605</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -245,7 +247,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ebc7da9/index.d.ts#L2512">index.d.ts:2512</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/8a117c4/index.d.ts#L2618">index.d.ts:2618</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -277,7 +279,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.widget.html">Widget</a>.<a href="_api_.widget.html#setenabled">setEnabled</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ebc7da9/index.d.ts#L1584">index.d.ts:1584</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/8a117c4/index.d.ts#L1601">index.d.ts:1601</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -297,6 +299,64 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_api_.widget.html" class="tsd-signature-type">Widget</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="updatechild" class="tsd-anchor"></a>
+					<h3>update<wbr>Child</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">update<wbr>Child<span class="tsd-signature-symbol">(</span>child<span class="tsd-signature-symbol">: </span><a href="_api_.widget.html" class="tsd-signature-type">Widget</a>, x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, width<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, height<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/8a117c4/index.d.ts#L2613">index.d.ts:2613</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Update coordinates of a child widget of the canvas. Will not do anything if called with a widget
+									that is not a child of the canvas.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>child: <a href="_api_.widget.html" class="tsd-signature-type">Widget</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The widget to add</p>
+									</div>
+								</li>
+								<li>
+									<h5>x: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The X coordinate in pixels. Can be undefined to keep the current X coordinate.</p>
+									</div>
+								</li>
+								<li>
+									<h5>y: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The Y coordinate in pixels. Can be undefined to keep the current Y coordinate.</p>
+									</div>
+								</li>
+								<li>
+									<h5>width: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Width of the widget on the canvas in pixels. Can be undefined to keep the
+										current width.</p>
+									</div>
+								</li>
+								<li>
+									<h5>height: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Height of the widget on the canvas in pixels. Can be undefined to keep the
+										current height.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -337,6 +397,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_api_.canvas.html#setenabled" class="tsd-kind-icon">set<wbr>Enabled</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.canvas.html#updatechild" class="tsd-kind-icon">update<wbr>Child</a>
 							</li>
 						</ul>
 					</li>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Button | Tabletop Playground API</title>
+	<title>TextWidgetBase | Tabletop Playground API</title>
 	<meta name="description" content="Documentation for Tabletop Playground API">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,10 +57,10 @@
 					<a href="../modules/_api_.html">&quot;api&quot;</a>
 				</li>
 				<li>
-					<a href="_api_.button.html">Button</a>
+					<a href="_api_.textwidgetbase.html">TextWidgetBase</a>
 				</li>
 			</ul>
-			<h1>Class Button</h1>
+			<h1>Class TextWidgetBase</h1>
 		</div>
 	</div>
 </header>
@@ -70,7 +70,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A UI button.</p>
+						<p>Base class for widgets that include text. Provides methods to change the appearance of the text.
+						Doesn&#39;t have functionality by itself, use subclasses instead.</p>
 					</div>
 				</div>
 			</section>
@@ -78,10 +79,36 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="_api_.textwidgetbase.html" class="tsd-signature-type">TextWidgetBase</a>
+						<a href="_api_.widget.html" class="tsd-signature-type">Widget</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">Button</span>
+								<span class="target">TextWidgetBase</span>
+								<ul class="tsd-hierarchy">
+									<li>
+										<a href="_api_.button.html" class="tsd-signature-type">Button</a>
+									</li>
+									<li>
+										<a href="_api_.checkbox.html" class="tsd-signature-type">CheckBox</a>
+									</li>
+									<li>
+										<a href="_api_.multilinetextbox.html" class="tsd-signature-type">MultilineTextBox</a>
+									</li>
+									<li>
+										<a href="_api_.progressbar.html" class="tsd-signature-type">ProgressBar</a>
+									</li>
+									<li>
+										<a href="_api_.selectionbox.html" class="tsd-signature-type">SelectionBox</a>
+									</li>
+									<li>
+										<a href="_api_.slider.html" class="tsd-signature-type">Slider</a>
+									</li>
+									<li>
+										<a href="_api_.text.html" class="tsd-signature-type">Text</a>
+									</li>
+									<li>
+										<a href="_api_.textbox.html" class="tsd-signature-type">TextBox</a>
+									</li>
+								</ul>
 							</li>
 						</ul>
 					</li>
@@ -92,72 +119,37 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_.button.html#onclicked" class="tsd-kind-icon">on<wbr>Clicked</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#getfontsize" class="tsd-kind-icon">get<wbr>Font<wbr>Size</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.button.html#gettext" class="tsd-kind-icon">get<wbr>Text</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#gettextcolor" class="tsd-kind-icon">get<wbr>Text<wbr>Color</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#isbold" class="tsd-kind-icon">is<wbr>Bold</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#isenabled" class="tsd-kind-icon">is<wbr>Enabled</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#isitalic" class="tsd-kind-icon">is<wbr>Italic</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#setbold" class="tsd-kind-icon">set<wbr>Bold</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#setenabled" class="tsd-kind-icon">set<wbr>Enabled</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#setfont" class="tsd-kind-icon">set<wbr>Font</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#setfontsize" class="tsd-kind-icon">set<wbr>Font<wbr>Size</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#setitalic" class="tsd-kind-icon">set<wbr>Italic</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.button.html#settext" class="tsd-kind-icon">set<wbr>Text</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#settextcolor" class="tsd-kind-icon">set<wbr>Text<wbr>Color</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.textwidgetbase.html#getfontsize" class="tsd-kind-icon">get<wbr>Font<wbr>Size</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.textwidgetbase.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.textwidgetbase.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.textwidgetbase.html#gettextcolor" class="tsd-kind-icon">get<wbr>Text<wbr>Color</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.textwidgetbase.html#isbold" class="tsd-kind-icon">is<wbr>Bold</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.textwidgetbase.html#isenabled" class="tsd-kind-icon">is<wbr>Enabled</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.textwidgetbase.html#isitalic" class="tsd-kind-icon">is<wbr>Italic</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.textwidgetbase.html#setbold" class="tsd-kind-icon">set<wbr>Bold</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.textwidgetbase.html#setenabled" class="tsd-kind-icon">set<wbr>Enabled</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.textwidgetbase.html#setfont" class="tsd-kind-icon">set<wbr>Font</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.textwidgetbase.html#setfontsize" class="tsd-kind-icon">set<wbr>Font<wbr>Size</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.textwidgetbase.html#setitalic" class="tsd-kind-icon">set<wbr>Italic</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.textwidgetbase.html#settextcolor" class="tsd-kind-icon">set<wbr>Text<wbr>Color</a></li>
 							</ul>
 						</section>
-					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="onclicked" class="tsd-anchor"></a>
-					<h3>on<wbr>Clicked</h3>
-					<div class="tsd-signature tsd-kind-icon">on<wbr>Clicked<span class="tsd-signature-symbol">:</span> <a href="_api_.multicastdelegate.html" class="tsd-signature-type">MulticastDelegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>button<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span>, player<span class="tsd-signature-symbol">: </span><a href="_api_.player.html" class="tsd-signature-type">Player</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/8a117c4/index.d.ts#L2583">index.d.ts:2583</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Called when the button is clicked.</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>The button that was clicked</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The player who clicked the button</p>
-							</dd>
-						</dl>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="getfontsize" class="tsd-anchor"></a>
 					<h3>get<wbr>Font<wbr>Size</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 						<li class="tsd-signature tsd-kind-icon">get<wbr>Font<wbr>Size<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_api_.textwidgetbase.html">TextWidgetBase</a>.<a href="_api_.textwidgetbase.html#getfontsize">getFontSize</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/8a117c4/index.d.ts#L2571">index.d.ts:2571</a></li>
 								</ul>
@@ -220,37 +212,14 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="gettext" class="tsd-anchor"></a>
-					<h3>get<wbr>Text</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Text<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/8a117c4/index.d.ts#L2592">index.d.ts:2592</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Return the currently displayed text</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="gettextcolor" class="tsd-anchor"></a>
 					<h3>get<wbr>Text<wbr>Color</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 						<li class="tsd-signature tsd-kind-icon">get<wbr>Text<wbr>Color<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.color.html" class="tsd-signature-type">Color</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_api_.textwidgetbase.html">TextWidgetBase</a>.<a href="_api_.textwidgetbase.html#gettextcolor">getTextColor</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/8a117c4/index.d.ts#L2567">index.d.ts:2567</a></li>
 								</ul>
@@ -264,16 +233,15 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="isbold" class="tsd-anchor"></a>
 					<h3>is<wbr>Bold</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 						<li class="tsd-signature tsd-kind-icon">is<wbr>Bold<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_api_.textwidgetbase.html">TextWidgetBase</a>.<a href="_api_.textwidgetbase.html#isbold">isBold</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/8a117c4/index.d.ts#L2563">index.d.ts:2563</a></li>
 								</ul>
@@ -303,23 +271,22 @@
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Return whether the widget is currently enabled (see <a href="_api_.button.html#setenabled">setEnabled</a>).</p>
+									<p>Return whether the widget is currently enabled (see <a href="_api_.textwidgetbase.html#setenabled">setEnabled</a>).</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="isitalic" class="tsd-anchor"></a>
 					<h3>is<wbr>Italic</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 						<li class="tsd-signature tsd-kind-icon">is<wbr>Italic<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_api_.textwidgetbase.html">TextWidgetBase</a>.<a href="_api_.textwidgetbase.html#isitalic">isItalic</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/8a117c4/index.d.ts#L2559">index.d.ts:2559</a></li>
 								</ul>
@@ -333,16 +300,15 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="setbold" class="tsd-anchor"></a>
 					<h3>set<wbr>Bold</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 						<li class="tsd-signature tsd-kind-icon">set<wbr>Bold<span class="tsd-signature-symbol">(</span>bold<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.textwidgetbase.html" class="tsd-signature-type">TextWidgetBase</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_api_.textwidgetbase.html">TextWidgetBase</a>.<a href="_api_.textwidgetbase.html#setbold">setBold</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/8a117c4/index.d.ts#L2555">index.d.ts:2555</a></li>
 								</ul>
@@ -396,16 +362,15 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="setfont" class="tsd-anchor"></a>
 					<h3>set<wbr>Font</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 						<li class="tsd-signature tsd-kind-icon">set<wbr>Font<span class="tsd-signature-symbol">(</span>fontFilename<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, packageId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.textwidgetbase.html" class="tsd-signature-type">TextWidgetBase</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_api_.textwidgetbase.html">TextWidgetBase</a>.<a href="_api_.textwidgetbase.html#setfont">setFont</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/8a117c4/index.d.ts#L2551">index.d.ts:2551</a></li>
 								</ul>
@@ -436,16 +401,15 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="setfontsize" class="tsd-anchor"></a>
 					<h3>set<wbr>Font<wbr>Size</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 						<li class="tsd-signature tsd-kind-icon">set<wbr>Font<wbr>Size<span class="tsd-signature-symbol">(</span>size<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.textwidgetbase.html" class="tsd-signature-type">TextWidgetBase</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_api_.textwidgetbase.html">TextWidgetBase</a>.<a href="_api_.textwidgetbase.html#setfontsize">setFontSize</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/8a117c4/index.d.ts#L2539">index.d.ts:2539</a></li>
 								</ul>
@@ -468,16 +432,15 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="setitalic" class="tsd-anchor"></a>
 					<h3>set<wbr>Italic</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 						<li class="tsd-signature tsd-kind-icon">set<wbr>Italic<span class="tsd-signature-symbol">(</span>italic<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.textwidgetbase.html" class="tsd-signature-type">TextWidgetBase</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_api_.textwidgetbase.html">TextWidgetBase</a>.<a href="_api_.textwidgetbase.html#setitalic">setItalic</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/8a117c4/index.d.ts#L2534">index.d.ts:2534</a></li>
 								</ul>
@@ -498,46 +461,14 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="settext" class="tsd-anchor"></a>
-					<h3>set<wbr>Text</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Text<span class="tsd-signature-symbol">(</span>text<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.button.html" class="tsd-signature-type">Button</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/8a117c4/index.d.ts#L2588">index.d.ts:2588</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Set the text of this button.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>text: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The new text</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_api_.button.html" class="tsd-signature-type">Button</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="settextcolor" class="tsd-anchor"></a>
 					<h3>set<wbr>Text<wbr>Color</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 						<li class="tsd-signature tsd-kind-icon">set<wbr>Text<wbr>Color<span class="tsd-signature-symbol">(</span>color<span class="tsd-signature-symbol">: </span><a href="_api_.color.html" class="tsd-signature-type">Color</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.textwidgetbase.html" class="tsd-signature-type">TextWidgetBase</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="_api_.textwidgetbase.html">TextWidgetBase</a>.<a href="_api_.textwidgetbase.html#settextcolor">setTextColor</a></p>
 								<ul>
 									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/8a117c4/index.d.ts#L2530">index.d.ts:2530</a></li>
 								</ul>
@@ -575,55 +506,46 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-module">
-						<a href="_api_.button.html" class="tsd-kind-icon">Button</a>
+						<a href="_api_.textwidgetbase.html" class="tsd-kind-icon">Text<wbr>Widget<wbr>Base</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_api_.button.html#onclicked" class="tsd-kind-icon">on<wbr>Clicked</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.textwidgetbase.html#getfontsize" class="tsd-kind-icon">get<wbr>Font<wbr>Size</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#getfontsize" class="tsd-kind-icon">get<wbr>Font<wbr>Size</a>
+								<a href="_api_.textwidgetbase.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a>
+								<a href="_api_.textwidgetbase.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.button.html#gettext" class="tsd-kind-icon">get<wbr>Text</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#gettextcolor" class="tsd-kind-icon">get<wbr>Text<wbr>Color</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#isbold" class="tsd-kind-icon">is<wbr>Bold</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#isenabled" class="tsd-kind-icon">is<wbr>Enabled</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#isitalic" class="tsd-kind-icon">is<wbr>Italic</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#setbold" class="tsd-kind-icon">set<wbr>Bold</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#setenabled" class="tsd-kind-icon">set<wbr>Enabled</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#setfont" class="tsd-kind-icon">set<wbr>Font</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#setfontsize" class="tsd-kind-icon">set<wbr>Font<wbr>Size</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#setitalic" class="tsd-kind-icon">set<wbr>Italic</a>
+								<a href="_api_.textwidgetbase.html#gettextcolor" class="tsd-kind-icon">get<wbr>Text<wbr>Color</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.button.html#settext" class="tsd-kind-icon">set<wbr>Text</a>
+								<a href="_api_.textwidgetbase.html#isbold" class="tsd-kind-icon">is<wbr>Bold</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#settextcolor" class="tsd-kind-icon">set<wbr>Text<wbr>Color</a>
+								<a href="_api_.textwidgetbase.html#isenabled" class="tsd-kind-icon">is<wbr>Enabled</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.textwidgetbase.html#isitalic" class="tsd-kind-icon">is<wbr>Italic</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.textwidgetbase.html#setbold" class="tsd-kind-icon">set<wbr>Bold</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_api_.textwidgetbase.html#setenabled" class="tsd-kind-icon">set<wbr>Enabled</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.textwidgetbase.html#setfont" class="tsd-kind-icon">set<wbr>Font</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.textwidgetbase.html#setfontsize" class="tsd-kind-icon">set<wbr>Font<wbr>Size</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.textwidgetbase.html#setitalic" class="tsd-kind-icon">set<wbr>Italic</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.textwidgetbase.html#settextcolor" class="tsd-kind-icon">set<wbr>Text<wbr>Color</a>
 							</li>
 						</ul>
 					</li>
@@ -641,7 +563,6 @@
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
 				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 			<ul class="tsd-legend">
