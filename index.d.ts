@@ -694,9 +694,11 @@ declare module '@tabletop-playground/api' {
 		 * Deal a number of cards from this stack to all hands
 		 * @param {number} count - The number of cards to deal to each card holder. Defaults to 1.
 		 * @param {Set<number>} slots - A set of slots to identify which players receive cards. If empty, all players will receive cards.
-		 * @param {boolean} faceDown - When true, cards are dealt to holders with their faces down. Default: false
+		 * @param {boolean} faceDown - When true, cards are dealt with their faces down. Default: false
+		 * @param {boolean} dealToAllHolders - When false, only card holders that are the primary holder of an active player will receive cards.
+		 * When true, all card holders (except those without an owner slot) will receive a card. Default: false
 		*/
-		deal(count?: number, slots?: number[], faceDown?: boolean): void;
+		deal(count?: number, slots?: number[], faceDown?: boolean, dealToAllHolders?: boolean): void;
 		/**
 		 * Add cards to the stack. Returns whether the cards have been added successfully. Will not succeed if
 		 * the shape or size of the cards does not match, or if this card is in a card holder.
@@ -1392,6 +1394,11 @@ declare module '@tabletop-playground/api' {
 		*/
 		getSnappedToPoint(): SnapPoint | undefined;
 		/**
+		 * Get the size of the object in cm. This is the same size that is shown in the editor and the coordinates window, it doesn't change when the object is rotated.
+		 * If you are looking to calculate the borders of the object, use {@link getExtent} instead.
+		*/
+		getSize(): Vector;
+		/**
 		 * Return the object's secondary color
 		*/
 		getSecondaryColor(): Color;
@@ -1473,13 +1480,13 @@ declare module '@tabletop-playground/api' {
 		getFriction(): number;
 		/**
 		 * Get the center of the object extent: an axis-aligned bounding box encompassing the object.
-		 * This will often be the same position as returned by GetPosition, but will differ for objects with their physical center not at their volume center.
+		 * This will often be the same position as returned by {@link getPosition}, but will differ for objects with their physical center not at their volume center.
 		 * @param {boolean} currentRotation - If true, return the extent of an axis-aligned bounding box around the object at its current rotation. If false, return for the default rotation.
 		*/
 		getExtentCenter(currentRotation: boolean): Vector;
 		/**
 		 * Get the object extent: half-size of an axis-aligned bounding box encompassing the object.
-		 * Adding this vector to the position returned by GetExtentCenter gives a corner of the bounding box.
+		 * Adding this vector to the position returned by {@link getExtentCenter} gives a corner of the bounding box.
 		 * @param {boolean} currentRotation - If true, return the extent of an axis-aligned bounding box around the object at its current rotation. If false, return for the default rotation.
 		*/
 		getExtent(currentRotation: boolean): Vector;
@@ -2157,6 +2164,14 @@ declare module '@tabletop-playground/api' {
 		*/
 		getTemplateName(templateId: string): string;
 		/**
+		 * Return the Z coordinate of the table at a given point. Returns 0 if the point is outside of the table bounds.
+		 * For many tables this will return the same values for the entire surface, but some tables (like the included
+		 * Poker table) have more complex surface geometry.
+		 * @param {Vector} position - The point where the table height should be evaluated. The Z coordinate of the Vector
+		 * is ignored. Returns table height for the center of the map (0,0) if this parameter is not given.
+		*/
+		getTableHeight(position?: Vector): number;
+		/**
 		 * Return the team (1-8) of a player slot. Returns 0 if the player slot is not associated to a team.
 		 * @param {number} slot - The player slot (0-19)
 		*/
@@ -2527,20 +2542,20 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Set the color of the text
 		*/
-		setTextColor(color: Color): TextWidgetBase;
+		setTextColor(color: Color): this;
 		/**
 		 * Set if the text is italic
 		*/
-		setItalic(italic: boolean): TextWidgetBase;
+		setItalic(italic: boolean): this;
 		/**
 		 * Set the font size.
 		 * @param {number} size - The new font size. Default: 12
 		*/
-		setFontSize(size: number): TextWidgetBase;
+		setFontSize(size: number): this;
 		/**
 		 * Set the TrueType font file used for the text. If a custom font is used, the bold and italic
 		 * settings don't have an effect. Place your font files in the "Fonts" folder of your package.
-		 * @param {string} fontFileName - The filename of the TTF file to load. Set to empty string
+		 * @param {string} fontFilename - The filename of the TTF file to load. Set to empty string
 		 * to use the standard font (and enable bold and italic settings).
 		 * @param {string} packageId - The id of the package that contains the TTF file (in the
 		 * Fonts folder). Can be empty when used from scripts to use the same package that contains
@@ -2548,11 +2563,11 @@ declare module '@tabletop-playground/api' {
 		 * manifest.json file in package folders. Usually you won't use this parameter, unless you have
 		 * a specific reason to load a font from a different package than where the script is located.
 		*/
-		setFont(fontFilename: string, packageId?: string): TextWidgetBase;
+		setFont(fontFilename: string, packageId?: string): this;
 		/**
 		 * Set if the text is bold
 		*/
-		setBold(bold: boolean): TextWidgetBase;
+		setBold(bold: boolean): this;
 		/**
 		 * Return if the text is italic
 		*/
