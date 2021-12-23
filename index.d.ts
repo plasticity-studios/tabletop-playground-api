@@ -1011,7 +1011,7 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Alias for {@link addObjects}
 		*/
-		insert(objects: GameObject[], index: number, showAnimation?: boolean): void;
+		insert(objects: GameObject[], index?: number, showAnimation?: boolean): void;
 		/**
 		 * Return the type of the container. Possible values are:
 		 * 0 - Random
@@ -1045,7 +1045,7 @@ declare module '@tabletop-playground/api' {
 		 * @param {number} index - The index at which the new objects will be inserted. By default, they will be inserted at start (index 0)
 		 * @param {boolean} showAnimation - If false, don't show insert animation and don't play sound. Default: false
 		*/
-		addObjects(objects: GameObject[], index: number, showAnimation?: boolean): void;
+		addObjects(objects: GameObject[], index?: number, showAnimation?: boolean): void;
 	}
 
 	/**
@@ -1605,7 +1605,7 @@ declare module '@tabletop-playground/api' {
 		 * behave as if disabled, too. By default, widgets are enabled.
 		 * @param {boolean} enabled - Whether to enable the widget.
 		*/
-		setEnabled(enabled: boolean): Widget;
+		setEnabled(enabled: boolean): this;
 		/**
 		 * Return whether the widget is currently enabled (see {@link setEnabled}).
 		*/
