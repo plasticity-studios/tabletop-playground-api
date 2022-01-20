@@ -116,14 +116,14 @@
 					<a name="addchild" class="tsd-anchor"></a>
 					<h3>add<wbr>Child</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Child<span class="tsd-signature-symbol">(</span>child<span class="tsd-signature-symbol">: </span><a href="_api_.widget.html" class="tsd-signature-type">Widget</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.panel.html" class="tsd-signature-type">Panel</a></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Child<span class="tsd-signature-symbol">(</span>child<span class="tsd-signature-symbol">: </span><a href="_api_.widget.html" class="tsd-signature-type">Widget</a>, weight<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.panel.html" class="tsd-signature-type">Panel</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.panel.html">Panel</a>.<a href="_api_.panel.html#addchild">addChild</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L2714">index.d.ts:2714</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L2752">index.d.ts:2752</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -135,6 +135,16 @@
 							<ul class="tsd-parameters">
 								<li>
 									<h5>child: <a href="_api_.widget.html" class="tsd-signature-type">Widget</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The widget to add</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> weight: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The amount of space the widget gets. 0 means as much as the widget requires, values above 0
+										give a weight compared to all other widgets with a weight above 0. Default: 0</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_api_.panel.html" class="tsd-signature-type">Panel</a></h4>
@@ -152,7 +162,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.panel.html">Panel</a>.<a href="_api_.panel.html#getchildat">getChildAt</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L2710">index.d.ts:2710</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L2745">index.d.ts:2745</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -184,7 +194,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.widget.html">Widget</a>.<a href="_api_.widget.html#getowningobject">getOwningObject</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L1622">index.d.ts:1622</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L1647">index.d.ts:1647</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -208,7 +218,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.widget.html">Widget</a>.<a href="_api_.widget.html#getparent">getParent</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L1617">index.d.ts:1617</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L1642">index.d.ts:1642</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -225,14 +235,14 @@
 					<a name="insertchild" class="tsd-anchor"></a>
 					<h3>insert<wbr>Child</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">insert<wbr>Child<span class="tsd-signature-symbol">(</span>child<span class="tsd-signature-symbol">: </span><a href="_api_.widget.html" class="tsd-signature-type">Widget</a>, index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.panel.html" class="tsd-signature-type">Panel</a></li>
+						<li class="tsd-signature tsd-kind-icon">insert<wbr>Child<span class="tsd-signature-symbol">(</span>child<span class="tsd-signature-symbol">: </span><a href="_api_.widget.html" class="tsd-signature-type">Widget</a>, index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, weight<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.panel.html" class="tsd-signature-type">Panel</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.panel.html">Panel</a>.<a href="_api_.panel.html#insertchild">insertChild</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L2705">index.d.ts:2705</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L2740">index.d.ts:2740</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -254,6 +264,13 @@
 										<p>Index at which to insert the new child</p>
 									</div>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> weight: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The amount of space the widget gets. 0 means as much as the widget requires, values above 0
+										give a weight compared to all other widgets with a weight above 0. Default: 0</p>
+									</div>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_api_.panel.html" class="tsd-signature-type">Panel</a></h4>
 						</li>
@@ -270,7 +287,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.widget.html">Widget</a>.<a href="_api_.widget.html#isenabled">isEnabled</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L1612">index.d.ts:1612</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L1637">index.d.ts:1637</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -293,7 +310,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.panel.html">Panel</a>.<a href="_api_.panel.html#removechild">removeChild</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L2699">index.d.ts:2699</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L2732">index.d.ts:2732</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -325,7 +342,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.panel.html">Panel</a>.<a href="_api_.panel.html#removechildat">removeChildAt</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L2694">index.d.ts:2694</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L2727">index.d.ts:2727</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -357,7 +374,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.panel.html">Panel</a>.<a href="_api_.panel.html#setchilddistance">setChildDistance</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L2689">index.d.ts:2689</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L2722">index.d.ts:2722</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -389,7 +406,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.widget.html">Widget</a>.<a href="_api_.widget.html#setenabled">setEnabled</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L1608">index.d.ts:1608</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L1633">index.d.ts:1633</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -423,21 +440,23 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.panel.html">Panel</a>.<a href="_api_.panel.html#setequalchildsize">setEqualChildSize</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L2684">index.d.ts:2684</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L2717">index.d.ts:2717</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Set if the size of each widget should be equal instead of each widget using its default size.</p>
-								</div>
+								<dl class="tsd-comment-tags">
+									<dt>deprecated</dt>
+									<dd><p>This method doesn&#39;t do anything anymore except printing a warning. In order to control the
+											size of the child widgets, use the weight parameter in <a href="_api_.verticalbox.html#addchild">addChild</a> and <a href="_api_.verticalbox.html#insertchild">insertChild</a>. Setting
+											the weight to 1 for all children has the same effect as <code>setEqualChildSize(true)</code> had. Setting
+										the weight to 0 (default) has the same effect as <code>setEqualChildSize(false)</code>, which was the default.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>equal: <span class="tsd-signature-type">boolean</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Should widget sizes be equal? Default: false</p>
-									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_api_.panel.html" class="tsd-signature-type">Panel</a></h4>

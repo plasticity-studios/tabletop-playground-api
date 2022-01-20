@@ -112,6 +112,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.textbox.html#isbold" class="tsd-kind-icon">is<wbr>Bold</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.textbox.html#isenabled" class="tsd-kind-icon">is<wbr>Enabled</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.textbox.html#isitalic" class="tsd-kind-icon">is<wbr>Italic</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.textbox.html#isselecttextonfocus" class="tsd-kind-icon">is<wbr>Select<wbr>Text<wbr>OnFocus</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.textbox.html#setbackgroundtransparent" class="tsd-kind-icon">set<wbr>Background<wbr>Transparent</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.textbox.html#setbold" class="tsd-kind-icon">set<wbr>Bold</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.textbox.html#setenabled" class="tsd-kind-icon">set<wbr>Enabled</a></li>
@@ -120,6 +121,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.textbox.html#setinputtype" class="tsd-kind-icon">set<wbr>Input<wbr>Type</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.textbox.html#setitalic" class="tsd-kind-icon">set<wbr>Italic</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.textbox.html#setmaxlength" class="tsd-kind-icon">set<wbr>Max<wbr>Length</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.textbox.html#setselecttextonfocus" class="tsd-kind-icon">set<wbr>Select<wbr>Text<wbr>OnFocus</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.textbox.html#settext" class="tsd-kind-icon">set<wbr>Text</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.textbox.html#settextcolor" class="tsd-kind-icon">set<wbr>Text<wbr>Color</a></li>
 							</ul>
@@ -135,7 +137,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Text<wbr>Changed<span class="tsd-signature-symbol">:</span> <a href="_api_.multicastdelegate.html" class="tsd-signature-type">MulticastDelegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>textBox<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span>, player<span class="tsd-signature-symbol">: </span><a href="_api_.player.html" class="tsd-signature-type">Player</a>, text<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L3023">index.d.ts:3023</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L3065">index.d.ts:3065</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -158,10 +160,10 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="ontextcommitted" class="tsd-anchor"></a>
 					<h3>on<wbr>Text<wbr>Committed</h3>
-					<div class="tsd-signature tsd-kind-icon">on<wbr>Text<wbr>Committed<span class="tsd-signature-symbol">:</span> <a href="_api_.multicastdelegate.html" class="tsd-signature-type">MulticastDelegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>textBox<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span>, player<span class="tsd-signature-symbol">: </span><a href="_api_.player.html" class="tsd-signature-type">Player</a>, text<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">on<wbr>Text<wbr>Committed<span class="tsd-signature-symbol">:</span> <a href="_api_.multicastdelegate.html" class="tsd-signature-type">MulticastDelegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>textBox<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span>, player<span class="tsd-signature-symbol">: </span><a href="_api_.player.html" class="tsd-signature-type">Player</a>, text<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, usingEnter<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L3030">index.d.ts:3030</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L3074">index.d.ts:3074</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -177,6 +179,10 @@
 							</dd>
 							<dt>param</dt>
 							<dd><p>The new text</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>True if the user committed the text using the enter key, false if it was committed for another
+								reason (usually because the text field lost focus)</p>
 							</dd>
 						</dl>
 					</div>
@@ -195,7 +201,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.textwidgetbase.html">TextWidgetBase</a>.<a href="_api_.textwidgetbase.html#getfontsize">getFontSize</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L2586">index.d.ts:2586</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L2617">index.d.ts:2617</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -217,7 +223,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L3077">index.d.ts:3077</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L3130">index.d.ts:3130</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -244,7 +250,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L3068">index.d.ts:3068</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L3121">index.d.ts:3121</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -267,7 +273,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.widget.html">Widget</a>.<a href="_api_.widget.html#getowningobject">getOwningObject</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L1622">index.d.ts:1622</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L1647">index.d.ts:1647</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -291,7 +297,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.widget.html">Widget</a>.<a href="_api_.widget.html#getparent">getParent</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L1617">index.d.ts:1617</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L1642">index.d.ts:1642</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -314,7 +320,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L3064">index.d.ts:3064</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L3117">index.d.ts:3117</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -337,7 +343,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.textwidgetbase.html">TextWidgetBase</a>.<a href="_api_.textwidgetbase.html#gettextcolor">getTextColor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L2582">index.d.ts:2582</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L2613">index.d.ts:2613</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -359,7 +365,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L3060">index.d.ts:3060</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L3113">index.d.ts:3113</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -382,7 +388,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.textwidgetbase.html">TextWidgetBase</a>.<a href="_api_.textwidgetbase.html#isbold">isBold</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L2578">index.d.ts:2578</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L2609">index.d.ts:2609</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -405,7 +411,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.widget.html">Widget</a>.<a href="_api_.widget.html#isenabled">isEnabled</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L1612">index.d.ts:1612</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L1637">index.d.ts:1637</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -428,12 +434,34 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.textwidgetbase.html">TextWidgetBase</a>.<a href="_api_.textwidgetbase.html#isitalic">isItalic</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L2574">index.d.ts:2574</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L2605">index.d.ts:2605</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Return if the text is italic</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isselecttextonfocus" class="tsd-anchor"></a>
+					<h3>is<wbr>Select<wbr>Text<wbr>OnFocus</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Select<wbr>Text<wbr>OnFocus<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L3109">index.d.ts:3109</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return whether the whole text should be selected when the TextBox receives focus</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -450,7 +478,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L3056">index.d.ts:3056</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L3105">index.d.ts:3105</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -483,7 +511,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.textwidgetbase.html">TextWidgetBase</a>.<a href="_api_.textwidgetbase.html#setbold">setBold</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L2570">index.d.ts:2570</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L2601">index.d.ts:2601</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -512,7 +540,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.widget.html">Widget</a>.<a href="_api_.widget.html#setenabled">setEnabled</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L1608">index.d.ts:1608</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L1633">index.d.ts:1633</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -546,7 +574,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.textwidgetbase.html">TextWidgetBase</a>.<a href="_api_.textwidgetbase.html#setfont">setFont</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L2566">index.d.ts:2566</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L2597">index.d.ts:2597</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -568,10 +596,12 @@
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> packageId: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The id of the package that contains the TTF file (in the
-											Fonts folder). Can be empty when used from scripts to use the same package that contains
-											the script file (same as passing <a href="../modules/_api_.html#refpackageid">refPackageId</a>). You can find package ids in the
-											manifest.json file in package folders. Usually you won&#39;t use this parameter, unless you have
-										a specific reason to load a font from a different package than where the script is located.</p>
+											Fonts folder). Can usually be empty when used from scripts to use the same package
+											that contains the script file, but you need to explicitly pass <a href="../modules/_api_.html#refpackageid">refPackageId</a> for
+											the current package or a package id when you use it in a callback. You can find package
+											ids in the manifest.json file in package folders. Usually you won&#39;t use this parameter,
+											unless you have a specific reason to load a font from a different package than where
+										the script is located.</p>
 									</div>
 								</li>
 							</ul>
@@ -590,7 +620,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.textwidgetbase.html">TextWidgetBase</a>.<a href="_api_.textwidgetbase.html#setfontsize">setFontSize</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L2554">index.d.ts:2554</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L2583">index.d.ts:2583</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -621,7 +651,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L3050">index.d.ts:3050</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L3099">index.d.ts:3099</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -658,7 +688,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.textwidgetbase.html">TextWidgetBase</a>.<a href="_api_.textwidgetbase.html#setitalic">setItalic</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L2549">index.d.ts:2549</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L2578">index.d.ts:2578</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -686,7 +716,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L3040">index.d.ts:3040</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L3089">index.d.ts:3089</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -708,6 +738,34 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setselecttextonfocus" class="tsd-anchor"></a>
+					<h3>set<wbr>Select<wbr>Text<wbr>OnFocus</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Select<wbr>Text<wbr>OnFocus<span class="tsd-signature-symbol">(</span>selectAll<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.textbox.html" class="tsd-signature-type">TextBox</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L3084">index.d.ts:3084</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set whether the whole text should be selected when the TextBox receives focus</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>selectAll: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.textbox.html" class="tsd-signature-type">TextBox</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="settext" class="tsd-anchor"></a>
 					<h3>set<wbr>Text</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -717,7 +775,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L3035">index.d.ts:3035</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L3079">index.d.ts:3079</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -749,7 +807,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.textwidgetbase.html">TextWidgetBase</a>.<a href="_api_.textwidgetbase.html#settextcolor">setTextColor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/67284b5/index.d.ts#L2545">index.d.ts:2545</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/5bf26ab/index.d.ts#L2574">index.d.ts:2574</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -827,6 +885,9 @@
 								<a href="_api_.textbox.html#isitalic" class="tsd-kind-icon">is<wbr>Italic</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.textbox.html#isselecttextonfocus" class="tsd-kind-icon">is<wbr>Select<wbr>Text<wbr>OnFocus</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.textbox.html#setbackgroundtransparent" class="tsd-kind-icon">set<wbr>Background<wbr>Transparent</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
@@ -849,6 +910,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.textbox.html#setmaxlength" class="tsd-kind-icon">set<wbr>Max<wbr>Length</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.textbox.html#setselecttextonfocus" class="tsd-kind-icon">set<wbr>Select<wbr>Text<wbr>OnFocus</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.textbox.html#settext" class="tsd-kind-icon">set<wbr>Text</a>

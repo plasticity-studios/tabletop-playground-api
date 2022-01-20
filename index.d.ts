@@ -85,7 +85,7 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * A string to set request's method. If undefined, GET will be used.
 		 */
-		method?: "GET" | "SET" | "PUT" | "DELETE";
+		method?: "GET" | "POST" | "PUT" | "DELETE";
 	}
 	
 	/**
@@ -192,7 +192,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		toVector(): Vector;
 		/**
-		* Multiply element-wise (f*r, f*g, f*b, f*a)
+		* Multiply element-wise (f\*r, f\*g, f\*b, f\*a)
 		*/
 		multiply(f: number): Color;
 		/**
@@ -466,7 +466,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		isInBox(boxOrigin: Vector, boxExtent: Vector): boolean;
 		/**
-		* Multipley element-wise (f*x, f*y, f*z)
+		* Multipley element-wise (f\*x, f\*y, f\*z)
 		*/
 		multiply(f: number): Vector;
 		/**
@@ -727,10 +727,26 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Called when a card is dragged from the holder by a player
 		 * @param {Container} container - The holder in which the objects are dropped
-		 * @param {GameObject} object - The removed object (now grabbed by the player)
-		 * @param {Player} player - The player who removed the object
+		 * @param {Card} removedCard - The removed card (now grabbed by the player)
+		 * @param {Player} player - The player who removed the card
 		*/
-		onRemoved: MulticastDelegate<(holder: this, removedCard: Card, player: Player) => void>;
+		onRemoved: MulticastDelegate<(holder: this, card: Card, player: Player) => void>;
+		/**
+		 * Called when a card is flipped on the holder by a player. The call happens
+		 * immediately when the player initiates the flip and the animation starts.
+		 * @param {Container} container - The holder in which the objects are dropped
+		 * @param {Card} flippedCard - The flipped card
+		 * @param {Player} player - The player who removed the card
+		*/
+		onCardFlipped: MulticastDelegate<(holder: this, card: Card, player: Player) => void>;
+		/**
+		 * Called when a card is rotated on the holder by a player. The call happens
+		 * immediately when the player initiates the rotation and the animation starts.
+		 * @param {Container} container - The holder in which the objects are dropped
+		 * @param {Card} rotated - The rotated card (now grabbed by the player)
+		 * @param {Player} player - The player who removed the card
+		*/
+		onCardRotated: MulticastDelegate<(holder: this, card: Card, player: Player) => void>;
 		/**
 		 * Rotate a card on the holder (upside down). Does nothing if the card is not in the holder.
 		 * @param {Card} card - The card to rotate
@@ -1124,7 +1140,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		onSecondaryAction: MulticastDelegate<(object: this, player: Player) => void>;
 		/**
-		 * Called a player executes a number action on the object (by highlighting or selecting it and pressing number keys).
+		 * Called when a player executes a number action on the object (by highlighting or selecting it and pressing number keys).
 		 * Will be called even if the object has a defined behavior for number actions (like dice or multistate objects), after
 		 * any object defined behavior.
 		 * @param {GameObject} object - The object on which the action is executed
@@ -1203,11 +1219,12 @@ declare module '@tabletop-playground/api' {
 		 * Set the object's script. The script will be executed immediately.
 		 * @param {string} filename - The filename of the script. Pass an empty string to remove the current script.
 		 * @param {string} packageId - The id of the package that contains the script file (in the
-		 * Scripts folder). Can be empty when used from scripts to use the same package that contains
-		 * the script file (same as passing {@link refPackageId}). You can find package ids in the
-		 * manifest.json file in package folders. Usually you won't use this parameter, unless you have
-		 * a specific reason to set a script from a different package than where the script that
-		 * calls this method is located.
+		 * Scripts folder). Can usually be empty when used from scripts to use the same package
+		 * that contains the script file, but you need to explicitly pass {@link refPackageId} for
+		 * the current package or a package id when you use it in a callback. You can find package
+		 * ids in the manifest.json file in package folders. Usually you won't use this parameter,
+		 * unless you have a specific reason to set a script from a different package than where
+		 * the calling script is located.
 		*/
 		setScript(filename: string, packageId?: string): void;
 		/**
@@ -1402,6 +1419,14 @@ declare module '@tabletop-playground/api' {
 		 * Return the object's secondary color
 		*/
 		getSecondaryColor(): Color;
+		/**
+		 * Return the package id of the object's script. Returns an empty string if no script is set for the object.
+		*/
+		getScriptPackageId(): string;
+		/**
+		 * Return the filename of the object's script. Returns an empty string if no script is set for the object.
+		*/
+		getScriptFilename(): string;
 		/**
 		 * Return the object's scale
 		*/
@@ -1854,7 +1879,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		onEndOverlap: MulticastDelegate<(zone: this, object: GameObject) => void>;
 		/**
-		 * Return for which players objects are visible in the scene
+		 * Set which players are allowed to stack cards in the zone
 		 * @param {number} permission - The new permission, as defined by {@link ZonePermission}
 		*/
 		setStacking(permission: number): void;
@@ -1900,12 +1925,12 @@ declare module '@tabletop-playground/api' {
 		*/
 		setObjectVisibility(permission: number): void;
 		/**
-		 * Return which players are allowed to interact with objects in the zone
+		 * Set which players are allowed to interact with objects in the zone
 		 * @param {number} permission - The new permission, as defined by {@link ZonePermission}
 		*/
 		setObjectInteraction(permission: number): void;
 		/**
-		 * Return which players are allowed to insert into containers in the zone
+		 * Set which players are allowed to insert into containers in the zone
 		 * @param {number} permission - The new permission, as defined by {@link ZonePermission}
 		*/
 		setInserting(permission: number): void;
@@ -2027,7 +2052,7 @@ declare module '@tabletop-playground/api' {
 		 * Start debug mode on the given port. You can use the Chrome DevTools or the Visual Studio Code debugger
 		 * to connect to the specified port and debug your scripts.<br>
 		 * For example, with port 9229 (the default), open the following URL to open the DevTools:
-		 * <tt>devtools://devtools/bundled/inspector.html?v8only=true&ws=localhost:9229</tt><br>
+		 * ``devtools://devtools/bundled/inspector.html?v8only=true&ws=localhost:9229``<br>
 		 * For Visual Studio Code, add the following to your debug configurations:<br>
 		 * <pre>{
 		 *   "name": "Inspector",
@@ -2116,10 +2141,12 @@ declare module '@tabletop-playground/api' {
 		 * Load a text file from the Scripts folder of a package and return the text as string.
 		 * @param {string} filename - The filename of the text file
 		 * @param {string} packageId - The id of the package that contains the text file (in the
-		 * Scripts folder). Can be empty when used from scripts to use the same package that contains
-		 * the script file (same as passing {@link refPackageId}). You can find package ids in the
-		 * manifest.json file in package folders. Usually you won't use this parameter, unless you have
-		 * a specific reason to load a text file from a different package than where the script is located.
+		 * Scripts folder). Can usually be empty when used from scripts to use the same package
+		 * that contains the script file, but you need to explicitly pass {@link refPackageId} for
+		 * the current package or a package id when you use it in a callback. You can find package
+		 * ids in the manifest.json file in package folders. Usually you won't use this parameter,
+		 * unless you have a specific reason to load a text file from a different package than where
+		 * the script is located.
 		*/
 		importText(filename: string, packageId?: string): string;
 		/**
@@ -2136,10 +2163,12 @@ declare module '@tabletop-playground/api' {
 		 * Supports WAV, MP3, and FLAC files.
 		 * @param {string} filename - The filename of the sound
 		 * @param {string} packageId - The id of the package that contains the sound file (in the
-		 * Sounds folder). Can be empty when used from scripts to use the same package that contains
-		 * the script file (same as passing {@link refPackageId}). You can find package ids in the
-		 * manifest.json file in package folders. Usually you won't use this parameter, unless you have
-		 * a specific reason to load a sound from a different package than where the script is located.
+		 * Sounds folder). Can usually be empty when used from scripts to use the same package
+		 * that contains the script file, but you need to explicitly pass {@link refPackageId} for
+		 * the current package or a package id when you use it in a callback. You can find package
+		 * ids in the manifest.json file in package folders. Usually you won't use this parameter,
+		 * unless you have a specific reason to load a sound from a different package than where
+		 * the script is located.
 		 * @param {boolean} ignoreCache - If true, load a new {@link Sound} even if a cached version already exists.
 		 * Will take longer and take additional resources, only use if you need to play the same sound file multiple
 		 * times at the same time. Default: false
@@ -2558,10 +2587,12 @@ declare module '@tabletop-playground/api' {
 		 * @param {string} fontFilename - The filename of the TTF file to load. Set to empty string
 		 * to use the standard font (and enable bold and italic settings).
 		 * @param {string} packageId - The id of the package that contains the TTF file (in the
-		 * Fonts folder). Can be empty when used from scripts to use the same package that contains
-		 * the script file (same as passing {@link refPackageId}). You can find package ids in the
-		 * manifest.json file in package folders. Usually you won't use this parameter, unless you have
-		 * a specific reason to load a font from a different package than where the script is located.
+		 * Fonts folder). Can usually be empty when used from scripts to use the same package
+		 * that contains the script file, but you need to explicitly pass {@link refPackageId} for
+		 * the current package or a package id when you use it in a callback. You can find package
+		 * ids in the manifest.json file in package folders. Usually you won't use this parameter,
+		 * unless you have a specific reason to load a font from a different package than where
+		 * the script is located.
 		*/
 		setFont(fontFilename: string, packageId?: string): this;
 		/**
@@ -2678,8 +2709,10 @@ declare module '@tabletop-playground/api' {
 	*/
 	class Panel extends Widget { 
 		/**
-		 * Set if the size of each widget should be equal instead of each widget using its default size.
-		 * @param {boolean} equal - Should widget sizes be equal? Default: false
+		 * @deprecated This method doesn't do anything anymore except printing a warning. In order to control the
+		 * size of the child widgets, use the weight parameter in {@link addChild} and {@link insertChild}. Setting
+		 * the weight to 1 for all children has the same effect as ``setEqualChildSize(true)`` had. Setting
+		 * the weight to 0 (default) has the same effect as ``setEqualChildSize(false)``, which was the default.
 		*/
 		setEqualChildSize(equal: boolean): Panel;
 		/**
@@ -2701,8 +2734,10 @@ declare module '@tabletop-playground/api' {
 		 * Insert a child widget at the given index. Inserts at the end if the index is not valid.
 		 * @param {Widget} child - The widget to insert
 		 * @param {number} index - Index at which to insert the new child
+		 * @param {number} weight - The amount of space the widget gets. 0 means as much as the widget requires, values above 0
+		 * give a weight compared to all other widgets with a weight above 0. Default: 0
 		*/
-		insertChild(child: Widget, index: number): Panel;
+		insertChild(child: Widget, index: number, weight?: number): Panel;
 		/**
 		 * Return the child widget at the given index. Returns undefined if no child exists at the index.
 		 * @param {number} index - Index where to get the child widget
@@ -2710,8 +2745,11 @@ declare module '@tabletop-playground/api' {
 		getChildAt(index: number): Widget | undefined;
 		/**
 		 * Add a child widget at the end
+		 * @param {Widget} child - The widget to add
+		 * @param {number} weight - The amount of space the widget gets. 0 means as much as the widget requires, values above 0
+		 * give a weight compared to all other widgets with a weight above 0. Default: 0
 		*/
-		addChild(child: Widget): Panel;
+		addChild(child: Widget, weight?: number): Panel;
 	}
 
 	/**
@@ -2742,10 +2780,12 @@ declare module '@tabletop-playground/api' {
 		 * Set the displayed image file.
 		 * @param {string} textureName - The filename of the image to load
 		 * @param {string} packageId - The id of the package that contains the image file (in the
-		 * Textures folder). Can be empty when used from scripts to use the same package that contains
-		 * the script file (same as passing {@link refPackageId}). You can find package ids in the
-		 * manifest.json file in package folders. Usually you won't use this parameter, unless you have
-		 * a specific reason to load an image from a different package than where the script is located.
+		 * Textures folder). Can usually be empty when used from scripts to use the same package
+		 * that contains the script file, but you need to explicitly pass {@link refPackageId} for
+		 * the current package or a package id when you use it in a callback. You can find package
+		 * ids in the manifest.json file in package folders. Usually you won't use this parameter,
+		 * unless you have a specific reason to load an image from a different package than where
+		 * the script is located.
 		*/
 		setImage(textureName: string, packageId?: string): ImageWidget;
 		/**
@@ -2798,10 +2838,12 @@ declare module '@tabletop-playground/api' {
 		 * Set the displayed image file from a package.
 		 * @param {string} textureName - The filename of the image to load
 		 * @param {string} packageId - The id of the package that contains the image file (in the
-		 * texture folder). Can be empty when used from scripts to use the same package that contains
-		 * the script file (same as passing {@link refPackageId}). You can find package ids in the
-		 * manifest.json file in package folders. Usually you won't use this parameter, unless you
-		 * a specific reason to load an image from a different package than where the script is located.
+		 * Textures folder). Can usually be empty when used from scripts to use the same package
+		 * that contains the script file, but you need to explicitly pass {@link refPackageId} for
+		 * the current package or a package id when you use it in a callback. You can find package
+		 * ids in the manifest.json file in package folders. Usually you won't use this parameter,
+		 * unless you have a specific reason to load an image from a different package than where
+		 * the script is located.
 		*/
 		setImage(textureName: string, packageId?: string): ImageButton;
 		/**
@@ -3026,13 +3068,20 @@ declare module '@tabletop-playground/api' {
 		 * @param {TextBox} textBox - The text box where the text was committed
 		 * @param {Player} player - The player that committed the text. undefined if the text was committed through {@link setText}.
 		 * @param {string} text - The new text
+		 * @param {boolean} usingEnter - True if the user committed the text using the enter key, false if it was committed for another
+		 * reason (usually because the text field lost focus)
 		*/
-		onTextCommitted: MulticastDelegate<(textBox: this, player: Player, text: string) => void>;
+		onTextCommitted: MulticastDelegate<(textBox: this, player: Player, text: string, usingEnter: boolean) => void>;
 		/**
 		 * Set the edited text.
 		 * @param {string} text - The new text
 		*/
 		setText(text: string): TextBox;
+		/**
+		 * Set whether the whole text should be selected when the TextBox receives focus
+		 * @param {boolean} SelectAll - Set to true to select all text when the user clicks on the widget
+		*/
+		setSelectTextOnFocus(selectAll: boolean): TextBox;
 		/**
 		 * Set the maximum number of characters allowed for this text box
 		 * @param {number} length - Maximum number of characters. Must be between 1 and 255. Default: 100
@@ -3054,6 +3103,10 @@ declare module '@tabletop-playground/api' {
 		 * @param {boolean} transparent - Set to true to remove the text box background and only show the text
 		*/
 		setBackgroundTransparent(transparent: boolean): TextBox;
+		/**
+		 * Return whether the whole text should be selected when the TextBox receives focus
+		*/
+		isSelectTextOnFocus(): boolean;
 		/**
 		 * Return if the background is transparent
 		*/
