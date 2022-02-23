@@ -95,6 +95,7 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_.imagebutton.html#onclicked" class="tsd-kind-icon">on<wbr>Clicked</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_.imagebutton.html#onimageloaded" class="tsd-kind-icon">on<wbr>Image<wbr>Loaded</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -124,7 +125,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Clicked<span class="tsd-signature-symbol">:</span> <a href="_api_.multicastdelegate.html" class="tsd-signature-type">MulticastDelegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>button<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span>, player<span class="tsd-signature-symbol">: </span><a href="_api_.player.html" class="tsd-signature-type">Player</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2827">index.d.ts:2827</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L3045">index.d.ts:3045</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -141,6 +142,25 @@
 						</dl>
 					</div>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="onimageloaded" class="tsd-anchor"></a>
+					<h3>on<wbr>Image<wbr>Loaded</h3>
+					<div class="tsd-signature tsd-kind-icon">on<wbr>Image<wbr>Loaded<span class="tsd-signature-symbol">:</span> <a href="_api_.multicastdelegate.html" class="tsd-signature-type">MulticastDelegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>UImage<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span>, filename<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, packageId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L3053">index.d.ts:3053</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Called when an image set by <a href="_api_.imagebutton.html#setimage">setImage</a> or <a href="_api_.imagebutton.html#setimageurl">setImageURL</a> is done loading.
+								This will be within the call if the image is already cached, or some time
+								later if the image has to be loaded first. Not called if the image can&#39;t be loaded.
+								Note that if you call set the image before setting this callback, it might not get
+							called because the image has been loaded instantly if it was cached.</p>
+						</div>
+					</div>
+				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
@@ -154,13 +174,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2873">index.d.ts:2873</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L3103">index.d.ts:3103</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Get the height of the displayed image file. Does not have to be identical to the desired height of the image,
-									use <a href="_api_.imagebutton.html#getimageheight">getImageHeight</a> for that. Returns 0 if no texture has been set.</p>
+										use <a href="_api_.imagebutton.html#getimageheight">getImageHeight</a> for that. Returns 0 if no image has been set or it hasn&#39;t been loaded yet.
+									Wait for <a href="_api_.imagebutton.html#onimageloaded">onImageLoaded</a> before using this method to ensure that the size from the loaded file is available.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -177,13 +198,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2868">index.d.ts:2868</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L3097">index.d.ts:3097</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Get the width of the displayed image file. Does not have to be identical to the desired width of the image,
-									use <a href="_api_.imagebutton.html#getimagewidth">getImageWidth</a> for that. Returns 0 if no texture has been set.</p>
+										use <a href="_api_.imagebutton.html#getimagewidth">getImageWidth</a> for that. Returns 0 if no image has been set or it hasn&#39;t been loaded yet.
+									Wait for <a href="_api_.imagebutton.html#onimageloaded">onImageLoaded</a> before using this method to ensure that the size from the loaded file is available.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -200,7 +222,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2863">index.d.ts:2863</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L3091">index.d.ts:3091</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -222,7 +244,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2859">index.d.ts:2859</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L3087">index.d.ts:3087</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -245,7 +267,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.widget.html">Widget</a>.<a href="_api_.widget.html#getowningobject">getOwningObject</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L1654">index.d.ts:1654</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L1718">index.d.ts:1718</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -269,7 +291,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.widget.html">Widget</a>.<a href="_api_.widget.html#getparent">getParent</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L1649">index.d.ts:1649</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L1713">index.d.ts:1713</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -293,7 +315,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.widget.html">Widget</a>.<a href="_api_.widget.html#isenabled">isEnabled</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L1644">index.d.ts:1644</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L1708">index.d.ts:1708</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -316,7 +338,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.widget.html">Widget</a>.<a href="_api_.widget.html#setenabled">setEnabled</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L1640">index.d.ts:1640</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L1704">index.d.ts:1704</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -349,12 +371,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2855">index.d.ts:2855</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L3083">index.d.ts:3083</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Set the displayed image file from a package.</p>
+									<p>Set the displayed image file. When an image is used for the first time, it is loaded
+										in the background and won&#39;t be visible immediately. <a href="_api_.imagebutton.html#onimageloaded">onImageLoaded</a> is called when
+									the image is loaded.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -386,13 +410,13 @@
 					<a name="setimagesize" class="tsd-anchor"></a>
 					<h3>set<wbr>Image<wbr>Size</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Image<wbr>Size<span class="tsd-signature-symbol">(</span>width<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, height<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.imagebutton.html" class="tsd-signature-type">ImageButton</a></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Image<wbr>Size<span class="tsd-signature-symbol">(</span>width<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, height<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.imagebutton.html" class="tsd-signature-type">ImageButton</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2843">index.d.ts:2843</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L3069">index.d.ts:3069</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -408,13 +432,13 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>width: <span class="tsd-signature-type">number</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> width: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Desired width of the image. Default: 0</p>
 									</div>
 								</li>
 								<li>
-									<h5>height: <span class="tsd-signature-type">number</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> height: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Desired height of the image. Default: 0</p>
 									</div>
@@ -434,7 +458,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2832">index.d.ts:2832</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L3058">index.d.ts:3058</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -477,6 +501,9 @@
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_api_.imagebutton.html#onclicked" class="tsd-kind-icon">on<wbr>Clicked</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_api_.imagebutton.html#onimageloaded" class="tsd-kind-icon">on<wbr>Image<wbr>Loaded</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.imagebutton.html#getimagefileheight" class="tsd-kind-icon">get<wbr>Image<wbr>File<wbr>Height</a>

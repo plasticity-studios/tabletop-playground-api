@@ -55,6 +55,15 @@ declare module '@tabletop-playground/api' {
 	/** Justification (alignment) used in {@link Text}*/
 	enum TextJustification {Left=0, Center=1, Right=2}
 
+	/** Widget alignment used in {@link LayoutBox}*/
+	enum HorizontalAlignment {Fill=0, Left=1, Center=2, Right=3}
+
+	/** Widget alignment used in {@link LayoutBox}*/
+	enum VerticalAlignment {Fill=0, Top=1, Center=2, Bottom=3}
+
+	/** Behavior for hidden cards used in {@link CardHolder}*/
+	enum HiddenCardsType {GreyBlur=0, Back=1, Front=2}
+
 	/** Represent for a single callback function. Use the add() method or the assignment operator = to set the function to call. */
 	class Delegate<T> {
 		/** Set the function to call. When called multiple times, only the final added function will be called. */
@@ -558,6 +567,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		readonly index: number;
 		/**
+		 * Index of the card within the stack at the time when this object was created.
+		*/
+		readonly stackIndex: number;
+		/**
 		 * Id of the card's template
 		*/
 		readonly templateId: string;
@@ -610,10 +623,11 @@ declare module '@tabletop-playground/api' {
 		 * If the number of cards to take is as large as the stack or larger, one card will remain in the original stack.
 		 * Returns undefined if this object is only a single card.
 		 * @param {number} numCards - Number of cards to take. Defaults to 1.
-		 * @param {boolean} fromFront - If true, take the cards from the front of the stack instead of the back. Default: false.
+		 * @param {boolean} fromFront - If true, take the cards from the front of the stack instead of the back. Default: false
 		 * @param {number} offset - Number of cards to leave at the back (or front when fromFront is true) before taking cards. Default: 0
+		 * @param {boolean} keep - If true, keep the taken cards in the stack and take a copy. Default: false
 		*/
-		takeCards(numCards?: number, fromFront?: boolean, offset?: number): Card | undefined;
+		takeCards(numCards?: number, fromFront?: boolean, offset?: number, keep?: boolean): Card | undefined;
 		/**
 		 * Split the card stack into a fixed number of smaller stacks with equal size. Some of the stacks will have one
 		 * card more than others if the current stack size is not divisible by the number of stacks.
@@ -657,6 +671,12 @@ declare module '@tabletop-playground/api' {
 		 * While cards are in card holders, their physical properties can't be changed and no physical forces or impulses can be applied to them.
 		*/
 		removeFromHolder(): void;
+		/**
+		 * Move a card to a new position within the stack
+		 * @param {number} from - The current index of the card to be moved
+		 * @param {number} to - The new index of the card to be moved
+		*/
+		moveCardInStack(from: number, to: number): void;
 		/**
 		 * Return whether the card is currently in a card holder
 		*/
@@ -755,6 +775,15 @@ declare module '@tabletop-playground/api' {
 		*/
 		onCardRotated: MulticastDelegate<(holder: this, card: Card, player: Player) => void>;
 		/**
+		 * Set if only the owner is allowed to take cards from the holder
+		*/
+		setOnlyOwnerTakesCards(onlyOwner: boolean): void;
+		/**
+		 * Set how hidden cards are shown on the card holder, as defined by {@link HiddenCardsType}.
+		 * Setting the type to front effectively disables hiding for this holder.
+		*/
+		setHiddenCardsType(newType: number): void;
+		/**
 		 * Rotate a card on the holder (upside down). Does nothing if the card is not in the holder.
 		 * @param {Card} card - The card to rotate
 		*/
@@ -783,9 +812,17 @@ declare module '@tabletop-playground/api' {
 		*/
 		holds(card: Card): boolean;
 		/**
+		 * Return if only the owner is allowed to take cards from the holder
+		*/
+		getOnlyOwnerTakesCards(): boolean;
+		/**
 		 * Return number of cards in the holder
 		*/
 		getNumCards(): number;
+		/**
+		 * Return how hidden cards are shown on the card holder, as defined by {@link HiddenCardsType}
+		*/
+		getHiddenCardsType(): number;
 		/**
 		 * Return contained cards. Manipulating the array (e.g. removing or adding objects) does not change the contents of the holder!
 		*/
@@ -954,7 +991,8 @@ declare module '@tabletop-playground/api' {
 		*/
 		getRange(): number;
 		/**
-		 * Return the object to which the snap point is connected
+		 * Return the object to which the snap point is connected. Will return undefined if the snap point is not attached
+		 * to a {@link GameObject}, but directly to the table.
 		*/
 		getParentObject(): GameObject;
 		/**
@@ -991,20 +1029,24 @@ declare module '@tabletop-playground/api' {
 		onRemoved: MulticastDelegate<(container: this, removedObject: GameObject, player: Player) => void>;
 		/**
 		 * Remove an item from the container, move it to the provided position, and return it.
-		 * Note that the item will be removed from the container even for infinite containers.
+		 * Note that the item will be removed from the container even for infinite containers (unless the ``dontRemove`` parameter
+		 * is set).
 		 * @param {number} index - The index of the object to take
 		 * @param {Vector} position - The position where the item should appear
 		 * @param {boolean} showAnimation - If false, don't show take animation and don't play sound. Default: false
+		 * @param {boolean} keep - If true, keep a copy of the item in the container. Default: false
 		*/
-		takeAt(index: number, position: Vector | [x: number, y: number, z: number], showAnimation?: boolean): GameObject | undefined;
+		takeAt(index: number, position: Vector | [x: number, y: number, z: number], showAnimation?: boolean, keep?: boolean): GameObject | undefined;
 		/**
-		 * Remove an item from the container, move it to the provided position, and return whether it was removed.
-		 * Note that the item will be removed from the container even for infinite containers.
+		 * Take an item from the container, move it to the provided position, and return whether it was taken successfully.
+		 * Note that the item will be removed from the container even for infinite containers (unless the ``dontRemove`` parameter
+		 * is set).
 		 * @param {objectToRemove} GameObject - The object to remove
 		 * @param {Vector} position - The position where the item should appear
 		 * @param {boolean} showAnimation - If false, don't show take animation and don't play sound. Default: false
+		 * @param {boolean} keep - If true, keep a copy of the item in the container. Default: false
 		*/
-		take(objectToRemove: GameObject, position: Vector | [x: number, y: number, z: number], showAnimation?: boolean): boolean;
+		take(objectToRemove: GameObject, position: Vector | [x: number, y: number, z: number], showAnimation?: boolean, keep?: boolean): boolean;
 		/**
 		 * Set the type of the container. Possible values are:
 		 * 0 - Random
@@ -1049,6 +1091,15 @@ declare module '@tabletop-playground/api' {
 		*/
 		getNumItems(): number;
 		/**
+		 * Return the index that would get picked next if a player would take an object from the container.
+		 * Depends on the type set by {@link setType}, for example for type 1 or 2 (random/infinite) it will
+		 * be a random number between 0 and {@link getMaxItems} - 1, for type 2 (queue) it will always be 0.
+		 * Returns -1 if the container is empty or this object is invalid. Note that if a player actually takes
+		 * an item from a random container, they can get a different index than a previous call to this method,
+		 * because a different random number can be drawn.
+		*/
+		getNextTakeIndex(): number;
+		/**
 		 * Return the current maximum number of contained objects
 		*/
 		getMaxItems(): number;
@@ -1057,6 +1108,10 @@ declare module '@tabletop-playground/api' {
 		 * (e.g. removing or adding objects) does not change the contents of the container!
 		*/
 		getItems(): GameObject[];
+		/**
+		 * Check whether an object is in this container
+		*/
+		contains(checkObject: GameObject): boolean;
 		/**
 		 * Remove all contained objects
 		*/
@@ -1179,7 +1234,8 @@ declare module '@tabletop-playground/api' {
 		worldPositionToLocal(position: Vector | [x: number, y: number, z: number]): Vector;
 		/**
 		 * Update an attached UI element. Will not do anything if called with a UI element that is not attached to
-		 * the object. You need to call this method after modifying values in a {UIElement}.
+		 * the object. You need to call this method after modifying values in a ``UIElement``. Does not work if
+		 * you change the {@link UIElement.widget} property, you have to use {@link setUI} in this case.
 		 * @param {UIElement} - The UI element to be updated
 		*/
 		updateUI(element: UIElement): void;
@@ -1199,8 +1255,12 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Snap the object as if it was dropped at its current position. Does nothing if no snap point is in range below the object.
 		 * Snapping in this way does not trigger the onSnapped callback. Returns the snapped point if the object was snapped.
+		 * Optionally show an animation of the object rotating toward the new orientation.
+		 * The animation is only visual, the physical rotation of the object is changed instantly.
+		 * Does not have an effect if a player is currently holding the object.
+		 * @param {number} animationSpeed - If larger than 0, show animation. A value of 1 gives a reasonable, quick animation. Value range clamped to [0.1, 5.0]. Default: 0
 		*/
-		snap(): SnapPoint | undefined;
+		snap(animationSpeed?: number): SnapPoint | undefined;
 		/**
 		 * Replace an attached UI element. Will not do anything if called with an index that doesn't have a UI element.
 		 * @param {number} - The index of the UI element to replace
@@ -1258,9 +1318,9 @@ declare module '@tabletop-playground/api' {
 		 * The animation is only visual, the physical rotation of the object is changed instantly.
 		 * Does not have an effect if a player is currently holding the object.
 		 * @param {Rotator} rotation - The new rotation
-		 * @param {number} animationSpeed - If larger than 0, show animation. A value of 1 gives a reasonable, quick animation. Value range clamped to [0.1, 5.0].
+		 * @param {number} animationSpeed - If larger than 0, show animation. A value of 1 gives a reasonable, quick animation. Value range clamped to [0.1, 5.0]. Default: 0
 		*/
-		setRotation(rotation: Rotator | [pitch: number, yaw: number, roll: number], animationSpeed: number): void;
+		setRotation(rotation: Rotator | [pitch: number, yaw: number, roll: number], animationSpeed?: number): void;
 		/**
 		 * Set the object's primary color
 		 * @param {Color} color - The new primary color
@@ -1271,9 +1331,9 @@ declare module '@tabletop-playground/api' {
 		 * The animation is only visual, the physical location of the object is changed instantly.
 		 * Does not have an effect if a player is currently holding the object.
 		 * @param {Vector} position - The new position
-		 * @param {number} animationSpeed - If larger than 0, show animation. A value of 1 gives a reasonable, quick animation. Value range clamped to [0.1, 5.0].
+		 * @param {number} animationSpeed - If larger than 0, show animation. A value of 1 gives a reasonable, quick animation. Value range clamped to [0.1, 5.0]. Default: 0
 		*/
-		setPosition(position: Vector | [x: number, y: number, z: number], animationSpeed: number): void;
+		setPosition(position: Vector | [x: number, y: number, z: number], animationSpeed?: number): void;
 		/**
 		 * Set the player slot that owns the object. Set to -1 to remove owner.
 		 * @param {number} slot - The new owning player slot
@@ -1562,6 +1622,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		getAllSnapPoints(): SnapPoint[];
 		/**
+		 * Immediately freeze the object and set its type to ground if it is currently not a ground object.
+		*/
+		freeze(): void;
+		/**
 		 * Flip the object or rotate it to its default orientation, depending on the object. Uses animation and physics.
 		 * Calling this does the same thing as a player pressing the flip/upright key for highlighted or selected objects.
 		 * Cards in holders are also flipped, but held objects are not affected.
@@ -1695,6 +1759,27 @@ declare module '@tabletop-playground/api' {
 		 * Height in pixels to use for rendering the UI. Only used when {@link useWidgetSize} is false. Default: 90
 		*/
 		height: number;
+		/**
+		 * If true, use the alpha channel of widget colors to allow for partly transparent UIs. If false, use alpha
+		 * as a mask instead: low alpha values are invisible, high alpha values are completely opaque.
+		 * Default: false
+		*/
+		useTransparency: boolean;
+		/**
+		 * The horizontal anchor point of the UI. Determines where {@link position} is in relation to the UI:
+		 * for 0 it is at the left side, 0.5 is at the center, 1.0 is the right side. Default: 0.5
+		*/
+		anchorX: number;
+		/**
+		 * The vertical anchor point of the UI. Determines where {@link position} is in relation to the UI:
+		 * for 0 it is at the top, 0.5 is at the center, 1.0 is the bottom. Default: 0.5
+		*/
+		anchorY: number;
+		/**
+		 * If true, show the UI from both the front and the back. It will be mirrored when seen from the back!
+		 * If false, the UI is invisible from the back. Default: false
+		*/
+		twoSided: boolean;
 		clone() : UIElement;
 	}
 
@@ -1802,10 +1887,16 @@ declare module '@tabletop-playground/api' {
 		onLoadComplete: Delegate<(success: boolean) => void>;
 		/**
 		 * Called when playback of the sound has finished. Not called when the sound is interrupted (for example by calling {@link stop})
+		 * or while the sound is played in a loop.
 		*/
 		onPlaybackFinished: Delegate<() => void>;
 		/**
-		 * Stop playing the sound
+		 * Stop looping the sound if it is currently played in a loop. Doesn't stop playback immediately, only after the current playback finishes.
+		 * Has no effect if the sound is not currently played in a loop.
+		*/
+		stopLoop(): void;
+		/**
+		 * Stop playing the sound immediately
 		*/
 		stop(): void;
 		/**
@@ -1815,23 +1906,29 @@ declare module '@tabletop-playground/api' {
 		 * @param {GameObject} object - The object from which the sound should originate.
 		 * @param {number} startTime - The starting playback time. Set to 0 to play from the beginning. Default: 0
 		 * @param {number} volume - The volume multiplier at which to play the sound, 0 < volume < 2. Default: 1
+		 * @param {boolean} loop - If true, play the sound again from the beginning once it finishes playing. You can stop playback using
+		 * {@link stop}, {@link stopLoop}, or by calling a play method with the loop parameter set to false.
 		*/
-		playAttached(object: GameObject, startTime?: number, volume?: number): void;
+		playAttached(object: GameObject, startTime?: number, volume?: number, loop?: boolean): void;
 		/**
 		 * Start playing the sound at a given position. If it is already playing, the playback time will be moved.
 		 * If the sound isn't loaded yet when this method is called, the sound will be played as soon as loading has finished.
 		 * @param {Vector} position - The position where the sound should originate.
 		 * @param {number} startTime - The starting playback time. Set to 0 to play from the beginning. Default: 0
 		 * @param {number} volume - The volume multiplier at which to play the sound, 0 < volume < 2. Default: 1
+		 * @param {boolean} loop - If true, play the sound again from the beginning once it finishes playing. You can stop playback using
+		 * {@link stop}, {@link stopLoop}, or by calling a play method with the loop parameter set to false.
 		*/
-		playAtLocation(position: Vector | [x: number, y: number, z: number], startTime?: number, volume?: number): void;
+		playAtLocation(position: Vector | [x: number, y: number, z: number], startTime?: number, volume?: number, loop?: boolean): void;
 		/**
 		 * Start playing the sound. It will not appear to come from any location. If it is already playing, the playback time will be moved.
 		 * If the sound isn't loaded yet when this method is called, the sound will be played as soon as loading has finished.
 		 * @param {number} startTime - The starting playback time. Set to 0 to play from the beginning. Default: 0
 		 * @param {number} volume - The volume multiplier at which to play the sound, 0 < volume < 2. Default: 1
+		 * @param {boolean} loop - If true, play the sound again from the beginning once it finishes playing. You can stop playback using
+		 * {@link stop}, {@link stopLoop}, or by calling a play method with the loop parameter set to false.
 		*/
-		play(startTime?: number, volume?: number): void;
+		play(startTime?: number, volume?: number, loop?: boolean): void;
 		/**
 		 * Return whether the sound is currently playing
 		*/
@@ -1857,7 +1954,7 @@ declare module '@tabletop-playground/api' {
 		 * The object will become non-functional, and it will be removed from the cache. Note that multiple calls to
 		 * {@link GameWorld.importSound} or {@link GameWorld.importSoundFromURL} with the same parameters return the
 		 * same object when using caching, so if you use the same sound at multiple places in your code, you should
-		 * be carefuly when you destroy it.
+		 * be careful when you destroy it.
 		*/
 		destroy(): void;
 	}
@@ -1905,7 +2002,8 @@ declare module '@tabletop-playground/api' {
 		*/
 		setShape(shape: number): void;
 		/**
-		 * Set the zone's scale instantly
+		 * Set the zone's scale. At scale 1 the size is 1cm in each direction, so the scale also
+		 * corresponds to the size in cm.
 		 * @param {Vector} scale - The new scale
 		*/
 		setScale(scale: Vector | [x: number, y: number, z: number]): void;
@@ -2012,7 +2110,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		getOwningSlots(): number[];
 		/**
-		 * Return all objects that in the zone. Any object that touches a zone is considered to be in it.
+		 * Return all objects in the zone. Any object that touches a zone is considered to be in it.
 		*/
 		getOverlappingObjects(): GameObject[];
 		/**
@@ -2046,7 +2144,50 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
-	 * The game world. Contains all global methods of the API.
+	 * Represents a Tabletop Playground package
+	*/
+	class Proxy { 
+		/**
+		 * Return whether the package is currently allowed in the game
+		*/
+		isAllowed(): boolean;
+		/**
+		 * Return the unique id of the package. This id can be found in the manifest.json file in the package directory.
+		*/
+		getUniqueId(): string;
+		/**
+		 * Return filenames (including relative paths) for all textures in this package.
+		*/
+		getTextureFiles(): string[];
+		/**
+		 * Return the unique ids of all templates in this package
+		*/
+		getTemplateIds(): string[];
+		/**
+		 * Return filenames (including relative paths) for all sounds in this package.
+		*/
+		getSoundFiles(): string[];
+		/**
+		 * Return filenames (including relative paths) for all scripts in this package.
+		*/
+		getScriptFiles(): string[];
+		/**
+		 * Return the name of the package
+		*/
+		getName(): string;
+		/**
+		 * Return filenames (including relative paths) for all models in this package.
+		*/
+		getModelFiles(): string[];
+		/**
+		 * Return filenames (including relative paths) for all fonts in this package.
+		*/
+		getFontFiles(): string[];
+	}
+
+	/**
+	 * The game world. Contains all global methods of the API. You don't create an instance of this class
+	 * directly, instead use the {@link world} object that always exists.
 	*/
 	class GameWorld { 
 		/**
@@ -2104,6 +2245,12 @@ declare module '@tabletop-playground/api' {
 		*/
 		setSlotTeam(slot: number, team: number): void;
 		/**
+		 * Set the color of a player slot
+		 * @param {number} slot - The player slot (0-19)
+		 * @param {Color} team - The new player slot color.
+		*/
+		setSlotColor(slot: number, color: Color | [r: number, g: number, b: number, a: number]): void;
+		/**
 		 * Set whether a message with results is shown whenever rolled dice come to rest
 		*/
 		setShowDiceRollMessages(show: boolean): void;
@@ -2124,6 +2271,19 @@ declare module '@tabletop-playground/api' {
 		 * @param {number} multiplier - The new gravity multiplier, between 0 and 2
 		*/
 		setGravityMultiplier(multiplier: number): void;
+		/**
+		 * Set the image shown as background of the map.
+		 * @param {string} textureName - The filename of the image to load. Use an empty string
+		 * to return to the default background for the map. Default: empty string.
+		 * @param {string} packageId - The id of the package that contains the image file (in the
+		 * Textures folder). Can usually be empty when used from scripts to use the same package
+		 * that contains the script file, but you need to explicitly pass {@link refPackageId} for
+		 * the current package or a package id when you use it in a callback. You can find package
+		 * ids in the manifest.json file in package folders. Usually you won't use this parameter,
+		 * unless you have a specific reason to load an image from a different package than where
+		 * the script is located.
+		*/
+		setBackground(textureName?: string, packageId?: string): void;
 		/**
 		 * Reset scripting environment and reload all scripts
 		*/
@@ -2182,7 +2342,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		importSound(filename: string, packageId?: string, ignoreCache?: boolean): Sound;
 		/**
-		 * Return the zone with the specified Id
+		 * Return the zone with the specified id
 		 * @param {string} objectId - The unique id of the zone
 		*/
 		getZoneById(zoneId: string): Zone | undefined;
@@ -2213,6 +2373,11 @@ declare module '@tabletop-playground/api' {
 		*/
 		getSlotTeam(slot: number): number;
 		/**
+		 * Return the color of a player slot.
+		 * @param {number} slot - The player slot (0-19)
+		*/
+		getSlotColor(slot: number): Color;
+		/**
 		 * Return whether a message with results is shown whenever rolled dice come to rest
 		*/
 		getShowDiceRollMessages(show: boolean): boolean;
@@ -2225,6 +2390,11 @@ declare module '@tabletop-playground/api' {
 		 * @param {number} slot - The player slot (0-19)
 		*/
 		getPlayerBySlot(slot: number): Player | undefined;
+		/**
+		 * Return the package with the specified id. Can return packages that are currently not allowed,
+		 * but only finds packages that exist on the host.
+		*/
+		getPackageById(packageId: string): Proxy | undefined;
 		/**
 		 * Return all objects in the game with the specified template type
 		 * @param {string} templateId - The template id to search for
@@ -2260,6 +2430,14 @@ declare module '@tabletop-playground/api' {
 		*/
 		static getExecutionReason(): string;
 		/**
+		 * Return the package id of the current background. Returns an empty string if no background is set.
+		*/
+		getBackgroundPackageId(): string;
+		/**
+		 * Return the filename of the current background. Empty string if no custom background is active.
+		*/
+		getBackgroundFilename(): string;
+		/**
 		 * Get all zones currently in the game
 		*/
 		getAllZones(): Zone[];
@@ -2268,9 +2446,16 @@ declare module '@tabletop-playground/api' {
 		*/
 		getAllPlayers(): Player[];
 		/**
-		 * Return all objects currently in the game
+		 * Return all currently allowed packages
 		*/
-		getAllObjects(): GameObject[];
+		getAllowedPackages(): Proxy[];
+		/**
+		 * Return all objects currently in the game
+		 * @param {boolean} skipContained - If true, don't return objects in containers.
+		 * Even when false, objects within lazy containers that haven't been loaded yet will never be returned. Use
+		 * {@link Container.getItems} to load and return items in lazy containers. Default: false
+		*/
+		getAllObjects(skipContained?: boolean): GameObject[];
 		/**
 		 * Draw a point. The sphere will only be visible on for the host!
 		 * @param {Vector} position - Position of the point
@@ -2324,6 +2509,10 @@ declare module '@tabletop-playground/api' {
 		 * @param {Vector} position - Starting position
 		*/
 		createObjectFromJSON(jsonString: string, position: Vector | [x: number, y: number, z: number]): GameObject | undefined;
+		/**
+		 * Clear the built-in JavaScript console. The same effect can be achieved by entering "clear()" in the console.
+		*/
+		clearConsole(): void;
 		/**
 		 * Find all objects hits with a capsule that is moved along a line, ordered by distance to start
 		 * @param {Vector} start - Starting point of the capsule
@@ -2716,6 +2905,14 @@ declare module '@tabletop-playground/api' {
 	*/
 	class Panel extends Widget { 
 		/**
+		 * Set the vertical alignment of widgets in the panel, as defined by {@link VericalAlignment}. Default: Fill
+		*/
+		setVerticalAlignment(alignment: number): Panel;
+		/**
+		 * Set the horizontal alignment of widgets in the panel, as defined by {@link HorizontalAlignment}. Default: Fill
+		*/
+		setHorizontalAlignment(alignment: number): Panel;
+		/**
 		 * @deprecated This method doesn't do anything anymore except printing a warning. In order to control the
 		 * size of the child widgets, use the weight parameter in {@link addChild} and {@link insertChild}. Setting
 		 * the weight to 1 for all children has the same effect as ``setEqualChildSize(true)`` had. Setting
@@ -2746,6 +2943,14 @@ declare module '@tabletop-playground/api' {
 		*/
 		insertChild(child: Widget, index: number, weight?: number): Panel;
 		/**
+		 * Return the vertical alignment of widgets in the panel, as defined by {@link VericalAlignment}. Default: Fill
+		*/
+		getVerticalAlignment(): number;
+		/**
+		 * Return the horizontal alignment of widgets in the panel, as defined by {@link HorizontalAlignment}. Default: Fill
+		*/
+		getHorizontalAlignment(): number;
+		/**
 		 * Return the child widget at the given index. Returns undefined if no child exists at the index.
 		 * @param {number} index - Index where to get the child widget
 		*/
@@ -2770,6 +2975,15 @@ declare module '@tabletop-playground/api' {
 	*/
 	class ImageWidget extends Widget { 
 		/**
+		 * Called when an image set by {@link setImage} or {@link setImageURL} is done loading.
+		 * This will be within the call if the image is already cached, or some time
+		 * later if the image has to be loaded first. Called with an empty filename the image
+		 * could not be loaded.
+		 * Note that if you call set the image before setting this callback, it might not get
+		 * called because the image has been loaded instantly if it was cached.
+		*/
+		onImageLoaded: MulticastDelegate<(UImage: this, filename: string, packageId: string) => void>;
+		/**
 		 * Set the displayed image file from a URL
 		 * @param {string} url - The filename of the image to load
 		*/
@@ -2782,9 +2996,11 @@ declare module '@tabletop-playground/api' {
 		 * @param {number} width - Desired width of the image. Default: 0
 		 * @param {number} height - Desired height of the image. Default: 0
 		*/
-		setImageSize(width: number, height: number): ImageWidget;
+		setImageSize(width?: number, height?: number): ImageWidget;
 		/**
-		 * Set the displayed image file.
+		 * Set the displayed image file. When an image is used for the first time, it is loaded
+		 * in the background and won't be visible immediately. {@link onImageLoaded} is called when
+		 * the image is loaded.
 		 * @param {string} textureName - The filename of the image to load
 		 * @param {string} packageId - The id of the package that contains the image file (in the
 		 * Textures folder). Can usually be empty when used from scripts to use the same package
@@ -2805,12 +3021,14 @@ declare module '@tabletop-playground/api' {
 		getImageHeight(): number;
 		/**
 		 * Get the width of the displayed image file. Does not have to be identical to the desired width of the image,
-		 * use {@link getImageWidth} for that. Returns 0 if no texture has been set.
+		 * use {@link getImageWidth} for that. Returns 0 if no image has been set or it hasn't been loaded yet.
+		 * Wait for {@link onImageLoaded} before using this method to ensure that the size from the loaded file is available.
 		*/
 		getImageFileWidth(): number;
 		/**
 		 * Get the height of the displayed image file. Does not have to be identical to the desired height of the image,
-		 * use {@link getImageHeight} for that. Returns 0 if no texture has been set.
+		 * use {@link getImageHeight} for that. Returns 0 if no image has been set or it hasn't been loaded yet.
+		 * Wait for {@link onImageLoaded} before using this method to ensure that the size from the loaded file is available.
 		*/
 		getImageFileHeight(): number;
 	}
@@ -2826,6 +3044,14 @@ declare module '@tabletop-playground/api' {
 		*/
 		onClicked: MulticastDelegate<(button: this, player: Player) => void>;
 		/**
+		 * Called when an image set by {@link setImage} or {@link setImageURL} is done loading.
+		 * This will be within the call if the image is already cached, or some time
+		 * later if the image has to be loaded first. Not called if the image can't be loaded.
+		 * Note that if you call set the image before setting this callback, it might not get
+		 * called because the image has been loaded instantly if it was cached.
+		*/
+		onImageLoaded: MulticastDelegate<(UImage: this, filename: string, packageId: string) => void>;
+		/**
 		 * Set the displayed image file from a URL
 		 * @param {string} url - The filename of the image to load
 		*/
@@ -2840,9 +3066,11 @@ declare module '@tabletop-playground/api' {
 		 * @param {number} width - Desired width of the image. Default: 0
 		 * @param {number} height - Desired height of the image. Default: 0
 		*/
-		setImageSize(width: number, height: number): ImageButton;
+		setImageSize(width?: number, height?: number): ImageButton;
 		/**
-		 * Set the displayed image file from a package.
+		 * Set the displayed image file. When an image is used for the first time, it is loaded
+		 * in the background and won't be visible immediately. {@link onImageLoaded} is called when
+		 * the image is loaded.
 		 * @param {string} textureName - The filename of the image to load
 		 * @param {string} packageId - The id of the package that contains the image file (in the
 		 * Textures folder). Can usually be empty when used from scripts to use the same package
@@ -2863,14 +3091,120 @@ declare module '@tabletop-playground/api' {
 		getImageHeight(): number;
 		/**
 		 * Get the width of the displayed image file. Does not have to be identical to the desired width of the image,
-		 * use {@link getImageWidth} for that. Returns 0 if no texture has been set.
+		 * use {@link getImageWidth} for that. Returns 0 if no image has been set or it hasn't been loaded yet.
+		 * Wait for {@link onImageLoaded} before using this method to ensure that the size from the loaded file is available.
 		*/
 		getImageFileWidth(): number;
 		/**
 		 * Get the height of the displayed image file. Does not have to be identical to the desired height of the image,
-		 * use {@link getImageHeight} for that. Returns 0 if no texture has been set.
+		 * use {@link getImageHeight} for that. Returns 0 if no image has been set or it hasn't been loaded yet.
+		 * Wait for {@link onImageLoaded} before using this method to ensure that the size from the loaded file is available.
 		*/
 		getImageFileHeight(): number;
+	}
+
+	/**
+	 * An invisible element that contains another widget and adds size and layout information. The size properties
+	 * do not have an effect when the LayoutBox is placed directly on a {@link Canvas}, because the size is already
+	 * fixed by the coordinates on the Canvas.
+	*/
+	class LayoutBox extends Widget { 
+		/**
+		 * Set the vertical alignment of the child widget within the LayoutBox, as defined by {@link VerticalAlignment}. Default: Fill
+		*/
+		setVerticalAlignment(alignment: number): LayoutBox;
+		/**
+		 * Set how many pixels of padding to add around the child widget. No padding is added by default.
+		 * @param {number} left - Padding on the left of the child widget. Default: 0
+		 * @param {number} right - Padding on the right of the child widget. Default: 0
+		 * @param {number} top - Padding above the child widget. Default: 0
+		 * @param {number} bottom - Padding below the child widget. Default: 0
+		*/
+		setPadding(left?: number, right?: number, top?: number, bottom?: number): LayoutBox;
+		/**
+		 * Set the exact width that this box should get. Use a negative value to disable the override (disabled by default).
+		*/
+		setOverrideWidth(override: number): LayoutBox;
+		/**
+		 * Set the exact height that this box should get. Use a negative value to disable the override (disabled by default).
+		*/
+		setOverrideHeight(override: number): LayoutBox;
+		/**
+		 * Set the minimum width that this box should get (0 by default).
+		*/
+		setMinimumWidth(minimum: number): LayoutBox;
+		/**
+		 * Set the minimum height that this box should get (0 by default).
+		*/
+		setMinimumHeight(minimum: number): LayoutBox;
+		/**
+		 * Set the maximum width that this box should get. Use a negative value to disable the maximum (disabled by default).
+		*/
+		setMaximumWidth(maximum: number): LayoutBox;
+		/**
+		 * Set the maximum height that this box should get. Use a negative value to disable the maximum (disabled by default).
+		*/
+		setMaximumHeight(maximum: number): LayoutBox;
+		/**
+		 * Set the horizontal alignment of the child widget within the LayoutBox, as defined by {@link HorizontalAlignment}. Default: Fill
+		*/
+		setHorizontalAlignment(alignment: number): LayoutBox;
+		/**
+		 * Set the child widget
+		*/
+		setChild(child: Widget): LayoutBox;
+		/**
+		 * Return the vertical alignment of the child widget within the LayoutBox, as defined by {@link VerticalAlignment}
+		*/
+		getVerticalAlignment(): number;
+		/**
+		 * Return the number of padding pixels on the left of the child widget
+		*/
+		getTopPadding(): number;
+		/**
+		 * Return the number of padding pixels on the left of the child widget
+		*/
+		getRightPadding(): number;
+		/**
+		 * Return the exact width that this box should get. Returns -1 if no override is set.
+		*/
+		getOverrideWidth(): number;
+		/**
+		 * Return the exact height that this box should get. Returns -1 if no override is set.
+		*/
+		getOverrideHeight(): number;
+		/**
+		 * Return the minimum width that this box should get.
+		*/
+		getMinimumWidth(): number;
+		/**
+		 * Return the minimum height that this box should get.
+		*/
+		getMinimumHeight(): number;
+		/**
+		 * Return the maximum width that this box should get. Returns -1 if no maximum is set.
+		*/
+		getMaximumWidth(): number;
+		/**
+		 * Return the maximum height that this box should get. Returns -1 if no maximum is set.
+		*/
+		getMaximumHeight(): number;
+		/**
+		 * Return the number of padding pixels on the left of the child widget
+		*/
+		getLeftPadding(): number;
+		/**
+		 * Return the horizontal alignment of the child widget within the LayoutBox, as defined by {@link HorizontalAlignment}
+		*/
+		getHorizontalAlignment(): number;
+		/**
+		 * Return the child widget. Returns undefined if no child has been set for this LayoutBox
+		*/
+		getChild(): Widget | undefined;
+		/**
+		 * Return the number of padding pixels on the left of the child widget
+		*/
+		getBottomPadding(): number;
 	}
 
 	/**

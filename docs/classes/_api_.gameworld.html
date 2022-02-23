@@ -70,7 +70,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>The game world. Contains all global methods of the API.</p>
+						<p>The game world. Contains all global methods of the API. You don&#39;t create an instance of this class
+						directly, instead use the <a href="../modules/_api_.html#world">world</a> object that always exists.</p>
 					</div>
 				</div>
 			</section>
@@ -95,6 +96,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#broadcastchatmessage" class="tsd-kind-icon">broadcast<wbr>Chat<wbr>Message</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#capsuleoverlap" class="tsd-kind-icon">capsule<wbr>Overlap</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#capsuletrace" class="tsd-kind-icon">capsule<wbr>Trace</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#clearconsole" class="tsd-kind-icon">clear<wbr>Console</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#createobjectfromjson" class="tsd-kind-icon">create<wbr>Object<wbr>FromJSON</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#createobjectfromtemplate" class="tsd-kind-icon">create<wbr>Object<wbr>From<wbr>Template</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#createzone" class="tsd-kind-icon">create<wbr>Zone</a></li>
@@ -105,15 +107,20 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#getallobjects" class="tsd-kind-icon">get<wbr>All<wbr>Objects</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#getallplayers" class="tsd-kind-icon">get<wbr>All<wbr>Players</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#getallzones" class="tsd-kind-icon">get<wbr>All<wbr>Zones</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#getallowedpackages" class="tsd-kind-icon">get<wbr>Allowed<wbr>Packages</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#getbackgroundfilename" class="tsd-kind-icon">get<wbr>Background<wbr>Filename</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#getbackgroundpackageid" class="tsd-kind-icon">get<wbr>Background<wbr>Package<wbr>Id</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#getgametime" class="tsd-kind-icon">get<wbr>Game<wbr>Time</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#getgravitymultiplier" class="tsd-kind-icon">get<wbr>Gravity<wbr>Multiplier</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#getobjectbyid" class="tsd-kind-icon">get<wbr>Object<wbr>ById</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#getobjectgroupids" class="tsd-kind-icon">get<wbr>Object<wbr>Group<wbr>Ids</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#getobjectsbygroupid" class="tsd-kind-icon">get<wbr>Objects<wbr>ByGroup<wbr>Id</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#getobjectsbytemplateid" class="tsd-kind-icon">get<wbr>Objects<wbr>ByTemplate<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#getpackagebyid" class="tsd-kind-icon">get<wbr>Package<wbr>ById</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#getplayerbyslot" class="tsd-kind-icon">get<wbr>Player<wbr>BySlot</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#getsaveddata" class="tsd-kind-icon">get<wbr>Saved<wbr>Data</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#getshowdicerollmessages" class="tsd-kind-icon">get<wbr>Show<wbr>Dice<wbr>Roll<wbr>Messages</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#getslotcolor" class="tsd-kind-icon">get<wbr>Slot<wbr>Color</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#getslotteam" class="tsd-kind-icon">get<wbr>Slot<wbr>Team</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#gettableheight" class="tsd-kind-icon">get<wbr>Table<wbr>Height</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#gettemplatename" class="tsd-kind-icon">get<wbr>Template<wbr>Name</a></li>
@@ -127,9 +134,11 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#removeui" class="tsd-kind-icon">removeUI</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#removeuielement" class="tsd-kind-icon">removeUIElement</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#resetscripting" class="tsd-kind-icon">reset<wbr>Scripting</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#setbackground" class="tsd-kind-icon">set<wbr>Background</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#setgravitymultiplier" class="tsd-kind-icon">set<wbr>Gravity<wbr>Multiplier</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#setsaveddata" class="tsd-kind-icon">set<wbr>Saved<wbr>Data</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#setshowdicerollmessages" class="tsd-kind-icon">set<wbr>Show<wbr>Dice<wbr>Roll<wbr>Messages</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#setslotcolor" class="tsd-kind-icon">set<wbr>Slot<wbr>Color</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#setslotteam" class="tsd-kind-icon">set<wbr>Slot<wbr>Team</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#setui" class="tsd-kind-icon">setUI</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.gameworld.html#showping" class="tsd-kind-icon">show<wbr>Ping</a></li>
@@ -155,7 +164,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2368">index.d.ts:2368</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2557">index.d.ts:2557</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -189,7 +198,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2362">index.d.ts:2362</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2551">index.d.ts:2551</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -232,7 +241,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2355">index.d.ts:2355</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2544">index.d.ts:2544</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -281,7 +290,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2347">index.d.ts:2347</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2536">index.d.ts:2536</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -312,7 +321,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2341">index.d.ts:2341</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2530">index.d.ts:2530</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -355,7 +364,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2334">index.d.ts:2334</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2523">index.d.ts:2523</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -395,6 +404,28 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="clearconsole" class="tsd-anchor"></a>
+					<h3>clear<wbr>Console</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">clear<wbr>Console<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2515">index.d.ts:2515</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Clear the built-in JavaScript console. The same effect can be achieved by entering &quot;clear()&quot; in the console.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="createobjectfromjson" class="tsd-anchor"></a>
 					<h3>create<wbr>Object<wbr>FromJSON</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -404,7 +435,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2326">index.d.ts:2326</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2511">index.d.ts:2511</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -441,7 +472,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2320">index.d.ts:2320</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2505">index.d.ts:2505</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -478,7 +509,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2314">index.d.ts:2314</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2499">index.d.ts:2499</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -509,7 +540,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2309">index.d.ts:2309</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2494">index.d.ts:2494</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -570,7 +601,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2299">index.d.ts:2299</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2484">index.d.ts:2484</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -625,7 +656,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2290">index.d.ts:2290</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2475">index.d.ts:2475</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -674,7 +705,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2282">index.d.ts:2282</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2467">index.d.ts:2467</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -720,13 +751,13 @@
 					<a name="getallobjects" class="tsd-anchor"></a>
 					<h3>get<wbr>All<wbr>Objects</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>All<wbr>Objects<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.gameobject.html" class="tsd-signature-type">GameObject</a><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>All<wbr>Objects<span class="tsd-signature-symbol">(</span>skipContained<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.gameobject.html" class="tsd-signature-type">GameObject</a><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2273">index.d.ts:2273</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2458">index.d.ts:2458</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -734,6 +765,17 @@
 									<p>Return all objects currently in the game</p>
 								</div>
 							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> skipContained: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>If true, don&#39;t return objects in containers.
+											Even when false, objects within lazy containers that haven&#39;t been loaded yet will never be returned. Use
+										<a href="_api_.container.html#getitems">Container.getItems</a> to load and return items in lazy containers. Default: false</p>
+									</div>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_api_.gameobject.html" class="tsd-signature-type">GameObject</a><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
@@ -748,7 +790,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2269">index.d.ts:2269</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2447">index.d.ts:2447</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -770,7 +812,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2265">index.d.ts:2265</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2443">index.d.ts:2443</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -779,6 +821,72 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="_api_.zone.html" class="tsd-signature-type">Zone</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getallowedpackages" class="tsd-anchor"></a>
+					<h3>get<wbr>Allowed<wbr>Packages</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Allowed<wbr>Packages<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.proxy.html" class="tsd-signature-type">Proxy</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2451">index.d.ts:2451</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return all currently allowed packages</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.proxy.html" class="tsd-signature-type">Proxy</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getbackgroundfilename" class="tsd-anchor"></a>
+					<h3>get<wbr>Background<wbr>Filename</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Background<wbr>Filename<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2439">index.d.ts:2439</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the filename of the current background. Empty string if no custom background is active.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getbackgroundpackageid" class="tsd-anchor"></a>
+					<h3>get<wbr>Background<wbr>Package<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Background<wbr>Package<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2435">index.d.ts:2435</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the package id of the current background. Returns an empty string if no background is set.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -792,7 +900,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2254">index.d.ts:2254</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2424">index.d.ts:2424</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -814,7 +922,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2250">index.d.ts:2250</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2420">index.d.ts:2420</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -836,7 +944,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2246">index.d.ts:2246</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2416">index.d.ts:2416</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -867,7 +975,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2241">index.d.ts:2241</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2411">index.d.ts:2411</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -889,7 +997,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2237">index.d.ts:2237</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2407">index.d.ts:2407</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -920,7 +1028,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2232">index.d.ts:2232</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2402">index.d.ts:2402</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -942,6 +1050,35 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getpackagebyid" class="tsd-anchor"></a>
+					<h3>get<wbr>Package<wbr>ById</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Package<wbr>ById<span class="tsd-signature-symbol">(</span>packageId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.proxy.html" class="tsd-signature-type">Proxy</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2397">index.d.ts:2397</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the package with the specified id. Can return packages that are currently not allowed,
+									but only finds packages that exist on the host.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>packageId: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.proxy.html" class="tsd-signature-type">Proxy</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="getplayerbyslot" class="tsd-anchor"></a>
 					<h3>get<wbr>Player<wbr>BySlot</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -951,7 +1088,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2227">index.d.ts:2227</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2392">index.d.ts:2392</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -982,7 +1119,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2222">index.d.ts:2222</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2387">index.d.ts:2387</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1004,7 +1141,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2218">index.d.ts:2218</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2383">index.d.ts:2383</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1023,6 +1160,37 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getslotcolor" class="tsd-anchor"></a>
+					<h3>get<wbr>Slot<wbr>Color</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Slot<wbr>Color<span class="tsd-signature-symbol">(</span>slot<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2379">index.d.ts:2379</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the color of a player slot.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>slot: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The player slot (0-19)</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.color.html" class="tsd-signature-type">Color</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="getslotteam" class="tsd-anchor"></a>
 					<h3>get<wbr>Slot<wbr>Team</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1032,7 +1200,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2214">index.d.ts:2214</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2374">index.d.ts:2374</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1063,7 +1231,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2209">index.d.ts:2209</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2369">index.d.ts:2369</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1097,7 +1265,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2201">index.d.ts:2201</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2361">index.d.ts:2361</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1125,7 +1293,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2197">index.d.ts:2197</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2357">index.d.ts:2357</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1153,7 +1321,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2193">index.d.ts:2193</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2353">index.d.ts:2353</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1176,12 +1344,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2188">index.d.ts:2188</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2348">index.d.ts:2348</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Return the zone with the specified Id</p>
+									<p>Return the zone with the specified id</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1204,7 +1372,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2183">index.d.ts:2183</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2343">index.d.ts:2343</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1256,7 +1424,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2167">index.d.ts:2167</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2327">index.d.ts:2327</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1296,7 +1464,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2158">index.d.ts:2158</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2318">index.d.ts:2318</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1339,7 +1507,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2146">index.d.ts:2146</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2306">index.d.ts:2306</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1376,7 +1544,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2140">index.d.ts:2140</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2300">index.d.ts:2300</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1407,7 +1575,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2135">index.d.ts:2135</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2295">index.d.ts:2295</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1435,7 +1603,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2130">index.d.ts:2130</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2290">index.d.ts:2290</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1443,6 +1611,50 @@
 									<p>Reset scripting environment and reload all scripts</p>
 								</div>
 							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setbackground" class="tsd-anchor"></a>
+					<h3>set<wbr>Background</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Background<span class="tsd-signature-symbol">(</span>textureName<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, packageId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2286">index.d.ts:2286</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set the image shown as background of the map.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> textureName: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The filename of the image to load. Use an empty string
+										to return to the default background for the map. Default: empty string.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> packageId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The id of the package that contains the image file (in the
+											Textures folder). Can usually be empty when used from scripts to use the same package
+											that contains the script file, but you need to explicitly pass <a href="../modules/_api_.html#refpackageid">refPackageId</a> for
+											the current package or a package id when you use it in a callback. You can find package
+											ids in the manifest.json file in package folders. Usually you won&#39;t use this parameter,
+											unless you have a specific reason to load an image from a different package than where
+										the script is located.</p>
+									</div>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -1457,7 +1669,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2126">index.d.ts:2126</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2273">index.d.ts:2273</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1490,7 +1702,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2119">index.d.ts:2119</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2266">index.d.ts:2266</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1526,7 +1738,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2109">index.d.ts:2109</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2256">index.d.ts:2256</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1545,6 +1757,40 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setslotcolor" class="tsd-anchor"></a>
+					<h3>set<wbr>Slot<wbr>Color</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Slot<wbr>Color<span class="tsd-signature-symbol">(</span>slot<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, color<span class="tsd-signature-symbol">: </span><a href="_api_.color.html" class="tsd-signature-type">Color</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>r<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>g<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>b<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2252">index.d.ts:2252</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set the color of a player slot</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>slot: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The player slot (0-19)</p>
+									</div>
+								</li>
+								<li>
+									<h5>color: <a href="_api_.color.html" class="tsd-signature-type">Color</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>r<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>g<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>b<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="setslotteam" class="tsd-anchor"></a>
 					<h3>set<wbr>Slot<wbr>Team</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1554,7 +1800,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2105">index.d.ts:2105</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2246">index.d.ts:2246</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1591,7 +1837,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2099">index.d.ts:2099</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2240">index.d.ts:2240</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1622,7 +1868,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2093">index.d.ts:2093</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2234">index.d.ts:2234</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1665,7 +1911,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2086">index.d.ts:2086</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2227">index.d.ts:2227</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1702,7 +1948,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2080">index.d.ts:2080</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2221">index.d.ts:2221</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1745,7 +1991,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2073">index.d.ts:2073</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2214">index.d.ts:2214</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1785,7 +2031,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2057">index.d.ts:2057</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2198">index.d.ts:2198</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1814,7 +2060,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L2261">index.d.ts:2261</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L2431">index.d.ts:2431</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1868,6 +2114,9 @@
 								<a href="_api_.gameworld.html#capsuletrace" class="tsd-kind-icon">capsule<wbr>Trace</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.gameworld.html#clearconsole" class="tsd-kind-icon">clear<wbr>Console</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.gameworld.html#createobjectfromjson" class="tsd-kind-icon">create<wbr>Object<wbr>FromJSON</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -1898,6 +2147,15 @@
 								<a href="_api_.gameworld.html#getallzones" class="tsd-kind-icon">get<wbr>All<wbr>Zones</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.gameworld.html#getallowedpackages" class="tsd-kind-icon">get<wbr>Allowed<wbr>Packages</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.gameworld.html#getbackgroundfilename" class="tsd-kind-icon">get<wbr>Background<wbr>Filename</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.gameworld.html#getbackgroundpackageid" class="tsd-kind-icon">get<wbr>Background<wbr>Package<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.gameworld.html#getgametime" class="tsd-kind-icon">get<wbr>Game<wbr>Time</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -1916,6 +2174,9 @@
 								<a href="_api_.gameworld.html#getobjectsbytemplateid" class="tsd-kind-icon">get<wbr>Objects<wbr>ByTemplate<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.gameworld.html#getpackagebyid" class="tsd-kind-icon">get<wbr>Package<wbr>ById</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.gameworld.html#getplayerbyslot" class="tsd-kind-icon">get<wbr>Player<wbr>BySlot</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -1923,6 +2184,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.gameworld.html#getshowdicerollmessages" class="tsd-kind-icon">get<wbr>Show<wbr>Dice<wbr>Roll<wbr>Messages</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.gameworld.html#getslotcolor" class="tsd-kind-icon">get<wbr>Slot<wbr>Color</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.gameworld.html#getslotteam" class="tsd-kind-icon">get<wbr>Slot<wbr>Team</a>
@@ -1964,6 +2228,9 @@
 								<a href="_api_.gameworld.html#resetscripting" class="tsd-kind-icon">reset<wbr>Scripting</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.gameworld.html#setbackground" class="tsd-kind-icon">set<wbr>Background</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.gameworld.html#setgravitymultiplier" class="tsd-kind-icon">set<wbr>Gravity<wbr>Multiplier</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -1971,6 +2238,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.gameworld.html#setshowdicerollmessages" class="tsd-kind-icon">set<wbr>Show<wbr>Dice<wbr>Roll<wbr>Messages</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.gameworld.html#setslotcolor" class="tsd-kind-icon">set<wbr>Slot<wbr>Color</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.gameworld.html#setslotteam" class="tsd-kind-icon">set<wbr>Slot<wbr>Team</a>

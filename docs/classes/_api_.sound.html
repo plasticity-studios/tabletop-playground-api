@@ -107,6 +107,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.sound.html#playatlocation" class="tsd-kind-icon">play<wbr>AtLocation</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.sound.html#playattached" class="tsd-kind-icon">play<wbr>Attached</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.sound.html#stop" class="tsd-kind-icon">stop</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.sound.html#stoploop" class="tsd-kind-icon">stop<wbr>Loop</a></li>
 							</ul>
 						</section>
 					</div>
@@ -120,7 +121,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Load<wbr>Complete<span class="tsd-signature-symbol">:</span> <a href="_api_.delegate.html" class="tsd-signature-type">Delegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>success<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L1802">index.d.ts:1802</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L1887">index.d.ts:1887</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -140,12 +141,13 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Playback<wbr>Finished<span class="tsd-signature-symbol">:</span> <a href="_api_.delegate.html" class="tsd-signature-type">Delegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L1806">index.d.ts:1806</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L1892">index.d.ts:1892</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Called when playback of the sound has finished. Not called when the sound is interrupted (for example by calling <a href="_api_.sound.html#stop">stop</a>)</p>
+							<p>Called when playback of the sound has finished. Not called when the sound is interrupted (for example by calling <a href="_api_.sound.html#stop">stop</a>)
+							or while the sound is played in a loop.</p>
 						</div>
 					</div>
 				</section>
@@ -162,7 +164,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L1862">index.d.ts:1862</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L1959">index.d.ts:1959</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -171,7 +173,7 @@
 										The object will become non-functional, and it will be removed from the cache. Note that multiple calls to
 										<a href="_api_.gameworld.html#importsound">GameWorld.importSound</a> or <a href="_api_.gameworld.html#importsoundfromurl">GameWorld.importSoundFromURL</a> with the same parameters return the
 										same object when using caching, so if you use the same sound at multiple places in your code, you should
-									be carefuly when you destroy it.</p>
+									be careful when you destroy it.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -188,7 +190,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L1854">index.d.ts:1854</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L1951">index.d.ts:1951</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -210,7 +212,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L1850">index.d.ts:1850</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L1947">index.d.ts:1947</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -232,7 +234,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L1846">index.d.ts:1846</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L1943">index.d.ts:1943</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -254,7 +256,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L1842">index.d.ts:1842</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L1939">index.d.ts:1939</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -276,7 +278,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L1838">index.d.ts:1838</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L1935">index.d.ts:1935</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -292,13 +294,13 @@
 					<a name="play" class="tsd-anchor"></a>
 					<h3>play</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">play<span class="tsd-signature-symbol">(</span>startTime<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, volume<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">play<span class="tsd-signature-symbol">(</span>startTime<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, volume<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, loop<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L1834">index.d.ts:1834</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L1931">index.d.ts:1931</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -321,6 +323,13 @@
 										<p>The volume multiplier at which to play the sound, 0 &lt; volume &lt; 2. Default: 1</p>
 									</div>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> loop: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>If true, play the sound again from the beginning once it finishes playing. You can stop playback using
+										<a href="_api_.sound.html#stop">stop</a>, <a href="_api_.sound.html#stoploop">stopLoop</a>, or by calling a play method with the loop parameter set to false.</p>
+									</div>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
@@ -330,13 +339,13 @@
 					<a name="playatlocation" class="tsd-anchor"></a>
 					<h3>play<wbr>AtLocation</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">play<wbr>AtLocation<span class="tsd-signature-symbol">(</span>position<span class="tsd-signature-symbol">: </span><a href="_api_.vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>z<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span>, startTime<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, volume<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">play<wbr>AtLocation<span class="tsd-signature-symbol">(</span>position<span class="tsd-signature-symbol">: </span><a href="_api_.vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>z<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span>, startTime<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, volume<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, loop<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L1827">index.d.ts:1827</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L1922">index.d.ts:1922</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -365,6 +374,13 @@
 										<p>The volume multiplier at which to play the sound, 0 &lt; volume &lt; 2. Default: 1</p>
 									</div>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> loop: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>If true, play the sound again from the beginning once it finishes playing. You can stop playback using
+										<a href="_api_.sound.html#stop">stop</a>, <a href="_api_.sound.html#stoploop">stopLoop</a>, or by calling a play method with the loop parameter set to false.</p>
+									</div>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
@@ -374,13 +390,13 @@
 					<a name="playattached" class="tsd-anchor"></a>
 					<h3>play<wbr>Attached</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">play<wbr>Attached<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><a href="_api_.gameobject.html" class="tsd-signature-type">GameObject</a>, startTime<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, volume<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">play<wbr>Attached<span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><a href="_api_.gameobject.html" class="tsd-signature-type">GameObject</a>, startTime<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, volume<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, loop<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L1819">index.d.ts:1819</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L1912">index.d.ts:1912</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -410,6 +426,13 @@
 										<p>The volume multiplier at which to play the sound, 0 &lt; volume &lt; 2. Default: 1</p>
 									</div>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> loop: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>If true, play the sound again from the beginning once it finishes playing. You can stop playback using
+										<a href="_api_.sound.html#stop">stop</a>, <a href="_api_.sound.html#stoploop">stopLoop</a>, or by calling a play method with the loop parameter set to false.</p>
+									</div>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
@@ -425,12 +448,35 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/af0453b/index.d.ts#L1810">index.d.ts:1810</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L1901">index.d.ts:1901</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Stop playing the sound</p>
+									<p>Stop playing the sound immediately</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="stoploop" class="tsd-anchor"></a>
+					<h3>stop<wbr>Loop</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">stop<wbr>Loop<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/ed8fe7c/index.d.ts#L1897">index.d.ts:1897</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Stop looping the sound if it is currently played in a loop. Doesn&#39;t stop playback immediately, only after the current playback finishes.
+									Has no effect if the sound is not currently played in a loop.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -492,6 +538,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.sound.html#stop" class="tsd-kind-icon">stop</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.sound.html#stoploop" class="tsd-kind-icon">stop<wbr>Loop</a>
 							</li>
 						</ul>
 					</li>
