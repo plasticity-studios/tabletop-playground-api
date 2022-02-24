@@ -2144,9 +2144,10 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
-	 * Represents a Tabletop Playground package
+	 * Represents a Tabletop Playground package. Use {@link GameWorld.getPackageById} or
+	 * {@link GameWorld.getAllowedPackages} to create Package objects.
 	*/
-	class Proxy { 
+	class Package { 
 		/**
 		 * Return whether the package is currently allowed in the game
 		*/
@@ -2394,7 +2395,7 @@ declare module '@tabletop-playground/api' {
 		 * Return the package with the specified id. Can return packages that are currently not allowed,
 		 * but only finds packages that exist on the host.
 		*/
-		getPackageById(packageId: string): Proxy | undefined;
+		getPackageById(packageId: string): Package | undefined;
 		/**
 		 * Return all objects in the game with the specified template type
 		 * @param {string} templateId - The template id to search for
@@ -2448,7 +2449,7 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Return all currently allowed packages
 		*/
-		getAllowedPackages(): Proxy[];
+		getAllowedPackages(): Package[];
 		/**
 		 * Return all objects currently in the game
 		 * @param {boolean} skipContained - If true, don't return objects in containers.

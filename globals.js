@@ -30,7 +30,7 @@ module.exports = {
 	GameWorld: 'readonly',
 	Sound: 'readonly',
 	Zone: 'readonly',
-	Proxy: 'readonly',
+	Package: 'readonly',
 	GlobalScriptingEvents: 'readonly',
 	HttpRequest: 'readonly',
 	MultistateObject: 'readonly',
