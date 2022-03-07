@@ -2906,7 +2906,7 @@ declare module '@tabletop-playground/api' {
 	*/
 	class Panel extends Widget { 
 		/**
-		 * Set the vertical alignment of widgets in the panel, as defined by {@link VericalAlignment}. Default: Fill
+		 * Set the vertical alignment of widgets in the panel, as defined by {@link VerticalAlignment}. Default: Fill
 		*/
 		setVerticalAlignment(alignment: number): Panel;
 		/**
@@ -2944,7 +2944,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		insertChild(child: Widget, index: number, weight?: number): Panel;
 		/**
-		 * Return the vertical alignment of widgets in the panel, as defined by {@link VericalAlignment}. Default: Fill
+		 * Return the vertical alignment of widgets in the panel, as defined by {@link VerticalAlignment}. Default: Fill
 		*/
 		getVerticalAlignment(): number;
 		/**
