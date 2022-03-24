@@ -55,14 +55,23 @@ declare module '@tabletop-playground/api' {
 	/** Justification (alignment) used in {@link Text}*/
 	enum TextJustification {Left=0, Center=1, Right=2}
 
-	/** Widget alignment used in {@link LayoutBox}*/
+	/** Widget alignment used in {@link LayoutBox} and {@link Panel}*/
 	enum HorizontalAlignment {Fill=0, Left=1, Center=2, Right=3}
 
-	/** Widget alignment used in {@link LayoutBox}*/
+	/** Widget alignment used in {@link LayoutBox} and {@link Panel}*/
 	enum VerticalAlignment {Fill=0, Top=1, Center=2, Bottom=3}
 
 	/** Behavior for hidden cards used in {@link CardHolder}*/
 	enum HiddenCardsType {GreyBlur=0, Back=1, Front=2}
+
+	/** Shape of snap points used in {@link SnapPoint}*/
+	enum SnapPointShape {Sphere=0, Cylinder=1, Box=2}
+
+	/** Type of snap point rotation used in {@link SnapPoint}*/
+	enum SnapPointShape {NoChange=0, NoFlip=1, RotateNoFlip=2, RotateUpright=3, RotateUpsideDown=4}
+
+	/** When a snap point is valid depending on whether its object is flipped, used in {@link SnapPoint}*/
+	enum SnapPointFLipValidity {Always=0, Upright=1, UpsideDown=2}
 
 	/** Represent for a single callback function. Use the add() method or the assignment operator = to set the function to call. */
 	class Delegate<T> {
@@ -909,7 +918,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		getSlot(): number;
 		/**
-		 * Return the objects that the player has currently selected
+		 * Return the objects that the player has currently selected. Note that held objects always count as selected.
 		*/
 		getSelectedObjects(): GameObject[];
 		/**
@@ -941,7 +950,8 @@ declare module '@tabletop-playground/api' {
 		*/
 		getHighlightedObject(): GameObject | undefined;
 		/**
-		 * Return the objects that the player is currently holding
+		 * Return the objects that the player is currently holding. A held object can be released using
+		 * {@link GameObject.release}
 		*/
 		getHeldObjects(): GameObject[];
 		/**
@@ -967,13 +977,21 @@ declare module '@tabletop-playground/api' {
 	*/
 	class SnapPoint { 
 		/**
-		 * Return whether the snap point also snaps rotation
+		 * Return whether the snap point changes rotation of the snapped object. Use {@link getSnapRotationType} to get the exact type of rotation change
 		*/
 		snapsRotation(): boolean;
 		/**
 		 * Return whether the object is valid. A snap point becomes invalid after the object it belongs to has been destroyed
 		*/
 		isValid(): boolean;
+		/**
+		 * Get tags of this snap point. Only objects that share at least one tag will be snapped. If empty, all objects will be snapped.
+		*/
+		getTags(): string[];
+		/**
+		 * Return objects snapped to this snap point are rotated, as defined by {@link SnapPointRotationType}
+		*/
+		getSnapRotationType(): number;
 		/**
 		 * Return the relative rotation around the Z axis to which the snap point snaps (if rotation snapping is active)
 		*/
@@ -986,6 +1004,10 @@ declare module '@tabletop-playground/api' {
 		 * @param {number} sphereRadius - Radius to use for the sphere overlap. If not specified, a quarter of the snap point range is used.
 		*/
 		getSnappedObject(sphereRadius?: number): GameObject | undefined;
+		/**
+		 * Return the shape of the snap point, as defined by {@link SnapPointShape}
+		*/
+		getShape(): number;
 		/**
 		 * Return the snapping range of the snap point
 		*/
@@ -1007,6 +1029,10 @@ declare module '@tabletop-playground/api' {
 		 * Get the position of the snap point in world space
 		*/
 		getGlobalPosition(): Vector;
+		/**
+		 * Return when the snap point is valid depending on if the object it is attached to is flipped, as defined by {@link SnapPointFLipValidity}
+		*/
+		getFlipValidity(): number;
 	}
 
 	/**
@@ -1064,6 +1090,11 @@ declare module '@tabletop-playground/api' {
 		*/
 		setMaxItems(maxItems: number): void;
 		/**
+		 * Set the current list of container tags. If container tags exist, objects need to share at least one of
+		 * them in their own tag list or players won't be able to insert them. Inserting from scripts is not affected.
+		*/
+		setContainerTags(tags: string[]): void;
+		/**
 		 * Remove an item from the container and delete it. Returns whether something was removed.
 		 * @param {number} index - The index of the object to remove
 		*/
@@ -1108,6 +1139,11 @@ declare module '@tabletop-playground/api' {
 		 * (e.g. removing or adding objects) does not change the contents of the container!
 		*/
 		getItems(): GameObject[];
+		/**
+		 * Return the current list of container tags. If container tags exist, objects need to share at least one of
+		 * them in their own tag list or players won't be able to insert them. Inserting from scripts is not affected.
+		*/
+		getContainerTags(): string[];
 		/**
 		 * Check whether an object is in this container
 		*/
@@ -1268,6 +1304,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		setUI(index: number, element: UIElement): void;
 		/**
+		 * Set the list of tags for the object.
+		*/
+		setTags(tags: string[]): void;
+		/**
 		 * Set surface type.  Only affects sound effects when colliding with other objects.
 		 * @param {string} - The new surface type.
 		*/
@@ -1307,7 +1347,7 @@ declare module '@tabletop-playground/api' {
 		 * decode what you get from {@link getSavedData} using `JSON.parse()`.
 		 * @param {string} data - Data to store, maximum length 1023 characters
 		*/
-		setSavedData(data: string): void;
+		setSavedData(data: string, key: string): void;
 		/**
 		 * Set the object's roughness value. Lower roughness makes the object more shiny.
 		 * @param {number} roughness - The new roughness value, from 0 to 1
@@ -1416,6 +1456,12 @@ declare module '@tabletop-playground/api' {
 		*/
 		removeCustomAction(name: string): void;
 		/**
+		 * Ensure that no player is holding this object. If any player is currently holding the object, it will fall down.
+		 * Some GameObject methods (like setting position or applying physical force) don't have an effect or do not work
+		 * properly while a player is holding the object.
+		*/
+		release(): void;
+		/**
 		 * Transform an object rotation to a world rotation
 		 * @param {Rotator} rotation - The rotation relative to the object center to transform to world space
 		*/
@@ -1460,6 +1506,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		getTemplateId(): string;
 		/**
+		 * Return the current list of tags for the object.
+		*/
+		getTags(): string[];
+		/**
 		 * Return surface type. Only affects sound effects when colliding with other objects.
 		*/
 		getSurfaceType(): string;
@@ -1501,7 +1551,7 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Return data that was stored using {@link setSavedData} or loaded from a saved state.
 		*/
-		getSavedData(): string;
+		getSavedData(key: string): string;
 		/**
 		 * Return the object's roughness value. Lower roughness makes the object more shiny.
 		*/
@@ -1995,7 +2045,7 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Set whether a player slot is an owner of the zone
 		*/
-		setSlotOwns(playerIndex: number, owner: boolean): void;
+		setSlotOwns(playerSlot: number, owner: boolean): void;
 		/**
 		 * Set the shape of the zone
 		 * @param {number} shape - The new shape, as defined by {@link ZoneShape}
@@ -2263,8 +2313,9 @@ declare module '@tabletop-playground/api' {
 		 * If you want to use custom data that is not a string, you can encode it to JSON using `JSON.stringify()`, and then
 		 * decode what you get from {@link getSavedData} using `JSON.parse()`.
 		 * @param {string} data - Data to store, maximum length 1023 characters
+		 * @param {string} key - Key for the data. This works like a dictionary, you can store different data for each key
 		*/
-		setSavedData(data: string): void;
+		setSavedData(data: string, key?: string): void;
 		/**
 		 * Set the gravity multiplier. 1 is standard gravity, 0 will disable gravity. Wakes up physics
 		 * simulation for all objects that are not locked (for example because they are ground objects,
@@ -2384,8 +2435,9 @@ declare module '@tabletop-playground/api' {
 		getShowDiceRollMessages(show: boolean): boolean;
 		/**
 		 * Return data that was stored using {@link setSavedData} or loaded from a saved state.
+		 * @param {string} key - Key for which to retrieve the data.
 		*/
-		getSavedData(): string;
+		getSavedData(key?: string): string;
 		/**
 		 * Return the player occupying the specified slot
 		 * @param {number} slot - The player slot (0-19)
@@ -2593,6 +2645,13 @@ declare module '@tabletop-playground/api' {
 		 * @param {string} message - The chat message
 		*/
 		onTeamChatMessage: MulticastDelegate<(sender: Player, team: number, message: string) => void>;
+		/**
+		 * Called when a player whispers (sends a direct message) to another player
+		 * @param {Player} sender - Player that sent the message
+		 * @param {Player} recipient - Player that received the message
+		 * @param {string} message - The message
+		*/
+		onWhisper: MulticastDelegate<(sender: Player, recipient: Player, message: string) => void>;
 		/**
 		 * Called when a player joins the game
 		 * @param {Player} player - The new player
@@ -2985,6 +3044,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		onImageLoaded: MulticastDelegate<(UImage: this, filename: string, packageId: string) => void>;
 		/**
+		 * Set the tint color of the image. Default: White
+		*/
+		setTintColor(color: Color | [r: number, g: number, b: number, a: number]): ImageWidget;
+		/**
 		 * Set the displayed image file from a URL
 		 * @param {string} url - The filename of the image to load
 		*/
@@ -3012,6 +3075,10 @@ declare module '@tabletop-playground/api' {
 		 * the script is located.
 		*/
 		setImage(textureName: string, packageId?: string): ImageWidget;
+		/**
+		 * Return the current tint color of the image
+		*/
+		getTintColor(): Color;
 		/**
 		 * Get the desired width of the image, as set by {@link setImageSize}
 		*/
@@ -3053,6 +3120,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		onImageLoaded: MulticastDelegate<(UImage: this, filename: string, packageId: string) => void>;
 		/**
+		 * Set the tint color of the image. Default: White
+		*/
+		setTintColor(color: Color | [r: number, g: number, b: number, a: number]): ImageButton;
+		/**
 		 * Set the displayed image file from a URL
 		 * @param {string} url - The filename of the image to load
 		*/
@@ -3082,6 +3153,10 @@ declare module '@tabletop-playground/api' {
 		 * the script is located.
 		*/
 		setImage(textureName: string, packageId?: string): ImageButton;
+		/**
+		 * Return the current tint color of the image
+		*/
+		getTintColor(): Color;
 		/**
 		 * Get the desired width of the image, as set by {@link setImageSize}
 		*/
@@ -3385,6 +3460,11 @@ declare module '@tabletop-playground/api' {
 		*/
 		setJustification(justification: number): Text;
 		/**
+		 * Set whether the text is automatically wrapped. Auto-wrapping only works when the text has a fixed width,
+		 * for example in a {@link Canvas}, {@link LayoutBox}, or in an {@link UIElement} with ``useWidgetSize`` set to false.
+		*/
+		setAutoWrap(autoWrap: boolean): Text;
+		/**
 		 * Return the currently displayed text.
 		*/
 		getText(): string;
@@ -3392,6 +3472,10 @@ declare module '@tabletop-playground/api' {
 		 * Return the justification (alignment) of the text, as defined by {@link TextJustification}
 		*/
 		getJustification(): number;
+		/**
+		 * Return whether the text is automatically wrapped.
+		*/
+		getAutoWrap(): boolean;
 	}
 
 	/**
