@@ -601,6 +601,10 @@ declare module '@tabletop-playground/api' {
 		 * Single cards are never flipped.
 		*/
 		readonly flipped: boolean;
+		/**
+		 * Tags defined for this card
+		*/
+		readonly tags: string[];
 	}
 
 	/**
@@ -2985,15 +2989,19 @@ declare module '@tabletop-playground/api' {
 		*/
 		setChildDistance(distance: number): Panel;
 		/**
-		 * Remove the child at the given index
+		 * Remove the child widget at the given index
 		 * @param {number} index - Index where to remove the child widget
 		*/
 		removeChildAt(index: number): void;
 		/**
-		 * Remove the given child
+		 * Remove the given child widget
 		 * @param {Widget} child - The widget to remove
 		*/
 		removeChild(child: Widget): void;
+		/**
+		 * Remove all child widgets
+		*/
+		removeAllChildren(): void;
 		/**
 		 * Insert a child widget at the given index. Inserts at the end if the index is not valid.
 		 * @param {Widget} child - The widget to insert
