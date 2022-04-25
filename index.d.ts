@@ -71,7 +71,7 @@ declare module '@tabletop-playground/api' {
 	enum SnapPointShape {NoChange=0, NoFlip=1, RotateNoFlip=2, RotateUpright=3, RotateUpsideDown=4}
 
 	/** When a snap point is valid depending on whether its object is flipped, used in {@link SnapPoint}*/
-	enum SnapPointFLipValidity {Always=0, Upright=1, UpsideDown=2}
+	enum SnapPointFlipValidity {Always=0, Upright=1, UpsideDown=2}
 
 	/** Represent for a single callback function. Use the add() method or the assignment operator = to set the function to call. */
 	class Delegate<T> {
