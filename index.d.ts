@@ -71,7 +71,7 @@ declare module '@tabletop-playground/api' {
 	enum SnapPointShape {NoChange=0, NoFlip=1, RotateNoFlip=2, RotateUpright=3, RotateUpsideDown=4}
 
 	/** When a snap point is valid depending on whether its object is flipped, used in {@link SnapPoint}*/
-	enum SnapPointFLipValidity {Always=0, Upright=1, UpsideDown=2}
+	enum SnapPointFlipValidity {Always=0, Upright=1, UpsideDown=2}
 
 	/** Represent for a single callback function. Use the add() method or the assignment operator = to set the function to call. */
 	class Delegate<T> {
@@ -317,7 +317,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		multiply(b: number): Rotator;
 		/**
-		* Return negated rotator
+		* Return negated rotator. For the inverse rotation, use {@link getInverse}.
 		*/
 		negate(): Rotator;
 		/**
@@ -328,6 +328,11 @@ declare module '@tabletop-playground/api' {
 		* Return a vector rotated by the inverse of this rotation
 		*/
 		unrotateVector(v: Vector | [x: number, y: number, z: number]): Vector;
+		/**
+		* Return the inverse rotation that can reverse the rotation defined by this rotator. For rotations around multiple axis,
+		* this is not generally the same as the result from {@link negate}.
+		*/
+		getInverse(): Rotator;
 		/**
 		* Smoothly interpolate towards a varying target rotation
 		* @param {Rotator} current - Current rotation
@@ -1034,9 +1039,38 @@ declare module '@tabletop-playground/api' {
 		*/
 		getGlobalPosition(): Vector;
 		/**
-		 * Return when the snap point is valid depending on if the object it is attached to is flipped, as defined by {@link SnapPointFLipValidity}
+		 * Return when the snap point is valid depending on if the object it is attached to is flipped, as defined by {@link SnapPointFlipValidity}
 		*/
 		getFlipValidity(): number;
+	}
+
+	/**
+	 * A line drawn by a player or created from a script
+	*/
+	class DrawingLine { 
+		/**
+		 * Positions of all points that make up the line. Relative to the position of the object that the line is attached to
+		 * (global positions when the line is attached to the table).
+		*/
+		points: Vector[];
+		/**
+		 * The color of the line. Default: White
+		*/
+		color: Color;
+		/**
+		 * The thickness of the line in cm. Default: 0.5 cm
+		*/
+		thickness: number;
+		/**
+		 * Whether the start and end point of the line are rounded. Default: true
+		*/
+		rounded: boolean;
+		/**
+		 * The "up" direction for each line point. If empty, the default up direction (Z=1) is used. If
+		 * there's only one element, that direction is used for all points.
+		*/
+		normals: Vector[];
+		clone() : DrawingLine;
 	}
 
 	/**
@@ -1455,6 +1489,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		removeUI(index: number): void;
 		/**
+		 * Remove a drawn line from the object.
+		*/
+		removeDrawingLine(index: number): void;
+		/**
 		 * Remove a custom action
 		 * @param {string} name - The name of the action to remove
 		*/
@@ -1644,6 +1682,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		static getExecutionReason(): string;
 		/**
+		 * Return all drawing lines on the object.
+		*/
+		getDrawingLines(): DrawingLine[];
+		/**
 		 * Return the object's description
 		*/
 		getDescription(): string;
@@ -1737,6 +1779,10 @@ declare module '@tabletop-playground/api' {
 		 * @returns {number} - The index of the attached UI element
 		*/
 		addUI(element: UIElement): number;
+		/**
+		 * Add a drawn line to the object.
+		*/
+		addDrawingLine(line: DrawingLine): void;
 		/**
 		 * Add a custom action that appears in the context menu of the object.
 		 * @param {string} name - The name for the action in the context menu
@@ -2355,6 +2401,18 @@ declare module '@tabletop-playground/api' {
 		*/
 		removeUI(index: number): void;
 		/**
+		 * Remove a drawn line from the object.
+		*/
+		removeDrawingLine(index: number): void;
+		/**
+		 * Move to the previous turn
+		*/
+		previousTurn(): void;
+		/**
+		 * Move to the next turn
+		*/
+		nextTurn(): void;
+		/**
 		 * Find all object hits on the given line, ordered by distance to start
 		 * @param {Vector} start - Starting point of the line
 		 * @param {Vector} end - End point of the line
@@ -2487,6 +2545,14 @@ declare module '@tabletop-playground/api' {
 		*/
 		static getExecutionReason(): string;
 		/**
+		 * Return all drawing lines on the object.
+		*/
+		getDrawingLines(): DrawingLine[];
+		/**
+		 * Return the current turn
+		*/
+		getCurrentTurn(): number;
+		/**
 		 * Return the package id of the current background. Returns an empty string if no background is set.
 		*/
 		getBackgroundPackageId(): string;
@@ -2612,6 +2678,10 @@ declare module '@tabletop-playground/api' {
 		 * @returns {number} - The index of the added UI element
 		*/
 		addUI(element: UIElement): number;
+		/**
+		 * Add a drawn line to the object.
+		*/
+		addDrawingLine(line: DrawingLine): void;
 	}
 
 	/**
@@ -2689,6 +2759,22 @@ declare module '@tabletop-playground/api' {
 		 * @param {Dice[]} dice - Array of Dice objects that were rolled
 		*/
 		onDiceRolled: MulticastDelegate<(player: Player, dice: Dice[]) => void>;
+		/**
+		 * Called when a player has finished drawing a line. A line is finished when the player releases the mouse button or moves the mouse
+		 * to another object. A line is also finished when it exceeds 1000 points, in that case a new line is started immediately at the
+		 * point where the old line finished, usually without the player noticing.
+		 * @param {Player} player - Player that drew the line
+		 * @param {GameObject} object - The object on which the line was drawn. undefined when the line was drawn directly on the table.
+		 * @param {DrawingLine} line - Information about the line
+		*/
+		onLineDrawn: MulticastDelegate<(player: Player, object: GameObject, line: DrawingLine) => void>;
+		/**
+		 * Called when a player has erased a line.
+		 * @param {Player} player - Player that erased the line
+		 * @param {GameObject} object - The object on which the erased line was drawn. undefined when the line was drawn directly on the table.
+		 * @param {DrawingLine} line - Information about the erased line
+		*/
+		onLineErased: MulticastDelegate<(player: Player, object: GameObject, line: DrawingLine) => void>;
 	}
 
 	/**

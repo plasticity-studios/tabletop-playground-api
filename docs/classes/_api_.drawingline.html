@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>TraceHit | Tabletop Playground API</title>
+	<title>DrawingLine | Tabletop Playground API</title>
 	<meta name="description" content="Documentation for Tabletop Playground API">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,10 +57,10 @@
 					<a href="../modules/_api_.html">&quot;api&quot;</a>
 				</li>
 				<li>
-					<a href="_api_.tracehit.html">TraceHit</a>
+					<a href="_api_.drawingline.html">DrawingLine</a>
 				</li>
 			</ul>
-			<h1>Class TraceHit</h1>
+			<h1>Class DrawingLine</h1>
 		</div>
 	</div>
 </header>
@@ -70,7 +70,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A result from a trace</p>
+						<p>A line drawn by a player or created from a script</p>
 					</div>
 				</div>
 			</section>
@@ -78,7 +78,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">TraceHit</span>
+						<span class="target">DrawingLine</span>
 					</li>
 				</ul>
 			</section>
@@ -89,17 +89,17 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_.tracehit.html#distance" class="tsd-kind-icon">distance</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_.tracehit.html#impactposition" class="tsd-kind-icon">impact<wbr>Position</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_.tracehit.html#normal" class="tsd-kind-icon">normal</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_.tracehit.html#object" class="tsd-kind-icon">object</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_.tracehit.html#position" class="tsd-kind-icon">position</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_.drawingline.html#color" class="tsd-kind-icon">color</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_.drawingline.html#normals" class="tsd-kind-icon">normals</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_.drawingline.html#points" class="tsd-kind-icon">points</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_.drawingline.html#rounded" class="tsd-kind-icon">rounded</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_.drawingline.html#thickness" class="tsd-kind-icon">thickness</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.tracehit.html#clone" class="tsd-kind-icon">clone</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.drawingline.html#clone" class="tsd-kind-icon">clone</a></li>
 							</ul>
 						</section>
 					</div>
@@ -108,80 +108,79 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="distance" class="tsd-anchor"></a>
-					<h3>distance</h3>
-					<div class="tsd-signature tsd-kind-icon">distance<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="color" class="tsd-anchor"></a>
+					<h3>color</h3>
+					<div class="tsd-signature tsd-kind-icon">color<span class="tsd-signature-symbol">:</span> <a href="_api_.color.html" class="tsd-signature-type">Color</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/a5d4c8c/index.d.ts#L1897">index.d.ts:1897</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/a5d4c8c/index.d.ts#L1059">index.d.ts:1059</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The distance from the start of the trace to the Location in world space. This value is 0 if there was an initial overlap (trace started inside another colliding object).</p>
+							<p>The color of the line. Default: White</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="impactposition" class="tsd-anchor"></a>
-					<h3>impact<wbr>Position</h3>
-					<div class="tsd-signature tsd-kind-icon">impact<wbr>Position<span class="tsd-signature-symbol">:</span> <a href="_api_.vector.html" class="tsd-signature-type">Vector</a></div>
+					<a name="normals" class="tsd-anchor"></a>
+					<h3>normals</h3>
+					<div class="tsd-signature tsd-kind-icon">normals<span class="tsd-signature-symbol">:</span> <a href="_api_.vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/a5d4c8c/index.d.ts#L1907">index.d.ts:1907</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/a5d4c8c/index.d.ts#L1072">index.d.ts:1072</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Position of the actual contact of the trace shape (box, sphere, line) with the impacted object.
-							Example: for a sphere trace test, this is the point where the surface of the sphere touches the other object.</p>
+							<p>The &quot;up&quot; direction for each line point. If empty, the default up direction (Z=1) is used. If
+							there&#39;s only one element, that direction is used for all points.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="normal" class="tsd-anchor"></a>
-					<h3>normal</h3>
-					<div class="tsd-signature tsd-kind-icon">normal<span class="tsd-signature-symbol">:</span> <a href="_api_.vector.html" class="tsd-signature-type">Vector</a></div>
+					<a name="points" class="tsd-anchor"></a>
+					<h3>points</h3>
+					<div class="tsd-signature tsd-kind-icon">points<span class="tsd-signature-symbol">:</span> <a href="_api_.vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/a5d4c8c/index.d.ts#L1912">index.d.ts:1912</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/a5d4c8c/index.d.ts#L1055">index.d.ts:1055</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Normal of the hit in world space, for the object that was hit by the sweep, if any.
-							For example if a box hits a flat plane, this is a normalized vector pointing out from the plane.</p>
+							<p>Positions of all points that make up the line. Relative to the position of the object that the line is attached to
+							(global positions when the line is attached to the table).</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="object" class="tsd-anchor"></a>
-					<h3>object</h3>
-					<div class="tsd-signature tsd-kind-icon">object<span class="tsd-signature-symbol">:</span> <a href="_api_.gameobject.html" class="tsd-signature-type">GameObject</a></div>
+					<a name="rounded" class="tsd-anchor"></a>
+					<h3>rounded</h3>
+					<div class="tsd-signature tsd-kind-icon">rounded<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/a5d4c8c/index.d.ts#L1893">index.d.ts:1893</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/a5d4c8c/index.d.ts#L1067">index.d.ts:1067</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The object that was hit</p>
+							<p>Whether the start and end point of the line are rounded. Default: true</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="position" class="tsd-anchor"></a>
-					<h3>position</h3>
-					<div class="tsd-signature tsd-kind-icon">position<span class="tsd-signature-symbol">:</span> <a href="_api_.vector.html" class="tsd-signature-type">Vector</a></div>
+					<a name="thickness" class="tsd-anchor"></a>
+					<h3>thickness</h3>
+					<div class="tsd-signature tsd-kind-icon">thickness<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/a5d4c8c/index.d.ts#L1902">index.d.ts:1902</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/a5d4c8c/index.d.ts#L1063">index.d.ts:1063</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The position where the moving shape would end up against the impacted object. Equal to the point of impact for line tests.
-							Example: for a sphere trace test, this is the point where the center of the sphere would be located when it touched the other object.</p>
+							<p>The thickness of the line in cm. Default: 0.5 cm</p>
 						</div>
 					</div>
 				</section>
@@ -192,16 +191,16 @@
 					<a name="clone" class="tsd-anchor"></a>
 					<h3>clone</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">clone<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.tracehit.html" class="tsd-signature-type">TraceHit</a></li>
+						<li class="tsd-signature tsd-kind-icon">clone<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.drawingline.html" class="tsd-signature-type">DrawingLine</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/a5d4c8c/index.d.ts#L1913">index.d.ts:1913</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/a5d4c8c/index.d.ts#L1073">index.d.ts:1073</a></li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <a href="_api_.tracehit.html" class="tsd-signature-type">TraceHit</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.drawingline.html" class="tsd-signature-type">DrawingLine</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -223,25 +222,25 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-module">
-						<a href="_api_.tracehit.html" class="tsd-kind-icon">Trace<wbr>Hit</a>
+						<a href="_api_.drawingline.html" class="tsd-kind-icon">Drawing<wbr>Line</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_api_.tracehit.html#distance" class="tsd-kind-icon">distance</a>
+								<a href="_api_.drawingline.html#color" class="tsd-kind-icon">color</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_api_.tracehit.html#impactposition" class="tsd-kind-icon">impact<wbr>Position</a>
+								<a href="_api_.drawingline.html#normals" class="tsd-kind-icon">normals</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_api_.tracehit.html#normal" class="tsd-kind-icon">normal</a>
+								<a href="_api_.drawingline.html#points" class="tsd-kind-icon">points</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_api_.tracehit.html#object" class="tsd-kind-icon">object</a>
+								<a href="_api_.drawingline.html#rounded" class="tsd-kind-icon">rounded</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_api_.tracehit.html#position" class="tsd-kind-icon">position</a>
+								<a href="_api_.drawingline.html#thickness" class="tsd-kind-icon">thickness</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.tracehit.html#clone" class="tsd-kind-icon">clone</a>
+								<a href="_api_.drawingline.html#clone" class="tsd-kind-icon">clone</a>
 							</li>
 						</ul>
 					</li>

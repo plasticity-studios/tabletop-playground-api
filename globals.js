@@ -23,6 +23,7 @@ module.exports = {
 	Card: 'readonly',
 	CardDetails: 'readonly',
 	SnapPoint: 'readonly',
+	DrawingLine: 'readonly',
 	Container: 'readonly',
 	TraceHit: 'readonly',
 	JSConsole: 'readonly',
