@@ -628,7 +628,9 @@ declare module '@tabletop-playground/api' {
 		*/
 		onInserted: MulticastDelegate<(card: this, insertedCard: Card, position: number, player: Player | undefined) => void>;
 		/**
-		 * Called after a card is dragged from the stack by a player
+		 * Called after a card is removed from the stack by a player. This can happen when a player drags a card off the stack or
+		 * the container explorer, when drawing or dealing cards, or when a player cuts/splits/divides the stack. In the last case,
+		 * the removed card object may be a stack of cards.
 		 * @param {Card} card - The card stack from which the object is removed
 		 * @param {Card} removedCard - The removed card (now grabbed by the player)
 		 * @param {number} position - The position in the stack from which the card was removed. 0 when removed from the front,
@@ -886,6 +888,14 @@ declare module '@tabletop-playground/api' {
 		*/
 		setHandHolder(hand: CardHolder): void;
 		/**
+		 * Set the thickness for lines drawn by this player
+		*/
+		setDrawingThickness(thickness: number): void;
+		/**
+		 * Set the color in which this player is drawing lines
+		*/
+		setDrawingColor(color: Color | [r: number, g: number, b: number, a: number]): void;
+		/**
 		 * Set whether this player is blindfolded
 		*/
 		setBlindfolded(on: boolean): void;
@@ -1070,6 +1080,11 @@ declare module '@tabletop-playground/api' {
 		 * there's only one element, that direction is used for all points.
 		*/
 		normals: Vector[];
+		/**
+		 * Optional tag to identify this line or provide information about it. Only used from scripting, lines created by
+		 * a drawing player have an empty string as tag.
+		*/
+		tag: string;
 		clone() : DrawingLine;
 	}
 
@@ -1491,6 +1506,10 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Remove a drawn line from the object.
 		*/
+		removeDrawingLineObject(line: DrawingLine): void;
+		/**
+		 * Remove the drawn line at the given index from the object
+		*/
 		removeDrawingLine(index: number): void;
 		/**
 		 * Remove a custom action
@@ -1780,7 +1799,8 @@ declare module '@tabletop-playground/api' {
 		*/
 		addUI(element: UIElement): number;
 		/**
-		 * Add a drawn line to the object.
+		 * Add a drawn line to the object. Lines are geometry and can increase the size of the object returned by
+		 * {@link getSize} and {@link getExtent}.
 		*/
 		addDrawingLine(line: DrawingLine): void;
 		/**
@@ -2401,7 +2421,11 @@ declare module '@tabletop-playground/api' {
 		*/
 		removeUI(index: number): void;
 		/**
-		 * Remove a drawn line from the object.
+		 * Remove a drawn line from the table.
+		*/
+		removeDrawingLineObject(line: DrawingLine): void;
+		/**
+		 * Remove a drawn line at the given index from the table.
 		*/
 		removeDrawingLine(index: number): void;
 		/**
@@ -2679,7 +2703,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		addUI(element: UIElement): number;
 		/**
-		 * Add a drawn line to the object.
+		 * Add a drawn line to the table. Does not work if no table exists.
 		*/
 		addDrawingLine(line: DrawingLine): void;
 	}
