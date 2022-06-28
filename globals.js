@@ -25,6 +25,7 @@ module.exports = {
 	SnapPoint: 'readonly',
 	DrawingLine: 'readonly',
 	Container: 'readonly',
+	PlayerPermission: 'readonly',
 	TraceHit: 'readonly',
 	JSConsole: 'readonly',
 	Dice: 'readonly',

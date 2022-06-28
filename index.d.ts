@@ -73,6 +73,19 @@ declare module '@tabletop-playground/api' {
 	/** When a snap point is valid depending on whether its object is flipped, used in {@link SnapPoint}*/
 	enum SnapPointFlipValidity {Always=0, Upright=1, UpsideDown=2}
 
+	/** Presentation style for UI elements, used for {@link UIElement.presentationStyle} */
+	enum UIPresentationStyle {
+		/** The UI element is shown in 3D space, as defined by its position, rotation, and scale. */
+		Regular=0,
+		/** The UI element is shown at its position and with its scale. Rotation is not used and instead the UI is always facing the camera */
+		ViewAligned=1,
+		/** The UI element is shown in 2D on the screen at its position. Rotation and scale are not used, the size on screen corresponds to the
+			size of the UI element. {@link UIElement.useTransparency} does not have an effect, screen UIs can always be partly transparent.
+			Screen presentation is not possible in VR, and the UI will fall back to {@link ViewAligned} for VR players, so make sure to
+			set an appropriate scale even when using screen mode. */
+		Screen=2
+	}
+
 	/** Represent for a single callback function. Use the add() method or the assignment operator = to set the function to call. */
 	class Delegate<T> {
 		/** Set the function to call. When called multiple times, only the final added function will be called. */
@@ -1801,8 +1814,11 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Add a drawn line to the object. Lines are geometry and can increase the size of the object returned by
 		 * {@link getSize} and {@link getExtent}.
+		 * Returns whether the line was added successfully. It can't be added if no table exists,
+		 * if the {@link DrawingLine} is invalid, or if there are already too many lines drawn on
+		 * the table and the new line would go beyond the limit.
 		*/
-		addDrawingLine(line: DrawingLine): void;
+		addDrawingLine(line: DrawingLine): boolean;
 		/**
 		 * Add a custom action that appears in the context menu of the object.
 		 * @param {string} name - The name for the action in the context menu
@@ -1836,6 +1852,49 @@ declare module '@tabletop-playground/api' {
 		 * Returns undefined if the element isn't attached to a game object.
 		*/
 		getOwningObject(): GameObject | undefined;
+	}
+
+	/**
+	 * Defines which players an operation or property applies to. Can include player slots, teams, and the hosting player.
+	*/
+	class PlayerPermission { 
+		/**
+		 * Value
+		*/
+		value: number;
+		clone() : PlayerPermission;
+		/**
+		 * Add a player to the permission
+		*/
+		addPlayer(player?: Player): {permission: PlayerPermission};
+		/**
+		 * Set whether the host is included in the permission. Does not change permissions for player slots or teams.
+		*/
+		setHost(hostIsPermitted?: boolean): {permission: PlayerPermission};
+		/**
+		 * Set which player slots are included in the permission. Does not change permissions for teams or host.
+		*/
+		setPlayerSlots(slots?: number[]): {permission: PlayerPermission};
+		/**
+		 * Set which teams are included in the permission. Does not change permissions for player slots or host.
+		*/
+		setTeams(teams?: number[]): {permission: PlayerPermission};
+		/**
+		 * Add a player to the permission
+		*/
+		static addPlayer(permission?: PlayerPermission, player?: Player): {permission: PlayerPermission};
+		/**
+		 * Set whether the host is included in the permission. Does not change permissions for player slots or teams.
+		*/
+		static setHost(permission?: PlayerPermission, hostIsPermitted?: boolean): {permission: PlayerPermission};
+		/**
+		 * Set which player slots are included in the permission. Does not change permissions for teams or host.
+		*/
+		static setPlayerSlots(permission?: PlayerPermission, slots?: number[]): {permission: PlayerPermission};
+		/**
+		 * Set which teams are included in the permission. Does not change permissions for player slots or host.
+		*/
+		static setTeams(permission?: PlayerPermission, teams?: number[]): {permission: PlayerPermission};
 	}
 
 	/**
@@ -1896,10 +1955,18 @@ declare module '@tabletop-playground/api' {
 		*/
 		anchorY: number;
 		/**
+		 * Determines how the UI is presented to the player, as defined by {@link UIPresentationStyle}.
+		*/
+		presentationStyle: number;
+		/**
 		 * If true, show the UI from both the front and the back. It will be mirrored when seen from the back!
 		 * If false, the UI is invisible from the back. Default: false
 		*/
 		twoSided: boolean;
+		/**
+		 * Determine which players see the UI. By default, it will be shown for all players.
+		*/
+		players: PlayerPermission;
 		clone() : UIElement;
 	}
 
@@ -2028,8 +2095,9 @@ declare module '@tabletop-playground/api' {
 		 * @param {number} volume - The volume multiplier at which to play the sound, 0 < volume < 2. Default: 1
 		 * @param {boolean} loop - If true, play the sound again from the beginning once it finishes playing. You can stop playback using
 		 * {@link stop}, {@link stopLoop}, or by calling a play method with the loop parameter set to false.
+		 * @param {PlayerPermission} players - Determines for which players the sound will be played. By default, it will be played for all players
 		*/
-		playAttached(object: GameObject, startTime?: number, volume?: number, loop?: boolean): void;
+		playAttached(object: GameObject, startTime?: number, volume?: number, loop?: boolean, players?: PlayerPermission): void;
 		/**
 		 * Start playing the sound at a given position. If it is already playing, the playback time will be moved.
 		 * If the sound isn't loaded yet when this method is called, the sound will be played as soon as loading has finished.
@@ -2038,8 +2106,9 @@ declare module '@tabletop-playground/api' {
 		 * @param {number} volume - The volume multiplier at which to play the sound, 0 < volume < 2. Default: 1
 		 * @param {boolean} loop - If true, play the sound again from the beginning once it finishes playing. You can stop playback using
 		 * {@link stop}, {@link stopLoop}, or by calling a play method with the loop parameter set to false.
+		 * @param {PlayerPermission} players - Determines for which players the sound will be played. By default, it will be played for all players
 		*/
-		playAtLocation(position: Vector | [x: number, y: number, z: number], startTime?: number, volume?: number, loop?: boolean): void;
+		playAtLocation(position: Vector | [x: number, y: number, z: number], startTime?: number, volume?: number, loop?: boolean, players?: PlayerPermission): void;
 		/**
 		 * Start playing the sound. It will not appear to come from any location. If it is already playing, the playback time will be moved.
 		 * If the sound isn't loaded yet when this method is called, the sound will be played as soon as loading has finished.
@@ -2047,8 +2116,9 @@ declare module '@tabletop-playground/api' {
 		 * @param {number} volume - The volume multiplier at which to play the sound, 0 < volume < 2. Default: 1
 		 * @param {boolean} loop - If true, play the sound again from the beginning once it finishes playing. You can stop playback using
 		 * {@link stop}, {@link stopLoop}, or by calling a play method with the loop parameter set to false.
+		 * @param {PlayerPermission} players - Determines for which players the sound will be played. By default, it will be played for all players
 		*/
-		play(startTime?: number, volume?: number, loop?: boolean): void;
+		play(startTime?: number, volume?: number, loop?: boolean, players?: PlayerPermission): void;
 		/**
 		 * Return whether the sound is currently playing
 		*/
@@ -2704,8 +2774,11 @@ declare module '@tabletop-playground/api' {
 		addUI(element: UIElement): number;
 		/**
 		 * Add a drawn line to the table. Does not work if no table exists.
+		 * Returns whether the line was added successfully. It can't be added if no table exists,
+		 * if the {@link DrawingLine} is invalid, or if there are already too many lines drawn on
+		 * the table and the new line would go beyond the limit.
 		*/
-		addDrawingLine(line: DrawingLine): void;
+		addDrawingLine(line: DrawingLine): boolean;
 	}
 
 	/**
@@ -2722,8 +2795,10 @@ declare module '@tabletop-playground/api' {
 		 * Players can re-assign them in the interface settings.
 		 * @param {Player} player - Player that pressed the button
 		 * @param {number} index - Index of the action (1-10)
+		 * @param {boolean} ctrl - Whether the ctrl key was held when the player pressed the button
+		 * @param {boolean} alt - Whether the alt key was held when the player pressed the button
 		*/
-		onScriptButtonPressed: MulticastDelegate<(player: Player, index: number) => void>;
+		onScriptButtonPressed: MulticastDelegate<(player: Player, index: number, ctrl: boolean, alt: boolean) => void>;
 		/**
 		 * Called when a player releases a script action button.
 		 * @param {Player} player - Player that pressed the button
