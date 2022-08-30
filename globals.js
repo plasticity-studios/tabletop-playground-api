@@ -33,6 +33,7 @@ module.exports = {
 	Sound: 'readonly',
 	Zone: 'readonly',
 	Package: 'readonly',
+	Label: 'readonly',
 	GlobalScriptingEvents: 'readonly',
 	HttpRequest: 'readonly',
 	MultistateObject: 'readonly',
@@ -53,4 +54,5 @@ module.exports = {
 	Text: 'readonly',
 	TextBox: 'readonly',
 	VerticalBox: 'readonly',
+	WebBrowser: 'readonly',
 };

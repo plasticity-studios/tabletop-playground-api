@@ -173,10 +173,10 @@ declare module '@tabletop-playground/api' {
 	*/
 	class Color implements Iterable<number> { 
 		/**
-		* Make a color from individual color components (RGB space)
-		* @param {number} r - Red component.
-		* @param {number} g - Green component.
-		* @param {number} b - Blue component.
+		* Make a color from individual color components (RGB space). Each component can have values between 0 and 1.
+		* @param {number} r - Red component. Default: 0
+		* @param {number} g - Green component. Default: 0
+		* @param {number} b - Blue component. Default: 0
 		* @param {number} a - Alpha component. Default: 1
 		*/
 		constructor(r: number, g: number, b: number, a?: number);
@@ -760,6 +760,11 @@ declare module '@tabletop-playground/api' {
 		*/
 		deal(count?: number, slots?: number[], faceDown?: boolean, dealToAllHolders?: boolean): void;
 		/**
+		 * Returns if the givben cards can be added to the stack. Will return false if the shape or size of the cards does not match, or if this card is in a card holder, for example.
+		 * @param {Card} cards - Card (stack) to check for adding to the stack
+		*/
+		canAddCards(cards: Card): boolean;
+		/**
 		 * Add cards to the stack. Returns whether the cards have been added successfully. Will not succeed if
 		 * the shape or size of the cards does not match, or if this card is in a card holder.
 		 * @param {Card} cards - Card (stack) to add to the stack
@@ -834,6 +839,16 @@ declare module '@tabletop-playground/api' {
 		*/
 		moveCard(card: Card, index: number): void;
 		/**
+		 * Returns if a card on the holder is rotated to be upside down. Always returns false if the card is not on the holder.
+		 * @param {Card} card - The card to check
+		*/
+		isCardUpsideDown(card: Card): boolean;
+		/**
+		 * Returns if the face of a card on the is visible. Always returns false if the card is not on the holder.
+		 * @param {Card} card - The card to check
+		*/
+		isCardFaceUp(card: Card): boolean;
+		/**
 		 * Insert a card into the holder. Return whether the card was inserted successfully
 		 * @param {Card} card - Card to insert
 		 * @param {number} index - The index at which the new objects will be inserted. By default, it will be inserted at start (index 0)
@@ -904,6 +919,10 @@ declare module '@tabletop-playground/api' {
 		 * Set the thickness for lines drawn by this player
 		*/
 		setDrawingThickness(thickness: number): void;
+		/**
+		 * Set the whether lines drawn by this player should be glowing
+		*/
+		setDrawingGlow(glow: boolean): void;
 		/**
 		 * Set the color in which this player is drawing lines
 		*/
@@ -1098,6 +1117,13 @@ declare module '@tabletop-playground/api' {
 		 * a drawing player have an empty string as tag.
 		*/
 		tag: string;
+		/**
+		 * The emissive strength for this line. Higher values together with bright colors will cause the line to glow.
+		 * A value of 0 (the default) results in no emissive, maximum is 64. The maximum value is used when a player checks
+		 * the "Glow" checkbox while drawing. It corresponds to a alpha channel of 0 (completely erased) in an emissive
+		 * map.
+		*/
+		emissiveStrength: number;
 		clone() : DrawingLine;
 	}
 
@@ -1245,7 +1271,7 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Called every tick.
 		 * @param {GameObject} object - The reference object
-		 * @param {number} milliseconds - Duration of the previous tick
+		 * @param {number} seconds - Duration of the previous tick
 		*/
 		onTick: MulticastDelegate<(object: this, deltaTime: number) => void>;
 		/**
@@ -2053,6 +2079,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		getCurrentFaceName(): string;
 		/**
+		 * Return metadata of face that is currently pointing up
+		*/
+		getCurrentFaceMetadata(): string;
+		/**
 		 * Return index of face that is currently pointing up. Return -1 if the object is invalid.
 		*/
 		getCurrentFaceIndex(): number;
@@ -2060,6 +2090,10 @@ declare module '@tabletop-playground/api' {
 		 * Return all face names for this dice type
 		*/
 		getAllFaceNames(): string[];
+		/**
+		 * Return all face metadata for this dice type
+		*/
+		getAllFaceMetadata(): string[];
 	}
 
 	/**
@@ -2231,7 +2265,7 @@ declare module '@tabletop-playground/api' {
 		setInserting(permission: number): void;
 		/**
 		 * Set the zone's unique id. Returns whether the id was changed successfully.
-		 * Fails if the id is already used by another object or zone.
+		 * Fails if the id is already used by another zone.
 		 * @param {string} id - The new unique id
 		*/
 		setId(iD: string): boolean;
@@ -2251,7 +2285,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		setAlwaysVisible(alwaysVisible: boolean): void;
 		/**
-		 * Return whether the zone is valid. A zone becomes invalid after it has been destroyed
+		 * Return whether the zone is valid. A zone becomes invalid after it has been destroyed or deleted by a player
 		*/
 		isValid(): boolean;
 		/**
@@ -2374,6 +2408,110 @@ declare module '@tabletop-playground/api' {
 		 * Return filenames (including relative paths) for all fonts in this package.
 		*/
 		getFontFiles(): string[];
+	}
+
+	/**
+	 * An label that shows text on the table. Can be placed and modified by players
+	*/
+	class Label { 
+		/**
+		 * Set the label's text
+		 * @param {string} text - The new text
+		*/
+		setText(text: string): void;
+		/**
+		 * Set the label's scale.
+		 * @param {number} scale - The new scale
+		*/
+		setScale(scale: number): void;
+		/**
+		 * Set the label's rotation.
+		 * @param {Rotator} rotation - The new rotation
+		*/
+		setRotation(rotation: Rotator | [pitch: number, yaw: number, roll: number]): void;
+		/**
+		 * Set the label's position.
+		 * @param {Vector} position - The new position
+		*/
+		setPosition(position: Vector | [x: number, y: number, z: number]): void;
+		/**
+		 * Set the label's player slot. Set to -1 to remove association to a slot. If a player slot is set, the label text will
+		 * be the player's name in that slot, or the slot name if there is no player in the slot.
+		 * @param {Color} color - The new text
+		*/
+		setPlayerSlot(slot: number): void;
+		/**
+		 * Set the label's unique id. Returns whether the id was changed successfully.
+		 * Fails if the id is already used by another label.
+		 * @param {string} id - The new unique id
+		*/
+		setId(iD: string): boolean;
+		/**
+		 * Set the TrueType font file used for the label. Place your font files in the "Fonts" folder
+		 * of your package.
+		 * @param {string} fontFilename - The filename of the TTF file to load. Set to empty string
+		 * to use the standard font.
+		 * @param {string} packageId - The id of the package that contains the TTF file (in the
+		 * Fonts folder). Can usually be empty when used from scripts to use the same package
+		 * that contains the script file, but you need to explicitly pass {@link refPackageId} for
+		 * the current package or a package id when you use it in a callback. You can find package
+		 * ids in the manifest.json file in package folders. Usually you won't use this parameter,
+		 * unless you have a specific reason to load a font from a different package than where
+		 * the script is located.
+		*/
+		setFont(fontFilename: string, packageId?: string): void;
+		/**
+		 * Set the label's color
+		 * @param {Color} color - The new color
+		*/
+		setColor(color: Color | [r: number, g: number, b: number, a: number]): void;
+		/**
+		 * Return whether the label is valid. A label becomes invalid after it has been destroyed or deleted by a player
+		*/
+		isValid(): boolean;
+		/**
+		 * Return the label's text
+		*/
+		getText(): string;
+		/**
+		 * Return the label's scale
+		*/
+		getScale(): number;
+		/**
+		 * Return the label's rotation
+		*/
+		getRotation(): Rotator;
+		/**
+		 * Return the label's position
+		*/
+		getPosition(): Vector;
+		/**
+		 * Return the label's player slot. If no player slot is set, returns -1. If a player slot is set, the label text will
+		 * be the player's name in that slot, or the slot name if there is no player in the slot.
+		*/
+		getPlayerSlot(): number;
+		/**
+		 * Return the label's unique id
+		*/
+		getId(): string;
+		/**
+		 * Return the package id for the package containing the TrueType font used for the label.
+		 * Returns an empty string if no custom font is used.
+		*/
+		getFontPackage(): string;
+		/**
+		 * Return the filename for the custom TrueType font used for the label. Returns an empty string
+		 * if no custom font is used.
+		*/
+		getFontFileName(): string;
+		/**
+		 * Return the label's color
+		*/
+		getColor(): Color;
+		/**
+		 * Destroy the label
+		*/
+		destroy(): void;
 	}
 
 	/**
@@ -2588,7 +2726,7 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Return whether a message with results is shown whenever rolled dice come to rest
 		*/
-		getShowDiceRollMessages(show: boolean): boolean;
+		getShowDiceRollMessages(): boolean;
 		/**
 		 * Return data that was stored using {@link setSavedData} or loaded from a saved state.
 		 * @param {string} key - Key for which to retrieve the data.
@@ -2623,6 +2761,11 @@ declare module '@tabletop-playground/api' {
 		 * @param {string} objectId - The unique id of the object
 		*/
 		getObjectById(objectId: string): GameObject | undefined;
+		/**
+		 * Return the zone with the specified id
+		 * @param {string} objectId - The unique id of the zone
+		*/
+		getLabelById(labelId: string): Label | undefined;
 		/**
 		 * Return the current gravity multiplier
 		*/
@@ -2673,6 +2816,10 @@ declare module '@tabletop-playground/api' {
 		 * {@link Container.getItems} to load and return items in lazy containers. Default: false
 		*/
 		getAllObjects(skipContained?: boolean): GameObject[];
+		/**
+		 * Get all zones currently in the game
+		*/
+		getAllLabels(): Label[];
 		/**
 		 * Draw a point. The sphere will only be visible on for the host!
 		 * @param {Vector} position - Position of the point
@@ -2726,6 +2873,11 @@ declare module '@tabletop-playground/api' {
 		 * @param {Vector} position - Starting position
 		*/
 		createObjectFromJSON(jsonString: string, position: Vector | [x: number, y: number, z: number]): GameObject | undefined;
+		/**
+		 * Create a new label with default parameters
+		 * @param {Vector} position - The position of the new label
+		*/
+		createLabel(position: Vector | [x: number, y: number, z: number]): Label;
 		/**
 		 * Clear the built-in JavaScript console. The same effect can be achieved by entering "clear()" in the console.
 		*/
@@ -2787,7 +2939,7 @@ declare module '@tabletop-playground/api' {
 	class GlobalScriptingEvents { 
 		/**
 		 * Called every tick.
-		 * @param {number} milliseconds - Duration of the previous tick
+		 * @param {number} seconds - Duration of the previous tick
 		*/
 		onTick: MulticastDelegate<(milliseconds: number) => void>;
 		/**
@@ -3107,6 +3259,10 @@ declare module '@tabletop-playground/api' {
 		 * @param {Widget} child - The widget to remove
 		*/
 		removeChild(child: Widget): void;
+		/**
+		 * Return all child widgets of the canvas
+		*/
+		getChildren(): Widget[];
 		/**
 		 * Add a child widget to the canvas.
 		 * @param {Widget} child - The widget to add
@@ -3703,7 +3859,7 @@ declare module '@tabletop-playground/api' {
 		setSelectTextOnFocus(selectAll: boolean): TextBox;
 		/**
 		 * Set the maximum number of characters allowed for this text box
-		 * @param {number} length - Maximum number of characters. Must be between 1 and 255. Default: 100
+		 * @param {number} length - Maximum number of characters. Must be between 1 and 1023. Default: 100
 		*/
 		setMaxLength(length: number): TextBox;
 		/**
@@ -3753,6 +3909,64 @@ declare module '@tabletop-playground/api' {
 	 * A widget that contains other widgets and orders its children vertically
 	*/
 	class VerticalBox extends Panel { 
+	}
+
+	/**
+	 * A widget that embeds a web browser. This widget always captures the mouse wheel when the mouse cursor is over the browser.
+	 * The keyboard is captured when clicking anywhere on the browser and released when the mouse cursor leaves the widget.
+	 * Because of an issue in Unreal Engine, this widget should be used as the only widget in a {@link UIElement},
+	 * otherwise the colors shown in the browser will not be correct (missing sRGB to linear color conversion).
+	*/
+	class WebBrowser extends Widget { 
+		/**
+		 * Called when the URL changes through an action (clicking on a link, going backward or forward). Not called when
+		 * setting the URL through {@link setURL}.
+		*/
+		onURLChanged: MulticastDelegate<(browser: this, uRL: string) => void>;
+		/**
+		 * Called when a new document starts loading
+		*/
+		onLoadStarted: MulticastDelegate<(browser: this) => void>;
+		/**
+		 * Called when a document has finished loading
+		*/
+		onLoadFinished: MulticastDelegate<(browser: this, success: boolean) => void>;
+		/**
+		 * Stop loading the current document. Does not have an effect if the document is already loaded.
+		*/
+		stopLoad(): void;
+		/**
+		 * Set the current URL. Local URLs (file:// protocol) are not permitted.
+		*/
+		setURL(url: string): WebBrowser;
+		/**
+		 * Reload the currently shown document
+		*/
+		reload(): void;
+		/**
+		 * Return whether the browser is currently loading a document.
+		*/
+		isLoading(): boolean;
+		/**
+		 * * Go back to the next document
+		*/
+		goForward(): void;
+		/**
+		 * * Go back to the previous document
+		*/
+		goBack(): void;
+		/**
+		 * Get the current URL
+		*/
+		getURL(): string;
+		/**
+		 * Return whether the browser can currently go forward
+		*/
+		canGoForward(): boolean;
+		/**
+		 * Return whether the browser can currently go back
+		*/
+		canGoBack(): boolean;
 	}
 
 	var globalEvents : GlobalScriptingEvents;
