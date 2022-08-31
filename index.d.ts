@@ -760,7 +760,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		deal(count?: number, slots?: number[], faceDown?: boolean, dealToAllHolders?: boolean): void;
 		/**
-		 * Returns if the givben cards can be added to the stack. Will return false if the shape or size of the cards does not match, or if this card is in a card holder, for example.
+		 * Returns if the given cards can be added to the stack. Will return false if the shape or size of the cards does not match, or if this card is in a card holder, for example.
 		 * @param {Card} cards - Card (stack) to check for adding to the stack
 		*/
 		canAddCards(cards: Card): boolean;
