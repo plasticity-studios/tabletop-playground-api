@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ObjectType | Tabletop Playground API</title>
+	<title>GridType | Tabletop Playground API</title>
 	<meta name="description" content="Documentation for Tabletop Playground API">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,10 +57,10 @@
 					<a href="../modules/_api_.html">&quot;api&quot;</a>
 				</li>
 				<li>
-					<a href="_api_.objecttype.html">ObjectType</a>
+					<a href="_api_.gridtype.html">GridType</a>
 				</li>
 			</ul>
-			<h1>Enumeration ObjectType</h1>
+			<h1>Enumeration GridType</h1>
 		</div>
 	</div>
 </header>
@@ -70,7 +70,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>The object type used in <a href="../classes/_api_.gameobject.html#getobjecttype">GameObject.getObjectType</a> and <a href="../classes/_api_.gameobject.html#setobjecttype">GameObject.setObjectType</a></p>
+						<p>Type of the snap grid, used in <a href="../classes/_api_.globalgrid.html">GlobalGrid</a></p>
 					</div>
 				</div>
 			</section>
@@ -81,9 +81,8 @@
 						<section class="tsd-index-section ">
 							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_api_.objecttype.html#ground" class="tsd-kind-icon">Ground</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_api_.objecttype.html#penetrable" class="tsd-kind-icon">Penetrable</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_api_.objecttype.html#regular" class="tsd-kind-icon">Regular</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_api_.gridtype.html#hexagonal" class="tsd-kind-icon">Hexagonal</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_api_.gridtype.html#rectangular" class="tsd-kind-icon">Rectangular</a></li>
 							</ul>
 						</section>
 					</div>
@@ -92,49 +91,24 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Enumeration members</h2>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="ground" class="tsd-anchor"></a>
-					<h3>Ground</h3>
-					<div class="tsd-signature tsd-kind-icon">Ground<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 1</span></div>
+					<a name="hexagonal" class="tsd-anchor"></a>
+					<h3>Hexagonal</h3>
+					<div class="tsd-signature tsd-kind-icon">Hexagonal<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 1</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/795c41c/index.d.ts#L44">index.d.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/795c41c/index.d.ts#L90">index.d.ts:90</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Physics get locked when object is at rest, collides with all object types</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="penetrable" class="tsd-anchor"></a>
-					<h3>Penetrable</h3>
-					<div class="tsd-signature tsd-kind-icon">Penetrable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 2</span></div>
+					<a name="rectangular" class="tsd-anchor"></a>
+					<h3>Rectangular</h3>
+					<div class="tsd-signature tsd-kind-icon">Rectangular<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/795c41c/index.d.ts#L46">index.d.ts:46</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/795c41c/index.d.ts#L90">index.d.ts:90</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Physics stay activated as for regular objects, does not collide with other penetrable or regular objects</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="regular" class="tsd-anchor"></a>
-					<h3>Regular</h3>
-					<div class="tsd-signature tsd-kind-icon">Regular<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 0</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/795c41c/index.d.ts#L42">index.d.ts:42</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Standard object behavior: physics stay activated (if locked physics is not enabled), collides with other regular and ground objects</p>
-						</div>
-					</div>
 				</section>
 			</section>
 		</div>
@@ -154,16 +128,13 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-enum tsd-parent-kind-module">
-						<a href="_api_.objecttype.html" class="tsd-kind-icon">Object<wbr>Type</a>
+						<a href="_api_.gridtype.html" class="tsd-kind-icon">Grid<wbr>Type</a>
 						<ul>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="_api_.objecttype.html#ground" class="tsd-kind-icon">Ground</a>
+								<a href="_api_.gridtype.html#hexagonal" class="tsd-kind-icon">Hexagonal</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="_api_.objecttype.html#penetrable" class="tsd-kind-icon">Penetrable</a>
-							</li>
-							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="_api_.objecttype.html#regular" class="tsd-kind-icon">Regular</a>
+								<a href="_api_.gridtype.html#rectangular" class="tsd-kind-icon">Rectangular</a>
 							</li>
 						</ul>
 					</li>
