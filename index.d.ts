@@ -86,6 +86,15 @@ declare module '@tabletop-playground/api' {
 		Screen=2
 	}
 
+	/** Type of the snap grid, used in {@link GlobalGrid}*/
+	enum GridType {Rectangular=0, Hexagonal=1}
+
+	/** Where objects snap on the grid, used in {@link GlobalGrid}*/
+	enum GridSnapType {None=0, Center=1, Corners=2, Both=3}
+
+	/** If and where the snap grid is visible, used in {@link GlobalGrid}*/
+	enum GridVisibility {None=0, Table=1, TableAndGround=2}
+
 	/** Represent for a single callback function. Use the add() method or the assignment operator = to set the function to call. */
 	class Delegate<T> {
 		/** Set the function to call. When called multiple times, only the final added function will be called. */
@@ -928,7 +937,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		setDrawingColor(color: Color | [r: number, g: number, b: number, a: number]): void;
 		/**
-		 * Set whether this player is blindfolded
+		 * Set whether the player is blindfolded
 		*/
 		setBlindfolded(on: boolean): void;
 		/**
@@ -939,6 +948,10 @@ declare module '@tabletop-playground/api' {
 		 * Return whether the player is valid. A player becomes invalid when it drops out from the game
 		*/
 		isValid(): boolean;
+		/**
+		 * Return whether the player is using a VR headset to play.
+		*/
+		isUsingVR(): boolean;
 		/**
 		 * Return whether a script action key is held by the player
 		*/
@@ -956,7 +969,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		isHolding(): boolean;
 		/**
-		 * Return whether this player is currently blindfolded
+		 * Return whether the player is currently blindfolded
 		*/
 		isBlindfolded(): boolean;
 		/**
@@ -1290,7 +1303,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		onReleased: MulticastDelegate<(object: this, player: Player, thrown: boolean, grabPosition: Vector | [x: number, y: number, z: number], grabRotation: Rotator | [pitch: number, yaw: number, roll: number]) => void>;
 		/**
-		 * Called when the object is snapped on releasing.
+		 * Called when the object is snapped to a snap point on releasing. Not called when snapping to the global grid, in that case {@link onSnappedToGrid} is called instead.
 		 * @param {GameObject} object - The object being released
 		 * @param {Player} player - The player that released the object
 		 * @param {SnapPoint} snapPoint - The point that the object is moved to
@@ -1298,6 +1311,14 @@ declare module '@tabletop-playground/api' {
 		 * @param {Rotator} grabRotation - The rotation this object had when it was grabbed.
 		*/
 		onSnapped: MulticastDelegate<(object: this, player: Player, snapPoint: SnapPoint, grabPosition: Vector | [x: number, y: number, z: number], grabRotation: Rotator | [pitch: number, yaw: number, roll: number]) => void>;
+		/**
+		 * Called when the object is snapped  to the global grid on releasing.
+		 * @param {GameObject} object - The object being released
+		 * @param {Player} player - The player that released the object
+		 * @param {Vector} grabPosition - The position where this object was when it was grabbed. Zero if it hasn't been grabbed (for example when it was dragged from the object library)
+		 * @param {Rotator} grabRotation - The rotation this object had when it was grabbed.
+		*/
+		onSnappedToGrid: MulticastDelegate<(object: this, player: Player, grabPosition: Vector | [x: number, y: number, z: number], grabRotation: Rotator | [pitch: number, yaw: number, roll: number]) => void>;
 		/**
 		 * Called when the object is reset to its position before being picked up.
 		 * @param {GameObject} object - The object being reset
@@ -1888,39 +1909,22 @@ declare module '@tabletop-playground/api' {
 		 * Value
 		*/
 		value: number;
-		clone() : PlayerPermission;
-		/**
-		 * Add a player to the permission
-		*/
-		addPlayer(player?: Player): {permission: PlayerPermission};
-		/**
-		 * Set whether the host is included in the permission. Does not change permissions for player slots or teams.
-		*/
-		setHost(hostIsPermitted?: boolean): {permission: PlayerPermission};
-		/**
-		 * Set which player slots are included in the permission. Does not change permissions for teams or host.
-		*/
-		setPlayerSlots(slots?: number[]): {permission: PlayerPermission};
 		/**
 		 * Set which teams are included in the permission. Does not change permissions for player slots or host.
 		*/
-		setTeams(teams?: number[]): {permission: PlayerPermission};
-		/**
-		 * Add a player to the permission
-		*/
-		static addPlayer(permission?: PlayerPermission, player?: Player): {permission: PlayerPermission};
-		/**
-		 * Set whether the host is included in the permission. Does not change permissions for player slots or teams.
-		*/
-		static setHost(permission?: PlayerPermission, hostIsPermitted?: boolean): {permission: PlayerPermission};
+		setTeams(teams: number[]): PlayerPermission;
 		/**
 		 * Set which player slots are included in the permission. Does not change permissions for teams or host.
 		*/
-		static setPlayerSlots(permission?: PlayerPermission, slots?: number[]): {permission: PlayerPermission};
+		setPlayerSlots(slots: number[]): PlayerPermission;
 		/**
-		 * Set which teams are included in the permission. Does not change permissions for player slots or host.
+		 * Set whether the host is included in the permission. Does not change permissions for player slots or teams.
 		*/
-		static setTeams(permission?: PlayerPermission, teams?: number[]): {permission: PlayerPermission};
+		setHost(hostIsPermitted: boolean): PlayerPermission;
+		/**
+		 * Add a player to the permission
+		*/
+		addPlayer(player: Player): PlayerPermission;
 	}
 
 	/**
@@ -1939,7 +1943,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		widget: Widget;
 		/**
-		 * The center position of the component. Relative to the object center when attached to an object.
+		 * The position of the UI element. Relative to the object center when attached to an object.
 		*/
 		position: Vector;
 		/**
@@ -2027,6 +2031,65 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
+	 * Represents a UI element on the screen. Can be added to the screen using {@link GameWorld.addScreenUI}.
+	 * If you want to modify values of the UI element after adding it, for example to modify its location,
+	 * you need to call {@link GameWorld.updateScreenUI} afterwards to apply the update.<br>
+	 * You can't modify the {@link widget} property as an update, but you can change properties of the widget
+	 * without needing to call updateScreenUI.<br>
+	 * Screen UI elements are not visible for VR players, because there is no screen in VR where they could be
+	 * attached. Don't use screen UI for elements that are required for playing, or VR players won't be able
+	 * to play properly! You can also check whether a player is using VR with {@link Player.isUsingVR} and
+	 * add a 3D UI only for VR players using {@link UIElement.players}.
+	*/
+	class ScreenUIElement { 
+		/**
+		 * The main widget of this component
+		*/
+		widget: Widget;
+		/**
+		 * The X position of the UI element on the screen. Can be in pixels or relative to the screen size.
+		*/
+		positionX: number;
+		/**
+		 * The X position of the UI element on the screen. Can be in pixels or relative to the screen size.
+		*/
+		positionY: number;
+		/**
+		 * If true, {@link positionX} is relative to the screen (or window) size instead of in pixels, where the whole
+		 * screen is 1.0 units wide. Default: true
+		*/
+		relativePositionX: boolean;
+		/**
+		 * If true, {@link positionY} is relative to the screen (or window) size instead of in pixels, where the whole
+		 * screen is 1.0 units high. Default: true
+		*/
+		relativePositionY: boolean;
+		/**
+		 * Width to use for rendering the UI. Can be in pixels or relative to the screen size. Default: 160
+		*/
+		width: number;
+		/**
+		 * Height to use for rendering the UI. Can be in pixels or relative to the screen size. Default: 90
+		*/
+		height: number;
+		/**
+		 * If true, {@link width} is relative to the screen (or window) size instead of in pixels, where the whole screen
+		 * is 1.0 units wide. Default: false
+		*/
+		relativeWidth: boolean;
+		/**
+		 * If true, {@link height} is relative to the screen (or window) size instead of in pixels, where the whole screen
+		 * is 1.0 units high. Default: false
+		*/
+		relativeHeight: boolean;
+		/**
+		 * Determine which players see the UI. By default, it will be shown for all players (except for VR players).
+		*/
+		players: PlayerPermission;
+		clone() : ScreenUIElement;
+	}
+
+	/**
 	 * JSConsole
 	*/
 	class JSConsole { 
@@ -2094,6 +2157,140 @@ declare module '@tabletop-playground/api' {
 		 * Return all face metadata for this dice type
 		*/
 		getAllFaceMetadata(): string[];
+	}
+
+	/**
+	 * Contains methods to modify and check the global snap grid. Accessed through {@link GameWorld.grid}
+	*/
+	class GlobalGrid { 
+		/**
+		 * Set the width of each grid cell in cm
+		*/
+		setWidth(width: number): void;
+		/**
+		 * Set the visibility of the grid as defined by {@link GridVisibility}
+		*/
+		setVisibility(visibility: number): void;
+		/**
+		 * Set an offset for the grid relative to the height of a cell (between 0 and 1)
+		*/
+		setVerticalOffset(offset: number): void;
+		/**
+		 * Set the type of the grid, as defined by {@link GridType}
+		*/
+		setType(type: number): void;
+		/**
+		 * Set whether thick lines are used to display the grid
+		*/
+		setThickLines(thick: boolean): void;
+		/**
+		 * Set how objects snap to the grid, as defined by {@link GridSnapType}
+		*/
+		setSnapType(type: number): void;
+		/**
+		 * Set the rotation of the grid in degrees
+		*/
+		setRotation(rotation: number): void;
+		/**
+		 * Set an offset for the grid relative to the width of a cell (between 0 and 1)
+		*/
+		setHorizontalOffset(offset: number): void;
+		/**
+		 * Set the height of each grid cell in cm
+		*/
+		setHeight(height: number): void;
+		/**
+		 * Set the color of the grid
+		*/
+		setColor(color: Color | [r: number, g: number, b: number, a: number]): void;
+		/**
+		 * Return whether thick lines are used to display the grid
+		*/
+		hasThickLines(): boolean;
+		/**
+		 * Return the width of each grid cell in cm
+		*/
+		getWidth(): number;
+		/**
+		 * Return the type of the grid as defined by {@link GridVisibility}
+		*/
+		getVisibility(): number;
+		/**
+		 * Return the vertical grid offset
+		*/
+		getVerticalOffset(): number;
+		/**
+		 * Return the type of the grid, as defined by {@link GridType}
+		*/
+		getType(): number;
+		/**
+		 * Return how objects snap to the grid, as defined by {@link GridSnapType}
+		*/
+		getSnapType(): number;
+		/**
+		 * Return the rotation of the grid in degrees (between -90 and 90)
+		*/
+		getRotation(): number;
+		/**
+		 * Return the horizontal grid offset
+		*/
+		getHorizontalOffset(): number;
+		/**
+		 * Return the height of each grid cell in cm
+		*/
+		getHeight(): number;
+		/**
+		 * Return the color of the grid
+		*/
+		getColor(): Color;
+	}
+
+	/**
+	 * Contains methods to modify and check the global snap grid. Accessed through {@link GameWorld.lighting}
+	*/
+	class LightingSettings { 
+		/**
+		 * Set the specular intensity for the main directional light. Only a value of 1 is physically correct,
+		 * lower values can be used to reduce specular highlights. Minimum 0, maximum 1. Default: 1
+		*/
+		setMainLightSpecularIntensity(intensity: number): void;
+		/**
+		 * Set the intensity multiplier of the main directional light. Minimum 0.2, maximum 5. Default: 1.0
+		*/
+		setMainLightIntensity(intensity: number): void;
+		/**
+		 * Set the color of the main directional light. Default: White
+		*/
+		setMainLightColor(color: Color | [r: number, g: number, b: number, a: number]): void;
+		/**
+		 * Set the azimuth angle of the main directional light. Minimum -180, maximum 180. Default: 0
+		*/
+		setMainLightAzimuth(angle: number): void;
+		/**
+		 * Set the altitude angle of the main directional light. Minimum 10, maximum 90. Default: 90
+		*/
+		setMainLightAltitude(angle: number): void;
+		/**
+		 * Return the specular intensity for the main directional light. Only a value of 1 is physically correct,
+		 * lower values can be used to reduce specular highlights. Minimum 0, maximum 1. Default: 1
+		*/
+		getMainLightSpecularIntensity(): number;
+		/**
+		 * Return the intensity multiplier of the main directional light.
+		*/
+		getMainLightIntensity(): number;
+		/**
+		 * Return the color of the main directional light
+		*/
+		getMainLightColor(): Color;
+		/**
+		 * Return the azimuth angle of the main directional light.
+		*/
+		getMainLightAzimuth(): number;
+		/**
+		 * Return the altitude angle of the main directional light.
+		*/
+		getMainLightAltitude(): number;
 	}
 
 	/**
@@ -2520,11 +2717,25 @@ declare module '@tabletop-playground/api' {
 	*/
 	class GameWorld { 
 		/**
+		 * Access to the global grid configuration
+		*/
+		grid: GlobalGrid;
+		/**
+		 * Access to the lighting configuration
+		*/
+		lighting: LightingSettings;
+		/**
 		 * Update a global UI element. Will not do anything if called with a UI element that is not currently part of
 		 * the global UI elements.
 		 * @param {UIElement} - The UI element to be updated
 		*/
 		updateUI(element: UIElement): void;
+		/**
+		 * Update a global UI element. Will not do anything if called with a UI element that is not currently part of
+		 * the global UI elements.
+		 * @param {UIElement} - The UI element to be updated
+		*/
+		updateScreenUI(element: ScreenUIElement): void;
 		/**
 		 * Start debug mode on the given port. You can use the Chrome DevTools or the Visual Studio Code debugger
 		 * to connect to the specified port and debug your scripts.<br>
@@ -2584,6 +2795,12 @@ declare module '@tabletop-playground/api' {
 		*/
 		setShowDiceRollMessages(show: boolean): void;
 		/**
+		 * Replace a global UI element. Will not do anything if called with an index that doesn't have a UI element.
+		 * @param {number} - The index of the UI element to replace
+		 * @param {UIElement} - The UI element to be stored at the index
+		*/
+		setScreenUI(index: number, element: ScreenUIElement): void;
+		/**
 		 * Set the data that will stored in save game states. The data is available using {@link getSavedData} when the global
 		 * script is run after loading a save state. Try to keep this data small and don't change it frequently, it needs to
 		 * be sent over the network to all clients. A similar method exists for each game object:
@@ -2628,6 +2845,16 @@ declare module '@tabletop-playground/api' {
 		 * @param {index} index - The index of the UI element to remove
 		*/
 		removeUI(index: number): void;
+		/**
+		 * Remove a global UI element.
+		 * @param {UIElement} - The UI element to be removed
+		*/
+		removeScreenUIElement(element: ScreenUIElement): void;
+		/**
+		 * Remove a global UI element.
+		 * @param {index} index - The index of the UI element to remove
+		*/
+		removeScreenUI(index: number): void;
 		/**
 		 * Remove a drawn line from the table.
 		*/
@@ -2727,6 +2954,11 @@ declare module '@tabletop-playground/api' {
 		 * Return whether a message with results is shown whenever rolled dice come to rest
 		*/
 		getShowDiceRollMessages(): boolean;
+		/**
+		 * Get an array of all global UI elements. Modifying the array won't change
+		 * the actual UIs, use {@link setUI} or {@link updateUI} to update.
+		*/
+		getScreenUIs(): ScreenUIElement[];
 		/**
 		 * Return data that was stored using {@link setSavedData} or loaded from a saved state.
 		 * @param {string} key - Key for which to retrieve the data.
@@ -2924,6 +3156,12 @@ declare module '@tabletop-playground/api' {
 		 * @returns {number} - The index of the added UI element
 		*/
 		addUI(element: UIElement): number;
+		/**
+		 * Add a new global UI element in the world
+		 * @param {UIElement} element - The UI element to add
+		 * @returns {number} - The index of the added UI element
+		*/
+		addScreenUI(element: ScreenUIElement): number;
 		/**
 		 * Add a drawn line to the table. Does not work if no table exists.
 		 * Returns whether the line was added successfully. It can't be added if no table exists,
@@ -3728,6 +3966,14 @@ declare module '@tabletop-playground/api' {
 		*/
 		setSelectedIndex(index: number): SelectionBox;
 		/**
+		 * Set all available options
+		*/
+		setOptions(options: string[]): SelectionBox;
+		/**
+		 * Remove an existing option. Has no effect if the option does not exist.
+		*/
+		removeOption(option: string): SelectionBox;
+		/**
 		 * Return the currently selected option
 		*/
 		getSelectedOption(): string;
@@ -3735,6 +3981,10 @@ declare module '@tabletop-playground/api' {
 		 * Get the index of the currently selected option. -1 if nothing is selected because this selection box has no options.
 		*/
 		getSelectedIndex(): number;
+		/**
+		 * Return all available options
+		*/
+		getOptions(): string[];
 		/**
 		 * Add an option at the end
 		*/
