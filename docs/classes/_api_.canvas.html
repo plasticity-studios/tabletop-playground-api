@@ -70,10 +70,14 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A widget that can contain other widgets at fixed coordinates. A canvas has no size of its own,
+						<p>A widget that can contain other widgets at fixed coordinates. A Canvas has no size of its own,
 							so you need to explicitly set the widget size in the <a href="_api_.uielement.html">UIElement</a> and set
 							<a href="_api_.uielement.html#usewidgetsize">UIElement.useWidgetSize</a> to false when using it. Widget coordinates are in pixels, at
-						default scale one pixel corresponds to 1 mm in the game world.</p>
+							default scale one pixel corresponds to 1 mm in the game world. <br>
+							Usually you&#39;ll use a Canvas as the top widget in a <a href="_api_.uielement.html">UIElement</a> or <a href="_api_.screenuielement.html">ScreenUIElement</a>,
+							but you can also use it as a child of other widgets. In particular, using a Canvas inside of
+							a <a href="_api_.layoutbox.html">LayoutBox</a> with an override size inside of a layout where widget size is automatic
+						(for example in a <a href="_api_.verticalbox.html">VerticalBox</a>) can be useful.</p>
 					</div>
 				</div>
 			</section>
@@ -102,8 +106,10 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.canvas.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.canvas.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.canvas.html#isenabled" class="tsd-kind-icon">is<wbr>Enabled</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.canvas.html#isvisible" class="tsd-kind-icon">is<wbr>Visible</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.canvas.html#removechild" class="tsd-kind-icon">remove<wbr>Child</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.canvas.html#setenabled" class="tsd-kind-icon">set<wbr>Enabled</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.canvas.html#setvisible" class="tsd-kind-icon">set<wbr>Visible</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.canvas.html#updatechild" class="tsd-kind-icon">update<wbr>Child</a></li>
 							</ul>
 						</section>
@@ -122,7 +128,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/795c41c/index.d.ts#L3512">index.d.ts:3512</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/0fb446c/index.d.ts#L3624">index.d.ts:3624</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -177,7 +183,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/795c41c/index.d.ts#L3503">index.d.ts:3503</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/0fb446c/index.d.ts#L3615">index.d.ts:3615</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -200,7 +206,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.widget.html">Widget</a>.<a href="_api_.widget.html#getowningobject">getOwningObject</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/795c41c/index.d.ts#L1901">index.d.ts:1901</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/0fb446c/index.d.ts#L1989">index.d.ts:1989</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -224,7 +230,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.widget.html">Widget</a>.<a href="_api_.widget.html#getparent">getParent</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/795c41c/index.d.ts#L1896">index.d.ts:1896</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/0fb446c/index.d.ts#L1984">index.d.ts:1984</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -248,12 +254,35 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.widget.html">Widget</a>.<a href="_api_.widget.html#isenabled">isEnabled</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/795c41c/index.d.ts#L1891">index.d.ts:1891</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/0fb446c/index.d.ts#L1979">index.d.ts:1979</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Return whether the widget is currently enabled (see <a href="_api_.canvas.html#setenabled">setEnabled</a>).</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="isvisible" class="tsd-anchor"></a>
+					<h3>is<wbr>Visible</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Visible<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_api_.widget.html">Widget</a>.<a href="_api_.widget.html#isvisible">isVisible</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/0fb446c/index.d.ts#L1975">index.d.ts:1975</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return whether the widget is currently visible (see <a href="_api_.canvas.html#setvisible">setVisible</a>).</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -270,7 +299,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/795c41c/index.d.ts#L3499">index.d.ts:3499</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/0fb446c/index.d.ts#L3611">index.d.ts:3611</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -302,7 +331,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.widget.html">Widget</a>.<a href="_api_.widget.html#setenabled">setEnabled</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/795c41c/index.d.ts#L1887">index.d.ts:1887</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/0fb446c/index.d.ts#L1971">index.d.ts:1971</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -325,6 +354,40 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="setvisible" class="tsd-anchor"></a>
+					<h3>set<wbr>Visible</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Visible<span class="tsd-signature-symbol">(</span>visible<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.widget.html" class="tsd-signature-type">Widget</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_api_.widget.html">Widget</a>.<a href="_api_.widget.html#setvisible">setVisible</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/0fb446c/index.d.ts#L1964">index.d.ts:1964</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set whether the widget is visible. When a widget that contains other widgets (like <a href="_api_.verticalbox.html">VerticalBox</a>) is
+										invisible, all its children are invisible, too. The layout of widgets is updated when visibility changes,
+									and invisible widgets are treated as if they don&#39;t exist.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>visible: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Whether the widget is visible.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.widget.html" class="tsd-signature-type">Widget</a></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="updatechild" class="tsd-anchor"></a>
 					<h3>update<wbr>Child</h3>
@@ -335,7 +398,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/795c41c/index.d.ts#L3494">index.d.ts:3494</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/0fb446c/index.d.ts#L3606">index.d.ts:3606</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -418,11 +481,17 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_api_.canvas.html#isenabled" class="tsd-kind-icon">is<wbr>Enabled</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_api_.canvas.html#isvisible" class="tsd-kind-icon">is<wbr>Visible</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.canvas.html#removechild" class="tsd-kind-icon">remove<wbr>Child</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_api_.canvas.html#setenabled" class="tsd-kind-icon">set<wbr>Enabled</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_api_.canvas.html#setvisible" class="tsd-kind-icon">set<wbr>Visible</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.canvas.html#updatechild" class="tsd-kind-icon">update<wbr>Child</a>

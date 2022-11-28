@@ -96,6 +96,7 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.playerpermission.html#addplayer" class="tsd-kind-icon">add<wbr>Player</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.playerpermission.html#clone" class="tsd-kind-icon">clone</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.playerpermission.html#sethost" class="tsd-kind-icon">set<wbr>Host</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.playerpermission.html#setplayerslots" class="tsd-kind-icon">set<wbr>Player<wbr>Slots</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.playerpermission.html#setteams" class="tsd-kind-icon">set<wbr>Teams</a></li>
@@ -112,7 +113,7 @@
 					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/795c41c/index.d.ts#L1911">index.d.ts:1911</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/0fb446c/index.d.ts#L1999">index.d.ts:1999</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -134,7 +135,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/795c41c/index.d.ts#L1927">index.d.ts:1927</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/0fb446c/index.d.ts#L2004">index.d.ts:2004</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -153,6 +154,23 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="clone" class="tsd-anchor"></a>
+					<h3>clone</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">clone<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.playerpermission.html" class="tsd-signature-type">PlayerPermission</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/0fb446c/index.d.ts#L2000">index.d.ts:2000</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.playerpermission.html" class="tsd-signature-type">PlayerPermission</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="sethost" class="tsd-anchor"></a>
 					<h3>set<wbr>Host</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -162,7 +180,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/795c41c/index.d.ts#L1923">index.d.ts:1923</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/0fb446c/index.d.ts#L2008">index.d.ts:2008</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -190,12 +208,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/795c41c/index.d.ts#L1919">index.d.ts:1919</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/0fb446c/index.d.ts#L2012">index.d.ts:2012</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Set which player slots are included in the permission. Does not change permissions for teams or host.</p>
+									<p>Set which player slots are included in the permission. Does not change permissions for teams or host. An empty list means an unrestricted permission for all players.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -218,12 +236,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/795c41c/index.d.ts#L1915">index.d.ts:1915</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/0fb446c/index.d.ts#L2016">index.d.ts:2016</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Set which teams are included in the permission. Does not change permissions for player slots or host.</p>
+									<p>Set which teams are included in the permission. Does not change permissions for player slots or host. An empty list means an unrestricted permission for all teams.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -261,6 +279,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.playerpermission.html#addplayer" class="tsd-kind-icon">add<wbr>Player</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.playerpermission.html#clone" class="tsd-kind-icon">clone</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.playerpermission.html#sethost" class="tsd-kind-icon">set<wbr>Host</a>

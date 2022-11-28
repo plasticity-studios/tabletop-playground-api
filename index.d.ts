@@ -1141,6 +1141,72 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
+	 * Represents a switcher object that allows players to switch between different objects.
+	 * Created using {@link GameObject.createSwitcher} and accessed using {@link GameObject.getSwitcher}
+	*/
+	class Switcher { 
+		/**
+		 * Called when the active object has changed
+		 * @param {Switcher} switcher - The switcher for which the change happened
+		 * @param {number} newIndex - The new active index
+		 * @param {number} oldIndex - The previous active index. Can be equal to new index if an object was deleted
+		 * from the switcher and the object at this index changed, or if a player switches to a random state which
+		 * turns out to be the same state as before.
+		*/
+		onObjectSwitched: MulticastDelegate<(switcher: this, newIndex: number, oldIndex: number) => void>;
+		/**
+		 * Set the index of the active object
+		*/
+		setObjectIndex(index: number): void;
+		/**
+		 * Remove an object from the switcher and delete it. Returns whether something was removed.
+		 * @param {number} index - The index of the object to remove
+		*/
+		removeAt(index: number): boolean;
+		/**
+		 * Remove an object from the switcher and delete it. Only deletes the object if it was in the switcher, and returns whether it was deleted.
+		 * @param {objectToRemove} GameObject - The object to remove
+		*/
+		remove(objectToRemove: GameObject): boolean;
+		/**
+		 * Return whether the switcher object is valid. A switcher becomes invalid after it has been destroyed explicitly,
+		 * or if the current object is deleted.
+		*/
+		isValid(): boolean;
+		/**
+		 * Return the object at a given index
+		*/
+		getObjectAt(index: number): GameObject;
+		/**
+		 * Return the number of objects in the switcher
+		*/
+		getNumObjects(): number;
+		/**
+		 * Return the index of the currently active object
+		*/
+		getCurrentObjectIndex(): number;
+		/**
+		 * Return currently active object
+		*/
+		getCurrentObject(): GameObject;
+		/**
+		 * Remove this switcher, leaving the active object as a regular object
+		*/
+		destroy(): void;
+		/**
+		 * Check whether an object is in this container
+		*/
+		contains(checkObject: GameObject): boolean;
+		/**
+		 * Add an array of objects to the switcher. If objects are in a container, card holder, or another switcher, they will not be added.
+		 * @param {GameObject[]} objects - Objects to add
+		 * @param {number} index - The index at which the new objects will be added. By default, they will be inserted at start (index 0)
+		 * @param {boolean} showAnimation - If false, don't show insert animation. Default: false
+		*/
+		addObjects(objects: GameObject[], index?: number, showAnimation?: boolean): void;
+	}
+
+	/**
 	 * A container that can hold other objects
 	*/
 	class Container extends GameObject { 
@@ -1631,6 +1697,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		getTags(): string[];
 		/**
+		 * Get the switcher that contains this object. Returns undefined if the object is not part of a switcher
+		*/
+		getSwitcher(): Switcher;
+		/**
 		 * Return surface type. Only affects sound effects when colliding with other objects.
 		*/
 		getSurfaceType(): string;
@@ -1811,6 +1881,13 @@ declare module '@tabletop-playground/api' {
 		*/
 		destroy(): void;
 		/**
+		 * Create and return a new switcher with this object as the first (and active) state
+		 * @param {GameObject[]} objects - The other objects to include in the switcher. At least one element is needed
+		 * because switchers are only valid with at least two objects.
+		 * @param {bool} - Whether to animate additional objects flying into first object. Default: false
+		*/
+		createSwitcher(objects: GameObject[], showAnimation?: boolean): Switcher;
+		/**
 		 * @deprecated alias for {@link addUI}
 		 * @param {UIElement} element - The UI element to attach
 		 * @returns {number} - The index of the attached UI element
@@ -1879,12 +1956,23 @@ declare module '@tabletop-playground/api' {
 	*/
 	class Widget { 
 		/**
+		 * Set whether the widget is visible. When a widget that contains other widgets (like {@link VerticalBox}) is
+		 * invisible, all its children are invisible, too. The layout of widgets is updated when visibility changes,
+		 * and invisible widgets are treated as if they don't exist.
+		 * @param {boolean} visible - Whether the widget is visible.
+		*/
+		setVisible(visible: boolean): Widget;
+		/**
 		 * Set whether the widget is enabled. When a widget is disabled, users can't interact with it and it is greyed
 		 * out. When a widget that contains other widgets (like {@link VerticalBox}) is disabled, all its children
 		 * behave as if disabled, too. By default, widgets are enabled.
 		 * @param {boolean} enabled - Whether to enable the widget.
 		*/
 		setEnabled(enabled: boolean): this;
+		/**
+		 * Return whether the widget is currently visible (see {@link setVisible}).
+		*/
+		isVisible(): boolean;
 		/**
 		 * Return whether the widget is currently enabled (see {@link setEnabled}).
 		*/
@@ -1909,22 +1997,23 @@ declare module '@tabletop-playground/api' {
 		 * Value
 		*/
 		value: number;
+		clone() : PlayerPermission;
 		/**
-		 * Set which teams are included in the permission. Does not change permissions for player slots or host.
+		 * Add a player to the permission
 		*/
-		setTeams(teams: number[]): PlayerPermission;
-		/**
-		 * Set which player slots are included in the permission. Does not change permissions for teams or host.
-		*/
-		setPlayerSlots(slots: number[]): PlayerPermission;
+		addPlayer(player: Player): PlayerPermission;
 		/**
 		 * Set whether the host is included in the permission. Does not change permissions for player slots or teams.
 		*/
 		setHost(hostIsPermitted: boolean): PlayerPermission;
 		/**
-		 * Add a player to the permission
+		 * Set which player slots are included in the permission. Does not change permissions for teams or host. An empty list means an unrestricted permission for all players.
 		*/
-		addPlayer(player: Player): PlayerPermission;
+		setPlayerSlots(slots: number[]): PlayerPermission;
+		/**
+		 * Set which teams are included in the permission. Does not change permissions for player slots or host. An empty list means an unrestricted permission for all teams.
+		*/
+		setTeams(teams: number[]): PlayerPermission;
 	}
 
 	/**
@@ -2082,6 +2171,16 @@ declare module '@tabletop-playground/api' {
 		 * is 1.0 units high. Default: false
 		*/
 		relativeHeight: boolean;
+		/**
+		 * The horizontal anchor point of the UI. Determines where {@link positionX} is in relation to the UI:
+		 * for 0 it is at the left side, 0.5 is at the center, 1.0 is the right side. Default: 0
+		*/
+		anchorX: number;
+		/**
+		 * The vertical anchor point of the UI. Determines where {@link positionY} is in relation to the UI:
+		 * for 0 it is at the top, 0.5 is at the center, 1.0 is the bottom. Default: 0
+		*/
+		anchorY: number;
 		/**
 		 * Determine which players see the UI. By default, it will be shown for all players (except for VR players).
 		*/
@@ -2246,7 +2345,7 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
-	 * Contains methods to modify and check the global snap grid. Accessed through {@link GameWorld.lighting}
+	 * Contains methods to modify and check the lighting settings. Accessed through {@link GameWorld.lighting}
 	*/
 	class LightingSettings { 
 		/**
@@ -3385,7 +3484,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		setColor(color: Color | [r: number, g: number, b: number, a: number]): Border;
 		/**
-		 * Set the child widget
+		 * Set the child widget. You can pass undefined to remove an existing child widget.
 		*/
 		setChild(child: Widget): Border;
 		/**
@@ -3450,6 +3549,15 @@ declare module '@tabletop-playground/api' {
 		 * Return the font size
 		*/
 		getFontSize(): number;
+		/**
+		 * Return the id of the package that contains the TrueType font file name used for the text. Empty if no custom font is used
+		 * or no package is specified (and the package containing the script is used).
+		*/
+		getFontPackageId(): string;
+		/**
+		 * Return the TrueType font file name used for the text. Empty if no custom font is used.
+		*/
+		getFontFileName(): string;
 	}
 
 	/**
@@ -3474,10 +3582,14 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
-	 * A widget that can contain other widgets at fixed coordinates. A canvas has no size of its own,
+	 * A widget that can contain other widgets at fixed coordinates. A Canvas has no size of its own,
 	 * so you need to explicitly set the widget size in the {@link UIElement} and set
 	 * {@link UIElement.useWidgetSize} to false when using it. Widget coordinates are in pixels, at
-	 * default scale one pixel corresponds to 1 mm in the game world.
+	 * default scale one pixel corresponds to 1 mm in the game world. <br>
+	 * Usually you'll use a Canvas as the top widget in a {@link UIElement} or {@link ScreenUIElement},
+	 * but you can also use it as a child of other widgets. In particular, using a Canvas inside of
+	 * a {@link LayoutBox} with an override size inside of a layout where widget size is automatic
+	 * (for example in a {@link VerticalBox}) can be useful.
 	*/
 	class Canvas extends Widget { 
 		/**
@@ -3813,7 +3925,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		setHorizontalAlignment(alignment: number): LayoutBox;
 		/**
-		 * Set the child widget
+		 * Set the child widget. You can pass undefined to remove an existing child widget.
 		*/
 		setChild(child: Widget): LayoutBox;
 		/**
