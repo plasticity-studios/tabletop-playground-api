@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Panel | Tabletop Playground API</title>
+	<title>WidgetSwitcher | Tabletop Playground API</title>
 	<meta name="description" content="Documentation for Tabletop Playground API">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,10 +57,10 @@
 					<a href="../modules/_api_.html">&quot;api&quot;</a>
 				</li>
 				<li>
-					<a href="_api_.panel.html">Panel</a>
+					<a href="_api_.widgetswitcher.html">WidgetSwitcher</a>
 				</li>
 			</ul>
-			<h1>Class Panel</h1>
+			<h1>Class WidgetSwitcher</h1>
 		</div>
 	</div>
 </header>
@@ -70,7 +70,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Superclass for UI widgets that contain multiple other UI widgets in a list. Doesn&#39;t have functionality by itself, use subclasses instead.</p>
+						<p>A widget that contains other widgets and switches between them. Only one child widget is active and visible at a time.</p>
 					</div>
 				</div>
 			</section>
@@ -81,15 +81,7 @@
 						<a href="_api_.widget.html" class="tsd-signature-type">Widget</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">Panel</span>
-								<ul class="tsd-hierarchy">
-									<li>
-										<a href="_api_.horizontalbox.html" class="tsd-signature-type">HorizontalBox</a>
-									</li>
-									<li>
-										<a href="_api_.verticalbox.html" class="tsd-signature-type">VerticalBox</a>
-									</li>
-								</ul>
+								<span class="target">WidgetSwitcher</span>
 							</li>
 						</ul>
 					</li>
@@ -102,24 +94,22 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.panel.html#addchild" class="tsd-kind-icon">add<wbr>Child</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.panel.html#getchildat" class="tsd-kind-icon">get<wbr>Child<wbr>At</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.panel.html#gethorizontalalignment" class="tsd-kind-icon">get<wbr>Horizontal<wbr>Alignment</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.panel.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.panel.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.panel.html#getverticalalignment" class="tsd-kind-icon">get<wbr>Vertical<wbr>Alignment</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.panel.html#insertchild" class="tsd-kind-icon">insert<wbr>Child</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.panel.html#isenabled" class="tsd-kind-icon">is<wbr>Enabled</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.panel.html#isvisible" class="tsd-kind-icon">is<wbr>Visible</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.panel.html#removeallchildren" class="tsd-kind-icon">remove<wbr>All<wbr>Children</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.panel.html#removechild" class="tsd-kind-icon">remove<wbr>Child</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.panel.html#removechildat" class="tsd-kind-icon">remove<wbr>Child<wbr>At</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.panel.html#setchilddistance" class="tsd-kind-icon">set<wbr>Child<wbr>Distance</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.panel.html#setenabled" class="tsd-kind-icon">set<wbr>Enabled</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.panel.html#setequalchildsize" class="tsd-kind-icon">set<wbr>Equal<wbr>Child<wbr>Size</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.panel.html#sethorizontalalignment" class="tsd-kind-icon">set<wbr>Horizontal<wbr>Alignment</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.panel.html#setverticalalignment" class="tsd-kind-icon">set<wbr>Vertical<wbr>Alignment</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.panel.html#setvisible" class="tsd-kind-icon">set<wbr>Visible</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.widgetswitcher.html#addchild" class="tsd-kind-icon">add<wbr>Child</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.widgetswitcher.html#getactiveindex" class="tsd-kind-icon">get<wbr>Active<wbr>Index</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.widgetswitcher.html#getactivewidget" class="tsd-kind-icon">get<wbr>Active<wbr>Widget</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.widgetswitcher.html#getchildat" class="tsd-kind-icon">get<wbr>Child<wbr>At</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.widgetswitcher.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.widgetswitcher.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.widgetswitcher.html#insertchild" class="tsd-kind-icon">insert<wbr>Child</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.widgetswitcher.html#isenabled" class="tsd-kind-icon">is<wbr>Enabled</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.widgetswitcher.html#isvisible" class="tsd-kind-icon">is<wbr>Visible</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.widgetswitcher.html#removeallchildren" class="tsd-kind-icon">remove<wbr>All<wbr>Children</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.widgetswitcher.html#removechild" class="tsd-kind-icon">remove<wbr>Child</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.widgetswitcher.html#removechildat" class="tsd-kind-icon">remove<wbr>Child<wbr>At</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.widgetswitcher.html#setactiveindex" class="tsd-kind-icon">set<wbr>Active<wbr>Index</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.widgetswitcher.html#setactivewidget" class="tsd-kind-icon">set<wbr>Active<wbr>Widget</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.widgetswitcher.html#setenabled" class="tsd-kind-icon">set<wbr>Enabled</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.widgetswitcher.html#setvisible" class="tsd-kind-icon">set<wbr>Visible</a></li>
 							</ul>
 						</section>
 					</div>
@@ -131,13 +121,13 @@
 					<a name="addchild" class="tsd-anchor"></a>
 					<h3>add<wbr>Child</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">add<wbr>Child<span class="tsd-signature-symbol">(</span>child<span class="tsd-signature-symbol">: </span><a href="_api_.widget.html" class="tsd-signature-type">Widget</a>, weight<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.panel.html" class="tsd-signature-type">Panel</a></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Child<span class="tsd-signature-symbol">(</span>child<span class="tsd-signature-symbol">: </span><a href="_api_.widget.html" class="tsd-signature-type">Widget</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.widgetswitcher.html" class="tsd-signature-type">WidgetSwitcher</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L3772">index.d.ts:3772</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L4473">index.d.ts:4473</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -153,15 +143,56 @@
 										<p>The widget to add</p>
 									</div>
 								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> weight: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The amount of space the widget gets. 0 means as much as the widget requires, values above 0
-										give a weight compared to all other widgets with a weight above 0. Default: 0</p>
-									</div>
-								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_api_.panel.html" class="tsd-signature-type">Panel</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.widgetswitcher.html" class="tsd-signature-type">WidgetSwitcher</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getactiveindex" class="tsd-anchor"></a>
+					<h3>get<wbr>Active<wbr>Index</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Active<wbr>Index<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L4468">index.d.ts:4468</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<ul>
+										<li>Return the currently active widget index. Returns -1 if there are no child widgets.</li>
+									</ul>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getactivewidget" class="tsd-anchor"></a>
+					<h3>get<wbr>Active<wbr>Widget</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Active<wbr>Widget<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.widget.html" class="tsd-signature-type">Widget</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L4464">index.d.ts:4464</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<ul>
+										<li>Return the currently active widget</li>
+									</ul>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.widget.html" class="tsd-signature-type">Widget</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -175,7 +206,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L3765">index.d.ts:3765</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L4460">index.d.ts:4460</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -193,28 +224,6 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_api_.widget.html" class="tsd-signature-type">Widget</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="gethorizontalalignment" class="tsd-anchor"></a>
-					<h3>get<wbr>Horizontal<wbr>Alignment</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Horizontal<wbr>Alignment<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L3760">index.d.ts:3760</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Return the horizontal alignment of widgets in the panel, as defined by <a href="../enums/_api_.horizontalalignment.html">HorizontalAlignment</a>. Default: Fill</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -267,38 +276,16 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getverticalalignment" class="tsd-anchor"></a>
-					<h3>get<wbr>Vertical<wbr>Alignment</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Vertical<wbr>Alignment<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L3756">index.d.ts:3756</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Return the vertical alignment of widgets in the panel, as defined by <a href="../enums/_api_.verticalalignment.html">VerticalAlignment</a>. Default: Fill</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="insertchild" class="tsd-anchor"></a>
 					<h3>insert<wbr>Child</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">insert<wbr>Child<span class="tsd-signature-symbol">(</span>child<span class="tsd-signature-symbol">: </span><a href="_api_.widget.html" class="tsd-signature-type">Widget</a>, index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, weight<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.panel.html" class="tsd-signature-type">Panel</a></li>
+						<li class="tsd-signature tsd-kind-icon">insert<wbr>Child<span class="tsd-signature-symbol">(</span>child<span class="tsd-signature-symbol">: </span><a href="_api_.widget.html" class="tsd-signature-type">Widget</a>, index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.widgetswitcher.html" class="tsd-signature-type">WidgetSwitcher</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L3752">index.d.ts:3752</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L4455">index.d.ts:4455</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -320,15 +307,8 @@
 										<p>Index at which to insert the new child</p>
 									</div>
 								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> weight: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The amount of space the widget gets. 0 means as much as the widget requires, values above 0
-										give a weight compared to all other widgets with a weight above 0. Default: 0</p>
-									</div>
-								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_api_.panel.html" class="tsd-signature-type">Panel</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.widgetswitcher.html" class="tsd-signature-type">WidgetSwitcher</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -348,7 +328,7 @@
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Return whether the widget is currently enabled (see <a href="_api_.panel.html#setenabled">setEnabled</a>).</p>
+									<p>Return whether the widget is currently enabled (see <a href="_api_.widgetswitcher.html#setenabled">setEnabled</a>).</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -371,7 +351,7 @@
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Return whether the widget is currently visible (see <a href="_api_.panel.html#setvisible">setVisible</a>).</p>
+									<p>Return whether the widget is currently visible (see <a href="_api_.widgetswitcher.html#setvisible">setVisible</a>).</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -388,7 +368,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L3744">index.d.ts:3744</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L4449">index.d.ts:4449</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -410,7 +390,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L3740">index.d.ts:3740</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L4445">index.d.ts:4445</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -441,7 +421,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L3735">index.d.ts:3735</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L4440">index.d.ts:4440</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -463,33 +443,62 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="setchilddistance" class="tsd-anchor"></a>
-					<h3>set<wbr>Child<wbr>Distance</h3>
+					<a name="setactiveindex" class="tsd-anchor"></a>
+					<h3>set<wbr>Active<wbr>Index</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Child<wbr>Distance<span class="tsd-signature-symbol">(</span>distance<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.panel.html" class="tsd-signature-type">Panel</a></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Active<wbr>Index<span class="tsd-signature-symbol">(</span>index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.widget.html" class="tsd-signature-type">Widget</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L3730">index.d.ts:3730</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L4435">index.d.ts:4435</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Set distance (margin) between child widgets.</p>
+									<ul>
+										<li>Set the currently active widget index</li>
+									</ul>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>distance: <span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Widget distance. Default: 1</p>
-									</div>
+									<h5>index: <span class="tsd-signature-type">number</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_api_.panel.html" class="tsd-signature-type">Panel</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.widget.html" class="tsd-signature-type">Widget</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setactivewidget" class="tsd-anchor"></a>
+					<h3>set<wbr>Active<wbr>Widget</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Active<wbr>Widget<span class="tsd-signature-symbol">(</span>widget<span class="tsd-signature-symbol">: </span><a href="_api_.widget.html" class="tsd-signature-type">Widget</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.widget.html" class="tsd-signature-type">Widget</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L4431">index.d.ts:4431</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<ul>
+										<li>Set the currently active widget</li>
+									</ul>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>widget: <a href="_api_.widget.html" class="tsd-signature-type">Widget</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.widget.html" class="tsd-signature-type">Widget</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -524,95 +533,6 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="setequalchildsize" class="tsd-anchor"></a>
-					<h3>set<wbr>Equal<wbr>Child<wbr>Size</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Equal<wbr>Child<wbr>Size<span class="tsd-signature-symbol">(</span>equal<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.panel.html" class="tsd-signature-type">Panel</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L3725">index.d.ts:3725</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<dl class="tsd-comment-tags">
-									<dt>deprecated</dt>
-									<dd><p>This method doesn&#39;t do anything anymore except printing a warning. In order to control the
-											size of the child widgets, use the weight parameter in <a href="_api_.panel.html#addchild">addChild</a> and <a href="_api_.panel.html#insertchild">insertChild</a>. Setting
-											the weight to 1 for all children has the same effect as <code>setEqualChildSize(true)</code> had. Setting
-										the weight to 0 (default) has the same effect as <code>setEqualChildSize(false)</code>, which was the default.</p>
-									</dd>
-								</dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>equal: <span class="tsd-signature-type">boolean</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_api_.panel.html" class="tsd-signature-type">Panel</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="sethorizontalalignment" class="tsd-anchor"></a>
-					<h3>set<wbr>Horizontal<wbr>Alignment</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Horizontal<wbr>Alignment<span class="tsd-signature-symbol">(</span>alignment<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.panel.html" class="tsd-signature-type">Panel</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L3718">index.d.ts:3718</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Set the horizontal alignment of widgets in the panel, as defined by <a href="../enums/_api_.horizontalalignment.html">HorizontalAlignment</a>. Default: Fill</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>alignment: <span class="tsd-signature-type">number</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_api_.panel.html" class="tsd-signature-type">Panel</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="setverticalalignment" class="tsd-anchor"></a>
-					<h3>set<wbr>Vertical<wbr>Alignment</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Vertical<wbr>Alignment<span class="tsd-signature-symbol">(</span>alignment<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.panel.html" class="tsd-signature-type">Panel</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L3714">index.d.ts:3714</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Set the vertical alignment of widgets in the panel, as defined by <a href="../enums/_api_.verticalalignment.html">VerticalAlignment</a>. Default: Fill</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>alignment: <span class="tsd-signature-type">number</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_api_.panel.html" class="tsd-signature-type">Panel</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -668,61 +588,55 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-module">
-						<a href="_api_.panel.html" class="tsd-kind-icon">Panel</a>
+						<a href="_api_.widgetswitcher.html" class="tsd-kind-icon">Widget<wbr>Switcher</a>
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.panel.html#addchild" class="tsd-kind-icon">add<wbr>Child</a>
+								<a href="_api_.widgetswitcher.html#addchild" class="tsd-kind-icon">add<wbr>Child</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.panel.html#getchildat" class="tsd-kind-icon">get<wbr>Child<wbr>At</a>
+								<a href="_api_.widgetswitcher.html#getactiveindex" class="tsd-kind-icon">get<wbr>Active<wbr>Index</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.panel.html#gethorizontalalignment" class="tsd-kind-icon">get<wbr>Horizontal<wbr>Alignment</a>
+								<a href="_api_.widgetswitcher.html#getactivewidget" class="tsd-kind-icon">get<wbr>Active<wbr>Widget</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.widgetswitcher.html#getchildat" class="tsd-kind-icon">get<wbr>Child<wbr>At</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.panel.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a>
+								<a href="_api_.widgetswitcher.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.panel.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a>
+								<a href="_api_.widgetswitcher.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.panel.html#getverticalalignment" class="tsd-kind-icon">get<wbr>Vertical<wbr>Alignment</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.panel.html#insertchild" class="tsd-kind-icon">insert<wbr>Child</a>
+								<a href="_api_.widgetswitcher.html#insertchild" class="tsd-kind-icon">insert<wbr>Child</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.panel.html#isenabled" class="tsd-kind-icon">is<wbr>Enabled</a>
+								<a href="_api_.widgetswitcher.html#isenabled" class="tsd-kind-icon">is<wbr>Enabled</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.panel.html#isvisible" class="tsd-kind-icon">is<wbr>Visible</a>
+								<a href="_api_.widgetswitcher.html#isvisible" class="tsd-kind-icon">is<wbr>Visible</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.panel.html#removeallchildren" class="tsd-kind-icon">remove<wbr>All<wbr>Children</a>
+								<a href="_api_.widgetswitcher.html#removeallchildren" class="tsd-kind-icon">remove<wbr>All<wbr>Children</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.panel.html#removechild" class="tsd-kind-icon">remove<wbr>Child</a>
+								<a href="_api_.widgetswitcher.html#removechild" class="tsd-kind-icon">remove<wbr>Child</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.panel.html#removechildat" class="tsd-kind-icon">remove<wbr>Child<wbr>At</a>
+								<a href="_api_.widgetswitcher.html#removechildat" class="tsd-kind-icon">remove<wbr>Child<wbr>At</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.panel.html#setchilddistance" class="tsd-kind-icon">set<wbr>Child<wbr>Distance</a>
+								<a href="_api_.widgetswitcher.html#setactiveindex" class="tsd-kind-icon">set<wbr>Active<wbr>Index</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.widgetswitcher.html#setactivewidget" class="tsd-kind-icon">set<wbr>Active<wbr>Widget</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.panel.html#setenabled" class="tsd-kind-icon">set<wbr>Enabled</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.panel.html#setequalchildsize" class="tsd-kind-icon">set<wbr>Equal<wbr>Child<wbr>Size</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.panel.html#sethorizontalalignment" class="tsd-kind-icon">set<wbr>Horizontal<wbr>Alignment</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.panel.html#setverticalalignment" class="tsd-kind-icon">set<wbr>Vertical<wbr>Alignment</a>
+								<a href="_api_.widgetswitcher.html#setenabled" class="tsd-kind-icon">set<wbr>Enabled</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.panel.html#setvisible" class="tsd-kind-icon">set<wbr>Visible</a>
+								<a href="_api_.widgetswitcher.html#setvisible" class="tsd-kind-icon">set<wbr>Visible</a>
 							</li>
 						</ul>
 					</li>

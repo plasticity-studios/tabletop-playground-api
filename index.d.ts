@@ -86,6 +86,16 @@ declare module '@tabletop-playground/api' {
 		Screen=2
 	}
 
+	/** Visibility of UI elements depending on whether the object is zoomed, used for {@link UIElement.zoomVisibility} */
+	enum UIZoomVisibility {
+		/** The UI element is only shown for the regular object. */
+		Regular=0,
+		/** The UI element is only shown for a zoomed object (in object zoom) */
+		ZoomedOnly=1,
+		/** The UI element is shown for both the regular and the zoomed object */
+		Both=2
+	}
+
 	/** Type of the snap grid, used in {@link GlobalGrid}*/
 	enum GridType {Rectangular=0, Hexagonal=1}
 
@@ -234,6 +244,10 @@ declare module '@tabletop-playground/api' {
 		* Convert to a string in the form '(R=,G=,B=,A=)'
 		*/
 		toString(): string;
+		/**
+		* Convert to a hexadecimal string in the form 'RRGGBBAA'
+		*/
+		toHex(): string;
 		/**
 		* Convert to a vector, with x=r y=g z=b
 		*/
@@ -1005,6 +1019,10 @@ declare module '@tabletop-playground/api' {
 		 * Return the player's color
 		*/
 		getPlayerColor(): Color;
+		/**
+		 * Return all objects that the player owns.
+		*/
+		getOwnedObjects(): GameObject[];
 		/**
 		 * Return the player's name
 		*/
@@ -1894,7 +1912,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		attachUI(element: UIElement): number;
 		/**
-		 * Apply a torque to the object. Works like 'thruster' and should be called every tick for the duration of the torque.
+		 * Apply a torque to the object. Works like a "thruster" and should be called every tick for the duration of the torque.
 		 * @param {Vector} torque - The axis of rotation and magnitude of the torque to apply in kg*cm^2/s^2.
 		 * @param {boolean} useMass - If false (default), ignore the mass of the object and apply the force directly as change of angular acceleration in cm^2/s^2.
 		*/
@@ -1912,13 +1930,13 @@ declare module '@tabletop-playground/api' {
 		*/
 		applyImpulse(impulse: Vector | [x: number, y: number, z: number], useMass?: boolean): void;
 		/**
-		 * Apply a force to the object. Works like 'thruster' and should be called every tick for the duration of the force.
+		 * Apply a force to the object. Works like a "thruster" and should be called every tick for the duration of the force.
 		 * @param {Vector} force - The direction and magnitude of the force to apply in kg*cm\s^2.
 		 * @param {Vector} position - The position where to apply the force, relative to the object origin. If this is not equal to the center of mass, the force will create angular acceleration.
 		*/
 		applyForceAtPosition(force: Vector | [x: number, y: number, z: number], position: Vector | [x: number, y: number, z: number]): void;
 		/**
-		 * Apply a force to the object. Works like 'thruster' and should be called every tick for the duration of the force.
+		 * Apply a force to the object. Works like a "thruster" and should be called every tick for the duration of the force.
 		 * @param {Vector} force - The direction and magnitude of the force to apply in kg*cm/s^2.
 		 * @param {boolean} useMass - If false (default), ignore the mass of the object and apply the force directly as change of acceleration in cm/s^2.
 		*/
@@ -2086,6 +2104,12 @@ declare module '@tabletop-playground/api' {
 		 * Determine which players see the UI. By default, it will be shown for all players.
 		*/
 		players: PlayerPermission;
+		/**
+		 * Determines visibility of the UI for regular and zoomed object state, as defined by {@link UIZoomVisibility}.
+		 * Does not have an effect when {@link presentationStyle} is not equal to {@link UIPresentationStyle.Regular}
+		 * (the default).
+		*/
+		zoomVisibility: number;
 		clone() : UIElement;
 	}
 
@@ -3069,6 +3093,11 @@ declare module '@tabletop-playground/api' {
 		*/
 		getPlayerBySlot(slot: number): Player | undefined;
 		/**
+		 * Return the player with the given name
+		 * @param {name} name - The name of the player
+		*/
+		getPlayerByName(name: string): Player | undefined;
+		/**
 		 * Return the package with the specified id. Can return packages that are currently not allowed,
 		 * but only finds packages that exist on the host.
 		*/
@@ -3093,8 +3122,8 @@ declare module '@tabletop-playground/api' {
 		*/
 		getObjectById(objectId: string): GameObject | undefined;
 		/**
-		 * Return the zone with the specified id
-		 * @param {string} objectId - The unique id of the zone
+		 * Return the label with the specified id
+		 * @param {string} objectId - The unique id of the label
 		*/
 		getLabelById(labelId: string): Label | undefined;
 		/**
@@ -3148,7 +3177,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		getAllObjects(skipContained?: boolean): GameObject[];
 		/**
-		 * Get all zones currently in the game
+		 * Get all labels currently in the game
 		*/
 		getAllLabels(): Label[];
 		/**
@@ -3561,7 +3590,7 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
-	 * A UI button.
+	 * A UI button displaying text.
 	*/
 	class Button extends TextWidgetBase { 
 		/**
@@ -3653,6 +3682,26 @@ declare module '@tabletop-playground/api' {
 		 * Return the currently displayed text.
 		*/
 		getText(): string;
+	}
+
+	/**
+	 * A UI button with a child widget
+	*/
+	class ContentButton extends Widget { 
+		/**
+		 * Called when the button is clicked.
+		 * @param {ScriptButton} button - The button that was clicked
+		 * @param {Player} player - The player who clicked the button
+		*/
+		onClicked: MulticastDelegate<(button: this, player: Player) => void>;
+		/**
+		 * Set the child widget. You can pass undefined to remove an existing child widget.
+		*/
+		setChild(child: Widget): ContentButton;
+		/**
+		 * Return the child widget. Returns undefined if no child has been set for this border
+		*/
+		getChild(): Widget | undefined;
 	}
 
 	/**
@@ -3801,7 +3850,7 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
-	 * A UI button.
+	 * A UI button displaying an image.
 	*/
 	class ImageButton extends Widget { 
 		/**
@@ -4052,6 +4101,47 @@ declare module '@tabletop-playground/api' {
 		 * Return the currently displayed progress (0 to 1)
 		*/
 		getProgress(): number;
+	}
+
+	/**
+	 * Text UI element that can process simple BBCode style markdown to control text appearance. The same tags as in the
+	 * in-game notes are supported:<br>
+	 * `[b]`: Bold (does not work when the widget is set to a custom font using {@link setFont})<br>
+	 * `[i]`: Italic (does not work when the widget is set to a custom font using {@link setFont})<br>
+	 * `[size=X]`: Control the font size<br>
+	 * `[color=#RRGGBB]`: Control the text color<br><br>
+	 * Tags are closed using `[/tag]`. Here's an example of a text using tags:<br>
+	 * `You can use [color=#ff0000]colors[/color], [b]bold[/b] or [i]italic[/i] text, [size=9]different[/size] [size=16]sizes[/size], and [color=#00ff00][size=8][b][i]combine text styles.[/color][/size][/b][/i]`
+	*/
+	class RichText extends TextWidgetBase { 
+		/**
+		 * Set the displayed text. Can include "\n" to indicate new lines. Can include BBCode tags, see {@link RichText} for
+		 * a list of supported tags.
+		 * @param {string} text - The new text
+		*/
+		setText(text: string): RichText;
+		/**
+		 * Set the justification (alignment) of the text
+		 * @param {number} justification - The new justification, as defined by {@link TextJustification}
+		*/
+		setJustification(justification: number): RichText;
+		/**
+		 * Set whether the text is automatically wrapped. Auto-wrapping only works when the text has a fixed width,
+		 * for example in a {@link Canvas}, {@link LayoutBox}, or in an {@link UIElement} with ``useWidgetSize`` set to false.
+		*/
+		setAutoWrap(autoWrap: boolean): RichText;
+		/**
+		 * Return the currently displayed text.
+		*/
+		getText(): string;
+		/**
+		 * Return the justification (alignment) of the text, as defined by {@link TextJustification}
+		*/
+		getJustification(): number;
+		/**
+		 * Return whether the text is automatically wrapped.
+		*/
+		getAutoWrap(): boolean;
 	}
 
 	/**
@@ -4329,6 +4419,58 @@ declare module '@tabletop-playground/api' {
 		 * Return whether the browser can currently go back
 		*/
 		canGoBack(): boolean;
+	}
+
+	/**
+	 * A widget that contains other widgets and switches between them. Only one child widget is active and visible at a time.
+	*/
+	class WidgetSwitcher extends Widget { 
+		/**
+		 * * Set the currently active widget
+		*/
+		setActiveWidget(widget: Widget): Widget;
+		/**
+		 * * Set the currently active widget index
+		*/
+		setActiveIndex(index: number): Widget;
+		/**
+		 * Remove the child widget at the given index
+		 * @param {number} index - Index where to remove the child widget
+		*/
+		removeChildAt(index: number): void;
+		/**
+		 * Remove the given child widget
+		 * @param {Widget} child - The widget to remove
+		*/
+		removeChild(child: Widget): void;
+		/**
+		 * Remove all child widgets
+		*/
+		removeAllChildren(): void;
+		/**
+		 * Insert a child widget at the given index. Inserts at the end if the index is not valid.
+		 * @param {Widget} child - The widget to insert
+		 * @param {number} index - Index at which to insert the new child
+		*/
+		insertChild(child: Widget, index: number): WidgetSwitcher;
+		/**
+		 * Return the child widget at the given index. Returns undefined if no child exists at the index.
+		 * @param {number} index - Index where to get the child widget
+		*/
+		getChildAt(index: number): Widget | undefined;
+		/**
+		 * * Return the currently active widget
+		*/
+		getActiveWidget(): Widget | undefined;
+		/**
+		 * * Return the currently active widget index. Returns -1 if there are no child widgets.
+		*/
+		getActiveIndex(): number;
+		/**
+		 * Add a child widget at the end
+		 * @param {Widget} child - The widget to add
+		*/
+		addChild(child: Widget): WidgetSwitcher;
 	}
 
 	var globalEvents : GlobalScriptingEvents;

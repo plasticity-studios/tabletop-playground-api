@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>HiddenCardsType | Tabletop Playground API</title>
+	<title>UIZoomVisibility | Tabletop Playground API</title>
 	<meta name="description" content="Documentation for Tabletop Playground API">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,10 +57,10 @@
 					<a href="../modules/_api_.html">&quot;api&quot;</a>
 				</li>
 				<li>
-					<a href="_api_.hiddencardstype.html">HiddenCardsType</a>
+					<a href="_api_.uizoomvisibility.html">UIZoomVisibility</a>
 				</li>
 			</ul>
-			<h1>Enumeration HiddenCardsType</h1>
+			<h1>Enumeration UIZoomVisibility</h1>
 		</div>
 	</div>
 </header>
@@ -70,7 +70,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Behavior for hidden cards used in <a href="../classes/_api_.cardholder.html">CardHolder</a></p>
+						<p>Visibility of UI elements depending on whether the object is zoomed, used for <a href="../classes/_api_.uielement.html#zoomvisibility">UIElement.zoomVisibility</a></p>
 					</div>
 				</div>
 			</section>
@@ -81,9 +81,9 @@
 						<section class="tsd-index-section ">
 							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_api_.hiddencardstype.html#back" class="tsd-kind-icon">Back</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_api_.hiddencardstype.html#front" class="tsd-kind-icon">Front</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_api_.hiddencardstype.html#greyblur" class="tsd-kind-icon">Grey<wbr>Blur</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_api_.uizoomvisibility.html#both" class="tsd-kind-icon">Both</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_api_.uizoomvisibility.html#regular" class="tsd-kind-icon">Regular</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="_api_.uizoomvisibility.html#zoomedonly" class="tsd-kind-icon">Zoomed<wbr>Only</a></li>
 							</ul>
 						</section>
 					</div>
@@ -92,34 +92,49 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Enumeration members</h2>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="back" class="tsd-anchor"></a>
-					<h3>Back</h3>
-					<div class="tsd-signature tsd-kind-icon">Back<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 1</span></div>
+					<a name="both" class="tsd-anchor"></a>
+					<h3>Both</h3>
+					<div class="tsd-signature tsd-kind-icon">Both<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 2</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L65">index.d.ts:65</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L96">index.d.ts:96</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The UI element is shown for both the regular and the zoomed object</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="front" class="tsd-anchor"></a>
-					<h3>Front</h3>
-					<div class="tsd-signature tsd-kind-icon">Front<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 2</span></div>
+					<a name="regular" class="tsd-anchor"></a>
+					<h3>Regular</h3>
+					<div class="tsd-signature tsd-kind-icon">Regular<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 0</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L65">index.d.ts:65</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L92">index.d.ts:92</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The UI element is only shown for the regular object.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="greyblur" class="tsd-anchor"></a>
-					<h3>Grey<wbr>Blur</h3>
-					<div class="tsd-signature tsd-kind-icon">Grey<wbr>Blur<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 0</span></div>
+					<a name="zoomedonly" class="tsd-anchor"></a>
+					<h3>Zoomed<wbr>Only</h3>
+					<div class="tsd-signature tsd-kind-icon">Zoomed<wbr>Only<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 1</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L65">index.d.ts:65</a></li>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L94">index.d.ts:94</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The UI element is only shown for a zoomed object (in object zoom)</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -139,16 +154,16 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-enum tsd-parent-kind-module">
-						<a href="_api_.hiddencardstype.html" class="tsd-kind-icon">Hidden<wbr>Cards<wbr>Type</a>
+						<a href="_api_.uizoomvisibility.html" class="tsd-kind-icon">UIZoom<wbr>Visibility</a>
 						<ul>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="_api_.hiddencardstype.html#back" class="tsd-kind-icon">Back</a>
+								<a href="_api_.uizoomvisibility.html#both" class="tsd-kind-icon">Both</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="_api_.hiddencardstype.html#front" class="tsd-kind-icon">Front</a>
+								<a href="_api_.uizoomvisibility.html#regular" class="tsd-kind-icon">Regular</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="_api_.hiddencardstype.html#greyblur" class="tsd-kind-icon">Grey<wbr>Blur</a>
+								<a href="_api_.uizoomvisibility.html#zoomedonly" class="tsd-kind-icon">Zoomed<wbr>Only</a>
 							</li>
 						</ul>
 					</li>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Button | Tabletop Playground API</title>
+	<title>RichText | Tabletop Playground API</title>
 	<meta name="description" content="Documentation for Tabletop Playground API">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,10 +57,10 @@
 					<a href="../modules/_api_.html">&quot;api&quot;</a>
 				</li>
 				<li>
-					<a href="_api_.button.html">Button</a>
+					<a href="_api_.richtext.html">RichText</a>
 				</li>
 			</ul>
-			<h1>Class Button</h1>
+			<h1>Class RichText</h1>
 		</div>
 	</div>
 </header>
@@ -70,7 +70,14 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A UI button displaying text.</p>
+						<p>Text UI element that can process simple BBCode style markdown to control text appearance. The same tags as in the
+							in-game notes are supported:<br>
+							<code>[b]</code>: Bold (does not work when the widget is set to a custom font using <a href="_api_.richtext.html#setfont">setFont</a>)<br>
+							<code>[i]</code>: Italic (does not work when the widget is set to a custom font using <a href="_api_.richtext.html#setfont">setFont</a>)<br>
+							<code>[size=X]</code>: Control the font size<br>
+							<code>[color=#RRGGBB]</code>: Control the text color<br><br>
+							Tags are closed using <code>[/tag]</code>. Here&#39;s an example of a text using tags:<br>
+						<code>You can use [color=#ff0000]colors[/color], [b]bold[/b] or [i]italic[/i] text, [size=9]different[/size] [size=16]sizes[/size], and [color=#00ff00][size=8][b][i]combine text styles.[/color][/size][/b][/i]</code></p>
 					</div>
 				</div>
 			</section>
@@ -81,7 +88,7 @@
 						<a href="_api_.textwidgetbase.html" class="tsd-signature-type">TextWidgetBase</a>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">Button</span>
+								<span class="target">RichText</span>
 							</li>
 						</ul>
 					</li>
@@ -92,66 +99,60 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_.button.html#onclicked" class="tsd-kind-icon">on<wbr>Clicked</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#getfontfilename" class="tsd-kind-icon">get<wbr>Font<wbr>File<wbr>Name</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#getfontpackageid" class="tsd-kind-icon">get<wbr>Font<wbr>Package<wbr>Id</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#getfontsize" class="tsd-kind-icon">get<wbr>Font<wbr>Size</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.button.html#gettext" class="tsd-kind-icon">get<wbr>Text</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#gettextcolor" class="tsd-kind-icon">get<wbr>Text<wbr>Color</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#isbold" class="tsd-kind-icon">is<wbr>Bold</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#isenabled" class="tsd-kind-icon">is<wbr>Enabled</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#isitalic" class="tsd-kind-icon">is<wbr>Italic</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#isvisible" class="tsd-kind-icon">is<wbr>Visible</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#setbold" class="tsd-kind-icon">set<wbr>Bold</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#setenabled" class="tsd-kind-icon">set<wbr>Enabled</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#setfont" class="tsd-kind-icon">set<wbr>Font</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#setfontsize" class="tsd-kind-icon">set<wbr>Font<wbr>Size</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#setitalic" class="tsd-kind-icon">set<wbr>Italic</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.button.html#settext" class="tsd-kind-icon">set<wbr>Text</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#settextcolor" class="tsd-kind-icon">set<wbr>Text<wbr>Color</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.button.html#setvisible" class="tsd-kind-icon">set<wbr>Visible</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.richtext.html#getautowrap" class="tsd-kind-icon">get<wbr>Auto<wbr>Wrap</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.richtext.html#getfontfilename" class="tsd-kind-icon">get<wbr>Font<wbr>File<wbr>Name</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.richtext.html#getfontpackageid" class="tsd-kind-icon">get<wbr>Font<wbr>Package<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.richtext.html#getfontsize" class="tsd-kind-icon">get<wbr>Font<wbr>Size</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.richtext.html#getjustification" class="tsd-kind-icon">get<wbr>Justification</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.richtext.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.richtext.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.richtext.html#gettext" class="tsd-kind-icon">get<wbr>Text</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.richtext.html#gettextcolor" class="tsd-kind-icon">get<wbr>Text<wbr>Color</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.richtext.html#isbold" class="tsd-kind-icon">is<wbr>Bold</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.richtext.html#isenabled" class="tsd-kind-icon">is<wbr>Enabled</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.richtext.html#isitalic" class="tsd-kind-icon">is<wbr>Italic</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.richtext.html#isvisible" class="tsd-kind-icon">is<wbr>Visible</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.richtext.html#setautowrap" class="tsd-kind-icon">set<wbr>Auto<wbr>Wrap</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.richtext.html#setbold" class="tsd-kind-icon">set<wbr>Bold</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.richtext.html#setenabled" class="tsd-kind-icon">set<wbr>Enabled</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.richtext.html#setfont" class="tsd-kind-icon">set<wbr>Font</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.richtext.html#setfontsize" class="tsd-kind-icon">set<wbr>Font<wbr>Size</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.richtext.html#setitalic" class="tsd-kind-icon">set<wbr>Italic</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.richtext.html#setjustification" class="tsd-kind-icon">set<wbr>Justification</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.richtext.html#settext" class="tsd-kind-icon">set<wbr>Text</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.richtext.html#settextcolor" class="tsd-kind-icon">set<wbr>Text<wbr>Color</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.richtext.html#setvisible" class="tsd-kind-icon">set<wbr>Visible</a></li>
 							</ul>
 						</section>
-					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="onclicked" class="tsd-anchor"></a>
-					<h3>on<wbr>Clicked</h3>
-					<div class="tsd-signature tsd-kind-icon">on<wbr>Clicked<span class="tsd-signature-symbol">:</span> <a href="_api_.multicastdelegate.html" class="tsd-signature-type">MulticastDelegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>button<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span>, player<span class="tsd-signature-symbol">: </span><a href="_api_.player.html" class="tsd-signature-type">Player</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L3601">index.d.ts:3601</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Called when the button is clicked.</p>
-						</div>
-						<dl class="tsd-comment-tags">
-							<dt>param</dt>
-							<dd><p>The button that was clicked</p>
-							</dd>
-							<dt>param</dt>
-							<dd><p>The player who clicked the button</p>
-							</dd>
-						</dl>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getautowrap" class="tsd-anchor"></a>
+					<h3>get<wbr>Auto<wbr>Wrap</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Auto<wbr>Wrap<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L4144">index.d.ts:4144</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return whether the text is automatically wrapped.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="getfontfilename" class="tsd-anchor"></a>
 					<h3>get<wbr>Font<wbr>File<wbr>Name</h3>
@@ -222,6 +223,28 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getjustification" class="tsd-anchor"></a>
+					<h3>get<wbr>Justification</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Justification<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L4140">index.d.ts:4140</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the justification (alignment) of the text, as defined by <a href="../enums/_api_.textjustification.html">TextJustification</a></p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="getowningobject" class="tsd-anchor"></a>
 					<h3>get<wbr>Owning<wbr>Object</h3>
@@ -280,12 +303,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L3610">index.d.ts:3610</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L4136">index.d.ts:4136</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Return the currently displayed text</p>
+									<p>Return the currently displayed text.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -354,7 +377,7 @@
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Return whether the widget is currently enabled (see <a href="_api_.button.html#setenabled">setEnabled</a>).</p>
+									<p>Return whether the widget is currently enabled (see <a href="_api_.richtext.html#setenabled">setEnabled</a>).</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -400,10 +423,39 @@
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Return whether the widget is currently visible (see <a href="_api_.button.html#setvisible">setVisible</a>).</p>
+									<p>Return whether the widget is currently visible (see <a href="_api_.richtext.html#setvisible">setVisible</a>).</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setautowrap" class="tsd-anchor"></a>
+					<h3>set<wbr>Auto<wbr>Wrap</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Auto<wbr>Wrap<span class="tsd-signature-symbol">(</span>autoWrap<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.richtext.html" class="tsd-signature-type">RichText</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L4132">index.d.ts:4132</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set whether the text is automatically wrapped. Auto-wrapping only works when the text has a fixed width,
+									for example in a <a href="_api_.canvas.html">Canvas</a>, <a href="_api_.layoutbox.html">LayoutBox</a>, or in an <a href="_api_.uielement.html">UIElement</a> with <code>useWidgetSize</code> set to false.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>autoWrap: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.richtext.html" class="tsd-signature-type">RichText</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -578,21 +630,53 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="settext" class="tsd-anchor"></a>
-					<h3>set<wbr>Text</h3>
+					<a name="setjustification" class="tsd-anchor"></a>
+					<h3>set<wbr>Justification</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Text<span class="tsd-signature-symbol">(</span>text<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.button.html" class="tsd-signature-type">Button</a></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Justification<span class="tsd-signature-symbol">(</span>justification<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.richtext.html" class="tsd-signature-type">RichText</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L3606">index.d.ts:3606</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L4127">index.d.ts:4127</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Set the text of this button.</p>
+									<p>Set the justification (alignment) of the text</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>justification: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The new justification, as defined by <a href="../enums/_api_.textjustification.html">TextJustification</a></p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.richtext.html" class="tsd-signature-type">RichText</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="settext" class="tsd-anchor"></a>
+					<h3>set<wbr>Text</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Text<span class="tsd-signature-symbol">(</span>text<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.richtext.html" class="tsd-signature-type">RichText</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/4bd1130/index.d.ts#L4122">index.d.ts:4122</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set the displayed text. Can include &quot;\n&quot; to indicate new lines. Can include BBCode tags, see <a href="_api_.richtext.html">RichText</a> for
+									a list of supported tags.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -604,7 +688,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_api_.button.html" class="tsd-signature-type">Button</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.richtext.html" class="tsd-signature-type">RichText</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -689,67 +773,76 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-module">
-						<a href="_api_.button.html" class="tsd-kind-icon">Button</a>
+						<a href="_api_.richtext.html" class="tsd-kind-icon">Rich<wbr>Text</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_api_.button.html#onclicked" class="tsd-kind-icon">on<wbr>Clicked</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.richtext.html#getautowrap" class="tsd-kind-icon">get<wbr>Auto<wbr>Wrap</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#getfontfilename" class="tsd-kind-icon">get<wbr>Font<wbr>File<wbr>Name</a>
+								<a href="_api_.richtext.html#getfontfilename" class="tsd-kind-icon">get<wbr>Font<wbr>File<wbr>Name</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#getfontpackageid" class="tsd-kind-icon">get<wbr>Font<wbr>Package<wbr>Id</a>
+								<a href="_api_.richtext.html#getfontpackageid" class="tsd-kind-icon">get<wbr>Font<wbr>Package<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#getfontsize" class="tsd-kind-icon">get<wbr>Font<wbr>Size</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a>
+								<a href="_api_.richtext.html#getfontsize" class="tsd-kind-icon">get<wbr>Font<wbr>Size</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.button.html#gettext" class="tsd-kind-icon">get<wbr>Text</a>
+								<a href="_api_.richtext.html#getjustification" class="tsd-kind-icon">get<wbr>Justification</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#gettextcolor" class="tsd-kind-icon">get<wbr>Text<wbr>Color</a>
+								<a href="_api_.richtext.html#getowningobject" class="tsd-kind-icon">get<wbr>Owning<wbr>Object</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#isbold" class="tsd-kind-icon">is<wbr>Bold</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#isenabled" class="tsd-kind-icon">is<wbr>Enabled</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#isitalic" class="tsd-kind-icon">is<wbr>Italic</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#isvisible" class="tsd-kind-icon">is<wbr>Visible</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#setbold" class="tsd-kind-icon">set<wbr>Bold</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#setenabled" class="tsd-kind-icon">set<wbr>Enabled</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#setfont" class="tsd-kind-icon">set<wbr>Font</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#setfontsize" class="tsd-kind-icon">set<wbr>Font<wbr>Size</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#setitalic" class="tsd-kind-icon">set<wbr>Italic</a>
+								<a href="_api_.richtext.html#getparent" class="tsd-kind-icon">get<wbr>Parent</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_api_.button.html#settext" class="tsd-kind-icon">set<wbr>Text</a>
+								<a href="_api_.richtext.html#gettext" class="tsd-kind-icon">get<wbr>Text</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#settextcolor" class="tsd-kind-icon">set<wbr>Text<wbr>Color</a>
+								<a href="_api_.richtext.html#gettextcolor" class="tsd-kind-icon">get<wbr>Text<wbr>Color</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-								<a href="_api_.button.html#setvisible" class="tsd-kind-icon">set<wbr>Visible</a>
+								<a href="_api_.richtext.html#isbold" class="tsd-kind-icon">is<wbr>Bold</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_api_.richtext.html#isenabled" class="tsd-kind-icon">is<wbr>Enabled</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_api_.richtext.html#isitalic" class="tsd-kind-icon">is<wbr>Italic</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_api_.richtext.html#isvisible" class="tsd-kind-icon">is<wbr>Visible</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.richtext.html#setautowrap" class="tsd-kind-icon">set<wbr>Auto<wbr>Wrap</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_api_.richtext.html#setbold" class="tsd-kind-icon">set<wbr>Bold</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_api_.richtext.html#setenabled" class="tsd-kind-icon">set<wbr>Enabled</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_api_.richtext.html#setfont" class="tsd-kind-icon">set<wbr>Font</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_api_.richtext.html#setfontsize" class="tsd-kind-icon">set<wbr>Font<wbr>Size</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_api_.richtext.html#setitalic" class="tsd-kind-icon">set<wbr>Italic</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.richtext.html#setjustification" class="tsd-kind-icon">set<wbr>Justification</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.richtext.html#settext" class="tsd-kind-icon">set<wbr>Text</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_api_.richtext.html#settextcolor" class="tsd-kind-icon">set<wbr>Text<wbr>Color</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_api_.richtext.html#setvisible" class="tsd-kind-icon">set<wbr>Visible</a>
 							</li>
 						</ul>
 					</li>
@@ -767,7 +860,6 @@
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
 				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 			<ul class="tsd-legend">
