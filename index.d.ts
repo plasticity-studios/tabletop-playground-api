@@ -1118,6 +1118,33 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
+	 * Defines which players an operation or property applies to. Can include player slots, teams, and the hosting player.
+	*/
+	class PlayerPermission { 
+		/**
+		 * Value
+		*/
+		value: number;
+		clone() : PlayerPermission;
+		/**
+		 * Add a player to the permission
+		*/
+		addPlayer(player: Player): PlayerPermission;
+		/**
+		 * Set whether the host is included in the permission. Does not change permissions for player slots or teams.
+		*/
+		setHost(hostIsPermitted: boolean): PlayerPermission;
+		/**
+		 * Set which player slots are included in the permission. Does not change permissions for teams or host. An empty list means an unrestricted permission for all players.
+		*/
+		setPlayerSlots(slots: number[]): PlayerPermission;
+		/**
+		 * Set which teams are included in the permission. Does not change permissions for player slots or host. An empty list means an unrestricted permission for all teams.
+		*/
+		setTeams(teams: number[]): PlayerPermission;
+	}
+
+	/**
 	 * A line drawn by a player or created from a script
 	*/
 	class DrawingLine { 
@@ -1155,6 +1182,10 @@ declare module '@tabletop-playground/api' {
 		 * map.
 		*/
 		emissiveStrength: number;
+		/**
+		 * Determine which players see the line. By default, it will be shown for all players.
+		*/
+		players: PlayerPermission;
 		clone() : DrawingLine;
 	}
 
@@ -1447,9 +1478,9 @@ declare module '@tabletop-playground/api' {
 		 * Called when a custom action defined through {@link addCustomAction} is executed.
 		 * @param {GameObject} object - The object on which the action is executed
 		 * @param {Player} player - The player that executed the action
-		 * @param {string} name - The name of the executed action
+		 * @param {string} identifier - The identifier of the executed action
 		*/
-		onCustomAction: MulticastDelegate<(object: this, player: Player, name: string) => void>;
+		onCustomAction: MulticastDelegate<(object: this, player: Player, identifier: string) => void>;
 		/**
 		 * Called when the object comes to rest. For ground objects or when the session is set to locked physics, the object
 		 * has been locked right before this event is triggered.
@@ -1618,7 +1649,8 @@ declare module '@tabletop-playground/api' {
 		setFriction(friction: number): void;
 		/**
 		 * Set the object's description
-		 * @param {string} description - The new object description. Maximum length is 1023 characters
+		 * @param {string} description - The new object description. Maximum length is 2000 characters. You can use the same BBCode tags as
+		 * in the in-game notes or the {@link RichText} widget.
 		*/
 		setDescription(description: string): void;
 		/**
@@ -1656,10 +1688,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		removeDrawingLine(index: number): void;
 		/**
-		 * Remove a custom action
-		 * @param {string} name - The name of the action to remove
+		 * Remove a custom action by identifier or name.
+		 * @param {string} identifier - The identifier or name of the action to remove
 		*/
-		removeCustomAction(name: string): void;
+		removeCustomAction(identifier: string): void;
 		/**
 		 * Ensure that no player is holding this object. If any player is currently holding the object, it will fall down.
 		 * Some GameObject methods (like setting position or applying physical force) don't have an effect or do not work
@@ -1965,8 +1997,10 @@ declare module '@tabletop-playground/api' {
 		 * Add a custom action that appears in the context menu of the object.
 		 * @param {string} name - The name for the action in the context menu
 		 * @param {string} tooltip - The tooltip text to show for the custom action
+		 * @param {string} identifier - An identifier passed to the onCustomAction event if you don't want to use the action
+		 * name to identify what action is executed. If empty, the action name is used as identifier.
 		*/
-		addCustomAction(name: string, tooltip?: string): void;
+		addCustomAction(name: string, tooltip?: string, identifier?: string): void;
 	}
 
 	/**
@@ -2005,33 +2039,6 @@ declare module '@tabletop-playground/api' {
 		 * Returns undefined if the element isn't attached to a game object.
 		*/
 		getOwningObject(): GameObject | undefined;
-	}
-
-	/**
-	 * Defines which players an operation or property applies to. Can include player slots, teams, and the hosting player.
-	*/
-	class PlayerPermission { 
-		/**
-		 * Value
-		*/
-		value: number;
-		clone() : PlayerPermission;
-		/**
-		 * Add a player to the permission
-		*/
-		addPlayer(player: Player): PlayerPermission;
-		/**
-		 * Set whether the host is included in the permission. Does not change permissions for player slots or teams.
-		*/
-		setHost(hostIsPermitted: boolean): PlayerPermission;
-		/**
-		 * Set which player slots are included in the permission. Does not change permissions for teams or host. An empty list means an unrestricted permission for all players.
-		*/
-		setPlayerSlots(slots: number[]): PlayerPermission;
-		/**
-		 * Set which teams are included in the permission. Does not change permissions for player slots or host. An empty list means an unrestricted permission for all teams.
-		*/
-		setTeams(teams: number[]): PlayerPermission;
 	}
 
 	/**
@@ -2210,6 +2217,29 @@ declare module '@tabletop-playground/api' {
 		*/
 		players: PlayerPermission;
 		clone() : ScreenUIElement;
+	}
+
+	/**
+	 * Phase Details
+	*/
+	class PhaseDetails { 
+		/**
+		 * Name of the phase. Can't be empty for a valid phase.
+		*/
+		name: string;
+		/**
+		 * Configured active player slots for the phase. Relevant when {@link takeTurns} or {@link restrictInteraction} is true.
+		*/
+		playerSlots: number[];
+		/**
+		 * Whether active players in this phase take turns. If false, there are no turns within the phase.
+		*/
+		takeTurns: boolean;
+		/**
+		 * Whether players that are not active in the phase are prevented from interacting with objects.
+		*/
+		restrictInteraction: boolean;
+		clone() : PhaseDetails;
 	}
 
 	/**
@@ -2414,6 +2444,48 @@ declare module '@tabletop-playground/api' {
 		 * Return the altitude angle of the main directional light.
 		*/
 		getMainLightAltitude(): number;
+	}
+
+	/**
+	 * Contains methods to interact with the turn system: rounds, phases, and turns.
+	 * Accessed through {@link GameWorld.turns}
+	*/
+	class TurnSystem { 
+		/**
+		 * Moves to the previous turn. Will also change phase and round as required and cause a message to appear for all players.
+		 * Does the same as a player clicking on the previous turn button in the context menu.
+		*/
+		previousTurn(): void;
+		/**
+		 * Moves to the next turn. Will also change phase and round as required and cause a message to appear for all players.
+		 * Does the same as a player clicking on the next turn button in the context menu.
+		*/
+		nextTurn(): void;
+		/**
+		 * Return the current turn. Returns -1 if currently not in a phase that has turns.
+		*/
+		getCurrentTurn(): number;
+		/**
+		 * Return the current round
+		*/
+		getCurrentRound(): number;
+		/**
+		 * Return the current phase. Returns -1 if no phases are configured.
+		*/
+		getCurrentPhaseIndex(): number;
+		/**
+		 * Return the current phase. Returns a phase with an empty name if no phases are configured.
+		*/
+		getCurrentPhase(): PhaseDetails;
+		/**
+		 * Return all configured phases
+		*/
+		getAllPhases(): PhaseDetails[];
+		/**
+		 * Return the currently active players. Returns an empty array if no phases exist, and an array with a single
+		 * element of the player whose turn it is if the current phase is set to take turns.
+		*/
+		getActivePlayers(): Player[];
 	}
 
 	/**
@@ -2848,6 +2920,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		lighting: LightingSettings;
 		/**
+		 * Access to the turn system
+		*/
+		turns: TurnSystem;
+		/**
 		 * Update a global UI element. Will not do anything if called with a UI element that is not currently part of
 		 * the global UI elements.
 		 * @param {UIElement} - The UI element to be updated
@@ -2987,11 +3063,16 @@ declare module '@tabletop-playground/api' {
 		*/
 		removeDrawingLine(index: number): void;
 		/**
-		 * Move to the previous turn
+		 * Remove a custom action by identifier or name.
+		 * @param {string} identifier - The identifier or name of the action to remove
+		*/
+		removeCustomAction(identifier: string): void;
+		/**
+		 * @deprecated Synonym for for {@link TurnSystem.previousTurn}
 		*/
 		previousTurn(): void;
 		/**
-		 * Move to the next turn
+		 * @deprecated Synonym for for {@link TurnSystem.nextTurn}
 		*/
 		nextTurn(): void;
 		/**
@@ -3146,7 +3227,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		getDrawingLines(): DrawingLine[];
 		/**
-		 * Return the current turn
+		 * @deprecated Synonym for {@link TurnSystem.getCurrentRound}
 		*/
 		getCurrentTurn(): number;
 		/**
@@ -3297,6 +3378,14 @@ declare module '@tabletop-playground/api' {
 		 * the table and the new line would go beyond the limit.
 		*/
 		addDrawingLine(line: DrawingLine): boolean;
+		/**
+		 * Add a custom action that appears in the global context menu (right click menu when not clicking on an object).
+		 * @param {string} name - The name for the action in the context menu
+		 * @param {string} tooltip - The tooltip text to show for the custom action
+		 * @param {string} identifier - An identifier passed to the onCustomAction event if you don't want to use the action
+		 * name to identify what action is executed. If empty, the action name is used as identifier.
+		*/
+		addCustomAction(name: string, tooltip?: string, identifier?: string): void;
 	}
 
 	/**
@@ -3392,6 +3481,12 @@ declare module '@tabletop-playground/api' {
 		 * @param {DrawingLine} line - Information about the erased line
 		*/
 		onLineErased: MulticastDelegate<(player: Player, object: GameObject, line: DrawingLine) => void>;
+		/**
+		 * Called when a player has called a custom action from the global context menu (defined through {@link GameWorld.addCustomAction})
+		 * @param {Player} player - Player that called the action
+		 * @param {string} identifier - The identifier of the executed action
+		*/
+		onCustomAction: MulticastDelegate<(player: Player, identifier: string) => void>;
 	}
 
 	/**
