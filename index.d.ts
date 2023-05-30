@@ -814,7 +814,7 @@ declare module '@tabletop-playground/api' {
 		onInserted: MulticastDelegate<(holder: this, insertedCard: Card, player: Player, index: number) => void>;
 		/**
 		 * Called when a card is dragged from the holder by a player
-		 * @param {Container} container - The holder in which the objects are dropped
+		 * @param {CardHolder} holder - The holder in which the objects are dropped
 		 * @param {Card} removedCard - The removed card (now grabbed by the player)
 		 * @param {Player} player - The player who removed the card
 		*/
@@ -822,7 +822,7 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Called when a card is flipped on the holder by a player. The call happens
 		 * immediately when the player initiates the flip and the animation starts.
-		 * @param {Container} container - The holder in which the objects are dropped
+		 * @param {CardHolder} holder - The holder in which the objects are dropped
 		 * @param {Card} flippedCard - The flipped card
 		 * @param {Player} player - The player who removed the card
 		*/
@@ -830,11 +830,17 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Called when a card is rotated on the holder by a player. The call happens
 		 * immediately when the player initiates the rotation and the animation starts.
-		 * @param {Container} container - The holder in which the objects are dropped
+		 * @param {CardHolder} holder - The holder in which the objects are dropped
 		 * @param {Card} rotated - The rotated card (now grabbed by the player)
 		 * @param {Player} player - The player who removed the card
 		*/
 		onCardRotated: MulticastDelegate<(holder: this, card: Card, player: Player) => void>;
+		/**
+		 * Called when the holder becomes the hand for a player.
+		 * @param {CardHolder} holder - The holder that became player hand
+		 * @param {Player} player - The player whose hand the holder became
+		*/
+		onBecameHand: MulticastDelegate<(holder: this, player: Player) => void>;
 		/**
 		 * Set if only the owner is allowed to take cards from the holder
 		*/
@@ -1055,69 +1061,6 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
-	 * A snap point connected to an object
-	*/
-	class SnapPoint { 
-		/**
-		 * Return whether the snap point changes rotation of the snapped object. Use {@link getSnapRotationType} to get the exact type of rotation change
-		*/
-		snapsRotation(): boolean;
-		/**
-		 * Return whether the object is valid. A snap point becomes invalid after the object it belongs to has been destroyed
-		*/
-		isValid(): boolean;
-		/**
-		 * Get tags of this snap point. Only objects that share at least one tag will be snapped. If empty, all objects will be snapped.
-		*/
-		getTags(): string[];
-		/**
-		 * Return objects snapped to this snap point are rotated, as defined by {@link SnapPointRotationType}
-		*/
-		getSnapRotationType(): number;
-		/**
-		 * Return the relative rotation around the Z axis to which the snap point snaps (if rotation snapping is active)
-		*/
-		getSnapRotation(): number;
-		/**
-		 * Return the object that is snapped to this point. Returns undefined if no object is found.
-		 * Objects are not bound to snap points when they are snapped, only their position is adjusted. Therefore, this
-		 * method is not guaranteed to work correctly. It uses a line trace upwards from the snap point, and if that doesn't find
-		 * anything a sphere overlap centered at the snap point. The closest object found in either of the traces is returned.
-		 * @param {number} sphereRadius - Radius to use for the sphere overlap. If not specified, a quarter of the snap point range is used.
-		*/
-		getSnappedObject(sphereRadius?: number): GameObject | undefined;
-		/**
-		 * Return the shape of the snap point, as defined by {@link SnapPointShape}
-		*/
-		getShape(): number;
-		/**
-		 * Return the snapping range of the snap point
-		*/
-		getRange(): number;
-		/**
-		 * Return the object to which the snap point is connected. Will return undefined if the snap point is not attached
-		 * to a {@link GameObject}, but directly to the table.
-		*/
-		getParentObject(): GameObject;
-		/**
-		 * Get the position of the snap point relative to its parent object
-		*/
-		getLocalPosition(): Vector;
-		/**
-		 * Return the index of the snap point in the list of snap points for the object (as defined in the editor)
-		*/
-		getIndex(): number;
-		/**
-		 * Get the position of the snap point in world space
-		*/
-		getGlobalPosition(): Vector;
-		/**
-		 * Return when the snap point is valid depending on if the object it is attached to is flipped, as defined by {@link SnapPointFlipValidity}
-		*/
-		getFlipValidity(): number;
-	}
-
-	/**
 	 * Defines which players an operation or property applies to. Can include player slots, teams, and the hosting player.
 	*/
 	class PlayerPermission { 
@@ -1187,6 +1130,401 @@ declare module '@tabletop-playground/api' {
 		*/
 		players: PlayerPermission;
 		clone() : DrawingLine;
+	}
+
+	/**
+	 * A snap point connected to an object
+	*/
+	class SnapPoint { 
+		/**
+		 * Return whether the snap point changes rotation of the snapped object. Use {@link getSnapRotationType} to get the exact type of rotation change
+		*/
+		snapsRotation(): boolean;
+		/**
+		 * Return whether the object is valid. A snap point becomes invalid after the object it belongs to has been destroyed
+		*/
+		isValid(): boolean;
+		/**
+		 * Get tags of this snap point. Only objects that share at least one tag will be snapped. If empty, all objects will be snapped.
+		*/
+		getTags(): string[];
+		/**
+		 * Return objects snapped to this snap point are rotated, as defined by {@link SnapPointRotationType}
+		*/
+		getSnapRotationType(): number;
+		/**
+		 * Return the relative rotation around the Z axis to which the snap point snaps (if rotation snapping is active)
+		*/
+		getSnapRotation(): number;
+		/**
+		 * Return the object that is snapped to this point. Returns undefined if no object is found.
+		 * Objects are not bound to snap points when they are snapped, only their position is adjusted. Therefore, this
+		 * method is not guaranteed to work correctly. It uses a line trace upwards from the snap point, and if that doesn't find
+		 * anything a sphere overlap centered at the snap point. The closest object found in either of the traces is returned.
+		 * @param {number} sphereRadius - Radius to use for the sphere overlap. If not specified, a quarter of the snap point range is used.
+		*/
+		getSnappedObject(sphereRadius?: number): GameObject | undefined;
+		/**
+		 * Return the shape of the snap point, as defined by {@link SnapPointShape}
+		*/
+		getShape(): number;
+		/**
+		 * Return the snapping range of the snap point
+		*/
+		getRange(): number;
+		/**
+		 * Return the object to which the snap point is connected. Will return undefined if the snap point is not attached
+		 * to a {@link GameObject}, but directly to the table.
+		*/
+		getParentObject(): StaticObject;
+		/**
+		 * Get the position of the snap point relative to its parent object
+		*/
+		getLocalPosition(): Vector;
+		/**
+		 * Return the index of the snap point in the list of snap points for the object (as defined in the editor)
+		*/
+		getIndex(): number;
+		/**
+		 * Get the position of the snap point in world space
+		*/
+		getGlobalPosition(): Vector;
+		/**
+		 * Return when the snap point is valid depending on if the object it is attached to is flipped, as defined by {@link SnapPointFlipValidity}
+		*/
+		getFlipValidity(): number;
+	}
+
+	/**
+	 * An object in the game. This class only contains methods and attributes that all objects share, whether
+	 * they are interactive and physically simulated or not. For most purposes, the derived class {@link GameObject}
+	 * is used. Static objects are used when interacting with tables from scripts.
+	*/
+	class StaticObject { 
+		/**
+		 * Transform a world rotation to an object rotation
+		 * @param {Rotator} rotation - The rotation in world space to transform to relative to the object
+		*/
+		worldRotationToLocal(rotation: Rotator | [pitch: number, yaw: number, roll: number]): Rotator;
+		/**
+		 * Transform a world position to an object position
+		 * @param {Vector} position - The position in world space to transform to relative to the object
+		*/
+		worldPositionToLocal(position: Vector | [x: number, y: number, z: number]): Vector;
+		/**
+		 * Update an attached UI element. Will not do anything if called with a UI element that is not attached to
+		 * the object. You need to call this method after modifying values in a ``UIElement``. Does not work if
+		 * you change the {@link UIElement.widget} property, you have to use {@link setUI} in this case.
+		 * @param {UIElement} - The UI element to be updated
+		*/
+		updateUI(element: UIElement): void;
+		/**
+		 * Return a Json string representing the object. Can be used to spawn copies.
+		*/
+		toJSONString(): string;
+		/**
+		 * Replace an attached UI element. Will not do anything if called with an index that doesn't have a UI element.
+		 * @param {number} - The index of the UI element to replace
+		 * @param {UIElement} - The UI element to be stored at the index
+		*/
+		setUI(index: number, element: UIElement): void;
+		/**
+		 * Set the list of tags for the object.
+		*/
+		setTags(tags: string[]): void;
+		/**
+		 * Set surface type.  Only affects sound effects when colliding with other objects.
+		 * @param {string} - The new surface type.
+		*/
+		setSurfaceType(surfaceType: string): void;
+		/**
+		 * Set the object's secondary color
+		 * @param {Color} color - The new secondary color
+		*/
+		setSecondaryColor(color: Color | [r: number, g: number, b: number, a: number]): void;
+		/**
+		 * Set the object's script. The script will be executed immediately.
+		 * @param {string} filename - The filename of the script. Pass an empty string to remove the current script.
+		 * @param {string} packageId - The id of the package that contains the script file (in the
+		 * Scripts folder). Can usually be empty when used from scripts to use the same package
+		 * that contains the script file, but you need to explicitly pass {@link refPackageId} for
+		 * the current package or a package id when you use it in a callback. You can find package
+		 * ids in the manifest.json file in package folders. Usually you won't use this parameter,
+		 * unless you have a specific reason to set a script from a different package than where
+		 * the calling script is located.
+		*/
+		setScript(filename: string, packageId?: string): void;
+		/**
+		 * Set the object's scale instantly
+		 * @param {Vector} scale - The new scale
+		*/
+		setScale(scale: Vector | [x: number, y: number, z: number]): void;
+		/**
+		 * Set the data that will be stored in save game states. The data is available using {@link getSavedData} when the object
+		 * script is run after loading a save state. Try to keep this data small and don't change it frequently, it needs to
+		 * be sent over the network to all clients. A similar method exists for global saved data: {@link GameWorld.setSavedData}. <br>
+		 * If you want to use custom data that is not a string, you can encode it to JSON using `JSON.stringify()`, and then
+		 * decode what you get from {@link getSavedData} using `JSON.parse()`.
+		 * @param {string} data - Data to store, maximum length 1023 characters
+		*/
+		setSavedData(data: string, key: string): void;
+		/**
+		 * Set the object's roughness value. Lower roughness makes the object more shiny.
+		 * @param {number} roughness - The new roughness value, from 0 to 1
+		*/
+		setRoughness(roughness: number): void;
+		/**
+		 * Set the object's rotation. Optionally show an animation of the object rotating toward the new orientation.
+		 * The animation is only visual, the physical rotation of the object is changed instantly.
+		 * Does not have an effect if a player is currently holding the object.
+		 * @param {Rotator} rotation - The new rotation
+		 * @param {number} animationSpeed - If larger than 0, show animation. A value of 1 gives a reasonable, quick animation. Value range clamped to [0.1, 5.0]. Default: 0
+		*/
+		setRotation(rotation: Rotator | [pitch: number, yaw: number, roll: number], animationSpeed?: number): void;
+		/**
+		 * Set the object's primary color
+		 * @param {Color} color - The new primary color
+		*/
+		setPrimaryColor(color: Color | [r: number, g: number, b: number, a: number]): void;
+		/**
+		 * Set the object's position. Optionally show an animation of the object flying toward the new location.
+		 * The animation is only visual, the physical location of the object is changed instantly.
+		 * Does not have an effect if a player is currently holding the object.
+		 * @param {Vector} position - The new position
+		 * @param {number} animationSpeed - If larger than 0, show animation. A value of 1 gives a reasonable, quick animation. Value range clamped to [0.1, 5.0]. Default: 0
+		*/
+		setPosition(position: Vector | [x: number, y: number, z: number], animationSpeed?: number): void;
+		/**
+		 * Set the object's user visible name
+		 * @param {string} name - The new name
+		*/
+		setName(name: string): void;
+		/**
+		 * Set the object's metallic value
+		 * @param {number} metallic - The new metallic value, from 0 to 1
+		*/
+		setMetallic(metallic: number): void;
+		/**
+		 * Set the object's unique id. Returns whether the id was changed successfully.
+		 * Fails if the id is already used by another object.
+		 * @param {string} id - The new unique id
+		*/
+		setId(iD: string): boolean;
+		/**
+		 * Set the object's friction value
+		 * @param {number} friction - The new friction value, from 0 to 1
+		*/
+		setFriction(friction: number): void;
+		/**
+		 * Set the object's description
+		 * @param {string} description - The new object description. Maximum length is 2000 characters. You can use the same BBCode tags as
+		 * in the in-game notes or the {@link RichText} widget.
+		*/
+		setDescription(description: string): void;
+		/**
+		 * Set the object's density value
+		 * @param {number} density - The new density value
+		*/
+		setDensity(density: number): void;
+		/**
+		 * Set the object's bounciness value
+		 * @param {number} bounciness - The new bounciness value, from 0 to 1
+		*/
+		setBounciness(bounciness: number): void;
+		/**
+		 * Remove an attached UI element. Does not have any effect if the passed UI element is not attached to the object.
+		 * @param {UIElement} - The UI element to be removed
+		*/
+		removeUIElement(element: UIElement): void;
+		/**
+		 * Remove attached UI element at the given index.
+		 * @param {index} index - The index of the UI element to remove
+		*/
+		removeUI(index: number): void;
+		/**
+		 * Remove a drawn line from the object.
+		*/
+		removeDrawingLineObject(line: DrawingLine): void;
+		/**
+		 * Remove the drawn line at the given index from the object
+		*/
+		removeDrawingLine(index: number): void;
+		/**
+		 * Transform an object rotation to a world rotation
+		 * @param {Rotator} rotation - The rotation relative to the object center to transform to world space
+		*/
+		localRotationToWorld(rotation: Rotator | [pitch: number, yaw: number, roll: number]): Rotator;
+		/**
+		 * Transform an object position to a world position
+		 * @param {Vector} position - The position relative to the object center to transform to world space
+		*/
+		localPositionToWorld(position: Vector | [x: number, y: number, z: number]): Vector;
+		/**
+		 * Return whether the object is valid. An object becomes invalid after it has been destroyed
+		*/
+		isValid(): boolean;
+		/**
+		 * Get an array of all attached UI elements. Modifying the array won't change
+		 * the actual UIs, use {@link updateUI} or {@link setUI} to update.
+		*/
+		getUIs(): UIElement[];
+		/**
+		 * Return the name of the object's template
+		*/
+		getTemplateName(): string;
+		/**
+		 * Return the metadata of the object's template (set in the editor). Can contain JSON encoded information.
+		*/
+		getTemplateMetadata(): string;
+		/**
+		 * Return the object's template id
+		*/
+		getTemplateId(): string;
+		/**
+		 * Return the current list of tags for the object.
+		*/
+		getTags(): string[];
+		/**
+		 * Return surface type. Only affects sound effects when colliding with other objects.
+		*/
+		getSurfaceType(): string;
+		/**
+		 * Return a snap point of the object
+		 * @param {number} index - Index of the snap point
+		*/
+		getSnapPoint(index: number): SnapPoint | undefined;
+		/**
+		 * Get the size of the object in cm. This is the same size that is shown in the editor and the coordinates window, it doesn't change when the object is rotated.
+		 * If you are looking to calculate the borders of the object, use {@link getExtent} instead.
+		*/
+		getSize(): Vector;
+		/**
+		 * Return the object's secondary color
+		*/
+		getSecondaryColor(): Color;
+		/**
+		 * Return the package id of the object's script. Returns an empty string if no script is set for the object.
+		*/
+		getScriptPackageId(): string;
+		/**
+		 * Return the filename of the object's script. Returns an empty string if no script is set for the object.
+		*/
+		getScriptFilename(): string;
+		/**
+		 * Return the object's scale
+		*/
+		getScale(): Vector;
+		/**
+		 * Return data that was stored using {@link setSavedData} or loaded from a saved state.
+		*/
+		getSavedData(key: string): string;
+		/**
+		 * Return the object's roughness value. Lower roughness makes the object more shiny.
+		*/
+		getRoughness(): number;
+		/**
+		 * Return the object's rotation
+		*/
+		getRotation(): Rotator;
+		/**
+		 * Return the object's primary color
+		*/
+		getPrimaryColor(): Color;
+		/**
+		 * Return the object's position
+		*/
+		getPosition(): Vector;
+		/**
+		 * Return the name of the package that the object's template belongs to
+		*/
+		getPackageName(): string;
+		/**
+		 * Return the id of the package that the object's template belongs to
+		*/
+		getPackageId(): string;
+		/**
+		 * Return the object's user visible name
+		*/
+		getName(): string;
+		/**
+		 * Return the object's metallic value.
+		*/
+		getMetallic(): number;
+		/**
+		 * Return the object's unique id
+		*/
+		getId(): string;
+		/**
+		 * Return the object's friction value
+		*/
+		getFriction(): number;
+		/**
+		 * Get the center of the object extent: an axis-aligned bounding box encompassing the object.
+		 * This will often be the same position as returned by {@link getPosition}, but will differ for objects with their physical center not at their volume center.
+		 * @param {boolean} currentRotation - If true, return the extent of an axis-aligned bounding box around the object at its current rotation. If false, return for the default rotation.
+		*/
+		getExtentCenter(currentRotation: boolean): Vector;
+		/**
+		 * Get the object extent: half-size of an axis-aligned bounding box encompassing the object.
+		 * Adding this vector to the position returned by {@link getExtentCenter} gives a corner of the bounding box.
+		 * @param {boolean} currentRotation - If true, return the extent of an axis-aligned bounding box around the object at its current rotation. If false, return for the default rotation.
+		*/
+		getExtent(currentRotation: boolean): Vector;
+		/**
+		 * Used when executing an object script to determine why it was executed. Possible return values:<br>
+		 * "Create" - The object was newly created, for example from the object library or through copy and paste<br>
+		 * "ScriptReload" - The script was reloaded, for example because it was set on the object for the first time, or because the scripting environment was reset<br>
+		 * "StateLoad" - A game state that contained the object was loaded
+		*/
+		static getExecutionReason(): string;
+		/**
+		 * Return all drawing lines on the object.
+		*/
+		getDrawingLines(): DrawingLine[];
+		/**
+		 * Return the object's description
+		*/
+		getDescription(): string;
+		/**
+		 * Return the object's density value
+		*/
+		getDensity(): number;
+		/**
+		 * Return the object's bounciness value
+		*/
+		getBounciness(): number;
+		/**
+		 * @deprecated alias for {@getUIs}
+		*/
+		getAttachedUIs(): UIElement[];
+		/**
+		 * Return an array with all snap points of the object
+		*/
+		getAllSnapPoints(): SnapPoint[];
+		/**
+		 * Destroy the object
+		*/
+		destroy(): void;
+		/**
+		 * @deprecated alias for {@link addUI}
+		 * @param {UIElement} element - The UI element to attach
+		 * @returns {number} - The index of the attached UI element
+		*/
+		attachUI(element: UIElement): number;
+		/**
+		 * Attach a new UI element object to this object.
+		 * @param {UIElement} element - The UI element to attach
+		 * @returns {number} - The index of the attached UI element
+		*/
+		addUI(element: UIElement): number;
+		/**
+		 * Add a drawn line to the object. Lines are geometry and can increase the size of the object returned by
+		 * {@link getSize} and {@link getExtent}.
+		 * Returns whether the line was added successfully. It can't be added if no table exists,
+		 * if the {@link DrawingLine} is invalid, or if there are already too many lines drawn on
+		 * the table and the new line would go beyond the limit.
+		*/
+		addDrawingLine(line: DrawingLine): boolean;
 	}
 
 	/**
@@ -1385,7 +1723,7 @@ declare module '@tabletop-playground/api' {
 	/**
 	 * An object in the game that players can interact with
 	*/
-	class GameObject { 
+	class GameObject extends StaticObject { 
 		/**
 		 * Called when the object is created (from the object library, loading a game, copy & paste, dragging from an infinite container or stack...)
 		 * @param {GameObject} object - The new object
@@ -1487,31 +1825,14 @@ declare module '@tabletop-playground/api' {
 		*/
 		onMovementStopped: MulticastDelegate<(object: this) => void>;
 		/**
-		 * Transform a world rotation to an object rotation
-		 * @param {Rotator} rotation - The rotation in world space to transform to relative to the object
-		*/
-		worldRotationToLocal(rotation: Rotator | [pitch: number, yaw: number, roll: number]): Rotator;
-		/**
-		 * Transform a world position to an object position
-		 * @param {Vector} position - The position in world space to transform to relative to the object
-		*/
-		worldPositionToLocal(position: Vector | [x: number, y: number, z: number]): Vector;
-		/**
-		 * Update an attached UI element. Will not do anything if called with a UI element that is not attached to
-		 * the object. You need to call this method after modifying values in a ``UIElement``. Does not work if
-		 * you change the {@link UIElement.widget} property, you have to use {@link setUI} in this case.
-		 * @param {UIElement} - The UI element to be updated
-		*/
-		updateUI(element: UIElement): void;
-		/**
-		 * Return a Json string representing the object. Can be used to spawn copies.
-		*/
-		toJSONString(): string;
-		/**
 		 * Immediately freeze the object and set its type to ground if it is currently not a ground object.
 		 * Set its to regular if it is currently a ground object.
 		*/
 		toggleLock(): void;
+		/**
+		 * Switch lights on this object on or off
+		*/
+		switchLights(on: boolean): void;
 		/**
 		 * Snap the object to the ground below it.
 		*/
@@ -1526,82 +1847,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		snap(animationSpeed?: number): SnapPoint | undefined;
 		/**
-		 * Replace an attached UI element. Will not do anything if called with an index that doesn't have a UI element.
-		 * @param {number} - The index of the UI element to replace
-		 * @param {UIElement} - The UI element to be stored at the index
-		*/
-		setUI(index: number, element: UIElement): void;
-		/**
-		 * Set the list of tags for the object.
-		*/
-		setTags(tags: string[]): void;
-		/**
-		 * Set surface type.  Only affects sound effects when colliding with other objects.
-		 * @param {string} - The new surface type.
-		*/
-		setSurfaceType(surfaceType: string): void;
-		/**
 		 * Set whether the object is allowed to snap
 		 * @param {boolean} allowed - Whether snapping will be allowed
 		*/
 		setSnappingAllowed(allowed: boolean): void;
-		/**
-		 * Set the object's secondary color
-		 * @param {Color} color - The new secondary color
-		*/
-		setSecondaryColor(color: Color | [r: number, g: number, b: number, a: number]): void;
-		/**
-		 * Set the object's script. The script will be executed immediately.
-		 * @param {string} filename - The filename of the script. Pass an empty string to remove the current script.
-		 * @param {string} packageId - The id of the package that contains the script file (in the
-		 * Scripts folder). Can usually be empty when used from scripts to use the same package
-		 * that contains the script file, but you need to explicitly pass {@link refPackageId} for
-		 * the current package or a package id when you use it in a callback. You can find package
-		 * ids in the manifest.json file in package folders. Usually you won't use this parameter,
-		 * unless you have a specific reason to set a script from a different package than where
-		 * the calling script is located.
-		*/
-		setScript(filename: string, packageId?: string): void;
-		/**
-		 * Set the object's scale instantly
-		 * @param {Vector} scale - The new scale
-		*/
-		setScale(scale: Vector | [x: number, y: number, z: number]): void;
-		/**
-		 * Set the data that will be stored in save game states. The data is available using {@link getSavedData} when the object
-		 * script is run after loading a save state. Try to keep this data small and don't change it frequently, it needs to
-		 * be sent over the network to all clients. A similar method exists for global saved data: {@link GameWorld.setSavedData}. <br>
-		 * If you want to use custom data that is not a string, you can encode it to JSON using `JSON.stringify()`, and then
-		 * decode what you get from {@link getSavedData} using `JSON.parse()`.
-		 * @param {string} data - Data to store, maximum length 1023 characters
-		*/
-		setSavedData(data: string, key: string): void;
-		/**
-		 * Set the object's roughness value. Lower roughness makes the object more shiny.
-		 * @param {number} roughness - The new roughness value, from 0 to 1
-		*/
-		setRoughness(roughness: number): void;
-		/**
-		 * Set the object's rotation. Optionally show an animation of the object rotating toward the new orientation.
-		 * The animation is only visual, the physical rotation of the object is changed instantly.
-		 * Does not have an effect if a player is currently holding the object.
-		 * @param {Rotator} rotation - The new rotation
-		 * @param {number} animationSpeed - If larger than 0, show animation. A value of 1 gives a reasonable, quick animation. Value range clamped to [0.1, 5.0]. Default: 0
-		*/
-		setRotation(rotation: Rotator | [pitch: number, yaw: number, roll: number], animationSpeed?: number): void;
-		/**
-		 * Set the object's primary color
-		 * @param {Color} color - The new primary color
-		*/
-		setPrimaryColor(color: Color | [r: number, g: number, b: number, a: number]): void;
-		/**
-		 * Set the object's position. Optionally show an animation of the object flying toward the new location.
-		 * The animation is only visual, the physical location of the object is changed instantly.
-		 * Does not have an effect if a player is currently holding the object.
-		 * @param {Vector} position - The new position
-		 * @param {number} animationSpeed - If larger than 0, show animation. A value of 1 gives a reasonable, quick animation. Value range clamped to [0.1, 5.0]. Default: 0
-		*/
-		setPosition(position: Vector | [x: number, y: number, z: number], animationSpeed?: number): void;
 		/**
 		 * Set the player slot that owns the object. Set to -1 to remove owner.
 		 * @param {number} slot - The new owning player slot
@@ -1616,77 +1865,22 @@ declare module '@tabletop-playground/api' {
 		*/
 		setObjectType(type: number): void;
 		/**
-		 * Set the object's user visible name
-		 * @param {string} name - The new name
-		*/
-		setName(name: string): void;
-		/**
-		 * Set the object's metallic value
-		 * @param {number} metallic - The new metallic value, from 0 to 1
-		*/
-		setMetallic(metallic: number): void;
-		/**
 		 * Set the object's linear velocity in cm/second.
 		 * Note that setting velocity directly can lead make the physics simulation unstable, you should prefer to apply impulse or force to the object.
 		 * @param {Vector} velocity - The new velocity
 		*/
 		setLinearVelocity(velocity: Vector | [x: number, y: number, z: number]): void;
 		/**
-		 * Set the object's unique id. Returns whether the id was changed successfully.
-		 * Fails if the id is already used by another object.
-		 * @param {string} id - The new unique id
-		*/
-		setId(iD: string): boolean;
-		/**
 		 * Set the object's group id. Objects with the same group id are always picked up together.
 		 * @param {number} groupId - The new group id. Set to -1 to remove the object from all groups.
 		*/
 		setGroupId(groupId: number): void;
-		/**
-		 * Set the object's friction value
-		 * @param {number} friction - The new friction value, from 0 to 1
-		*/
-		setFriction(friction: number): void;
-		/**
-		 * Set the object's description
-		 * @param {string} description - The new object description. Maximum length is 2000 characters. You can use the same BBCode tags as
-		 * in the in-game notes or the {@link RichText} widget.
-		*/
-		setDescription(description: string): void;
-		/**
-		 * Set the object's density value
-		 * @param {number} density - The new density value
-		*/
-		setDensity(density: number): void;
-		/**
-		 * Set the object's bounciness value
-		 * @param {number} bounciness - The new bounciness value, from 0 to 1
-		*/
-		setBounciness(bounciness: number): void;
 		/**
 		 * Set the object's angular (rotational) velocity in degrees/second.
 		 * Note that setting velocity directly can lead make the physics simulation unstable, you should prefer to apply impulse, torque, or force to the object.
 		 * @param {Rotator} velocity - The new angular velocity
 		*/
 		setAngularVelocity(velocity: Rotator | [pitch: number, yaw: number, roll: number]): void;
-		/**
-		 * Remove an attached UI element. Does not have any effect if the passed UI element is not attached to the object.
-		 * @param {UIElement} - The UI element to be removed
-		*/
-		removeUIElement(element: UIElement): void;
-		/**
-		 * Remove attached UI element at the given index.
-		 * @param {index} index - The index of the UI element to remove
-		*/
-		removeUI(index: number): void;
-		/**
-		 * Remove a drawn line from the object.
-		*/
-		removeDrawingLineObject(line: DrawingLine): void;
-		/**
-		 * Remove the drawn line at the given index from the object
-		*/
-		removeDrawingLine(index: number): void;
 		/**
 		 * Remove a custom action by identifier or name.
 		 * @param {string} identifier - The identifier or name of the action to remove
@@ -1698,20 +1892,6 @@ declare module '@tabletop-playground/api' {
 		 * properly while a player is holding the object.
 		*/
 		release(): void;
-		/**
-		 * Transform an object rotation to a world rotation
-		 * @param {Rotator} rotation - The rotation relative to the object center to transform to world space
-		*/
-		localRotationToWorld(rotation: Rotator | [pitch: number, yaw: number, roll: number]): Rotator;
-		/**
-		 * Transform an object position to a world position
-		 * @param {Vector} position - The position relative to the object center to transform to world space
-		*/
-		localPositionToWorld(position: Vector | [x: number, y: number, z: number]): Vector;
-		/**
-		 * Return whether the object is valid. An object becomes invalid after it has been destroyed
-		*/
-		isValid(): boolean;
 		/**
 		 * Return whether the object is allowed to snap
 		*/
@@ -1726,39 +1906,9 @@ declare module '@tabletop-playground/api' {
 		*/
 		isHeld(): boolean;
 		/**
-		 * Get an array of all attached UI elements. Modifying the array won't change
-		 * the actual UIs, use {@link updateUI} or {@link setUI} to update.
-		*/
-		getUIs(): UIElement[];
-		/**
-		 * Return the name of the object's template
-		*/
-		getTemplateName(): string;
-		/**
-		 * Return the metadata of the object's template (set in the editor). Can contain JSON encoded information.
-		*/
-		getTemplateMetadata(): string;
-		/**
-		 * Return the object's template id
-		*/
-		getTemplateId(): string;
-		/**
-		 * Return the current list of tags for the object.
-		*/
-		getTags(): string[];
-		/**
 		 * Get the switcher that contains this object. Returns undefined if the object is not part of a switcher
 		*/
 		getSwitcher(): Switcher;
-		/**
-		 * Return surface type. Only affects sound effects when colliding with other objects.
-		*/
-		getSurfaceType(): string;
-		/**
-		 * Return a snap point of the object
-		 * @param {number} index - Index of the snap point
-		*/
-		getSnapPoint(index: number): SnapPoint | undefined;
 		/**
 		 * Return the snap point that the object is snapped to (or more precisely, the snap point that the object would
 		 * snap to if it was snapped now). Return undefined if the object is not snapped to any points.
@@ -1768,55 +1918,6 @@ declare module '@tabletop-playground/api' {
 		 * fallen or snapped too far below the snap point.
 		*/
 		getSnappedToPoint(): SnapPoint | undefined;
-		/**
-		 * Get the size of the object in cm. This is the same size that is shown in the editor and the coordinates window, it doesn't change when the object is rotated.
-		 * If you are looking to calculate the borders of the object, use {@link getExtent} instead.
-		*/
-		getSize(): Vector;
-		/**
-		 * Return the object's secondary color
-		*/
-		getSecondaryColor(): Color;
-		/**
-		 * Return the package id of the object's script. Returns an empty string if no script is set for the object.
-		*/
-		getScriptPackageId(): string;
-		/**
-		 * Return the filename of the object's script. Returns an empty string if no script is set for the object.
-		*/
-		getScriptFilename(): string;
-		/**
-		 * Return the object's scale
-		*/
-		getScale(): Vector;
-		/**
-		 * Return data that was stored using {@link setSavedData} or loaded from a saved state.
-		*/
-		getSavedData(key: string): string;
-		/**
-		 * Return the object's roughness value. Lower roughness makes the object more shiny.
-		*/
-		getRoughness(): number;
-		/**
-		 * Return the object's rotation
-		*/
-		getRotation(): Rotator;
-		/**
-		 * Return the object's primary color
-		*/
-		getPrimaryColor(): Color;
-		/**
-		 * Return the object's position
-		*/
-		getPosition(): Vector;
-		/**
-		 * Return the name of the package that the object's template belongs to
-		*/
-		getPackageName(): string;
-		/**
-		 * Return the id of the package that the object's template belongs to
-		*/
-		getPackageId(): string;
 		/**
 		 * Return the player slot that owns the object. Returns -1 for holders without owner.
 		*/
@@ -1833,14 +1934,6 @@ declare module '@tabletop-playground/api' {
 		*/
 		getObjectType(): number;
 		/**
-		 * Return the object's user visible name
-		*/
-		getName(): string;
-		/**
-		 * Return the object's metallic value.
-		*/
-		getMetallic(): number;
-		/**
 		 * Return the object's mass in kg
 		*/
 		getMass(): number;
@@ -1849,49 +1942,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		getLinearVelocity(): Vector;
 		/**
-		 * Return the object's unique id
-		*/
-		getId(): string;
-		/**
 		 * Return the object's group id. Objects with the same group id are always picked up together.
 		 * Returns -1 if the object is not part of a group.
 		*/
 		getGroupId(): number;
-		/**
-		 * Return the object's friction value
-		*/
-		getFriction(): number;
-		/**
-		 * Get the center of the object extent: an axis-aligned bounding box encompassing the object.
-		 * This will often be the same position as returned by {@link getPosition}, but will differ for objects with their physical center not at their volume center.
-		 * @param {boolean} currentRotation - If true, return the extent of an axis-aligned bounding box around the object at its current rotation. If false, return for the default rotation.
-		*/
-		getExtentCenter(currentRotation: boolean): Vector;
-		/**
-		 * Get the object extent: half-size of an axis-aligned bounding box encompassing the object.
-		 * Adding this vector to the position returned by {@link getExtentCenter} gives a corner of the bounding box.
-		 * @param {boolean} currentRotation - If true, return the extent of an axis-aligned bounding box around the object at its current rotation. If false, return for the default rotation.
-		*/
-		getExtent(currentRotation: boolean): Vector;
-		/**
-		 * Used when executing an object script to determine why it was executed. Possible return values:<br>
-		 * "Create" - The object was newly created, for example from the object library or through copy and paste<br>
-		 * "ScriptReload" - The script was reloaded, for example because it was set on the object for the first time, or because the scripting environment was reset<br>
-		 * "StateLoad" - A game state that contained the object was loaded
-		*/
-		static getExecutionReason(): string;
-		/**
-		 * Return all drawing lines on the object.
-		*/
-		getDrawingLines(): DrawingLine[];
-		/**
-		 * Return the object's description
-		*/
-		getDescription(): string;
-		/**
-		 * Return the object's density value
-		*/
-		getDensity(): number;
 		/**
 		 * Returned the container that this object is in. Return undefined if the object is not in a container.
 		*/
@@ -1901,21 +1955,9 @@ declare module '@tabletop-playground/api' {
 		*/
 		getCenterOfMass(): Vector;
 		/**
-		 * Return the object's bounciness value
-		*/
-		getBounciness(): number;
-		/**
-		 * @deprecated alias for {@getUIs}
-		*/
-		getAttachedUIs(): UIElement[];
-		/**
 		 * Return the object's angular (rotational) velocity in degrees/s
 		*/
 		getAngularVelocity(): Rotator;
-		/**
-		 * Return an array with all snap points of the object
-		*/
-		getAllSnapPoints(): SnapPoint[];
 		/**
 		 * Immediately freeze the object and set its type to ground if it is currently not a ground object.
 		*/
@@ -1927,10 +1969,6 @@ declare module '@tabletop-playground/api' {
 		*/
 		flipOrUpright(): void;
 		/**
-		 * Destroy the object
-		*/
-		destroy(): void;
-		/**
 		 * Create and return a new switcher with this object as the first (and active) state
 		 * @param {GameObject[]} objects - The other objects to include in the switcher. At least one element is needed
 		 * because switchers are only valid with at least two objects.
@@ -1938,11 +1976,9 @@ declare module '@tabletop-playground/api' {
 		*/
 		createSwitcher(objects: GameObject[], showAnimation?: boolean): Switcher;
 		/**
-		 * @deprecated alias for {@link addUI}
-		 * @param {UIElement} element - The UI element to attach
-		 * @returns {number} - The index of the attached UI element
+		 * Return whether lights on this object are switched on
 		*/
-		attachUI(element: UIElement): number;
+		areLightsOn(): boolean;
 		/**
 		 * Apply a torque to the object. Works like a "thruster" and should be called every tick for the duration of the torque.
 		 * @param {Vector} torque - The axis of rotation and magnitude of the torque to apply in kg*cm^2/s^2.
@@ -1979,20 +2015,6 @@ declare module '@tabletop-playground/api' {
 		 * @param {boolean} useMass - If false (default), ignore the mass of the object and apply the force directly as change of angular velocity in cm^2/s.
 		*/
 		applyAngularImpulse(impulse: Vector | [x: number, y: number, z: number], useMass?: boolean): void;
-		/**
-		 * Attach a new UI element object to this object.
-		 * @param {UIElement} element - The UI element to attach
-		 * @returns {number} - The index of the attached UI element
-		*/
-		addUI(element: UIElement): number;
-		/**
-		 * Add a drawn line to the object. Lines are geometry and can increase the size of the object returned by
-		 * {@link getSize} and {@link getExtent}.
-		 * Returns whether the line was added successfully. It can't be added if no table exists,
-		 * if the {@link DrawingLine} is invalid, or if there are already too many lines drawn on
-		 * the table and the new line would go beyond the limit.
-		*/
-		addDrawingLine(line: DrawingLine): boolean;
 		/**
 		 * Add a custom action that appears in the context menu of the object.
 		 * @param {string} name - The name for the action in the context menu
@@ -3243,6 +3265,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		getAllZones(): Zone[];
 		/**
+		 * Return all tables currently in the game
+		*/
+		getAllTables(): StaticObject[];
+		/**
 		 * Return all players currently in the game
 		*/
 		getAllPlayers(): Player[];
@@ -3251,7 +3277,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		getAllowedPackages(): Package[];
 		/**
-		 * Return all objects currently in the game
+		 * Return all interactive objects currently in the game
 		 * @param {boolean} skipContained - If true, don't return objects in containers.
 		 * Even when false, objects within lazy containers that haven't been loaded yet will never be returned. Use
 		 * {@link Container.getItems} to load and return items in lazy containers. Default: false
@@ -3302,6 +3328,18 @@ declare module '@tabletop-playground/api' {
 		 * @param {Vector} position - The position of the new zone
 		*/
 		createZone(position: Vector | [x: number, y: number, z: number]): Zone;
+		/**
+		 * Create a new static object from a table template
+		 * @param {string} templateId - Template GUID for the new table object
+		 * @param {Vector} position - Starting position
+		*/
+		createTableFromTemplate(templateId: string, position: Vector | [x: number, y: number, z: number]): StaticObject | undefined;
+		/**
+		 * Create a new object from a JSON string. Can create static objects or game objects.
+		 * @param {string} jsonString - String containing Json representation of an object (can be obtained by calling toJSONString() on an object)
+		 * @param {Vector} position - Starting position
+		*/
+		createStaticObjectFromJSON(jsonString: string, position: Vector | [x: number, y: number, z: number]): StaticObject | undefined;
 		/**
 		 * Create a new object from a template
 		 * @param {string} templateId - Template GUID for the new object

@@ -1,0 +1,2192 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>StaticObject | Tabletop Playground API</title>
+	<meta name="description" content="Documentation for Tabletop Playground API">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">Tabletop Playground API</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="../modules/_api_.html">&quot;api&quot;</a>
+				</li>
+				<li>
+					<a href="_api_.staticobject.html">StaticObject</a>
+				</li>
+			</ul>
+			<h1>Class StaticObject</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>An object in the game. This class only contains methods and attributes that all objects share, whether
+							they are interactive and physically simulated or not. For most purposes, the derived class <a href="_api_.gameobject.html">GameObject</a>
+						is used. Static objects are used when interacting with tables from scripts.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">StaticObject</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<a href="_api_.gameobject.html" class="tsd-signature-type">GameObject</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#adddrawingline" class="tsd-kind-icon">add<wbr>Drawing<wbr>Line</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#addui" class="tsd-kind-icon">addUI</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#attachui" class="tsd-kind-icon">attachUI</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#destroy" class="tsd-kind-icon">destroy</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getallsnappoints" class="tsd-kind-icon">get<wbr>All<wbr>Snap<wbr>Points</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getattacheduis" class="tsd-kind-icon">get<wbr>AttachedUIs</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getbounciness" class="tsd-kind-icon">get<wbr>Bounciness</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getdensity" class="tsd-kind-icon">get<wbr>Density</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getdescription" class="tsd-kind-icon">get<wbr>Description</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getdrawinglines" class="tsd-kind-icon">get<wbr>Drawing<wbr>Lines</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getextent" class="tsd-kind-icon">get<wbr>Extent</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getextentcenter" class="tsd-kind-icon">get<wbr>Extent<wbr>Center</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getfriction" class="tsd-kind-icon">get<wbr>Friction</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getid" class="tsd-kind-icon">get<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getmetallic" class="tsd-kind-icon">get<wbr>Metallic</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getname" class="tsd-kind-icon">get<wbr>Name</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getpackageid" class="tsd-kind-icon">get<wbr>Package<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getpackagename" class="tsd-kind-icon">get<wbr>Package<wbr>Name</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getposition" class="tsd-kind-icon">get<wbr>Position</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getprimarycolor" class="tsd-kind-icon">get<wbr>Primary<wbr>Color</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getrotation" class="tsd-kind-icon">get<wbr>Rotation</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getroughness" class="tsd-kind-icon">get<wbr>Roughness</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getsaveddata" class="tsd-kind-icon">get<wbr>Saved<wbr>Data</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getscale" class="tsd-kind-icon">get<wbr>Scale</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getscriptfilename" class="tsd-kind-icon">get<wbr>Script<wbr>Filename</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getscriptpackageid" class="tsd-kind-icon">get<wbr>Script<wbr>Package<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getsecondarycolor" class="tsd-kind-icon">get<wbr>Secondary<wbr>Color</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getsize" class="tsd-kind-icon">get<wbr>Size</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getsnappoint" class="tsd-kind-icon">get<wbr>Snap<wbr>Point</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getsurfacetype" class="tsd-kind-icon">get<wbr>Surface<wbr>Type</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#gettags" class="tsd-kind-icon">get<wbr>Tags</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#gettemplateid" class="tsd-kind-icon">get<wbr>Template<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#gettemplatemetadata" class="tsd-kind-icon">get<wbr>Template<wbr>Metadata</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#gettemplatename" class="tsd-kind-icon">get<wbr>Template<wbr>Name</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getuis" class="tsd-kind-icon">getUIs</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#isvalid" class="tsd-kind-icon">is<wbr>Valid</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#localpositiontoworld" class="tsd-kind-icon">local<wbr>Position<wbr>ToWorld</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#localrotationtoworld" class="tsd-kind-icon">local<wbr>Rotation<wbr>ToWorld</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#removedrawingline" class="tsd-kind-icon">remove<wbr>Drawing<wbr>Line</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#removedrawinglineobject" class="tsd-kind-icon">remove<wbr>Drawing<wbr>Line<wbr>Object</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#removeui" class="tsd-kind-icon">removeUI</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#removeuielement" class="tsd-kind-icon">removeUIElement</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#setbounciness" class="tsd-kind-icon">set<wbr>Bounciness</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#setdensity" class="tsd-kind-icon">set<wbr>Density</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#setdescription" class="tsd-kind-icon">set<wbr>Description</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#setfriction" class="tsd-kind-icon">set<wbr>Friction</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#setid" class="tsd-kind-icon">set<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#setmetallic" class="tsd-kind-icon">set<wbr>Metallic</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#setname" class="tsd-kind-icon">set<wbr>Name</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#setposition" class="tsd-kind-icon">set<wbr>Position</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#setprimarycolor" class="tsd-kind-icon">set<wbr>Primary<wbr>Color</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#setrotation" class="tsd-kind-icon">set<wbr>Rotation</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#setroughness" class="tsd-kind-icon">set<wbr>Roughness</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#setsaveddata" class="tsd-kind-icon">set<wbr>Saved<wbr>Data</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#setscale" class="tsd-kind-icon">set<wbr>Scale</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#setscript" class="tsd-kind-icon">set<wbr>Script</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#setsecondarycolor" class="tsd-kind-icon">set<wbr>Secondary<wbr>Color</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#setsurfacetype" class="tsd-kind-icon">set<wbr>Surface<wbr>Type</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#settags" class="tsd-kind-icon">set<wbr>Tags</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#setui" class="tsd-kind-icon">setUI</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#tojsonstring" class="tsd-kind-icon">toJSONString</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#updateui" class="tsd-kind-icon">updateUI</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#worldpositiontolocal" class="tsd-kind-icon">world<wbr>Position<wbr>ToLocal</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#worldrotationtolocal" class="tsd-kind-icon">world<wbr>Rotation<wbr>ToLocal</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><a href="_api_.staticobject.html#getexecutionreason" class="tsd-kind-icon">get<wbr>Execution<wbr>Reason</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="adddrawingline" class="tsd-anchor"></a>
+					<h3>add<wbr>Drawing<wbr>Line</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Drawing<wbr>Line<span class="tsd-signature-symbol">(</span>line<span class="tsd-signature-symbol">: </span><a href="_api_.drawingline.html" class="tsd-signature-type">DrawingLine</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1527">index.d.ts:1527</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Add a drawn line to the object. Lines are geometry and can increase the size of the object returned by
+										<a href="_api_.staticobject.html#getsize">getSize</a> and <a href="_api_.staticobject.html#getextent">getExtent</a>.
+										Returns whether the line was added successfully. It can&#39;t be added if no table exists,
+										if the <a href="_api_.drawingline.html">DrawingLine</a> is invalid, or if there are already too many lines drawn on
+									the table and the new line would go beyond the limit.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>line: <a href="_api_.drawingline.html" class="tsd-signature-type">DrawingLine</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="addui" class="tsd-anchor"></a>
+					<h3>addUI</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">addUI<span class="tsd-signature-symbol">(</span>element<span class="tsd-signature-symbol">: </span><a href="_api_.uielement.html" class="tsd-signature-type">UIElement</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1519">index.d.ts:1519</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Attach a new UI element object to this object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>element: <a href="_api_.uielement.html" class="tsd-signature-type">UIElement</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The UI element to attach</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<ul>
+								<li>The index of the attached UI element</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="attachui" class="tsd-anchor"></a>
+					<h3>attachUI</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">attachUI<span class="tsd-signature-symbol">(</span>element<span class="tsd-signature-symbol">: </span><a href="_api_.uielement.html" class="tsd-signature-type">UIElement</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1513">index.d.ts:1513</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>deprecated</dt>
+									<dd><p>alias for <a href="_api_.staticobject.html#addui">addUI</a></p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>element: <a href="_api_.uielement.html" class="tsd-signature-type">UIElement</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The UI element to attach</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<ul>
+								<li>The index of the attached UI element</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="destroy" class="tsd-anchor"></a>
+					<h3>destroy</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">destroy<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1507">index.d.ts:1507</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Destroy the object</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getallsnappoints" class="tsd-anchor"></a>
+					<h3>get<wbr>All<wbr>Snap<wbr>Points</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>All<wbr>Snap<wbr>Points<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.snappoint.html" class="tsd-signature-type">SnapPoint</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1503">index.d.ts:1503</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return an array with all snap points of the object</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.snappoint.html" class="tsd-signature-type">SnapPoint</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getattacheduis" class="tsd-anchor"></a>
+					<h3>get<wbr>AttachedUIs</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>AttachedUIs<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.uielement.html" class="tsd-signature-type">UIElement</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1499">index.d.ts:1499</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>deprecated</dt>
+									<dd><p>alias for {@getUIs}</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.uielement.html" class="tsd-signature-type">UIElement</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getbounciness" class="tsd-anchor"></a>
+					<h3>get<wbr>Bounciness</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Bounciness<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1495">index.d.ts:1495</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the object&#39;s bounciness value</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getdensity" class="tsd-anchor"></a>
+					<h3>get<wbr>Density</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Density<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1491">index.d.ts:1491</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the object&#39;s density value</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getdescription" class="tsd-anchor"></a>
+					<h3>get<wbr>Description</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Description<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1487">index.d.ts:1487</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the object&#39;s description</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getdrawinglines" class="tsd-anchor"></a>
+					<h3>get<wbr>Drawing<wbr>Lines</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Drawing<wbr>Lines<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.drawingline.html" class="tsd-signature-type">DrawingLine</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1483">index.d.ts:1483</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return all drawing lines on the object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.drawingline.html" class="tsd-signature-type">DrawingLine</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getextent" class="tsd-anchor"></a>
+					<h3>get<wbr>Extent</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Extent<span class="tsd-signature-symbol">(</span>currentRotation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.vector.html" class="tsd-signature-type">Vector</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1472">index.d.ts:1472</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the object extent: half-size of an axis-aligned bounding box encompassing the object.
+									Adding this vector to the position returned by <a href="_api_.staticobject.html#getextentcenter">getExtentCenter</a> gives a corner of the bounding box.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>currentRotation: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>If true, return the extent of an axis-aligned bounding box around the object at its current rotation. If false, return for the default rotation.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.vector.html" class="tsd-signature-type">Vector</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getextentcenter" class="tsd-anchor"></a>
+					<h3>get<wbr>Extent<wbr>Center</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Extent<wbr>Center<span class="tsd-signature-symbol">(</span>currentRotation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.vector.html" class="tsd-signature-type">Vector</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1466">index.d.ts:1466</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the center of the object extent: an axis-aligned bounding box encompassing the object.
+									This will often be the same position as returned by <a href="_api_.staticobject.html#getposition">getPosition</a>, but will differ for objects with their physical center not at their volume center.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>currentRotation: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>If true, return the extent of an axis-aligned bounding box around the object at its current rotation. If false, return for the default rotation.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.vector.html" class="tsd-signature-type">Vector</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getfriction" class="tsd-anchor"></a>
+					<h3>get<wbr>Friction</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Friction<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1460">index.d.ts:1460</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the object&#39;s friction value</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getid" class="tsd-anchor"></a>
+					<h3>get<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1456">index.d.ts:1456</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the object&#39;s unique id</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getmetallic" class="tsd-anchor"></a>
+					<h3>get<wbr>Metallic</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Metallic<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1452">index.d.ts:1452</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the object&#39;s metallic value.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getname" class="tsd-anchor"></a>
+					<h3>get<wbr>Name</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Name<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1448">index.d.ts:1448</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the object&#39;s user visible name</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getpackageid" class="tsd-anchor"></a>
+					<h3>get<wbr>Package<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Package<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1444">index.d.ts:1444</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the id of the package that the object&#39;s template belongs to</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getpackagename" class="tsd-anchor"></a>
+					<h3>get<wbr>Package<wbr>Name</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Package<wbr>Name<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1440">index.d.ts:1440</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the name of the package that the object&#39;s template belongs to</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getposition" class="tsd-anchor"></a>
+					<h3>get<wbr>Position</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Position<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.vector.html" class="tsd-signature-type">Vector</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1436">index.d.ts:1436</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the object&#39;s position</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.vector.html" class="tsd-signature-type">Vector</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getprimarycolor" class="tsd-anchor"></a>
+					<h3>get<wbr>Primary<wbr>Color</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Primary<wbr>Color<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1432">index.d.ts:1432</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the object&#39;s primary color</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.color.html" class="tsd-signature-type">Color</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getrotation" class="tsd-anchor"></a>
+					<h3>get<wbr>Rotation</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Rotation<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.rotator.html" class="tsd-signature-type">Rotator</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1428">index.d.ts:1428</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the object&#39;s rotation</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.rotator.html" class="tsd-signature-type">Rotator</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getroughness" class="tsd-anchor"></a>
+					<h3>get<wbr>Roughness</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Roughness<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1424">index.d.ts:1424</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the object&#39;s roughness value. Lower roughness makes the object more shiny.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getsaveddata" class="tsd-anchor"></a>
+					<h3>get<wbr>Saved<wbr>Data</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Saved<wbr>Data<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1420">index.d.ts:1420</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return data that was stored using <a href="_api_.staticobject.html#setsaveddata">setSavedData</a> or loaded from a saved state.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>key: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getscale" class="tsd-anchor"></a>
+					<h3>get<wbr>Scale</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Scale<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.vector.html" class="tsd-signature-type">Vector</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1416">index.d.ts:1416</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the object&#39;s scale</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.vector.html" class="tsd-signature-type">Vector</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getscriptfilename" class="tsd-anchor"></a>
+					<h3>get<wbr>Script<wbr>Filename</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Script<wbr>Filename<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1412">index.d.ts:1412</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the filename of the object&#39;s script. Returns an empty string if no script is set for the object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getscriptpackageid" class="tsd-anchor"></a>
+					<h3>get<wbr>Script<wbr>Package<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Script<wbr>Package<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1408">index.d.ts:1408</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the package id of the object&#39;s script. Returns an empty string if no script is set for the object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getsecondarycolor" class="tsd-anchor"></a>
+					<h3>get<wbr>Secondary<wbr>Color</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Secondary<wbr>Color<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.color.html" class="tsd-signature-type">Color</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1404">index.d.ts:1404</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the object&#39;s secondary color</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.color.html" class="tsd-signature-type">Color</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getsize" class="tsd-anchor"></a>
+					<h3>get<wbr>Size</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Size<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.vector.html" class="tsd-signature-type">Vector</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1400">index.d.ts:1400</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the size of the object in cm. This is the same size that is shown in the editor and the coordinates window, it doesn&#39;t change when the object is rotated.
+									If you are looking to calculate the borders of the object, use <a href="_api_.staticobject.html#getextent">getExtent</a> instead.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.vector.html" class="tsd-signature-type">Vector</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getsnappoint" class="tsd-anchor"></a>
+					<h3>get<wbr>Snap<wbr>Point</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Snap<wbr>Point<span class="tsd-signature-symbol">(</span>index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.snappoint.html" class="tsd-signature-type">SnapPoint</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1395">index.d.ts:1395</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a snap point of the object</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>index: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Index of the snap point</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.snappoint.html" class="tsd-signature-type">SnapPoint</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getsurfacetype" class="tsd-anchor"></a>
+					<h3>get<wbr>Surface<wbr>Type</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Surface<wbr>Type<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1390">index.d.ts:1390</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return surface type. Only affects sound effects when colliding with other objects.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="gettags" class="tsd-anchor"></a>
+					<h3>get<wbr>Tags</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Tags<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1386">index.d.ts:1386</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the current list of tags for the object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="gettemplateid" class="tsd-anchor"></a>
+					<h3>get<wbr>Template<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Template<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1382">index.d.ts:1382</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the object&#39;s template id</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="gettemplatemetadata" class="tsd-anchor"></a>
+					<h3>get<wbr>Template<wbr>Metadata</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Template<wbr>Metadata<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1378">index.d.ts:1378</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the metadata of the object&#39;s template (set in the editor). Can contain JSON encoded information.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="gettemplatename" class="tsd-anchor"></a>
+					<h3>get<wbr>Template<wbr>Name</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Template<wbr>Name<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1374">index.d.ts:1374</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the name of the object&#39;s template</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getuis" class="tsd-anchor"></a>
+					<h3>getUIs</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">getUIs<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.uielement.html" class="tsd-signature-type">UIElement</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1370">index.d.ts:1370</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get an array of all attached UI elements. Modifying the array won&#39;t change
+									the actual UIs, use <a href="_api_.staticobject.html#updateui">updateUI</a> or <a href="_api_.staticobject.html#setui">setUI</a> to update.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.uielement.html" class="tsd-signature-type">UIElement</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isvalid" class="tsd-anchor"></a>
+					<h3>is<wbr>Valid</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Valid<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1365">index.d.ts:1365</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return whether the object is valid. An object becomes invalid after it has been destroyed</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="localpositiontoworld" class="tsd-anchor"></a>
+					<h3>local<wbr>Position<wbr>ToWorld</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">local<wbr>Position<wbr>ToWorld<span class="tsd-signature-symbol">(</span>position<span class="tsd-signature-symbol">: </span><a href="_api_.vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>z<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.vector.html" class="tsd-signature-type">Vector</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1361">index.d.ts:1361</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Transform an object position to a world position</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>position: <a href="_api_.vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>z<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The position relative to the object center to transform to world space</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.vector.html" class="tsd-signature-type">Vector</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="localrotationtoworld" class="tsd-anchor"></a>
+					<h3>local<wbr>Rotation<wbr>ToWorld</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">local<wbr>Rotation<wbr>ToWorld<span class="tsd-signature-symbol">(</span>rotation<span class="tsd-signature-symbol">: </span><a href="_api_.rotator.html" class="tsd-signature-type">Rotator</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>pitch<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>yaw<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>roll<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.rotator.html" class="tsd-signature-type">Rotator</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1356">index.d.ts:1356</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Transform an object rotation to a world rotation</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>rotation: <a href="_api_.rotator.html" class="tsd-signature-type">Rotator</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>pitch<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>yaw<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>roll<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The rotation relative to the object center to transform to world space</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.rotator.html" class="tsd-signature-type">Rotator</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="removedrawingline" class="tsd-anchor"></a>
+					<h3>remove<wbr>Drawing<wbr>Line</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Drawing<wbr>Line<span class="tsd-signature-symbol">(</span>index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1351">index.d.ts:1351</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Remove the drawn line at the given index from the object</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>index: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="removedrawinglineobject" class="tsd-anchor"></a>
+					<h3>remove<wbr>Drawing<wbr>Line<wbr>Object</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Drawing<wbr>Line<wbr>Object<span class="tsd-signature-symbol">(</span>line<span class="tsd-signature-symbol">: </span><a href="_api_.drawingline.html" class="tsd-signature-type">DrawingLine</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1347">index.d.ts:1347</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Remove a drawn line from the object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>line: <a href="_api_.drawingline.html" class="tsd-signature-type">DrawingLine</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="removeui" class="tsd-anchor"></a>
+					<h3>removeUI</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">removeUI<span class="tsd-signature-symbol">(</span>index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1343">index.d.ts:1343</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Remove attached UI element at the given index.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>index: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The index of the UI element to remove</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="removeuielement" class="tsd-anchor"></a>
+					<h3>removeUIElement</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">removeUIElement<span class="tsd-signature-symbol">(</span>element<span class="tsd-signature-symbol">: </span><a href="_api_.uielement.html" class="tsd-signature-type">UIElement</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1338">index.d.ts:1338</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Remove an attached UI element. Does not have any effect if the passed UI element is not attached to the object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>element: <a href="_api_.uielement.html" class="tsd-signature-type">UIElement</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setbounciness" class="tsd-anchor"></a>
+					<h3>set<wbr>Bounciness</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Bounciness<span class="tsd-signature-symbol">(</span>bounciness<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1333">index.d.ts:1333</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set the object&#39;s bounciness value</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>bounciness: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The new bounciness value, from 0 to 1</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setdensity" class="tsd-anchor"></a>
+					<h3>set<wbr>Density</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Density<span class="tsd-signature-symbol">(</span>density<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1328">index.d.ts:1328</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set the object&#39;s density value</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>density: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The new density value</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setdescription" class="tsd-anchor"></a>
+					<h3>set<wbr>Description</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Description<span class="tsd-signature-symbol">(</span>description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1323">index.d.ts:1323</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set the object&#39;s description</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>description: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The new object description. Maximum length is 2000 characters. You can use the same BBCode tags as
+										in the in-game notes or the <a href="_api_.richtext.html">RichText</a> widget.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setfriction" class="tsd-anchor"></a>
+					<h3>set<wbr>Friction</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Friction<span class="tsd-signature-symbol">(</span>friction<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1317">index.d.ts:1317</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set the object&#39;s friction value</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>friction: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The new friction value, from 0 to 1</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setid" class="tsd-anchor"></a>
+					<h3>set<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Id<span class="tsd-signature-symbol">(</span>iD<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1312">index.d.ts:1312</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set the object&#39;s unique id. Returns whether the id was changed successfully.
+									Fails if the id is already used by another object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>iD: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setmetallic" class="tsd-anchor"></a>
+					<h3>set<wbr>Metallic</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Metallic<span class="tsd-signature-symbol">(</span>metallic<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1306">index.d.ts:1306</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set the object&#39;s metallic value</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>metallic: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The new metallic value, from 0 to 1</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setname" class="tsd-anchor"></a>
+					<h3>set<wbr>Name</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Name<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1301">index.d.ts:1301</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set the object&#39;s user visible name</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The new name</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setposition" class="tsd-anchor"></a>
+					<h3>set<wbr>Position</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Position<span class="tsd-signature-symbol">(</span>position<span class="tsd-signature-symbol">: </span><a href="_api_.vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>z<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span>, animationSpeed<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1296">index.d.ts:1296</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set the object&#39;s position. Optionally show an animation of the object flying toward the new location.
+										The animation is only visual, the physical location of the object is changed instantly.
+									Does not have an effect if a player is currently holding the object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>position: <a href="_api_.vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>z<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The new position</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> animationSpeed: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>If larger than 0, show animation. A value of 1 gives a reasonable, quick animation. Value range clamped to [0.1, 5.0]. Default: 0</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setprimarycolor" class="tsd-anchor"></a>
+					<h3>set<wbr>Primary<wbr>Color</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Primary<wbr>Color<span class="tsd-signature-symbol">(</span>color<span class="tsd-signature-symbol">: </span><a href="_api_.color.html" class="tsd-signature-type">Color</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>r<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>g<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>b<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1288">index.d.ts:1288</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set the object&#39;s primary color</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>color: <a href="_api_.color.html" class="tsd-signature-type">Color</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>r<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>g<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>b<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The new primary color</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setrotation" class="tsd-anchor"></a>
+					<h3>set<wbr>Rotation</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Rotation<span class="tsd-signature-symbol">(</span>rotation<span class="tsd-signature-symbol">: </span><a href="_api_.rotator.html" class="tsd-signature-type">Rotator</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>pitch<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>yaw<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>roll<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span>, animationSpeed<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1283">index.d.ts:1283</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set the object&#39;s rotation. Optionally show an animation of the object rotating toward the new orientation.
+										The animation is only visual, the physical rotation of the object is changed instantly.
+									Does not have an effect if a player is currently holding the object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>rotation: <a href="_api_.rotator.html" class="tsd-signature-type">Rotator</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>pitch<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>yaw<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>roll<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The new rotation</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> animationSpeed: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>If larger than 0, show animation. A value of 1 gives a reasonable, quick animation. Value range clamped to [0.1, 5.0]. Default: 0</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setroughness" class="tsd-anchor"></a>
+					<h3>set<wbr>Roughness</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Roughness<span class="tsd-signature-symbol">(</span>roughness<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1275">index.d.ts:1275</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set the object&#39;s roughness value. Lower roughness makes the object more shiny.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>roughness: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The new roughness value, from 0 to 1</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setsaveddata" class="tsd-anchor"></a>
+					<h3>set<wbr>Saved<wbr>Data</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Saved<wbr>Data<span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1270">index.d.ts:1270</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set the data that will be stored in save game states. The data is available using <a href="_api_.staticobject.html#getsaveddata">getSavedData</a> when the object
+										script is run after loading a save state. Try to keep this data small and don&#39;t change it frequently, it needs to
+										be sent over the network to all clients. A similar method exists for global saved data: <a href="_api_.gameworld.html#setsaveddata">GameWorld.setSavedData</a>. <br>
+										If you want to use custom data that is not a string, you can encode it to JSON using <code>JSON.stringify()</code>, and then
+									decode what you get from <a href="_api_.staticobject.html#getsaveddata">getSavedData</a> using <code>JSON.parse()</code>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>data: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Data to store, maximum length 1023 characters</p>
+									</div>
+								</li>
+								<li>
+									<h5>key: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setscale" class="tsd-anchor"></a>
+					<h3>set<wbr>Scale</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Scale<span class="tsd-signature-symbol">(</span>scale<span class="tsd-signature-symbol">: </span><a href="_api_.vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>z<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1261">index.d.ts:1261</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set the object&#39;s scale instantly</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>scale: <a href="_api_.vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>z<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The new scale</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setscript" class="tsd-anchor"></a>
+					<h3>set<wbr>Script</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Script<span class="tsd-signature-symbol">(</span>filename<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, packageId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1256">index.d.ts:1256</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set the object&#39;s script. The script will be executed immediately.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>filename: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The filename of the script. Pass an empty string to remove the current script.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> packageId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The id of the package that contains the script file (in the
+											Scripts folder). Can usually be empty when used from scripts to use the same package
+											that contains the script file, but you need to explicitly pass <a href="../modules/_api_.html#refpackageid">refPackageId</a> for
+											the current package or a package id when you use it in a callback. You can find package
+											ids in the manifest.json file in package folders. Usually you won&#39;t use this parameter,
+											unless you have a specific reason to set a script from a different package than where
+										the calling script is located.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setsecondarycolor" class="tsd-anchor"></a>
+					<h3>set<wbr>Secondary<wbr>Color</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Secondary<wbr>Color<span class="tsd-signature-symbol">(</span>color<span class="tsd-signature-symbol">: </span><a href="_api_.color.html" class="tsd-signature-type">Color</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>r<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>g<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>b<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1244">index.d.ts:1244</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set the object&#39;s secondary color</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>color: <a href="_api_.color.html" class="tsd-signature-type">Color</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>r<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>g<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>b<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The new secondary color</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setsurfacetype" class="tsd-anchor"></a>
+					<h3>set<wbr>Surface<wbr>Type</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Surface<wbr>Type<span class="tsd-signature-symbol">(</span>surfaceType<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1239">index.d.ts:1239</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set surface type.  Only affects sound effects when colliding with other objects.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>surfaceType: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="settags" class="tsd-anchor"></a>
+					<h3>set<wbr>Tags</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Tags<span class="tsd-signature-symbol">(</span>tags<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1234">index.d.ts:1234</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set the list of tags for the object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>tags: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setui" class="tsd-anchor"></a>
+					<h3>setUI</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">setUI<span class="tsd-signature-symbol">(</span>index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, element<span class="tsd-signature-symbol">: </span><a href="_api_.uielement.html" class="tsd-signature-type">UIElement</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1230">index.d.ts:1230</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Replace an attached UI element. Will not do anything if called with an index that doesn&#39;t have a UI element.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>index: <span class="tsd-signature-type">number</span></h5>
+								</li>
+								<li>
+									<h5>element: <a href="_api_.uielement.html" class="tsd-signature-type">UIElement</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="tojsonstring" class="tsd-anchor"></a>
+					<h3>toJSONString</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">toJSONString<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1224">index.d.ts:1224</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a Json string representing the object. Can be used to spawn copies.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="updateui" class="tsd-anchor"></a>
+					<h3>updateUI</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">updateUI<span class="tsd-signature-symbol">(</span>element<span class="tsd-signature-symbol">: </span><a href="_api_.uielement.html" class="tsd-signature-type">UIElement</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1220">index.d.ts:1220</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Update an attached UI element. Will not do anything if called with a UI element that is not attached to
+										the object. You need to call this method after modifying values in a <code>UIElement</code>. Does not work if
+									you change the <a href="_api_.uielement.html#widget">UIElement.widget</a> property, you have to use <a href="_api_.staticobject.html#setui">setUI</a> in this case.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>element: <a href="_api_.uielement.html" class="tsd-signature-type">UIElement</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="worldpositiontolocal" class="tsd-anchor"></a>
+					<h3>world<wbr>Position<wbr>ToLocal</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">world<wbr>Position<wbr>ToLocal<span class="tsd-signature-symbol">(</span>position<span class="tsd-signature-symbol">: </span><a href="_api_.vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>z<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.vector.html" class="tsd-signature-type">Vector</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1213">index.d.ts:1213</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Transform a world position to an object position</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>position: <a href="_api_.vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>z<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The position in world space to transform to relative to the object</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.vector.html" class="tsd-signature-type">Vector</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="worldrotationtolocal" class="tsd-anchor"></a>
+					<h3>world<wbr>Rotation<wbr>ToLocal</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">world<wbr>Rotation<wbr>ToLocal<span class="tsd-signature-symbol">(</span>rotation<span class="tsd-signature-symbol">: </span><a href="_api_.rotator.html" class="tsd-signature-type">Rotator</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>pitch<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>yaw<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>roll<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.rotator.html" class="tsd-signature-type">Rotator</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1208">index.d.ts:1208</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Transform a world rotation to an object rotation</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>rotation: <a href="_api_.rotator.html" class="tsd-signature-type">Rotator</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>pitch<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>yaw<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>roll<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The rotation in world space to transform to relative to the object</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.rotator.html" class="tsd-signature-type">Rotator</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-static">
+					<a name="getexecutionreason" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> get<wbr>Execution<wbr>Reason</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-static">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Execution<wbr>Reason<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/124bc5d/index.d.ts#L1479">index.d.ts:1479</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Used when executing an object script to determine why it was executed. Possible return values:<br>
+										&quot;Create&quot; - The object was newly created, for example from the object library or through copy and paste<br>
+										&quot;ScriptReload&quot; - The script was reloaded, for example because it was set on the object for the first time, or because the scripting environment was reset<br>
+									&quot;StateLoad&quot; - A game state that contained the object was loaded</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="../modules/_api_.html">&quot;api&quot;</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class tsd-parent-kind-module">
+						<a href="_api_.staticobject.html" class="tsd-kind-icon">Static<wbr>Object</a>
+						<ul>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#adddrawingline" class="tsd-kind-icon">add<wbr>Drawing<wbr>Line</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#addui" class="tsd-kind-icon">addUI</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#attachui" class="tsd-kind-icon">attachUI</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#destroy" class="tsd-kind-icon">destroy</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#getallsnappoints" class="tsd-kind-icon">get<wbr>All<wbr>Snap<wbr>Points</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#getattacheduis" class="tsd-kind-icon">get<wbr>AttachedUIs</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#getbounciness" class="tsd-kind-icon">get<wbr>Bounciness</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#getdensity" class="tsd-kind-icon">get<wbr>Density</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#getdescription" class="tsd-kind-icon">get<wbr>Description</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#getdrawinglines" class="tsd-kind-icon">get<wbr>Drawing<wbr>Lines</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#getextent" class="tsd-kind-icon">get<wbr>Extent</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#getextentcenter" class="tsd-kind-icon">get<wbr>Extent<wbr>Center</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#getfriction" class="tsd-kind-icon">get<wbr>Friction</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#getid" class="tsd-kind-icon">get<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#getmetallic" class="tsd-kind-icon">get<wbr>Metallic</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#getname" class="tsd-kind-icon">get<wbr>Name</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#getpackageid" class="tsd-kind-icon">get<wbr>Package<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#getpackagename" class="tsd-kind-icon">get<wbr>Package<wbr>Name</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#getposition" class="tsd-kind-icon">get<wbr>Position</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#getprimarycolor" class="tsd-kind-icon">get<wbr>Primary<wbr>Color</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#getrotation" class="tsd-kind-icon">get<wbr>Rotation</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#getroughness" class="tsd-kind-icon">get<wbr>Roughness</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#getsaveddata" class="tsd-kind-icon">get<wbr>Saved<wbr>Data</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#getscale" class="tsd-kind-icon">get<wbr>Scale</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#getscriptfilename" class="tsd-kind-icon">get<wbr>Script<wbr>Filename</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#getscriptpackageid" class="tsd-kind-icon">get<wbr>Script<wbr>Package<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#getsecondarycolor" class="tsd-kind-icon">get<wbr>Secondary<wbr>Color</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#getsize" class="tsd-kind-icon">get<wbr>Size</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#getsnappoint" class="tsd-kind-icon">get<wbr>Snap<wbr>Point</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#getsurfacetype" class="tsd-kind-icon">get<wbr>Surface<wbr>Type</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#gettags" class="tsd-kind-icon">get<wbr>Tags</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#gettemplateid" class="tsd-kind-icon">get<wbr>Template<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#gettemplatemetadata" class="tsd-kind-icon">get<wbr>Template<wbr>Metadata</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#gettemplatename" class="tsd-kind-icon">get<wbr>Template<wbr>Name</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#getuis" class="tsd-kind-icon">getUIs</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#isvalid" class="tsd-kind-icon">is<wbr>Valid</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#localpositiontoworld" class="tsd-kind-icon">local<wbr>Position<wbr>ToWorld</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#localrotationtoworld" class="tsd-kind-icon">local<wbr>Rotation<wbr>ToWorld</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#removedrawingline" class="tsd-kind-icon">remove<wbr>Drawing<wbr>Line</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#removedrawinglineobject" class="tsd-kind-icon">remove<wbr>Drawing<wbr>Line<wbr>Object</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#removeui" class="tsd-kind-icon">removeUI</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#removeuielement" class="tsd-kind-icon">removeUIElement</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#setbounciness" class="tsd-kind-icon">set<wbr>Bounciness</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#setdensity" class="tsd-kind-icon">set<wbr>Density</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#setdescription" class="tsd-kind-icon">set<wbr>Description</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#setfriction" class="tsd-kind-icon">set<wbr>Friction</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#setid" class="tsd-kind-icon">set<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#setmetallic" class="tsd-kind-icon">set<wbr>Metallic</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#setname" class="tsd-kind-icon">set<wbr>Name</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#setposition" class="tsd-kind-icon">set<wbr>Position</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#setprimarycolor" class="tsd-kind-icon">set<wbr>Primary<wbr>Color</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#setrotation" class="tsd-kind-icon">set<wbr>Rotation</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#setroughness" class="tsd-kind-icon">set<wbr>Roughness</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#setsaveddata" class="tsd-kind-icon">set<wbr>Saved<wbr>Data</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#setscale" class="tsd-kind-icon">set<wbr>Scale</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#setscript" class="tsd-kind-icon">set<wbr>Script</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#setsecondarycolor" class="tsd-kind-icon">set<wbr>Secondary<wbr>Color</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#setsurfacetype" class="tsd-kind-icon">set<wbr>Surface<wbr>Type</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#settags" class="tsd-kind-icon">set<wbr>Tags</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#setui" class="tsd-kind-icon">setUI</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#tojsonstring" class="tsd-kind-icon">toJSONString</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#updateui" class="tsd-kind-icon">updateUI</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#worldpositiontolocal" class="tsd-kind-icon">world<wbr>Position<wbr>ToLocal</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#worldrotationtolocal" class="tsd-kind-icon">world<wbr>Rotation<wbr>ToLocal</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-static">
+								<a href="_api_.staticobject.html#getexecutionreason" class="tsd-kind-icon">get<wbr>Execution<wbr>Reason</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer>
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
