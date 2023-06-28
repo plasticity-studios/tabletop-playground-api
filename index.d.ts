@@ -43,7 +43,9 @@ declare module '@tabletop-playground/api' {
 		/** Physics get locked when object is at rest, collides with all object types */
 		Ground=1,
 		/** Physics stay activated as for regular objects, does not collide with other penetrable or regular objects */
-		Penetrable=2
+		Penetrable=2,
+		/** Physics are locked, players cannot interact with the object at all: it behaves like a table */
+		NonInteractive=3
 	}
 
 	/** The zone shape used in {@link Zone.getShape} and {@link Zone.setShape}*/
@@ -919,7 +921,8 @@ declare module '@tabletop-playground/api' {
 		 * Switch the player to a new slot. Returns whether the switch was successful
 		 * (it fails if another player already occupies the chosen slot or if the slot number
 		 * is invalid). Switching slots changes the player's color.
-		 * @param {number} newSlot - The new player slot, between 0 and 19
+		 * @param {number} newSlot - The new player slot, between 0 and 19, or -1 to make
+		 * the player a spectator
 		*/
 		switchSlot(newSlot: number): boolean;
 		/**
@@ -973,6 +976,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		isUsingVR(): boolean;
 		/**
+		 * Returns if the player is currently a spectator
+		*/
+		isSpectator(): boolean;
+		/**
 		 * Return whether a script action key is held by the player
 		*/
 		isScriptKeyDown(index: number): boolean;
@@ -989,6 +996,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		isHolding(): boolean;
 		/**
+		 * Returns if the player is currently a game master
+		*/
+		isGameMaster(): boolean;
+		/**
 		 * Return whether the player is currently blindfolded
 		*/
 		isBlindfolded(): boolean;
@@ -997,8 +1008,9 @@ declare module '@tabletop-playground/api' {
 		*/
 		getTeam(): number;
 		/**
-		 * Return the player slot of this player (a number from 0 to 19). The slot
-		 * determines the color of the player and what objects they own.
+		 * Return the player slot of this player (a number from 0 to 19, or -1
+		 * if the player is a spectator). The slot determines the color of the
+		 * player and what objects they own.
 		*/
 		getSlot(): number;
 		/**
@@ -1826,7 +1838,9 @@ declare module '@tabletop-playground/api' {
 		onMovementStopped: MulticastDelegate<(object: this) => void>;
 		/**
 		 * Immediately freeze the object and set its type to ground if it is currently not a ground object.
-		 * Set its to regular if it is currently a ground object.
+		 * Set its type to regular if it is currently a ground object. If you want to completely lock an object
+		 * and not allow players to interact with it, use {@link setObjectType} with
+		 * {@link ObjectType.NonInteractive} instead.
 		*/
 		toggleLock(): void;
 		/**
@@ -1857,10 +1871,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		setOwningPlayerSlot(slot: number): void;
 		/**
-		 * Set the object's type. Available options are defined in {@link ObjectType}:<br>
-		 * 0: Regular<br>
-		 * 1: Ground<br>
-		 * 2: Penetrable
+		 * Set the object's type. Available options are defined in {@link ObjectType}.
 		 * @param {number} type - The new object type
 		*/
 		setObjectType(type: number): void;
@@ -1927,10 +1938,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		getOwningPlayer(): Player | undefined;
 		/**
-		 * Get the object's type. Possible values are defined in {@link ObjectType}:<br>
-		 * 0: Regular<br>
-		 * 1: Ground<br>
-		 * 2: Penetrable
+		 * Get the object's type. Possible values are defined in {@link ObjectType}.
 		*/
 		getObjectType(): number;
 		/**
@@ -3912,7 +3920,7 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
-	 * Image element
+	 * Image element. Can use a local image file in a package, an online URL, or a card on the table as source for the image.
 	*/
 	class ImageWidget extends Widget { 
 		/**
@@ -3928,6 +3936,14 @@ declare module '@tabletop-playground/api' {
 		 * Set the tint color of the image. Default: White
 		*/
 		setTintColor(color: Color | [r: number, g: number, b: number, a: number]): ImageWidget;
+		/**
+		 * Set the displayed image based on a card. The image file width will always be 128, the file height
+		 * is calculated based on the aspect ratio of the card. Note that if the card is deleted or becomes
+		 * part of another stack, the image widget will become empty when it is reloaded, for example because
+		 * the containing UI is changed or for a new player who joins.
+		 * @param {Card} sourceCard - The card that should be displayed on the widget.
+		*/
+		setSourceCard(sourceCard: Card): ImageWidget;
 		/**
 		 * Set the displayed image file from a URL
 		 * @param {string} url - The filename of the image to load
