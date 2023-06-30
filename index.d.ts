@@ -4021,6 +4021,14 @@ declare module '@tabletop-playground/api' {
 		*/
 		setTintColor(color: Color | [r: number, g: number, b: number, a: number]): ImageButton;
 		/**
+		 * Set the displayed image based on a card. The image file width will always be 128, the file height
+		 * is calculated based on the aspect ratio of the card. Note that if the card is deleted or becomes
+		 * part of another stack, the image widget will become empty when it is reloaded, for example because
+		 * the containing UI is changed or for a new player who joins.
+		 * @param {Card} sourceCard - The card that should be displayed on the widget.
+		*/
+		setSourceCard(sourceCard: Card): ImageButton;
+		/**
 		 * Set the displayed image file from a URL
 		 * @param {string} url - The filename of the image to load
 		*/
