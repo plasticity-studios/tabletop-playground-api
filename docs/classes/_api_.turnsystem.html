@@ -88,6 +88,12 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_.turnsystem.html#onturnchanged" class="tsd-kind-icon">on<wbr>Turn<wbr>Changed</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.turnsystem.html#getactiveplayers" class="tsd-kind-icon">get<wbr>Active<wbr>Players</a></li>
@@ -98,8 +104,41 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.turnsystem.html#getcurrentturn" class="tsd-kind-icon">get<wbr>Current<wbr>Turn</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.turnsystem.html#nextturn" class="tsd-kind-icon">next<wbr>Turn</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.turnsystem.html#previousturn" class="tsd-kind-icon">previous<wbr>Turn</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.turnsystem.html#setcurrentphaseindex" class="tsd-kind-icon">set<wbr>Current<wbr>Phase<wbr>Index</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.turnsystem.html#setcurrentround" class="tsd-kind-icon">set<wbr>Current<wbr>Round</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.turnsystem.html#setcurrentturn" class="tsd-kind-icon">set<wbr>Current<wbr>Turn</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.turnsystem.html#setphases" class="tsd-kind-icon">set<wbr>Phases</a></li>
 							</ul>
 						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="onturnchanged" class="tsd-anchor"></a>
+					<h3>on<wbr>Turn<wbr>Changed</h3>
+					<div class="tsd-signature tsd-kind-icon">on<wbr>Turn<wbr>Changed<span class="tsd-signature-symbol">:</span> <a href="_api_.multicastdelegate.html" class="tsd-signature-type">MulticastDelegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>previousTurn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, previousPhase<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, previousRound<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/bd95777/index.d.ts#L2498">index.d.ts:2498</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Called when a turn (or phase, or round) changes.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>The active turn before the change</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>The active phase before the change</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>The active round before the change</p>
+							</dd>
+						</dl>
 					</div>
 				</section>
 			</section>
@@ -115,7 +154,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/da73e37/index.d.ts#L2518">index.d.ts:2518</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/bd95777/index.d.ts#L2551">index.d.ts:2551</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -138,7 +177,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/da73e37/index.d.ts#L2513">index.d.ts:2513</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/bd95777/index.d.ts#L2546">index.d.ts:2546</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -160,7 +199,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/da73e37/index.d.ts#L2509">index.d.ts:2509</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/bd95777/index.d.ts#L2542">index.d.ts:2542</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -182,7 +221,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/da73e37/index.d.ts#L2505">index.d.ts:2505</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/bd95777/index.d.ts#L2538">index.d.ts:2538</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -204,7 +243,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/da73e37/index.d.ts#L2501">index.d.ts:2501</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/bd95777/index.d.ts#L2534">index.d.ts:2534</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -226,7 +265,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/da73e37/index.d.ts#L2497">index.d.ts:2497</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/bd95777/index.d.ts#L2530">index.d.ts:2530</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -248,13 +287,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/da73e37/index.d.ts#L2493">index.d.ts:2493</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/bd95777/index.d.ts#L2526">index.d.ts:2526</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Moves to the next turn. Will also change phase and round as required and cause a message to appear for all players.
-									Does the same as a player clicking on the next turn button in the context menu.</p>
+										Does the same as a player clicking on the next turn button in the context menu. Triggers a message for players and
+									the <a href="_api_.turnsystem.html#onturnchanged">onTurnChanged</a> event.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -271,15 +311,128 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/da73e37/index.d.ts#L2488">index.d.ts:2488</a></li>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/bd95777/index.d.ts#L2520">index.d.ts:2520</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Moves to the previous turn. Will also change phase and round as required and cause a message to appear for all players.
-									Does the same as a player clicking on the previous turn button in the context menu.</p>
+										Does the same as a player clicking on the previous turn button in the context menu. Triggers a message for players and
+									the <a href="_api_.turnsystem.html#onturnchanged">onTurnChanged</a> event.</p>
 								</div>
 							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setcurrentphaseindex" class="tsd-anchor"></a>
+					<h3>set<wbr>Current<wbr>Phase<wbr>Index</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Current<wbr>Phase<wbr>Index<span class="tsd-signature-symbol">(</span>phase<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/bd95777/index.d.ts#L2514">index.d.ts:2514</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set the current phase index</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>phase: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setcurrentround" class="tsd-anchor"></a>
+					<h3>set<wbr>Current<wbr>Round</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Current<wbr>Round<span class="tsd-signature-symbol">(</span>round<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/bd95777/index.d.ts#L2510">index.d.ts:2510</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets the current round. Does not trigger a message for players or the <a href="_api_.turnsystem.html#onturnchanged">onTurnChanged</a> event.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>round: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setcurrentturn" class="tsd-anchor"></a>
+					<h3>set<wbr>Current<wbr>Turn</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Current<wbr>Turn<span class="tsd-signature-symbol">(</span>turn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/bd95777/index.d.ts#L2506">index.d.ts:2506</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set the current turn. Does not trigger a message for players or the <a href="_api_.turnsystem.html#onturnchanged">onTurnChanged</a> event.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>turn: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setphases" class="tsd-anchor"></a>
+					<h3>set<wbr>Phases</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Phases<span class="tsd-signature-symbol">(</span>phases<span class="tsd-signature-symbol">: </span><a href="_api_.phasedetails.html" class="tsd-signature-type">PhaseDetails</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/bd95777/index.d.ts#L2502">index.d.ts:2502</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set configured phases</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>phases: <a href="_api_.phasedetails.html" class="tsd-signature-type">PhaseDetails</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -304,6 +457,9 @@
 					<li class="current tsd-kind-class tsd-parent-kind-module">
 						<a href="_api_.turnsystem.html" class="tsd-kind-icon">Turn<wbr>System</a>
 						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_api_.turnsystem.html#onturnchanged" class="tsd-kind-icon">on<wbr>Turn<wbr>Changed</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.turnsystem.html#getactiveplayers" class="tsd-kind-icon">get<wbr>Active<wbr>Players</a>
 							</li>
@@ -328,6 +484,18 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.turnsystem.html#previousturn" class="tsd-kind-icon">previous<wbr>Turn</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.turnsystem.html#setcurrentphaseindex" class="tsd-kind-icon">set<wbr>Current<wbr>Phase<wbr>Index</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.turnsystem.html#setcurrentround" class="tsd-kind-icon">set<wbr>Current<wbr>Round</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.turnsystem.html#setcurrentturn" class="tsd-kind-icon">set<wbr>Current<wbr>Turn</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.turnsystem.html#setphases" class="tsd-kind-icon">set<wbr>Phases</a>
+							</li>
 						</ul>
 					</li>
 				</ul>
@@ -344,6 +512,7 @@
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
 				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 			<ul class="tsd-legend">

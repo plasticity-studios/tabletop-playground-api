@@ -930,6 +930,13 @@ declare module '@tabletop-playground/api' {
 		*/
 		showMessage(message: string): void;
 		/**
+		 * Set the selected objects for this player. Only works for objects that can be selected in the current cursor mode:
+		 * in ground mode, regular objects in the list will be ignored. In modes that don't allow selecting objects (such
+		 * as drawing mode), no objects will be selected. If the player is currently holding objects, the selection will
+		 * not be changed.
+		*/
+		setSelectedObjects(objects: GameObject[]): void;
+		/**
 		 * Set the player's secondary color
 		*/
 		setSecondaryColor(newColor: Color | [r: number, g: number, b: number, a: number]): void;
@@ -1174,8 +1181,9 @@ declare module '@tabletop-playground/api' {
 		 * method is not guaranteed to work correctly. It uses a line trace upwards from the snap point, and if that doesn't find
 		 * anything a sphere overlap centered at the snap point. The closest object found in either of the traces is returned.
 		 * @param {number} sphereRadius - Radius to use for the sphere overlap. If not specified, a quarter of the snap point range is used.
+		 * * @param {bool} restrictTags - If true, only return objects that match the snap point's tags (and therefore would snap to it)
 		*/
-		getSnappedObject(sphereRadius?: number): GameObject | undefined;
+		getSnappedObject(sphereRadius?: number, restrictTags?: boolean): GameObject | undefined;
 		/**
 		 * Return the shape of the snap point, as defined by {@link SnapPointShape}
 		*/
@@ -2151,6 +2159,29 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
+	 * Phase Details
+	*/
+	class PhaseDetails { 
+		/**
+		 * Name of the phase. Can't be empty for a valid phase.
+		*/
+		name: string;
+		/**
+		 * Configured active player slots for the phase. Relevant when {@link takeTurns} or {@link restrictInteraction} is true.
+		*/
+		playerSlots: number[];
+		/**
+		 * Whether active players in this phase take turns. If false, there are no turns within the phase.
+		*/
+		takeTurns: boolean;
+		/**
+		 * Whether players that are not active in the phase are prevented from interacting with objects.
+		*/
+		restrictInteraction: boolean;
+		clone() : PhaseDetails;
+	}
+
+	/**
 	 * A result from a trace
 	*/
 	class TraceHit { 
@@ -2247,29 +2278,6 @@ declare module '@tabletop-playground/api' {
 		*/
 		players: PlayerPermission;
 		clone() : ScreenUIElement;
-	}
-
-	/**
-	 * Phase Details
-	*/
-	class PhaseDetails { 
-		/**
-		 * Name of the phase. Can't be empty for a valid phase.
-		*/
-		name: string;
-		/**
-		 * Configured active player slots for the phase. Relevant when {@link takeTurns} or {@link restrictInteraction} is true.
-		*/
-		playerSlots: number[];
-		/**
-		 * Whether active players in this phase take turns. If false, there are no turns within the phase.
-		*/
-		takeTurns: boolean;
-		/**
-		 * Whether players that are not active in the phase are prevented from interacting with objects.
-		*/
-		restrictInteraction: boolean;
-		clone() : PhaseDetails;
 	}
 
 	/**
@@ -2482,13 +2490,38 @@ declare module '@tabletop-playground/api' {
 	*/
 	class TurnSystem { 
 		/**
+		 * Called when a turn (or phase, or round) changes.
+		 * @param {number} previousTurn - The active turn before the change
+		 * @param {number} previousPhase - The active phase before the change
+		 * @param {number} previousRound - The active round before the change
+		*/
+		onTurnChanged: MulticastDelegate<(previousTurn: number, previousPhase: number, previousRound: number) => void>;
+		/**
+		 * Set configured phases
+		*/
+		setPhases(phases: PhaseDetails[]): void;
+		/**
+		 * Set the current turn. Does not trigger a message for players or the {@link onTurnChanged} event.
+		*/
+		setCurrentTurn(turn: number): void;
+		/**
+		 * Sets the current round. Does not trigger a message for players or the {@link onTurnChanged} event.
+		*/
+		setCurrentRound(round: number): void;
+		/**
+		 * Set the current phase index
+		*/
+		setCurrentPhaseIndex(phase: number): void;
+		/**
 		 * Moves to the previous turn. Will also change phase and round as required and cause a message to appear for all players.
-		 * Does the same as a player clicking on the previous turn button in the context menu.
+		 * Does the same as a player clicking on the previous turn button in the context menu. Triggers a message for players and
+		 * the {@link onTurnChanged} event.
 		*/
 		previousTurn(): void;
 		/**
 		 * Moves to the next turn. Will also change phase and round as required and cause a message to appear for all players.
-		 * Does the same as a player clicking on the next turn button in the context menu.
+		 * Does the same as a player clicking on the next turn button in the context menu. Triggers a message for players and
+		 * the {@link onTurnChanged} event.
 		*/
 		nextTurn(): void;
 		/**
@@ -2830,6 +2863,12 @@ declare module '@tabletop-playground/api' {
 		 * Return filenames (including relative paths) for all fonts in this package.
 		*/
 		getFontFiles(): string[];
+		/**
+		 * Start a request to allow the package. If some players don't have the package installed, they will be asked
+		 * to subscribe to the package in the same way as when adding a package through the object library. If
+		 * all players already have the package installed, it will be allowed immediately after calling this method.
+		*/
+		allow(): void;
 	}
 
 	/**
@@ -3272,6 +3311,10 @@ declare module '@tabletop-playground/api' {
 		 * Get all zones currently in the game
 		*/
 		getAllZones(): Zone[];
+		/**
+		 * Return all tags that currently exist in the game
+		*/
+		getAllTags(): string[];
 		/**
 		 * Return all tables currently in the game
 		*/
@@ -3746,9 +3789,18 @@ declare module '@tabletop-playground/api' {
 		*/
 		setText(text: string): Button;
 		/**
+		 * Set the justification (alignment) of the text
+		 * @param {number} justification - The new justification, as defined by {@link TextJustification}
+		*/
+		setJustification(justification: number): Button;
+		/**
 		 * Return the currently displayed text
 		*/
 		getText(): string;
+		/**
+		 * Return the justification (alignment) of the text, as defined by {@link TextJustification}
+		*/
+		getJustification(): number;
 	}
 
 	/**
@@ -3896,6 +3948,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		getVerticalAlignment(): number;
 		/**
+		 * Return the number of child widgets
+		*/
+		getNumChildren(): number;
+		/**
 		 * Return the horizontal alignment of widgets in the panel, as defined by {@link HorizontalAlignment}. Default: Fill
 		*/
 		getHorizontalAlignment(): number;
@@ -3904,6 +3960,10 @@ declare module '@tabletop-playground/api' {
 		 * @param {number} index - Index where to get the child widget
 		*/
 		getChildAt(index: number): Widget | undefined;
+		/**
+		 * Return an array with all child widgets
+		*/
+		getAllChildren(): Widget[];
 		/**
 		 * Add a child widget at the end
 		 * @param {Widget} child - The widget to add
@@ -3980,6 +4040,11 @@ declare module '@tabletop-playground/api' {
 		 * Get the desired width of the image, as set by {@link setImageSize}
 		*/
 		getImageWidth(): number;
+		/**
+		 * Return the currently configured image URL. Empty string if no URL is used
+		 * @param {string} url - The filename of the image to load
+		*/
+		getImageURL(): string;
 		/**
 		 * Get the desired width of the image, as set by {@link setImageSize}
 		*/
@@ -4251,6 +4316,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		setProgress(progress: number): ProgressBar;
 		/**
+		 * Set the color of the progress bar
+		*/
+		setBarColor(barColor: Color | [r: number, g: number, b: number, a: number]): ProgressBar;
+		/**
 		 * Return the currently displayed text
 		*/
 		getText(): string;
@@ -4258,6 +4327,10 @@ declare module '@tabletop-playground/api' {
 		 * Return the currently displayed progress (0 to 1)
 		*/
 		getProgress(): number;
+		/**
+		 * Return the color of the progress bar
+		*/
+		getBarColor(): Color;
 	}
 
 	/**
@@ -4611,10 +4684,18 @@ declare module '@tabletop-playground/api' {
 		*/
 		insertChild(child: Widget, index: number): WidgetSwitcher;
 		/**
+		 * Return the number of child widgets
+		*/
+		getNumChildren(): number;
+		/**
 		 * Return the child widget at the given index. Returns undefined if no child exists at the index.
 		 * @param {number} index - Index where to get the child widget
 		*/
 		getChildAt(index: number): Widget | undefined;
+		/**
+		 * Return an array with all child widgets
+		*/
+		getAllChildren(): Widget[];
 		/**
 		 * * Return the currently active widget
 		*/
