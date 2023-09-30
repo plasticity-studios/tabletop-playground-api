@@ -1196,7 +1196,7 @@ declare module '@tabletop-playground/api' {
 		 * Return the object to which the snap point is connected. Will return undefined if the snap point is not attached
 		 * to a {@link GameObject}, but directly to the table.
 		*/
-		getParentObject(): StaticObject;
+		getParentObject(): StaticObject | undefined;
 		/**
 		 * Get the position of the snap point relative to its parent object
 		*/
@@ -1482,14 +1482,16 @@ declare module '@tabletop-playground/api' {
 		 * Get the center of the object extent: an axis-aligned bounding box encompassing the object.
 		 * This will often be the same position as returned by {@link getPosition}, but will differ for objects with their physical center not at their volume center.
 		 * @param {boolean} currentRotation - If true, return the extent of an axis-aligned bounding box around the object at its current rotation. If false, return for the default rotation.
+		 * * @param {boolean} includeGeometry - Determines whether visible geometry is included in the extent. If false, only colliders are used when determining the extent.
 		*/
-		getExtentCenter(currentRotation: boolean): Vector;
+		getExtentCenter(currentRotation: boolean, includeGeometry: boolean): Vector;
 		/**
 		 * Get the object extent: half-size of an axis-aligned bounding box encompassing the object.
 		 * Adding this vector to the position returned by {@link getExtentCenter} gives a corner of the bounding box.
 		 * @param {boolean} currentRotation - If true, return the extent of an axis-aligned bounding box around the object at its current rotation. If false, return for the default rotation.
+		 * @param {boolean} includeGeometry - Determines whether visible geometry is included in the extent. If false, only colliders are used when determining the extent.
 		*/
-		getExtent(currentRotation: boolean): Vector;
+		getExtent(currentRotation: boolean, includeGeometry: boolean): Vector;
 		/**
 		 * Used when executing an object script to determine why it was executed. Possible return values:<br>
 		 * "Create" - The object was newly created, for example from the object library or through copy and paste<br>
@@ -1927,7 +1929,7 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Get the switcher that contains this object. Returns undefined if the object is not part of a switcher
 		*/
-		getSwitcher(): Switcher;
+		getSwitcher(): Switcher | undefined;
 		/**
 		 * Return the snap point that the object is snapped to (or more precisely, the snap point that the object would
 		 * snap to if it was snapped now). Return undefined if the object is not snapped to any points.
