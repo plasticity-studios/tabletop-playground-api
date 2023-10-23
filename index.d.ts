@@ -3578,6 +3578,11 @@ declare module '@tabletop-playground/api' {
 		 * @param {string} identifier - The identifier of the executed action
 		*/
 		onCustomAction: MulticastDelegate<(player: Player, identifier: string) => void>;
+		/**
+		 * Called when a new allowed package was added to the session. Not called after loading for packages that are part of a loaded save state.
+		 * @param {Package} package - The newly added package
+		*/
+		onPackageAdded: MulticastDelegate<(package: Package) => void>;
 	}
 
 	/**
@@ -3701,7 +3706,7 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Set the child widget. You can pass undefined to remove an existing child widget.
 		*/
-		setChild(child: Widget): Border;
+		setChild(child?: Widget): Border;
 		/**
 		 * Return the current background color
 		*/
@@ -3892,7 +3897,7 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Set the child widget. You can pass undefined to remove an existing child widget.
 		*/
-		setChild(child: Widget): ContentButton;
+		setChild(child?: Widget): ContentButton;
 		/**
 		 * Return the child widget. Returns undefined if no child has been set for this border
 		*/
@@ -4200,7 +4205,7 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Set the child widget. You can pass undefined to remove an existing child widget.
 		*/
-		setChild(child: Widget): LayoutBox;
+		setChild(child?: Widget): LayoutBox;
 		/**
 		 * Return the vertical alignment of the child widget within the LayoutBox, as defined by {@link VerticalAlignment}
 		*/
