@@ -70,7 +70,7 @@ declare module '@tabletop-playground/api' {
 	enum SnapPointShape {Sphere=0, Cylinder=1, Box=2}
 
 	/** Type of snap point rotation used in {@link SnapPoint}*/
-	enum SnapPointShape {NoChange=0, NoFlip=1, RotateNoFlip=2, RotateUpright=3, RotateUpsideDown=4}
+	enum SnapPointRotationType {NoChange=0, NoFlip=1, RotateNoFlip=2, RotateUpright=3, RotateUpsideDown=4}
 
 	/** When a snap point is valid depending on whether its object is flipped, used in {@link SnapPoint}*/
 	enum SnapPointFlipValidity {Always=0, Upright=1, UpsideDown=2}
@@ -1080,11 +1080,76 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
+	 * A snap point connected to an object
+	*/
+	class SnapPoint { 
+		/**
+		 * Return whether the snap point changes rotation of the snapped object. Use {@link getSnapRotationType} to get the exact type of rotation change
+		*/
+		snapsRotation(): boolean;
+		/**
+		 * Return whether the object is valid. A snap point becomes invalid after the object it belongs to has been destroyed
+		*/
+		isValid(): boolean;
+		/**
+		 * Get tags of this snap point. Only objects that share at least one tag will be snapped. If empty, all objects will be snapped.
+		*/
+		getTags(): string[];
+		/**
+		 * Return objects snapped to this snap point are rotated, as defined by {@link SnapPointRotationType}
+		*/
+		getSnapRotationType(): number;
+		/**
+		 * Return the relative rotation around the Z axis to which the snap point snaps (if rotation snapping is active)
+		*/
+		getSnapRotation(): number;
+		/**
+		 * Return the object that is snapped to this point. Returns undefined if no object is found.
+		 * Objects are not bound to snap points when they are snapped, only their position is adjusted. Therefore, this
+		 * method is not guaranteed to work correctly. It uses a line trace upwards from the snap point, and if that doesn't find
+		 * anything a sphere overlap centered at the snap point. The closest object found in either of the traces is returned.
+		 * @param {number} sphereRadius - Radius to use for the sphere overlap. If not specified, a quarter of the snap point range is used.
+		 * * @param {bool} restrictTags - If true, only return objects that match the snap point's tags (and therefore would snap to it)
+		*/
+		getSnappedObject(sphereRadius?: number, restrictTags?: boolean): GameObject | undefined;
+		/**
+		 * Return the shape of the snap point, as defined by {@link SnapPointShape}
+		*/
+		getShape(): number;
+		/**
+		 * Return the snapping range of the snap point
+		*/
+		getRange(): number;
+		/**
+		 * Return the object to which the snap point is connected. Will return undefined if the snap point is not attached
+		 * to a {@link GameObject}, but directly to the table.
+		*/
+		getParentObject(): StaticObject | undefined;
+		/**
+		 * Get the position of the snap point relative to its parent object
+		*/
+		getLocalPosition(): Vector;
+		/**
+		 * Return the index of the snap point in the list of snap points for the object (as defined in the editor)
+		*/
+		getIndex(): number;
+		/**
+		 * Get the position of the snap point in world space
+		*/
+		getGlobalPosition(): Vector;
+		/**
+		 * Return when the snap point is valid depending on if the object it is attached to is flipped, as defined by {@link SnapPointFlipValidity}
+		*/
+		getFlipValidity(): number;
+	}
+
+	/**
 	 * Defines which players an operation or property applies to. Can include player slots, teams, and the hosting player.
 	*/
 	class PlayerPermission { 
 		/**
-		 * Value
+		 * The (bitmask) value that represents the permissions. Usually you don't use this value directly but manipulate it
+		 * through the methods of this class.
 		*/
 		value: number;
 		clone() : PlayerPermission;
@@ -1152,75 +1217,20 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
-	 * A snap point connected to an object
-	*/
-	class SnapPoint { 
-		/**
-		 * Return whether the snap point changes rotation of the snapped object. Use {@link getSnapRotationType} to get the exact type of rotation change
-		*/
-		snapsRotation(): boolean;
-		/**
-		 * Return whether the object is valid. A snap point becomes invalid after the object it belongs to has been destroyed
-		*/
-		isValid(): boolean;
-		/**
-		 * Get tags of this snap point. Only objects that share at least one tag will be snapped. If empty, all objects will be snapped.
-		*/
-		getTags(): string[];
-		/**
-		 * Return objects snapped to this snap point are rotated, as defined by {@link SnapPointRotationType}
-		*/
-		getSnapRotationType(): number;
-		/**
-		 * Return the relative rotation around the Z axis to which the snap point snaps (if rotation snapping is active)
-		*/
-		getSnapRotation(): number;
-		/**
-		 * Return the object that is snapped to this point. Returns undefined if no object is found.
-		 * Objects are not bound to snap points when they are snapped, only their position is adjusted. Therefore, this
-		 * method is not guaranteed to work correctly. It uses a line trace upwards from the snap point, and if that doesn't find
-		 * anything a sphere overlap centered at the snap point. The closest object found in either of the traces is returned.
-		 * @param {number} sphereRadius - Radius to use for the sphere overlap. If not specified, a quarter of the snap point range is used.
-		 * * @param {bool} restrictTags - If true, only return objects that match the snap point's tags (and therefore would snap to it)
-		*/
-		getSnappedObject(sphereRadius?: number, restrictTags?: boolean): GameObject | undefined;
-		/**
-		 * Return the shape of the snap point, as defined by {@link SnapPointShape}
-		*/
-		getShape(): number;
-		/**
-		 * Return the snapping range of the snap point
-		*/
-		getRange(): number;
-		/**
-		 * Return the object to which the snap point is connected. Will return undefined if the snap point is not attached
-		 * to a {@link GameObject}, but directly to the table.
-		*/
-		getParentObject(): StaticObject | undefined;
-		/**
-		 * Get the position of the snap point relative to its parent object
-		*/
-		getLocalPosition(): Vector;
-		/**
-		 * Return the index of the snap point in the list of snap points for the object (as defined in the editor)
-		*/
-		getIndex(): number;
-		/**
-		 * Get the position of the snap point in world space
-		*/
-		getGlobalPosition(): Vector;
-		/**
-		 * Return when the snap point is valid depending on if the object it is attached to is flipped, as defined by {@link SnapPointFlipValidity}
-		*/
-		getFlipValidity(): number;
-	}
-
-	/**
 	 * An object in the game. This class only contains methods and attributes that all objects share, whether
 	 * they are interactive and physically simulated or not. For most purposes, the derived class {@link GameObject}
 	 * is used. Static objects are used when interacting with tables from scripts.
 	*/
 	class StaticObject { 
+		/**
+		 * Called when another object is snapped to a snap point on this object. This event is triggered for the object with the target snap point, see {@link GameObject.onSnapped} for an event on the object that snaps.
+		 * @param {GameObject} object - The object being released
+		 * @param {Player} player - The player that released the object
+		 * @param {SnapPoint} snapPoint - The point that the object is moved to
+		 * @param {Vector} grabPosition - The position where the released object was when it was grabbed. Zero if it hasn't been grabbed (for example when it was dragged from the object library)
+		 * @param {Rotator} grabRotation - The rotation the released object had when it was grabbed.
+		*/
+		onSnappedTo: MulticastDelegate<(object: GameObject, player: Player, snapPoint: SnapPoint, grabPosition: Vector | [x: number, y: number, z: number], grabRotation: Rotator | [pitch: number, yaw: number, roll: number]) => void>;
 		/**
 		 * Transform a world rotation to an object rotation
 		 * @param {Rotator} rotation - The rotation in world space to transform to relative to the object
@@ -1787,7 +1797,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		onSnapped: MulticastDelegate<(object: this, player: Player, snapPoint: SnapPoint, grabPosition: Vector | [x: number, y: number, z: number], grabRotation: Rotator | [pitch: number, yaw: number, roll: number]) => void>;
 		/**
-		 * Called when the object is snapped  to the global grid on releasing.
+		 * Called when the object is snapped  to the global grid on releasing. This event is triggered for the object that gets snapped, see {@link StaticObject.onSnappedTo} for an event on the target object.
 		 * @param {GameObject} object - The object being released
 		 * @param {Player} player - The player that released the object
 		 * @param {Vector} grabPosition - The position where this object was when it was grabbed. Zero if it hasn't been grabbed (for example when it was dragged from the object library)
@@ -1800,6 +1810,13 @@ declare module '@tabletop-playground/api' {
 		 * @param {Player} player - The player that reset the object
 		*/
 		onReset: MulticastDelegate<(object: this, player: Player) => void>;
+		/**
+		 * Called when the flip/upright action is executed on the object. This can happen while held or when a user presses the flip/upright button while the object is selected or highlighted.
+		 * The event is triggered immediately when the action starts, so the object will not have flipped yet.
+		 * @param {GameObject} object - The object being flipped
+		 * @param {Player} player - The player that flipped the object
+		*/
+		onFlipUpright: MulticastDelegate<(object: this, player: Player) => void>;
 		/**
 		 * Called when the object is hit by another object or hits another object. Gets called for both objects involved in a collision. Only called for collisions that cause an impact sound to be played.
 		 * @param {GameObject} object - The first object in the collision
@@ -3550,6 +3567,12 @@ declare module '@tabletop-playground/api' {
 		*/
 		onObjectDestroyed: MulticastDelegate<(object: GameObject) => void>;
 		/**
+		 * Called when a player has shaken the mouse (or motion controller) while holding objects.
+		 * @param {Player} player - Shaking player
+		 * @param {GameObject[]} objects - Array of held objects
+		*/
+		onShake: MulticastDelegate<(player: Player, objects: GameObject[]) => void>;
+		/**
 		 * Called when a player has rolled dice, once the dice have come to rest. Called directly before the dice roll message is sent,
 		 * so you can use {@link GameWorld.setShowDiceRollMessages} to determine whether the regular message should be sent.
 		 * @param {Player} player - Player that rolled the dice
@@ -4721,7 +4744,7 @@ declare module '@tabletop-playground/api' {
 	var globalEvents : GlobalScriptingEvents;
 	var world : GameWorld;
 
-	/** Only available in object scripts (for all object types) */
+	/** Only available in object scripts (for all object types except tables) */
 	var refObject : GameObject;
 
 	/** Only available in object scripts: Package id of the package that contains the currently executed object script*/
@@ -4736,4 +4759,7 @@ declare module '@tabletop-playground/api' {
 	var refDice : Dice;
 	/** Only available in multistate object scripts */
 	var refMultistate : MultistateObject;
+
+	/** Only available in table object scripts */
+	var refTable : StaticObject;
 }
