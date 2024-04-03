@@ -1785,7 +1785,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		onGrab: MulticastDelegate<(object: this, player: Player) => void>;
 		/**
-		 * Called when the object is released (but not snapped or reset).
+		 * Called when the object is released (but not reset). When the object is snapped, {@link onSnapped} or {@link onSnappedToGrid} are called in addition.
 		 * @param {GameObject} object - The object being released
 		 * @param {Player} player - The player that released the object
 		 * @param {boolean} thrown - True if the object was thrown (released above a threshold velocity) instead of being dropped
@@ -1803,7 +1803,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		onSnapped: MulticastDelegate<(object: this, player: Player, snapPoint: SnapPoint, grabPosition: Vector | [x: number, y: number, z: number], grabRotation: Rotator | [pitch: number, yaw: number, roll: number]) => void>;
 		/**
-		 * Called when the object is snapped  to the global grid on releasing. This event is triggered for the object that gets snapped, see {@link StaticObject.onSnappedTo} for an event on the target object.
+		 * Called on releasing an object when the object is snapped to the global grid or because of the "Always Snap" setting in the session options.
 		 * @param {GameObject} object - The object being released
 		 * @param {Player} player - The player that released the object
 		 * @param {Vector} grabPosition - The position where this object was when it was grabbed. Zero if it hasn't been grabbed (for example when it was dragged from the object library)
@@ -2174,6 +2174,10 @@ declare module '@tabletop-playground/api' {
 		 * Determine which players see the UI. By default, it will be shown for all players.
 		*/
 		players: PlayerPermission;
+		/**
+		 * Determine whether to the UI casts a shadow. Default: true
+		*/
+		castShadow: boolean;
 		/**
 		 * Determines visibility of the UI for regular and zoomed object state, as defined by {@link UIZoomVisibility}.
 		 * If {@link presentationStyle} is equal to {@link UIPresentationStyle.Screen}, it will fall back
@@ -3913,9 +3917,19 @@ declare module '@tabletop-playground/api' {
 		*/
 		setIsChecked(checked: boolean): CheckBox;
 		/**
+		 * Set whether the background is transparent. Can be used to show a custom check box background using an {@link ImageWidget}
+		 * behind the CheckBox on a {@link Canvas}, for example.
+		 * @param {boolean} transparent - Set to true to remove the text box background and only show the text
+		*/
+		setBackgroundTransparent(transparent: boolean): CheckBox;
+		/**
 		 * Return whether the check box is currently checked
 		*/
 		isChecked(): boolean;
+		/**
+		 * Return if the background is transparent
+		*/
+		isBackgroundTransparent(): boolean;
 		/**
 		 * Return the currently displayed text.
 		*/
@@ -4761,7 +4775,7 @@ declare module '@tabletop-playground/api' {
 	var globalEvents : GlobalScriptingEvents;
 	var world : GameWorld;
 
-	/** Only available in object scripts (for all object types) */
+	/** Only available in object scripts (for all object types except tables) */
 	var refObject : GameObject;
 
 	/** Only available in object scripts: Package id of the package that contains the currently executed object script*/
