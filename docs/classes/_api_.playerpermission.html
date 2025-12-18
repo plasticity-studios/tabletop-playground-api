@@ -97,7 +97,11 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.playerpermission.html#addplayer" class="tsd-kind-icon">add<wbr>Player</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.playerpermission.html#clone" class="tsd-kind-icon">clone</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.playerpermission.html#removeplayer" class="tsd-kind-icon">remove<wbr>Player</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.playerpermission.html#setgamemaster" class="tsd-kind-icon">set<wbr>Game<wbr>Master</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.playerpermission.html#sethost" class="tsd-kind-icon">set<wbr>Host</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.playerpermission.html#setowner" class="tsd-kind-icon">set<wbr>Owner</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.playerpermission.html#setownerteam" class="tsd-kind-icon">set<wbr>Owner<wbr>Team</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.playerpermission.html#setplayerslots" class="tsd-kind-icon">set<wbr>Player<wbr>Slots</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.playerpermission.html#setteams" class="tsd-kind-icon">set<wbr>Teams</a></li>
 							</ul>
@@ -113,13 +117,13 @@
 					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1160">index.d.ts:1160</a></li>
+							<li>Defined in index.d.ts:1162</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>The (bitmask) value that represents the permissions. Usually you don&#39;t use this value directly but manipulate it
-							through the methods of this class.</p>
+							through the methods of this class. If set to 0 (the default), every player has the permission.</p>
 						</div>
 					</div>
 				</section>
@@ -136,7 +140,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1165">index.d.ts:1165</a></li>
+									<li>Defined in index.d.ts:1167</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -164,9 +168,65 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1161">index.d.ts:1161</a></li>
+									<li>Defined in index.d.ts:1163</li>
 								</ul>
 							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.playerpermission.html" class="tsd-signature-type">PlayerPermission</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="removeplayer" class="tsd-anchor"></a>
+					<h3>remove<wbr>Player</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Player<span class="tsd-signature-symbol">(</span>player<span class="tsd-signature-symbol">: </span><a href="_api_.player.html" class="tsd-signature-type">Player</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.playerpermission.html" class="tsd-signature-type">PlayerPermission</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in index.d.ts:1171</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Remove a player from the permission</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>player: <a href="_api_.player.html" class="tsd-signature-type">Player</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.playerpermission.html" class="tsd-signature-type">PlayerPermission</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setgamemaster" class="tsd-anchor"></a>
+					<h3>set<wbr>Game<wbr>Master</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Game<wbr>Master<span class="tsd-signature-symbol">(</span>gameMasterIsPermitted<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.playerpermission.html" class="tsd-signature-type">PlayerPermission</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in index.d.ts:1175</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set whether game masters are included in the permission.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>gameMasterIsPermitted: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_api_.playerpermission.html" class="tsd-signature-type">PlayerPermission</a></h4>
 						</li>
 					</ul>
@@ -181,18 +241,74 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1169">index.d.ts:1169</a></li>
+									<li>Defined in index.d.ts:1179</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Set whether the host is included in the permission. Does not change permissions for player slots or teams.</p>
+									<p>Set whether the host is included in the permission.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>hostIsPermitted: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.playerpermission.html" class="tsd-signature-type">PlayerPermission</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setowner" class="tsd-anchor"></a>
+					<h3>set<wbr>Owner</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Owner<span class="tsd-signature-symbol">(</span>ownerIsPermitted<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.playerpermission.html" class="tsd-signature-type">PlayerPermission</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in index.d.ts:1183</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set whether the owner is included in the permission. Has no effect where no owner exists.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>ownerIsPermitted: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.playerpermission.html" class="tsd-signature-type">PlayerPermission</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setownerteam" class="tsd-anchor"></a>
+					<h3>set<wbr>Owner<wbr>Team</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Owner<wbr>Team<span class="tsd-signature-symbol">(</span>ownerTeamIsPermitted<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.playerpermission.html" class="tsd-signature-type">PlayerPermission</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in index.d.ts:1187</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Set whether the owner and their team is included in the permission. Has no effect where no owner exists.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>ownerTeamIsPermitted: <span class="tsd-signature-type">boolean</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_api_.playerpermission.html" class="tsd-signature-type">PlayerPermission</a></h4>
@@ -209,12 +325,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1173">index.d.ts:1173</a></li>
+									<li>Defined in index.d.ts:1191</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Set which player slots are included in the permission. Does not change permissions for teams or host. An empty list means an unrestricted permission for all players.</p>
+									<p>Set which player slots are included in the permission. Does not change permissions for teams. An empty list means an unrestricted permission for all players.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -237,12 +353,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1177">index.d.ts:1177</a></li>
+									<li>Defined in index.d.ts:1195</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Set which teams are included in the permission. Does not change permissions for player slots or host. An empty list means an unrestricted permission for all teams.</p>
+									<p>Set which teams are included in the permission. Does not change permissions for player slots. An empty list means an unrestricted permission for all teams.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -285,7 +401,19 @@
 								<a href="_api_.playerpermission.html#clone" class="tsd-kind-icon">clone</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.playerpermission.html#removeplayer" class="tsd-kind-icon">remove<wbr>Player</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.playerpermission.html#setgamemaster" class="tsd-kind-icon">set<wbr>Game<wbr>Master</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.playerpermission.html#sethost" class="tsd-kind-icon">set<wbr>Host</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.playerpermission.html#setowner" class="tsd-kind-icon">set<wbr>Owner</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.playerpermission.html#setownerteam" class="tsd-kind-icon">set<wbr>Owner<wbr>Team</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.playerpermission.html#setplayerslots" class="tsd-kind-icon">set<wbr>Player<wbr>Slots</a>

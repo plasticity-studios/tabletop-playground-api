@@ -107,6 +107,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_api_.card.html#onreleased" class="tsd-kind-icon">on<wbr>Released</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_.card.html#onremoved" class="tsd-kind-icon">on<wbr>Removed</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_api_.card.html#onreset" class="tsd-kind-icon">on<wbr>Reset</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_api_.card.html#onscriptreloaded" class="tsd-kind-icon">on<wbr>Script<wbr>Reloaded</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_api_.card.html#onsecondaryaction" class="tsd-kind-icon">on<wbr>Secondary<wbr>Action</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_api_.card.html#onsnapped" class="tsd-kind-icon">on<wbr>Snapped</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_api_.card.html#onsnappedto" class="tsd-kind-icon">on<wbr>Snapped<wbr>To</a></li>
@@ -181,6 +182,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.card.html#gettemplateid" class="tsd-kind-icon">get<wbr>Template<wbr>Id</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.card.html#gettemplatemetadata" class="tsd-kind-icon">get<wbr>Template<wbr>Metadata</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.card.html#gettemplatename" class="tsd-kind-icon">get<wbr>Template<wbr>Name</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.card.html#getuiindex" class="tsd-kind-icon">getUIIndex</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.card.html#getuis" class="tsd-kind-icon">getUIs</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.card.html#isfaceup" class="tsd-kind-icon">is<wbr>Face<wbr>Up</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="_api_.card.html#isheld" class="tsd-kind-icon">is<wbr>Held</a></li>
@@ -253,12 +255,13 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#oncreated">onCreated</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1769">index.d.ts:1769</a></li>
+							<li>Defined in index.d.ts:1797</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Called when the object is created (from the object library, loading a game, copy &amp; paste, dragging from an infinite container or stack...)</p>
+							<p>Called when the object is created: from the object library, loading a game, copy &amp; paste, dragging from an infinite container or stack...
+							Executed after UI state for this object and the global UI has been reset (for UIElements with <a href="_api_.uielement.html#persiststate">UIElement.persistState</a> set to true).</p>
 						</div>
 						<dl class="tsd-comment-tags">
 							<dt>param</dt>
@@ -274,7 +277,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#oncustomaction">onCustomAction</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1866">index.d.ts:1866</a></li>
+							<li>Defined in index.d.ts:1894</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -301,7 +304,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#ondestroyed">onDestroyed</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1774">index.d.ts:1774</a></li>
+							<li>Defined in index.d.ts:1802</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -322,7 +325,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#onflipupright">onFlipUpright</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1825">index.d.ts:1825</a></li>
+							<li>Defined in index.d.ts:1853</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -347,7 +350,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#ongrab">onGrab</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1786">index.d.ts:1786</a></li>
+							<li>Defined in index.d.ts:1814</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -371,7 +374,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#onhit">onHit</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1834">index.d.ts:1834</a></li>
+							<li>Defined in index.d.ts:1862</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -403,7 +406,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Inserted<span class="tsd-signature-symbol">:</span> <a href="_api_.multicastdelegate.html" class="tsd-signature-type">MulticastDelegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>card<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span>, insertedCard<span class="tsd-signature-symbol">: </span><a href="_api_.card.html" class="tsd-signature-type">Card</a>, position<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, player<span class="tsd-signature-symbol">: </span><a href="_api_.player.html" class="tsd-signature-type">Player</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L673">index.d.ts:673</a></li>
+							<li>Defined in index.d.ts:675</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -436,7 +439,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#onmovementstopped">onMovementStopped</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1871">index.d.ts:1871</a></li>
+							<li>Defined in index.d.ts:1900</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -444,6 +447,11 @@
 							<p>Called when the object comes to rest. For ground objects or when the session is set to locked physics, the object
 							has been locked right before this event is triggered.</p>
 						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>The object that stopped moving</p>
+							</dd>
+						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
@@ -453,7 +461,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#onnumberaction">onNumberAction</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1859">index.d.ts:1859</a></li>
+							<li>Defined in index.d.ts:1887</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -482,7 +490,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#onprimaryaction">onPrimaryAction</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1842">index.d.ts:1842</a></li>
+							<li>Defined in index.d.ts:1870</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -508,7 +516,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#onreleased">onReleased</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1795">index.d.ts:1795</a></li>
+							<li>Defined in index.d.ts:1823</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -540,7 +548,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Removed<span class="tsd-signature-symbol">:</span> <a href="_api_.multicastdelegate.html" class="tsd-signature-type">MulticastDelegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>card<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span>, removedCard<span class="tsd-signature-symbol">: </span><a href="_api_.card.html" class="tsd-signature-type">Card</a>, position<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, player<span class="tsd-signature-symbol">: </span><a href="_api_.player.html" class="tsd-signature-type">Player</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L684">index.d.ts:684</a></li>
+							<li>Defined in index.d.ts:686</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -573,7 +581,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#onreset">onReset</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1818">index.d.ts:1818</a></li>
+							<li>Defined in index.d.ts:1846</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -591,13 +599,36 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="onscriptreloaded" class="tsd-anchor"></a>
+					<h3>on<wbr>Script<wbr>Reloaded</h3>
+					<div class="tsd-signature tsd-kind-icon">on<wbr>Script<wbr>Reloaded<span class="tsd-signature-symbol">:</span> <a href="_api_.multicastdelegate.html" class="tsd-signature-type">MulticastDelegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#onscriptreloaded">onScriptReloaded</a></p>
+						<ul>
+							<li>Defined in index.d.ts:1907</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Called when the script of an object has been reloaded, when <a href="_api_.card.html#oncreated">onCreated</a> is not called.
+								Executed after UI state for this object and the global UI has been reset (for UIElements with
+							<a href="_api_.uielement.html#persiststate">UIElement.persistState</a> set to true).</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>The object for which the script was reloaded</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="onsecondaryaction" class="tsd-anchor"></a>
 					<h3>on<wbr>Secondary<wbr>Action</h3>
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Secondary<wbr>Action<span class="tsd-signature-symbol">:</span> <a href="_api_.multicastdelegate.html" class="tsd-signature-type">MulticastDelegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span>, player<span class="tsd-signature-symbol">: </span><a href="_api_.player.html" class="tsd-signature-type">Player</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#onsecondaryaction">onSecondaryAction</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1850">index.d.ts:1850</a></li>
+							<li>Defined in index.d.ts:1878</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -623,7 +654,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#onsnapped">onSnapped</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1804">index.d.ts:1804</a></li>
+							<li>Defined in index.d.ts:1832</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -656,7 +687,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#onsnappedto">onSnappedTo</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1239">index.d.ts:1239</a></li>
+							<li>Defined in index.d.ts:1257</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -689,7 +720,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#onsnappedtogrid">onSnappedToGrid</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1812">index.d.ts:1812</a></li>
+							<li>Defined in index.d.ts:1840</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -719,7 +750,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#ontick">onTick</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1780">index.d.ts:1780</a></li>
+							<li>Defined in index.d.ts:1808</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -749,7 +780,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L808">index.d.ts:808</a></li>
+									<li>Defined in index.d.ts:810</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -807,7 +838,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#addcustomaction">addCustomAction</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L2066">index.d.ts:2066</a></li>
+									<li>Defined in index.d.ts:2102</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -852,7 +883,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#adddrawingline">addDrawingLine</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1565">index.d.ts:1565</a></li>
+									<li>Defined in index.d.ts:1588</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -885,7 +916,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#addui">addUI</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1557">index.d.ts:1557</a></li>
+									<li>Defined in index.d.ts:1580</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -920,7 +951,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#applyangularimpulse">applyAngularImpulse</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L2058">index.d.ts:2058</a></li>
+									<li>Defined in index.d.ts:2094</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -958,7 +989,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#applyforce">applyForce</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L2052">index.d.ts:2052</a></li>
+									<li>Defined in index.d.ts:2088</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -996,7 +1027,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#applyforceatposition">applyForceAtPosition</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L2046">index.d.ts:2046</a></li>
+									<li>Defined in index.d.ts:2082</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1034,7 +1065,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#applyimpulse">applyImpulse</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L2040">index.d.ts:2040</a></li>
+									<li>Defined in index.d.ts:2076</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1072,7 +1103,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#applyimpulseatposition">applyImpulseAtPosition</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L2034">index.d.ts:2034</a></li>
+									<li>Defined in index.d.ts:2070</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1110,7 +1141,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#applytorque">applyTorque</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L2028">index.d.ts:2028</a></li>
+									<li>Defined in index.d.ts:2064</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1148,7 +1179,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#arelightson">areLightsOn</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L2022">index.d.ts:2022</a></li>
+									<li>Defined in index.d.ts:2058</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1171,7 +1202,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#attachui">attachUI</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1551">index.d.ts:1551</a></li>
+									<li>Defined in index.d.ts:1574</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1207,7 +1238,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L797">index.d.ts:797</a></li>
+									<li>Defined in index.d.ts:799</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1239,7 +1270,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#createswitcher">createSwitcher</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L2018">index.d.ts:2018</a></li>
+									<li>Defined in index.d.ts:2054</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1274,7 +1305,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L792">index.d.ts:792</a></li>
+									<li>Defined in index.d.ts:794</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1325,7 +1356,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#destroy">destroy</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1545">index.d.ts:1545</a></li>
+									<li>Defined in index.d.ts:1568</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1347,7 +1378,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L783">index.d.ts:783</a></li>
+									<li>Defined in index.d.ts:785</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1383,7 +1414,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#fliporupright">flipOrUpright</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L2011">index.d.ts:2011</a></li>
+									<li>Defined in index.d.ts:2047</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1408,7 +1439,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#freeze">freeze</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L2005">index.d.ts:2005</a></li>
+									<li>Defined in index.d.ts:2041</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1430,7 +1461,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L776">index.d.ts:776</a></li>
+									<li>Defined in index.d.ts:778</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1453,7 +1484,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getallsnappoints">getAllSnapPoints</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1541">index.d.ts:1541</a></li>
+									<li>Defined in index.d.ts:1564</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1476,7 +1507,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getangularvelocity">getAngularVelocity</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L2001">index.d.ts:2001</a></li>
+									<li>Defined in index.d.ts:2037</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1499,7 +1530,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getattacheduis">getAttachedUIs</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1537">index.d.ts:1537</a></li>
+									<li>Defined in index.d.ts:1560</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1524,7 +1555,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getbounciness">getBounciness</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1533">index.d.ts:1533</a></li>
+									<li>Defined in index.d.ts:1556</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1547,7 +1578,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L768">index.d.ts:768</a></li>
+									<li>Defined in index.d.ts:770</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1569,7 +1600,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L772">index.d.ts:772</a></li>
+									<li>Defined in index.d.ts:774</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1592,7 +1623,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getcenterofmass">getCenterOfMass</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1997">index.d.ts:1997</a></li>
+									<li>Defined in index.d.ts:2033</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1615,7 +1646,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getcontainer">getContainer</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1993">index.d.ts:1993</a></li>
+									<li>Defined in index.d.ts:2029</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1638,7 +1669,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getdensity">getDensity</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1529">index.d.ts:1529</a></li>
+									<li>Defined in index.d.ts:1552</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1661,7 +1692,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getdescription">getDescription</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1525">index.d.ts:1525</a></li>
+									<li>Defined in index.d.ts:1548</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1684,7 +1715,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getdrawinglines">getDrawingLines</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1521">index.d.ts:1521</a></li>
+									<li>Defined in index.d.ts:1544</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1707,7 +1738,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getextent">getExtent</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1510">index.d.ts:1510</a></li>
+									<li>Defined in index.d.ts:1533</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1746,7 +1777,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getextentcenter">getExtentCenter</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1503">index.d.ts:1503</a></li>
+									<li>Defined in index.d.ts:1526</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1785,7 +1816,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getfriction">getFriction</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1496">index.d.ts:1496</a></li>
+									<li>Defined in index.d.ts:1519</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1808,7 +1839,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getgroupid">getGroupId</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1989">index.d.ts:1989</a></li>
+									<li>Defined in index.d.ts:2025</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1831,7 +1862,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L763">index.d.ts:763</a></li>
+									<li>Defined in index.d.ts:765</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1854,7 +1885,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getid">getId</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1492">index.d.ts:1492</a></li>
+									<li>Defined in index.d.ts:1515</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1877,7 +1908,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getlinearvelocity">getLinearVelocity</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1984">index.d.ts:1984</a></li>
+									<li>Defined in index.d.ts:2020</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1900,7 +1931,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getmass">getMass</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1980">index.d.ts:1980</a></li>
+									<li>Defined in index.d.ts:2016</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1923,7 +1954,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getmetallic">getMetallic</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1488">index.d.ts:1488</a></li>
+									<li>Defined in index.d.ts:1511</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1946,7 +1977,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getname">getName</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1484">index.d.ts:1484</a></li>
+									<li>Defined in index.d.ts:1507</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1969,7 +2000,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getobjecttype">getObjectType</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1976">index.d.ts:1976</a></li>
+									<li>Defined in index.d.ts:2012</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1992,12 +2023,12 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getowningplayer">getOwningPlayer</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1972">index.d.ts:1972</a></li>
+									<li>Defined in index.d.ts:2008</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Return the player slot that owns the object. Returns undefined for objects without owner.</p>
+									<p>Return the player that owns the object. Returns undefined for objects without owner.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="_api_.player.html" class="tsd-signature-type">Player</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
@@ -2015,7 +2046,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getowningplayerslot">getOwningPlayerSlot</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1968">index.d.ts:1968</a></li>
+									<li>Defined in index.d.ts:2004</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2038,7 +2069,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getpackageid">getPackageId</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1480">index.d.ts:1480</a></li>
+									<li>Defined in index.d.ts:1503</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2061,7 +2092,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getpackagename">getPackageName</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1476">index.d.ts:1476</a></li>
+									<li>Defined in index.d.ts:1499</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2084,7 +2115,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getposition">getPosition</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1472">index.d.ts:1472</a></li>
+									<li>Defined in index.d.ts:1495</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2107,7 +2138,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getprimarycolor">getPrimaryColor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1468">index.d.ts:1468</a></li>
+									<li>Defined in index.d.ts:1491</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2130,7 +2161,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getrotation">getRotation</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1464">index.d.ts:1464</a></li>
+									<li>Defined in index.d.ts:1487</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2153,7 +2184,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getroughness">getRoughness</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1460">index.d.ts:1460</a></li>
+									<li>Defined in index.d.ts:1483</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2176,7 +2207,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getsaveddata">getSavedData</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1456">index.d.ts:1456</a></li>
+									<li>Defined in index.d.ts:1479</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2205,7 +2236,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getscale">getScale</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1452">index.d.ts:1452</a></li>
+									<li>Defined in index.d.ts:1475</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2228,7 +2259,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getscriptfilename">getScriptFilename</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1448">index.d.ts:1448</a></li>
+									<li>Defined in index.d.ts:1471</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2251,7 +2282,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getscriptpackageid">getScriptPackageId</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1444">index.d.ts:1444</a></li>
+									<li>Defined in index.d.ts:1467</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2274,7 +2305,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getsecondarycolor">getSecondaryColor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1440">index.d.ts:1440</a></li>
+									<li>Defined in index.d.ts:1463</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2297,7 +2328,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getsize">getSize</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1436">index.d.ts:1436</a></li>
+									<li>Defined in index.d.ts:1459</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2321,7 +2352,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getsnappoint">getSnapPoint</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1431">index.d.ts:1431</a></li>
+									<li>Defined in index.d.ts:1454</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2353,7 +2384,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getsnappedtopoint">getSnappedToPoint</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1964">index.d.ts:1964</a></li>
+									<li>Defined in index.d.ts:2000</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2380,7 +2411,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L759">index.d.ts:759</a></li>
+									<li>Defined in index.d.ts:761</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2403,7 +2434,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getsurfacetype">getSurfaceType</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1426">index.d.ts:1426</a></li>
+									<li>Defined in index.d.ts:1449</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2426,7 +2457,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getswitcher">getSwitcher</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1955">index.d.ts:1955</a></li>
+									<li>Defined in index.d.ts:1991</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2449,7 +2480,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#gettags">getTags</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1422">index.d.ts:1422</a></li>
+									<li>Defined in index.d.ts:1445</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2472,7 +2503,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#gettemplateid">getTemplateId</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1418">index.d.ts:1418</a></li>
+									<li>Defined in index.d.ts:1441</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2495,7 +2526,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#gettemplatemetadata">getTemplateMetadata</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1414">index.d.ts:1414</a></li>
+									<li>Defined in index.d.ts:1437</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2518,7 +2549,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#gettemplatename">getTemplateName</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1410">index.d.ts:1410</a></li>
+									<li>Defined in index.d.ts:1433</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2527,6 +2558,36 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="getuiindex" class="tsd-anchor"></a>
+					<h3>getUIIndex</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">getUIIndex<span class="tsd-signature-symbol">(</span>widget<span class="tsd-signature-symbol">: </span><a href="_api_.widget.html" class="tsd-signature-type">Widget</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getuiindex">getUIIndex</a></p>
+								<ul>
+									<li>Defined in index.d.ts:1429</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the index of the UI element attached to this object with the given widget. Returns
+									-1 if no UI element with this widget is attached.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>widget: <a href="_api_.widget.html" class="tsd-signature-type">Widget</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -2541,7 +2602,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getuis">getUIs</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1406">index.d.ts:1406</a></li>
+									<li>Defined in index.d.ts:1424</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2564,7 +2625,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L755">index.d.ts:755</a></li>
+									<li>Defined in index.d.ts:757</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2587,7 +2648,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#isheld">isHeld</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1951">index.d.ts:1951</a></li>
+									<li>Defined in index.d.ts:1987</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2609,7 +2670,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L751">index.d.ts:751</a></li>
+									<li>Defined in index.d.ts:753</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2631,7 +2692,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L747">index.d.ts:747</a></li>
+									<li>Defined in index.d.ts:749</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2654,7 +2715,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#issimulatingphysics">isSimulatingPhysics</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1947">index.d.ts:1947</a></li>
+									<li>Defined in index.d.ts:1983</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2678,7 +2739,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#issnappingallowed">isSnappingAllowed</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1942">index.d.ts:1942</a></li>
+									<li>Defined in index.d.ts:1978</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2701,7 +2762,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#isvalid">isValid</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1401">index.d.ts:1401</a></li>
+									<li>Defined in index.d.ts:1419</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2724,7 +2785,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#localpositiontoworld">localPositionToWorld</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1397">index.d.ts:1397</a></li>
+									<li>Defined in index.d.ts:1415</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2756,7 +2817,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#localrotationtoworld">localRotationToWorld</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1392">index.d.ts:1392</a></li>
+									<li>Defined in index.d.ts:1410</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2787,7 +2848,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L743">index.d.ts:743</a></li>
+									<li>Defined in index.d.ts:745</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2825,7 +2886,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#release">release</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1938">index.d.ts:1938</a></li>
+									<li>Defined in index.d.ts:1974</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2850,7 +2911,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#removecustomaction">removeCustomAction</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1932">index.d.ts:1932</a></li>
+									<li>Defined in index.d.ts:1968</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2882,7 +2943,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#removedrawingline">removeDrawingLine</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1387">index.d.ts:1387</a></li>
+									<li>Defined in index.d.ts:1405</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2911,7 +2972,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#removedrawinglineobject">removeDrawingLineObject</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1383">index.d.ts:1383</a></li>
+									<li>Defined in index.d.ts:1401</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2939,7 +3000,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L737">index.d.ts:737</a></li>
+									<li>Defined in index.d.ts:739</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2963,7 +3024,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#removeui">removeUI</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1379">index.d.ts:1379</a></li>
+									<li>Defined in index.d.ts:1397</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2995,7 +3056,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#removeuielement">removeUIElement</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1374">index.d.ts:1374</a></li>
+									<li>Defined in index.d.ts:1392</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3024,7 +3085,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#setangularvelocity">setAngularVelocity</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1927">index.d.ts:1927</a></li>
+									<li>Defined in index.d.ts:1963</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3057,7 +3118,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#setbounciness">setBounciness</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1369">index.d.ts:1369</a></li>
+									<li>Defined in index.d.ts:1387</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3088,7 +3149,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L732">index.d.ts:732</a></li>
+									<li>Defined in index.d.ts:734</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3128,7 +3189,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#setdensity">setDensity</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1364">index.d.ts:1364</a></li>
+									<li>Defined in index.d.ts:1382</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3160,7 +3221,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#setdescription">setDescription</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1359">index.d.ts:1359</a></li>
+									<li>Defined in index.d.ts:1377</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3193,7 +3254,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#setfriction">setFriction</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1353">index.d.ts:1353</a></li>
+									<li>Defined in index.d.ts:1371</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3225,7 +3286,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#setgroupid">setGroupId</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1921">index.d.ts:1921</a></li>
+									<li>Defined in index.d.ts:1957</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3257,7 +3318,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#setid">setId</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1348">index.d.ts:1348</a></li>
+									<li>Defined in index.d.ts:1366</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3286,7 +3347,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L724">index.d.ts:724</a></li>
+									<li>Defined in index.d.ts:726</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3316,7 +3377,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#setlinearvelocity">setLinearVelocity</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1916">index.d.ts:1916</a></li>
+									<li>Defined in index.d.ts:1952</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3349,7 +3410,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#setmetallic">setMetallic</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1342">index.d.ts:1342</a></li>
+									<li>Defined in index.d.ts:1360</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3381,7 +3442,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#setname">setName</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1337">index.d.ts:1337</a></li>
+									<li>Defined in index.d.ts:1355</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3413,7 +3474,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#setobjecttype">setObjectType</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1910">index.d.ts:1910</a></li>
+									<li>Defined in index.d.ts:1946</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3445,7 +3506,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#setowningplayerslot">setOwningPlayerSlot</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1905">index.d.ts:1905</a></li>
+									<li>Defined in index.d.ts:1941</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3477,7 +3538,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#setposition">setPosition</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1332">index.d.ts:1332</a></li>
+									<li>Defined in index.d.ts:1350</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3517,7 +3578,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#setprimarycolor">setPrimaryColor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1324">index.d.ts:1324</a></li>
+									<li>Defined in index.d.ts:1342</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3549,7 +3610,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#setrotation">setRotation</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1319">index.d.ts:1319</a></li>
+									<li>Defined in index.d.ts:1337</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3589,7 +3650,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#setroughness">setRoughness</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1311">index.d.ts:1311</a></li>
+									<li>Defined in index.d.ts:1329</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3621,7 +3682,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#setsaveddata">setSavedData</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1306">index.d.ts:1306</a></li>
+									<li>Defined in index.d.ts:1324</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3660,7 +3721,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#setscale">setScale</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1297">index.d.ts:1297</a></li>
+									<li>Defined in index.d.ts:1315</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3692,7 +3753,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#setscript">setScript</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1292">index.d.ts:1292</a></li>
+									<li>Defined in index.d.ts:1310</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3736,7 +3797,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#setsecondarycolor">setSecondaryColor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1280">index.d.ts:1280</a></li>
+									<li>Defined in index.d.ts:1298</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3768,7 +3829,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#setsnappingallowed">setSnappingAllowed</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1900">index.d.ts:1900</a></li>
+									<li>Defined in index.d.ts:1936</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3800,7 +3861,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#setsurfacetype">setSurfaceType</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1275">index.d.ts:1275</a></li>
+									<li>Defined in index.d.ts:1293</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3829,7 +3890,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#settags">setTags</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1270">index.d.ts:1270</a></li>
+									<li>Defined in index.d.ts:1288</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3857,7 +3918,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L719">index.d.ts:719</a></li>
+									<li>Defined in index.d.ts:721</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3890,7 +3951,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L712">index.d.ts:712</a></li>
+									<li>Defined in index.d.ts:714</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3929,7 +3990,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#setui">setUI</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1266">index.d.ts:1266</a></li>
+									<li>Defined in index.d.ts:1284</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3960,7 +4021,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L705">index.d.ts:705</a></li>
+									<li>Defined in index.d.ts:707</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -3983,7 +4044,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#snap">snap</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1895">index.d.ts:1895</a></li>
+									<li>Defined in index.d.ts:1931</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4019,7 +4080,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#snaptoground">snapToGround</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1886">index.d.ts:1886</a></li>
+									<li>Defined in index.d.ts:1922</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4041,7 +4102,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L701">index.d.ts:701</a></li>
+									<li>Defined in index.d.ts:703</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4077,7 +4138,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#switchlights">switchLights</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1882">index.d.ts:1882</a></li>
+									<li>Defined in index.d.ts:1918</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4105,7 +4166,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L694">index.d.ts:694</a></li>
+									<li>Defined in index.d.ts:696</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4157,7 +4218,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#tojsonstring">toJSONString</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1260">index.d.ts:1260</a></li>
+									<li>Defined in index.d.ts:1278</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4180,7 +4241,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#togglelock">toggleLock</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1878">index.d.ts:1878</a></li>
+									<li>Defined in index.d.ts:1914</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4206,7 +4267,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#updateui">updateUI</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1256">index.d.ts:1256</a></li>
+									<li>Defined in index.d.ts:1274</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4237,7 +4298,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#worldpositiontolocal">worldPositionToLocal</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1249">index.d.ts:1249</a></li>
+									<li>Defined in index.d.ts:1267</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4269,7 +4330,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#worldrotationtolocal">worldRotationToLocal</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1244">index.d.ts:1244</a></li>
+									<li>Defined in index.d.ts:1262</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4301,7 +4362,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_api_.card.html">Card</a>.<a href="_api_.card.html#getexecutionreason">getExecutionReason</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L1517">index.d.ts:1517</a></li>
+									<li>Defined in index.d.ts:1540</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -4374,6 +4435,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="_api_.card.html#onreset" class="tsd-kind-icon">on<wbr>Reset</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="_api_.card.html#onscriptreloaded" class="tsd-kind-icon">on<wbr>Script<wbr>Reloaded</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="_api_.card.html#onsecondaryaction" class="tsd-kind-icon">on<wbr>Secondary<wbr>Action</a>
@@ -4581,6 +4645,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_api_.card.html#gettemplatename" class="tsd-kind-icon">get<wbr>Template<wbr>Name</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="_api_.card.html#getuiindex" class="tsd-kind-icon">getUIIndex</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="_api_.card.html#getuis" class="tsd-kind-icon">getUIs</a>

@@ -51,7 +51,9 @@ declare module '@tabletop-playground/api' {
 		/** Physics stay activated as for regular objects, does not collide with other penetrable or regular objects */
 		Penetrable=2,
 		/** Physics are locked, players cannot interact with the object at all: it behaves like a table */
-		NonInteractive=3
+		NonInteractive=3,
+		/** Physics get locked as for ground objects, does not collide with other penetrable or regular objects */
+		PenetrableGround=4
 	}
 
 	/** The zone shape used in {@link Zone.getShape} and {@link Zone.setShape}*/
@@ -1155,7 +1157,7 @@ declare module '@tabletop-playground/api' {
 	class PlayerPermission { 
 		/**
 		 * The (bitmask) value that represents the permissions. Usually you don't use this value directly but manipulate it
-		 * through the methods of this class.
+		 * through the methods of this class. If set to 0 (the default), every player has the permission.
 		*/
 		value: number;
 		clone() : PlayerPermission;
@@ -1164,15 +1166,31 @@ declare module '@tabletop-playground/api' {
 		*/
 		addPlayer(player: Player): PlayerPermission;
 		/**
-		 * Set whether the host is included in the permission. Does not change permissions for player slots or teams.
+		 * Remove a player from the permission
+		*/
+		removePlayer(player: Player): PlayerPermission;
+		/**
+		 * Set whether game masters are included in the permission.
+		*/
+		setGameMaster(gameMasterIsPermitted: boolean): PlayerPermission;
+		/**
+		 * Set whether the host is included in the permission.
 		*/
 		setHost(hostIsPermitted: boolean): PlayerPermission;
 		/**
-		 * Set which player slots are included in the permission. Does not change permissions for teams or host. An empty list means an unrestricted permission for all players.
+		 * Set whether the owner is included in the permission. Has no effect where no owner exists.
+		*/
+		setOwner(ownerIsPermitted: boolean): PlayerPermission;
+		/**
+		 * Set whether the owner and their team is included in the permission. Has no effect where no owner exists.
+		*/
+		setOwnerTeam(ownerTeamIsPermitted: boolean): PlayerPermission;
+		/**
+		 * Set which player slots are included in the permission. Does not change permissions for teams. An empty list means an unrestricted permission for all players.
 		*/
 		setPlayerSlots(slots: number[]): PlayerPermission;
 		/**
-		 * Set which teams are included in the permission. Does not change permissions for player slots or host. An empty list means an unrestricted permission for all teams.
+		 * Set which teams are included in the permission. Does not change permissions for player slots. An empty list means an unrestricted permission for all teams.
 		*/
 		setTeams(teams: number[]): PlayerPermission;
 	}
@@ -1404,6 +1422,11 @@ declare module '@tabletop-playground/api' {
 		 * the actual UIs, use {@link updateUI} or {@link setUI} to update.
 		*/
 		getUIs(): UIElement[];
+		/**
+		 * Get the index of the UI element attached to this object with the given widget. Returns
+		 * -1 if no UI element with this widget is attached.
+		*/
+		getUIIndex(widget: Widget): number;
 		/**
 		 * Return the name of the object's template
 		*/
@@ -1670,6 +1693,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		take(objectToRemove: GameObject, position: Vector | [x: number, y: number, z: number], showAnimation?: boolean, keep?: boolean): boolean;
 		/**
+		 * Reorder the contents of this container randomly
+		*/
+		shuffle(): void;
+		/**
 		 * Set the type of the container. Possible values are:
 		 * 0 - Random
 		 * 1 - Infinite
@@ -1763,7 +1790,8 @@ declare module '@tabletop-playground/api' {
 	*/
 	class GameObject extends StaticObject { 
 		/**
-		 * Called when the object is created (from the object library, loading a game, copy & paste, dragging from an infinite container or stack...)
+		 * Called when the object is created: from the object library, loading a game, copy & paste, dragging from an infinite container or stack...
+		 * Executed after UI state for this object and the global UI has been reset (for UIElements with {@link UIElement.persistState} set to true).
 		 * @param {GameObject} object - The new object
 		*/
 		onCreated: MulticastDelegate<(object: this) => void>;
@@ -1867,8 +1895,16 @@ declare module '@tabletop-playground/api' {
 		/**
 		 * Called when the object comes to rest. For ground objects or when the session is set to locked physics, the object
 		 * has been locked right before this event is triggered.
+		 * @param {GameObject} object - The object that stopped moving
 		*/
 		onMovementStopped: MulticastDelegate<(object: this) => void>;
+		/**
+		 * Called when the script of an object has been reloaded, when {@link onCreated} is not called.
+		 * Executed after UI state for this object and the global UI has been reset (for UIElements with
+		 * {@link UIElement.persistState} set to true).
+		 * @param {GameObject} object - The object for which the script was reloaded
+		*/
+		onScriptReloaded: MulticastDelegate<(object: this) => void>;
 		/**
 		 * Immediately freeze the object and set its type to ground if it is currently not a ground object.
 		 * Set its type to regular if it is currently a ground object. If you want to completely lock an object
@@ -1967,7 +2003,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		getOwningPlayerSlot(): number;
 		/**
-		 * Return the player slot that owns the object. Returns undefined for objects without owner.
+		 * Return the player that owns the object. Returns undefined for objects without owner.
 		*/
 		getOwningPlayer(): Player | undefined;
 		/**
@@ -2071,6 +2107,10 @@ declare module '@tabletop-playground/api' {
 	*/
 	class Widget { 
 		/**
+		 * Name of this widget. Automatically set on widgets created from template UIs.
+		*/
+		name: string;
+		/**
 		 * Set whether the widget is visible. When a widget that contains other widgets (like {@link VerticalBox}) is
 		 * invisible, all its children are invisible, too. The layout of widgets is updated when visibility changes,
 		 * and invisible widgets are treated as if they don't exist.
@@ -2093,15 +2133,26 @@ declare module '@tabletop-playground/api' {
 		*/
 		isEnabled(): boolean;
 		/**
+		 * Return the first subwidget (including this widget) with the given name. Uses a breadth-first
+		 * search, so the closest widget in the hierarchy will be returned if there are multiple widgets
+		 * with the same name.
+		*/
+		getWidgetByName(widgetname: string): Widget;
+		/**
 		 * Return the widget that contains this widget, for example a border that wraps a check box.
 		 * Returns undefined if this object has no parent.
 		*/
 		getParent(): Widget | undefined;
 		/**
-		 * Return the game object that this UI element is attached to.
+		 * Return the game object that this widget is attached to.
 		 * Returns undefined if the element isn't attached to a game object.
 		*/
 		getOwningObject(): GameObject | undefined;
+		/**
+		 * Return all subwidgets (including this widget) with the given name. Uses a breadth-first
+		 * search, so widgets further up the hierarchy will appear earlier in the results.
+		*/
+		getAllWidgetsByName(widgetname: string): Widget[];
 	}
 
 	/**
@@ -2184,7 +2235,102 @@ declare module '@tabletop-playground/api' {
 		 * to {@link UIPresentationStyle.ViewAligned} while zoomed.
 		*/
 		zoomVisibility: number;
+		/**
+		 * If true, the current state of widgets in this UI will be restored automatically after loading a saved state,
+		 * copying the object, or reloading scripts. The state of the widget is what typically changes while playing
+		 * (user input for most widgets, progress value on the progress bar). The restoration of widget states happens after
+		 * global or object scripts run, but before {@link GameObject.onCreated} or {@link GameObject.onScriptReloaded}
+		 * is called.
+		*/
+		persistState: boolean;
+		/**
+		 * Index of the owning player. -1 when there is no owner.
+		*/
+		ownerIndex: number;
 		clone() : UIElement;
+	}
+
+	/**
+	 * Represents a UI element on the screen. Can be added to the screen using {@link GameWorld.addScreenUI}.
+	 * If you want to modify values of the UI element after adding it, for example to modify its location,
+	 * you need to call {@link GameWorld.updateScreenUI} afterwards to apply the update.<br>
+	 * You can't modify the {@link widget} property as an update, but you can change properties of the widget
+	 * without needing to call updateScreenUI.<br>
+	 * Screen UI elements are not visible for VR players, because there is no screen in VR where they could be
+	 * attached. Don't use screen UI for elements that are required for playing, or VR players won't be able
+	 * to play properly! You can also check whether a player is using VR with {@link Player.isUsingVR} and
+	 * add a 3D UI only for VR players using {@link UIElement.players}.
+	*/
+	class ScreenUIElement { 
+		/**
+		 * The main widget of this component
+		*/
+		widget: Widget;
+		/**
+		 * The X position of the UI element on the screen. Can be in pixels or relative to the screen size.
+		*/
+		positionX: number;
+		/**
+		 * The X position of the UI element on the screen. Can be in pixels or relative to the screen size.
+		*/
+		positionY: number;
+		/**
+		 * If true, {@link positionX} is relative to the screen (or window) size instead of in pixels, where the whole
+		 * screen is 1.0 units wide. Default: true
+		*/
+		relativePositionX: boolean;
+		/**
+		 * If true, {@link positionY} is relative to the screen (or window) size instead of in pixels, where the whole
+		 * screen is 1.0 units high. Default: true
+		*/
+		relativePositionY: boolean;
+		/**
+		 * Width to use for rendering the UI. Can be in pixels or relative to the screen size. If either width
+		 * or height is 0, the desired size of the widget will be used. Default: 160
+		*/
+		width: number;
+		/**
+		 * Height to use for rendering the UI. Can be in pixels or relative to the screen size. If either width
+		 * or height is 0, the desired size of the widget will be used. Default: 90
+		*/
+		height: number;
+		/**
+		 * If true, {@link width} is relative to the screen (or window) size instead of in pixels, where the whole screen
+		 * is 1.0 units wide. Default: false
+		*/
+		relativeWidth: boolean;
+		/**
+		 * If true, {@link height} is relative to the screen (or window) size instead of in pixels, where the whole screen
+		 * is 1.0 units high. Default: false
+		*/
+		relativeHeight: boolean;
+		/**
+		 * The horizontal anchor point of the UI. Determines where {@link positionX} is in relation to the UI:
+		 * for 0 it is at the left side, 0.5 is at the center, 1.0 is the right side. Default: 0
+		*/
+		anchorX: number;
+		/**
+		 * The vertical anchor point of the UI. Determines where {@link positionY} is in relation to the UI:
+		 * for 0 it is at the top, 0.5 is at the center, 1.0 is the bottom. Default: 0
+		*/
+		anchorY: number;
+		/**
+		 * Determine which players see the UI. By default, it will be shown for all players (except for VR players).
+		*/
+		players: PlayerPermission;
+		/**
+		 * If true, the current state of widgets in this UI will be restored automatically after loading a saved state,
+		 * copying the object, or reloading scripts. The state of the widget is what typically changes while playing
+		 * (user input for most widgets, progress value on the progress bar). The restoration of widget states happens after
+		 * global or object scripts run, but before {@link GameObject.onCreated} or {@link GameObject.onScriptReloaded}
+		 * is called.
+		*/
+		persistState: boolean;
+		/**
+		 * Index of the owning player. -1 when there is no owner.
+		*/
+		ownerIndex: number;
+		clone() : ScreenUIElement;
 	}
 
 	/**
@@ -2238,75 +2384,6 @@ declare module '@tabletop-playground/api' {
 		*/
 		normal: Vector;
 		clone() : TraceHit;
-	}
-
-	/**
-	 * Represents a UI element on the screen. Can be added to the screen using {@link GameWorld.addScreenUI}.
-	 * If you want to modify values of the UI element after adding it, for example to modify its location,
-	 * you need to call {@link GameWorld.updateScreenUI} afterwards to apply the update.<br>
-	 * You can't modify the {@link widget} property as an update, but you can change properties of the widget
-	 * without needing to call updateScreenUI.<br>
-	 * Screen UI elements are not visible for VR players, because there is no screen in VR where they could be
-	 * attached. Don't use screen UI for elements that are required for playing, or VR players won't be able
-	 * to play properly! You can also check whether a player is using VR with {@link Player.isUsingVR} and
-	 * add a 3D UI only for VR players using {@link UIElement.players}.
-	*/
-	class ScreenUIElement { 
-		/**
-		 * The main widget of this component
-		*/
-		widget: Widget;
-		/**
-		 * The X position of the UI element on the screen. Can be in pixels or relative to the screen size.
-		*/
-		positionX: number;
-		/**
-		 * The X position of the UI element on the screen. Can be in pixels or relative to the screen size.
-		*/
-		positionY: number;
-		/**
-		 * If true, {@link positionX} is relative to the screen (or window) size instead of in pixels, where the whole
-		 * screen is 1.0 units wide. Default: true
-		*/
-		relativePositionX: boolean;
-		/**
-		 * If true, {@link positionY} is relative to the screen (or window) size instead of in pixels, where the whole
-		 * screen is 1.0 units high. Default: true
-		*/
-		relativePositionY: boolean;
-		/**
-		 * Width to use for rendering the UI. Can be in pixels or relative to the screen size. Default: 160
-		*/
-		width: number;
-		/**
-		 * Height to use for rendering the UI. Can be in pixels or relative to the screen size. Default: 90
-		*/
-		height: number;
-		/**
-		 * If true, {@link width} is relative to the screen (or window) size instead of in pixels, where the whole screen
-		 * is 1.0 units wide. Default: false
-		*/
-		relativeWidth: boolean;
-		/**
-		 * If true, {@link height} is relative to the screen (or window) size instead of in pixels, where the whole screen
-		 * is 1.0 units high. Default: false
-		*/
-		relativeHeight: boolean;
-		/**
-		 * The horizontal anchor point of the UI. Determines where {@link positionX} is in relation to the UI:
-		 * for 0 it is at the left side, 0.5 is at the center, 1.0 is the right side. Default: 0
-		*/
-		anchorX: number;
-		/**
-		 * The vertical anchor point of the UI. Determines where {@link positionY} is in relation to the UI:
-		 * for 0 it is at the top, 0.5 is at the center, 1.0 is the bottom. Default: 0
-		*/
-		anchorY: number;
-		/**
-		 * Determine which players see the UI. By default, it will be shown for all players (except for VR players).
-		*/
-		players: PlayerPermission;
-		clone() : ScreenUIElement;
 	}
 
 	/**
@@ -3028,7 +3105,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		updateUI(element: UIElement): void;
 		/**
-		 * Update a global UI element. Will not do anything if called with a UI element that is not currently part of
+		 * Update a screen UI element. Will not do anything if called with a UI element that is not currently part of
 		 * the global UI elements.
 		 * @param {UIElement} - The UI element to be updated
 		*/
@@ -3092,7 +3169,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		setShowDiceRollMessages(show: boolean): void;
 		/**
-		 * Replace a global UI element. Will not do anything if called with an index that doesn't have a UI element.
+		 * Replace a screen UI element. Will not do anything if called with an index that doesn't have a UI element.
 		 * @param {number} - The index of the UI element to replace
 		 * @param {UIElement} - The UI element to be stored at the index
 		*/
@@ -3148,12 +3225,12 @@ declare module '@tabletop-playground/api' {
 		*/
 		removeUI(index: number): void;
 		/**
-		 * Remove a global UI element.
+		 * Remove a screen UI element.
 		 * @param {UIElement} - The UI element to be removed
 		*/
 		removeScreenUIElement(element: ScreenUIElement): void;
 		/**
-		 * Remove a global UI element.
+		 * Remove a screen UI element.
 		 * @param {index} index - The index of the UI element to remove
 		*/
 		removeScreenUI(index: number): void;
@@ -3236,6 +3313,11 @@ declare module '@tabletop-playground/api' {
 		*/
 		getUIs(): UIElement[];
 		/**
+		 * Get the index of the global UI element with the given widget. Returns
+		 * -1 if no UI element with this widget exists.
+		*/
+		getUIIndex(widget: Widget): number;
+		/**
 		 * Return the package id of a template
 		*/
 		getTemplatePackageId(templateId: string): string;
@@ -3266,10 +3348,15 @@ declare module '@tabletop-playground/api' {
 		*/
 		getShowDiceRollMessages(): boolean;
 		/**
-		 * Get an array of all global UI elements. Modifying the array won't change
-		 * the actual UIs, use {@link setUI} or {@link updateUI} to update.
+		 * Get an array of all screen UI elements. Modifying the array won't change
+		 * the actual UIs, use {@link setScreenUI} or {@link updateScreenUI} to update.
 		*/
 		getScreenUIs(): ScreenUIElement[];
+		/**
+		 * Get the index of the screen UI element with the given widget. Returns
+		 * -1 if no UI element with this widget exists.
+		*/
+		getScreenUIIndex(widget: Widget): number;
 		/**
 		 * Return data that was stored using {@link setSavedData} or loaded from a saved state.
 		 * @param {string} key - Key for which to retrieve the data.
@@ -3493,7 +3580,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		addUI(element: UIElement): number;
 		/**
-		 * Add a new global UI element in the world
+		 * Add a new global UI element to the screen
 		 * @param {UIElement} element - The UI element to add
 		 * @returns {number} - The index of the added UI element
 		*/
@@ -3742,6 +3829,14 @@ declare module '@tabletop-playground/api' {
 	*/
 	class Border extends Widget { 
 		/**
+		 * Set whether the color of the owning player should override the background color
+		*/
+		setUseOwnerColorAsColor(useOwnerColor: boolean): Border;
+		/**
+		 * Set whether the border should be transparent to the mouse even when it contains interactive widgets which are not. Default: False
+		*/
+		setMouseTransparent(transparent: boolean): Border;
+		/**
 		 * Set the background color of the border
 		*/
 		setColor(color: Color | [r: number, g: number, b: number, a: number]): Border;
@@ -3749,6 +3844,14 @@ declare module '@tabletop-playground/api' {
 		 * Set the child widget. You can pass undefined to remove an existing child widget.
 		*/
 		setChild(child?: Widget): Border;
+		/**
+		 * Return whether the color of the owning player overrides the background color
+		*/
+		isUsingOwnerColorAsColor(): boolean;
+		/**
+		 * Return whether this border is transparent to the mouse
+		*/
+		getMouseTransparent(): boolean | undefined;
 		/**
 		 * Return the current background color
 		*/
@@ -3764,6 +3867,10 @@ declare module '@tabletop-playground/api' {
 	 * Doesn't have functionality by itself, use subclasses instead.
 	*/
 	class TextWidgetBase extends Widget { 
+		/**
+		 * Set whether the color of the owning player should override the text color
+		*/
+		setUseOwnerColorAsTextColor(useOwnerColor: boolean): this;
 		/**
 		 * Set the color of the text
 		*/
@@ -3795,6 +3902,10 @@ declare module '@tabletop-playground/api' {
 		 * Set if the text is bold
 		*/
 		setBold(bold: boolean): this;
+		/**
+		 * Return whether the color of the owning player overrides the text color
+		*/
+		isUsingOwnerColorAsTextColor(): boolean;
 		/**
 		 * Return if the text is italic
 		*/
@@ -3833,23 +3944,113 @@ declare module '@tabletop-playground/api' {
 		*/
 		onClicked: MulticastDelegate<(button: this, player: Player) => void>;
 		/**
+		 * Set whether the color of the owning player should override the regular color
+		*/
+		setUseOwnerColorAsRegularColor(useOwnerColor: boolean): Button;
+		/**
+		 * Set whether the color of the owning player should override the pressed color
+		*/
+		setUseOwnerColorAsPressedColor(useOwnerColor: boolean): Button;
+		/**
+		 * Set whether the color of the owning player should override the highlighted color
+		*/
+		setUseOwnerColorAsHighlightedColor(useOwnerColor: boolean): Button;
+		/**
 		 * Set the text of this button.
 		 * @param {string} text - The new text
 		*/
 		setText(text: string): Button;
+		/**
+		 * Set the margin for the regular image. Only has an effect if the regular image is set using
+		 * {@link setRegularImage}. The margin determines a fraction of the image that is not stretched
+		 * when the button is larger than the image size. The default margin is 0 so the whole image is
+		 * stretched.
+		 * @param {number} horizontal - Horizontal fraction (left and right) of the image that isn't stretched
+		 * @param {number} vertical - Horizontal fraction (top and bottom) of the image that isn't stretched
+		*/
+		setRegularImageMargin(horizontal: number, vertical: number): Button;
+		/**
+		 * Set the image file used for the background of the button when it is not pressed or
+		 * highlighted. Sets regular color to white so the image is not tinted. You can still set the color
+		 * to a different value after calling this method.
+		 * @param {string} textureName - The filename of the image to load
+		 * @param {string} packageId - The id of the package that contains the image file (in the
+		 * Textures folder). Can usually be empty when used from scripts to use the same package
+		 * that contains the script file, but you need to explicitly pass {@link refPackageId} for
+		 * the current package or a package id when you use it in a callback. You can find package
+		 * ids in the manifest.json file in package folders. Usually you won't use this parameter,
+		 * unless you have a specific reason to load an image from a different package than where
+		 * the script is located.
+		*/
+		setRegularImage(textureName: string, packageId?: string): Button;
+		/**
+		 * Set the background color when the button is not pressed or highlighted
+		 * @param {color} color - The new color
+		*/
+		setRegularColor(color: Color | [r: number, g: number, b: number, a: number]): Button;
+		/**
+		 * Set the margin for the pressed image.
+		*/
+		setPressedImageMargin(horizontal: number, vertical: number): Button;
+		/**
+		 * Set the image file used for the background of the button when it is pressed.
+		*/
+		setPressedImage(textureName: string, packageId?: string): Button;
+		/**
+		 * Set the background color when the button is pressed
+		 * @param {color} color - The new color
+		*/
+		setPressedColor(color: Color | [r: number, g: number, b: number, a: number]): Button;
 		/**
 		 * Set the justification (alignment) of the text
 		 * @param {number} justification - The new justification, as defined by {@link TextJustification}
 		*/
 		setJustification(justification: number): Button;
 		/**
+		 * Set the margin for the highlighted image.
+		*/
+		setHighlightedImageMargin(horizontal: number, vertical: number): Button;
+		/**
+		 * Set the image file used for the background of the button when it is highlighted.
+		*/
+		setHighlightedImage(textureName: string, packageId?: string): Button;
+		/**
+		 * Set the background color when the button is highlighted
+		 * @param {color} color - The new color
+		*/
+		setHighlightedColor(color: Color | [r: number, g: number, b: number, a: number]): Button;
+		/**
+		 * Return whether the color of the owning player overrides the regular color
+		*/
+		isUsingOwnerColorAsRegularColor(): boolean;
+		/**
+		 * Return whether the color of the owning player overrides the pressed color
+		*/
+		isUsingOwnerColorAsPressedColor(): boolean;
+		/**
+		 * Return whether the color of the owning player overrides the highlighted color
+		*/
+		isUsingOwnerColorAsHighlightedColor(): boolean;
+		/**
 		 * Return the currently displayed text
 		*/
 		getText(): string;
 		/**
+		 * Return the background color when the button is not pressed or highlighted
+		*/
+		getRegularColor(): Color;
+		/**
+		 * Return the background color when the button is pressed
+		*/
+		getPressedColor(): Color;
+		/**
 		 * Return the justification (alignment) of the text, as defined by {@link TextJustification}
 		*/
 		getJustification(): number;
+		/**
+		 * Return the background color when the button is not highlighted
+		*/
+		getHighlightedColor(): Color;
 	}
 
 	/**
@@ -3873,13 +4074,23 @@ declare module '@tabletop-playground/api' {
 		 * current width.
 		 * @param {number} height - Height of the widget on the canvas in pixels. Can be undefined to keep the
 		 * current height.
+		 * * @param {number} anchorX - The horizontal anchor point of the widget. Determines where the position on
+		 * the canvas is in relation to the widget: for 0 it is at the left side, 0.5 is at the center, 1.0 is the right side.
+		 * Can be undefined to keep the current horizontal anchor.
+		 * @param {number} anchorX - The vertical anchor point of the widget. Determines where the position on
+		 * the canvas is in relation to the widget: for 0 it is at the top, 0.5 is at the center, 1.0 is the bottom.
+		 * Can be undefined to keep the current vertical anchor.
 		*/
-		updateChild(child: Widget, x: number, y: number, width: number, height: number): void;
+		updateChild(child: Widget, x: number, y: number, width?: number, height?: number, anchorX?: number, anchorY?: number): void;
 		/**
 		 * Remove the given child from the canvas
 		 * @param {Widget} child - The widget to remove
 		*/
 		removeChild(child: Widget): void;
+		/**
+		 * Remove all child widgets from the canvas
+		*/
+		removeAllChildren(): void;
 		/**
 		 * Return all child widgets of the canvas
 		*/
@@ -3889,10 +4100,14 @@ declare module '@tabletop-playground/api' {
 		 * @param {Widget} child - The widget to add
 		 * @param {number} x - The X coordinate in pixels
 		 * @param {number} y - The Y coordinate in pixels
-		 * @param {number} width - Width of the widget on the canvas in pixels
-		 * @param {number} height - Height of the widget on the canvas in pixels
+		 * @param {number} width - Width of the widget on the canvas in pixels. If undefined or zero, the desired size of the child widget will be used as size.
+		 * @param {number} height - Height of the widget on the canvas in pixels. If undefined or zero, the desired size of the child widget will be used as size.
+		 * @param {number} anchorX - The horizontal anchor point of the widget. Determines where the position on
+		 * the canvas is in relation to the widget: for 0 it is at the left side, 0.5 is at the center, 1.0 is the right side. Default: 0
+		 * @param {number} anchorX - The vertical anchor point of the widget. Determines where the position on
+		 * the canvas is in relation to the widget: for 0 it is at the top, 0.5 is at the center, 1.0 is the bottom. Default: 0
 		*/
-		addChild(child: Widget, x: number, y: number, width: number, height: number): Canvas;
+		addChild(child: Widget, x: number, y: number, width?: number, height?: number, anchorX?: number, anchorY?: number): Canvas;
 	}
 
 	/**
@@ -3901,11 +4116,36 @@ declare module '@tabletop-playground/api' {
 	class CheckBox extends TextWidgetBase { 
 		/**
 		 * Called when the check state changes.
-		 * @param {Checkbox} checkBox - The check box for which the state changed.
+		 * @param {Checkbox} checkBox - The checkbox for which the state changed.
 		 * @param {Player} player - The player who initiated the change. undefined if the state was changed through {@link setIsChecked}.
-		 * @param {boolean} isChecked - The new check state of the check box.
+		 * @param {boolean} isChecked - The new check state of the checkbox.
 		*/
 		onCheckStateChanged: MulticastDelegate<(checkBox: this, player: Player, isChecked: boolean) => void>;
+		/**
+		 * Set whether the color of the owning player should override the unchecked highlighted color
+		*/
+		setUseOwnerColorAsUncheckedHighlightedColor(useOwnerColor: boolean): CheckBox;
+		/**
+		 * Set whether the color of the owning player should override the unchecked color
+		*/
+		setUseOwnerColorAsUncheckedColor(useOwnerColor: boolean): CheckBox;
+		/**
+		 * Set whether the color of the owning player should override the checked highlighted color
+		*/
+		setUseOwnerColorAsCheckedHighlightedColor(useOwnerColor: boolean): CheckBox;
+		/**
+		 * Set whether the color of the owning player should override the checked color
+		*/
+		setUseOwnerColorAsCheckedColor(useOwnerColor: boolean): CheckBox;
+		/**
+		 * Set the color of the box when it is unchecked and hovered
+		*/
+		setUncheckedHighlightedColor(color: Color | [r: number, g: number, b: number, a: number]): CheckBox;
+		/**
+		 * Set the color of the box when it is unchecked
+		 * @param {color} color - The new color
+		*/
+		setUncheckedColor(color: Color | [r: number, g: number, b: number, a: number]): CheckBox;
 		/**
 		 * Set the displayed text. Can include "\n" to indicate new lines.
 		 * @param {string} text - The new text
@@ -3917,11 +4157,36 @@ declare module '@tabletop-playground/api' {
 		*/
 		setIsChecked(checked: boolean): CheckBox;
 		/**
+		 * Set the color of the box when it is checked and hovered
+		*/
+		setCheckedHighlightedColor(color: Color | [r: number, g: number, b: number, a: number]): CheckBox;
+		/**
+		 * Set the color of the box when it is checked
+		 * @param {color} color - The new color
+		*/
+		setCheckedColor(color: Color | [r: number, g: number, b: number, a: number]): CheckBox;
+		/**
 		 * Set whether the background is transparent. Can be used to show a custom check box background using an {@link ImageWidget}
 		 * behind the CheckBox on a {@link Canvas}, for example.
 		 * @param {boolean} transparent - Set to true to remove the text box background and only show the text
 		*/
 		setBackgroundTransparent(transparent: boolean): CheckBox;
+		/**
+		 * Return whether the color of the owning player overrides the unchecked highlighted color
+		*/
+		isUsingOwnerColorAsUncheckedHighlightedColor(): boolean;
+		/**
+		 * Return whether the color of the owning player overrides the unchecked color
+		*/
+		isUsingOwnerColorAsUncheckedColor(): boolean;
+		/**
+		 * Return whether the color of the owning player overrides the checked highlighted color
+		*/
+		isUsingOwnerColorAsCheckedHighlightedColor(): boolean;
+		/**
+		 * Return whether the color of the owning player overrides the checked color
+		*/
+		isUsingOwnerColorAsCheckedColor(): boolean;
 		/**
 		 * Return whether the check box is currently checked
 		*/
@@ -3931,9 +4196,25 @@ declare module '@tabletop-playground/api' {
 		*/
 		isBackgroundTransparent(): boolean;
 		/**
+		 * Return the color of the box when it is unchecked and hovered
+		*/
+		getUncheckedHighlightedColor(): Color;
+		/**
+		 * Return the color of the box when it is unchecked (regular)
+		*/
+		getUncheckedColor(): Color;
+		/**
 		 * Return the currently displayed text.
 		*/
 		getText(): string;
+		/**
+		 * Return the color of the box when it is checked and hovered
+		*/
+		getCheckedHighlightedColor(): Color;
+		/**
+		 * Return the color of the box when it is checked (regular)
+		*/
+		getCheckedColor(): Color;
 	}
 
 	/**
@@ -3947,9 +4228,36 @@ declare module '@tabletop-playground/api' {
 		*/
 		onClicked: MulticastDelegate<(button: this, player: Player) => void>;
 		/**
+		 * Set the background color when the button is not pressed or highlighted
+		 * @param {color} color - The new color
+		*/
+		setRegularColor(color: Color | [r: number, g: number, b: number, a: number]): ContentButton;
+		/**
+		 * Set the background color when the button is pressed
+		 * @param {color} color - The new color
+		*/
+		setPressedColor(color: Color | [r: number, g: number, b: number, a: number]): ContentButton;
+		/**
+		 * Set the background color when the button is highlighted
+		 * @param {color} color - The new color
+		*/
+		setHighlightedColor(color: Color | [r: number, g: number, b: number, a: number]): ContentButton;
+		/**
 		 * Set the child widget. You can pass undefined to remove an existing child widget.
 		*/
 		setChild(child?: Widget): ContentButton;
+		/**
+		 * Return the background color when the button is not pressed or highlighted
+		*/
+		getRegularColor(): Color;
+		/**
+		 * Return the background color when the button is pressed
+		*/
+		getPressedColor(): Color;
+		/**
+		 * Return the background color when the button is not highlighted
+		*/
+		getHighlightedColor(): Color;
 		/**
 		 * Return the child widget. Returns undefined if no child has been set for this border
 		*/
@@ -4039,9 +4347,10 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
-	 * Image element. Can use a local image file in a package, an online URL, or a card on the table as source for the image.
+	 * Base class for widgets that use an image element. Can use a local image file in a package, an online URL,
+	 * or a card on the table as source for the image. Doesn't have functionality by itself, use subclasses instead.
 	*/
-	class ImageWidget extends Widget { 
+	class ImageWidgetBase extends Widget { 
 		/**
 		 * Called when an image set by {@link setImage} or {@link setImageURL} is done loading.
 		 * This will be within the call if the image is already cached, or some time
@@ -4052,9 +4361,13 @@ declare module '@tabletop-playground/api' {
 		*/
 		onImageLoaded: MulticastDelegate<(UImage: this, filename: string, packageId: string) => void>;
 		/**
+		 * Set whether the color of the owning player should override the tint color
+		*/
+		setUseOwnerColorAsTintColor(useOwnerColor: boolean): ImageWidgetBase;
+		/**
 		 * Set the tint color of the image. Default: White
 		*/
-		setTintColor(color: Color | [r: number, g: number, b: number, a: number]): ImageWidget;
+		setTintColor(color: Color | [r: number, g: number, b: number, a: number]): ImageWidgetBase;
 		/**
 		 * Set the displayed image based on a card. The image file width will always be 128, the file height
 		 * is calculated based on the aspect ratio of the card. Note that if the card is deleted or becomes
@@ -4062,12 +4375,12 @@ declare module '@tabletop-playground/api' {
 		 * the containing UI is changed or for a new player who joins.
 		 * @param {Card} sourceCard - The card that should be displayed on the widget.
 		*/
-		setSourceCard(sourceCard: Card): ImageWidget;
+		setSourceCard(sourceCard: Card): ImageWidgetBase;
 		/**
 		 * Set the displayed image file from a URL
 		 * @param {string} url - The filename of the image to load
 		*/
-		setImageURL(url: string): ImageWidget;
+		setImageURL(url: string): ImageWidgetBase;
 		/**
 		 * Set the desired size of the image. If both axes are set to 0, the size will be the actual size of the image file.
 		 * If only one axis is set to 0, it will be set to a value that preserves the aspect ratio of the image, and the
@@ -4076,7 +4389,15 @@ declare module '@tabletop-playground/api' {
 		 * @param {number} width - Desired width of the image. Default: 0
 		 * @param {number} height - Desired height of the image. Default: 0
 		*/
-		setImageSize(width?: number, height?: number): ImageWidget;
+		setImageSize(width?: number, height?: number): ImageWidgetBase;
+		/**
+		 * Set the margin for the image. The margin determines a fraction of the image that is not stretched
+		 * when the button is larger than the image size. The default margin is 0 so the whole image is
+		 * stretched.
+		 * @param {number} horizontal - Horizontal fraction (left and right) of the image that isn't stretched
+		 * @param {number} vertical - Horizontal fraction (top and bottom) of the image that isn't stretched
+		*/
+		setImageMargin(horizontal: number, vertical: number): ImageWidgetBase;
 		/**
 		 * Set the displayed image file. When an image is used for the first time, it is loaded
 		 * in the background and won't be visible immediately. {@link onImageLoaded} is called when
@@ -4090,7 +4411,15 @@ declare module '@tabletop-playground/api' {
 		 * unless you have a specific reason to load an image from a different package than where
 		 * the script is located.
 		*/
-		setImage(textureName: string, packageId?: string): ImageWidget;
+		setImage(textureName: string, packageId?: string): ImageWidgetBase;
+		/**
+		 * Return whether the color of the owning player overrides the tint color
+		*/
+		isUsingOwnerColorAsTintColor(): boolean;
+		/**
+		 * Get the vertical margin of the image, as set by {@link setImageMargin}
+		*/
+		getVerticalImageMargin(): number;
 		/**
 		 * Return the current tint color of the image
 		*/
@@ -4120,12 +4449,44 @@ declare module '@tabletop-playground/api' {
 		 * Wait for {@link onImageLoaded} before using this method to ensure that the size from the loaded file is available.
 		*/
 		getImageFileHeight(): number;
+		/**
+		 * Get the horizontal margin of the image, as set by {@link setImageMargin}
+		*/
+		getHorizontalImageMargin(): number;
+	}
+
+	/**
+	 * Image element. Can use a local image file in a package, an online URL, or a card on the table as source for the image.
+	*/
+	class ImageWidget extends ImageWidgetBase { 
+	}
+
+	/**
+	 * An image that acts as a border (and background) around another widget
+	*/
+	class ImageBorder extends ImageWidgetBase { 
+		/**
+		 * Set whether the border should be transparent to the mouse even when it contains interactive widgets which are not. Default: False
+		*/
+		setMouseTransparent(transparent: boolean): ImageBorder;
+		/**
+		 * Set the child widget. You can pass undefined to remove an existing child widget.
+		*/
+		setChild(child?: Widget): ImageBorder;
+		/**
+		 * Return whether this border is transparent to the mouse
+		*/
+		getMouseTransparent(): boolean | undefined;
+		/**
+		 * Return the child widget. Returns undefined if no child has been set for this border
+		*/
+		getChild(): Widget | undefined;
 	}
 
 	/**
 	 * A UI button displaying an image.
 	*/
-	class ImageButton extends Widget { 
+	class ImageButton extends ImageWidgetBase { 
 		/**
 		 * Called when the button is clicked.
 		 * @param {ScriptButton} button - The button that was clicked
@@ -4133,79 +4494,80 @@ declare module '@tabletop-playground/api' {
 		*/
 		onClicked: MulticastDelegate<(button: this, player: Player) => void>;
 		/**
-		 * Called when an image set by {@link setImage} or {@link setImageURL} is done loading.
-		 * This will be within the call if the image is already cached, or some time
-		 * later if the image has to be loaded first. Not called if the image can't be loaded.
-		 * Note that if you call set the image before setting this callback, it might not get
-		 * called because the image has been loaded instantly if it was cached.
+		 * Set whether the color of the owning player should override the regular color
 		*/
-		onImageLoaded: MulticastDelegate<(UImage: this, filename: string, packageId: string) => void>;
+		setUseOwnerColorAsRegularColor(useOwnerColor: boolean): ImageButton;
 		/**
-		 * Set the tint color of the image. Default: White
+		 * Set whether the color of the owning player should override the pressed color
 		*/
-		setTintColor(color: Color | [r: number, g: number, b: number, a: number]): ImageButton;
+		setUseOwnerColorAsPressedColor(useOwnerColor: boolean): ImageButton;
 		/**
-		 * Set the displayed image based on a card. The image file width will always be 128, the file height
-		 * is calculated based on the aspect ratio of the card. Note that if the card is deleted or becomes
-		 * part of another stack, the image widget will become empty when it is reloaded, for example because
-		 * the containing UI is changed or for a new player who joins.
-		 * @param {Card} sourceCard - The card that should be displayed on the widget.
+		 * Set whether the color of the owning player should override the highlighted color
 		*/
-		setSourceCard(sourceCard: Card): ImageButton;
+		setUseOwnerColorAsHighlightedColor(useOwnerColor: boolean): ImageButton;
 		/**
-		 * Set the displayed image file from a URL
-		 * @param {string} url - The filename of the image to load
+		 * Set the margin for the regular image.
 		*/
-		setImageURL(url: string): ImageButton;
+		setRegularImageMargin(horizontal: number, vertical: number): ImageButton;
 		/**
-		 * Set the desired size of the image. If both axes are set to 0, the size will be the actual size of the image file.
-		 * If only one axis is set to 0, it will be set to a value that preserves the aspect ratio of the image, and the
-		 * other value above 0 will be fixed. Desired size can get overridden by the widget size on a {@link Canvas}
-		 * or the size of the {@link UIElement} when the image is the only widget and {@link UIElement.useWidgetSize} is false.
-		 * The button has two pixels of padding around the image on all sides, so the total size of the button will be four pixels
-		 * larger on each axis.
-		 * @param {number} width - Desired width of the image. Default: 0
-		 * @param {number} height - Desired height of the image. Default: 0
+		 * Set the image file used for the background of the button when it is not pressed or highlighted.
 		*/
-		setImageSize(width?: number, height?: number): ImageButton;
+		setRegularImage(textureName: string, packageId?: string): ImageButton;
 		/**
-		 * Set the displayed image file. When an image is used for the first time, it is loaded
-		 * in the background and won't be visible immediately. {@link onImageLoaded} is called when
-		 * the image is loaded.
-		 * @param {string} textureName - The filename of the image to load
-		 * @param {string} packageId - The id of the package that contains the image file (in the
-		 * Textures folder). Can usually be empty when used from scripts to use the same package
-		 * that contains the script file, but you need to explicitly pass {@link refPackageId} for
-		 * the current package or a package id when you use it in a callback. You can find package
-		 * ids in the manifest.json file in package folders. Usually you won't use this parameter,
-		 * unless you have a specific reason to load an image from a different package than where
-		 * the script is located.
+		 * Set the background color when the button is not pressed or highlighted
+		 * @param {color} color - The new color
 		*/
-		setImage(textureName: string, packageId?: string): ImageButton;
+		setRegularColor(color: Color | [r: number, g: number, b: number, a: number]): ImageButton;
 		/**
-		 * Return the current tint color of the image
+		 * Set the margin for the pressed image.
 		*/
-		getTintColor(): Color;
+		setPressedImageMargin(horizontal: number, vertical: number): ImageButton;
 		/**
-		 * Get the desired width of the image, as set by {@link setImageSize}
+		 * Set the image file used for the background of the button when it is pressed.
 		*/
-		getImageWidth(): number;
+		setPressedImage(textureName: string, packageId?: string): ImageButton;
 		/**
-		 * Get the desired width of the image, as set by {@link setImageSize}
+		 * Set the background color when the button is pressed
+		 * @param {color} color - The new color
 		*/
-		getImageHeight(): number;
+		setPressedColor(color: Color | [r: number, g: number, b: number, a: number]): ImageButton;
 		/**
-		 * Get the width of the displayed image file. Does not have to be identical to the desired width of the image,
-		 * use {@link getImageWidth} for that. Returns 0 if no image has been set or it hasn't been loaded yet.
-		 * Wait for {@link onImageLoaded} before using this method to ensure that the size from the loaded file is available.
+		 * Set the margin for the highlighted image.
 		*/
-		getImageFileWidth(): number;
+		setHighlightedImageMargin(horizontal: number, vertical: number): ImageButton;
 		/**
-		 * Get the height of the displayed image file. Does not have to be identical to the desired height of the image,
-		 * use {@link getImageHeight} for that. Returns 0 if no image has been set or it hasn't been loaded yet.
-		 * Wait for {@link onImageLoaded} before using this method to ensure that the size from the loaded file is available.
+		 * Set the image file used for the background of the button when it is highlighted.
 		*/
-		getImageFileHeight(): number;
+		setHighlightedImage(textureName: string, packageId?: string): ImageButton;
+		/**
+		 * Set the background color when the button is highlighted
+		 * @param {color} color - The new color
+		*/
+		setHighlightedColor(color: Color | [r: number, g: number, b: number, a: number]): ImageButton;
+		/**
+		 * Return whether the color of the owning player overrides the regular color
+		*/
+		isUsingOwnerColorAsRegularColor(): boolean;
+		/**
+		 * Return whether the color of the owning player overrides the pressed color
+		*/
+		isUsingOwnerColorAsPressedColor(): boolean;
+		/**
+		 * Return whether the color of the owning player overrides the highlighted color
+		*/
+		isUsingOwnerColorAsHighlightedColor(): boolean;
+		/**
+		 * Return the background color when the button is not pressed or highlighted
+		*/
+		getRegularColor(): Color;
+		/**
+		 * Return the background color when the button is pressed
+		*/
+		getPressedColor(): Color;
+		/**
+		 * Return the background color when the button is not highlighted
+		*/
+		getHighlightedColor(): Color;
 	}
 
 	/**
@@ -4343,15 +4705,24 @@ declare module '@tabletop-playground/api' {
 		*/
 		setMaxLength(length: number): MultilineTextBox;
 		/**
-		 * Set whether the background is transparent. Can be used to show a custom text box style using an {@link ImageWidget}
-		 * behind the TextBox on a {@link Canvas}, for example.
+		 * Set whether the background is transparent. Can be used to show a custom text box style using an
+		 * {@link ImageBorder}, for example.
 		 * @param {boolean} transparent - Set to true to remove the text box background and only show the text
 		*/
 		setBackgroundTransparent(transparent: boolean): MultilineTextBox;
 		/**
+		 * Set whether the textbox automatically wraps text
+		 * @param {boolean} autoWrap - Set to true to wrap words at the size of the text box
+		*/
+		setAutoWrap(autoWrap: boolean): MultilineTextBox;
+		/**
 		 * Return if the background is transparent
 		*/
 		isBackgroundTransparent(): boolean;
+		/**
+		 * Return whether the textbox automatically wraps text
+		*/
+		isAutoWrap(): boolean;
 		/**
 		 * Return the currently displayed text.
 		*/
@@ -4363,9 +4734,51 @@ declare module '@tabletop-playground/api' {
 	}
 
 	/**
+	 * Represents the values of script options
+	*/
+	class OptionValues { 
+		/**
+		 * Set the value of the option at index. Does not do anything if there is no string option at index.
+		*/
+		setStringValue(index: number, value: string): void;
+		/**
+		 * Set the value of the option at index. Does not do anything if there is no selection option at index.
+		*/
+		setSelectionValue(index: number, value: number): void;
+		/**
+		 * Set the value of the option at index. Does not do anything if there is no number option at index.
+		*/
+		setNumberValue(index: number, value: number): void;
+		/**
+		 * Set the value of the option at index. Does not do anything if there is no bool option at index.
+		*/
+		setBoolValue(index: number, value: boolean): void;
+		/**
+		 * Get the value of the option at index. Returns an empty string if there is no string option at index.
+		*/
+		getStringValue(index: number): string;
+		/**
+		 * Get the value of the option at index. Returns 0 if there is no selection option at index.
+		*/
+		getSelectionValue(index: number): number;
+		/**
+		 * Get the value of the option at index. Returns 0 if there is no number option at index.
+		*/
+		getNumberValue(index: number): number;
+		/**
+		 * Get the value of the option at index. Returns false if there is no bool option at index.
+		*/
+		getBoolValue(index: number): boolean;
+	}
+
+	/**
 	 * Progress bar UI element
 	*/
 	class ProgressBar extends TextWidgetBase { 
+		/**
+		 * Set whether the color of the owning player should override the bar color
+		*/
+		setUseOwnerColorAsBarColor(useOwnerColor: boolean): ProgressBar;
 		/**
 		 * Set the displayed text. Can include "\n" to indicate new lines.
 		 * @param {string} text - The new text
@@ -4373,13 +4786,17 @@ declare module '@tabletop-playground/api' {
 		setText(text: string): ProgressBar;
 		/**
 		 * Set the displayed progressed.
-		 * @param {number} progress - Progress to show. 0 is not progress, 1 shows the full bar.
+		 * @param {number} progress - Progress to show. 0 is no progress, 1 shows the full bar.
 		*/
 		setProgress(progress: number): ProgressBar;
 		/**
 		 * Set the color of the progress bar
 		*/
 		setBarColor(barColor: Color | [r: number, g: number, b: number, a: number]): ProgressBar;
+		/**
+		 * Return whether the color of the owning player overrides the bar color
+		*/
+		isUsingOwnerColorAsBarColor(): boolean;
 		/**
 		 * Return the currently displayed text
 		*/
@@ -4451,6 +4868,30 @@ declare module '@tabletop-playground/api' {
 		*/
 		onSelectionChanged: MulticastDelegate<(selectionBox: this, player: Player, index: number, option: string) => void>;
 		/**
+		 * Set whether the color of the owning player should override the item selected highlighted color
+		*/
+		setUseOwnerColorAsItemSelectedHighlightedColor(useOwnerColor: boolean): SelectionBox;
+		/**
+		 * Set whether the color of the owning player should override the item selected color
+		*/
+		setUseOwnerColorAsItemSelectedColor(useOwnerColor: boolean): SelectionBox;
+		/**
+		 * Set whether the color of the owning player should override the item highlighted color
+		*/
+		setUseOwnerColorAsItemHighlightedColor(useOwnerColor: boolean): SelectionBox;
+		/**
+		 * Set whether the color of the owning player should override the box highlighted color
+		*/
+		setUseOwnerColorAsBoxHighlightedColor(useOwnerColor: boolean): SelectionBox;
+		/**
+		 * Set whether the color of the owning player should override the box color
+		*/
+		setUseOwnerColorAsBoxColor(useOwnerColor: boolean): SelectionBox;
+		/**
+		 * Set whether the color of the owning player should override the background color
+		*/
+		setUseOwnerColorAsBackgroundColor(useOwnerColor: boolean): SelectionBox;
+		/**
 		 * Set the currently selected option. Will not have an effect if no such option exists.
 		*/
 		setSelectedOption(text: string): SelectionBox;
@@ -4463,9 +4904,57 @@ declare module '@tabletop-playground/api' {
 		*/
 		setOptions(options: string[]): SelectionBox;
 		/**
+		 * Set the color of the selected item while highlighted
+		*/
+		setItemSelectedHighlightedColor(color: Color | [r: number, g: number, b: number, a: number]): SelectionBox;
+		/**
+		 * Set the color of the selected item
+		*/
+		setItemSelectedColor(color: Color | [r: number, g: number, b: number, a: number]): SelectionBox;
+		/**
+		 * Set the color of the highlighted item
+		*/
+		setItemHighlightedColor(color: Color | [r: number, g: number, b: number, a: number]): SelectionBox;
+		/**
+		 * Set the color of the box when it is highlighted
+		*/
+		setBoxHighlightedColor(color: Color | [r: number, g: number, b: number, a: number]): SelectionBox;
+		/**
+		 * Set the color of the box when it isn't highlighted
+		*/
+		setBoxColor(color: Color | [r: number, g: number, b: number, a: number]): SelectionBox;
+		/**
+		 * Set the background color of the items
+		*/
+		setBackgroundColor(color: Color | [r: number, g: number, b: number, a: number]): SelectionBox;
+		/**
 		 * Remove an existing option. Has no effect if the option does not exist.
 		*/
 		removeOption(option: string): SelectionBox;
+		/**
+		 * Return whether the color of the owning player overrides the item selected highlighted color
+		*/
+		isUsingOwnerColorAsItemSelectedHighlightedColor(): boolean;
+		/**
+		 * Return whether the color of the owning player overrides the item selected color
+		*/
+		isUsingOwnerColorAsItemSelectedColor(): boolean;
+		/**
+		 * Return whether the color of the owning player overrides the item highlighted color
+		*/
+		isUsingOwnerColorAsItemHighlightedColor(): boolean;
+		/**
+		 * Return whether the color of the owning player overrides the box highlighted color
+		*/
+		isUsingOwnerColorAsBoxHighlightedColor(): boolean;
+		/**
+		 * Return whether the color of the owning player overrides the box color
+		*/
+		isUsingOwnerColorAsBoxColor(): boolean;
+		/**
+		 * Return whether the color of the owning player overrides the background color
+		*/
+		isUsingOwnerColorAsBackgroundColor(): boolean;
 		/**
 		 * Return the currently selected option
 		*/
@@ -4478,6 +4967,30 @@ declare module '@tabletop-playground/api' {
 		 * Return all available options
 		*/
 		getOptions(): string[];
+		/**
+		 * Return the color of the selected item while highlighted
+		*/
+		getItemSelectedHighlightedColor(): Color;
+		/**
+		 * Return the color of the selected item
+		*/
+		getItemSelectedColor(): Color;
+		/**
+		 * Return the color of the highlighted item
+		*/
+		getItemHighlightedColor(): Color;
+		/**
+		 * Return the color of the box when it is highlighted
+		*/
+		getBoxHighlightedColor(): Color;
+		/**
+		 * Return the color of the box when it isn't highlighted
+		*/
+		getBoxColor(): Color;
+		/**
+		 * Return the background color of the items
+		*/
+		getBackgroundColor(): Color;
 		/**
 		 * Add an option at the end
 		*/
@@ -4500,6 +5013,14 @@ declare module '@tabletop-playground/api' {
 		*/
 		setValue(value: number): Slider;
 		/**
+		 * Set whether the color of the owning player should override the slider highlighted color
+		*/
+		setUseOwnerColorAsSliderHighlightedColor(useOwnerColor: boolean): Slider;
+		/**
+		 * Set whether the color of the owning player should override the slider color
+		*/
+		setUseOwnerColorAsSliderColor(useOwnerColor: boolean): Slider;
+		/**
 		 * Set the width of the text box. Can be set to 0 to hide the text box.
 		*/
 		setTextBoxWidth(width: number): Slider;
@@ -4508,6 +5029,16 @@ declare module '@tabletop-playground/api' {
 		*/
 		setStepSize(stepSize: number): Slider;
 		/**
+		 * Set the background color of the slider when it is highlighted
+		 * @param {color} color - The new color
+		*/
+		setSliderHighlightedColor(color: Color | [r: number, g: number, b: number, a: number]): Slider;
+		/**
+		 * Set the background color of the slider when it is not highlighted
+		 * @param {color} color - The new color
+		*/
+		setSliderColor(color: Color | [r: number, g: number, b: number, a: number]): Slider;
+		/**
 		 * Set the minimum slider value. Default: 0
 		*/
 		setMinValue(minValue: number): Slider;
@@ -4515,6 +5046,14 @@ declare module '@tabletop-playground/api' {
 		 * Set the maximum slider value. Default: 1
 		*/
 		setMaxValue(maxValue: number): Slider;
+		/**
+		 * Return whether the color of the owning player overrides the slider highlighted color
+		*/
+		isUsingOwnerColorAsSliderHighlightedColor(): boolean;
+		/**
+		 * Return whether the color of the owning player overrides the slider color
+		*/
+		isUsingOwnerColorAsSliderColor(): boolean;
 		/**
 		 * Return the current value
 		*/
@@ -4527,6 +5066,14 @@ declare module '@tabletop-playground/api' {
 		 * Return the slider step size
 		*/
 		getStepSize(): number;
+		/**
+		 * Return the background color of the slider when it is highlighted
+		*/
+		getSliderHighlightedColor(): Color;
+		/**
+		 * Return the background color of the slider when it is not highlighted
+		*/
+		getSliderColor(): Color;
 		/**
 		 * Return the minimum slider value
 		*/
@@ -4582,7 +5129,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		onTextChanged: MulticastDelegate<(textBox: this, player: Player, text: string) => void>;
 		/**
-		 * Called when the edited text is committed (by pressing Enter or deselecting the widget).
+		 * Called when the edited text is committed (by pressing Enter or deselecting the widget, or when set from a script).
 		 * @param {TextBox} textBox - The text box where the text was committed
 		 * @param {Player} player - The player that committed the text. undefined if the text was committed through {@link setText}.
 		 * @param {string} text - The new text
@@ -4616,8 +5163,8 @@ declare module '@tabletop-playground/api' {
 		*/
 		setInputType(type: number): TextBox;
 		/**
-		 * Set whether the background is transparent. Can be used to show a custom text box style using an {@link ImageWidget}
-		 * behind the TextBox on a {@link Canvas}, for example.
+		 * Set whether the background is transparent. Can be used to show a custom text box style using an
+		 * {@link ImageBorder}, for example.
 		 * @param {boolean} transparent - Set to true to remove the text box background and only show the text
 		*/
 		setBackgroundTransparent(transparent: boolean): TextBox;
@@ -4773,12 +5320,16 @@ declare module '@tabletop-playground/api' {
 	}
 
 	var globalEvents : GlobalScriptingEvents;
+	var refObject : GameObject;
 	var world : GameWorld;
 
-	/** Only available in object scripts (for all object types except tables) */
-	var refObject : GameObject;
+	/** Globally accessible Console */
+	var console: JSConsole;
 
-	/** Only available in object scripts: Package id of the package that contains the currently executed object script*/
+
+	/** Not available in global or table scripts (only object or object UI scripts) : GameObject;
+
+	/** Not available in global scripts: Package id of the package that contains the currently executed object or UI template script*/
 	var refPackageId : string;
 	/** Only available in card object scripts */
 	var refCard : Card;
@@ -4792,4 +5343,10 @@ declare module '@tabletop-playground/api' {
 	var refMultistate : MultistateObject;
 	/** Only available in table object scripts */
 	var refTable : StaticObject;
+	/** Only available in UI template scripts */
+	var refWidget : Widget;
+	/** Only available in object or global 3D UI template scripts */
+	var refUIElement : UIElement;
+	/** Only available in global screen UI template scripts */
+	var refScreenUIElement : ScreenUIElement;
 }

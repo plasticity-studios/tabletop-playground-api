@@ -100,6 +100,8 @@
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_.screenuielement.html#anchorx" class="tsd-kind-icon">anchorX</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_.screenuielement.html#anchory" class="tsd-kind-icon">anchorY</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_.screenuielement.html#height" class="tsd-kind-icon">height</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_.screenuielement.html#ownerindex" class="tsd-kind-icon">owner<wbr>Index</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_.screenuielement.html#persiststate" class="tsd-kind-icon">persist<wbr>State</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_.screenuielement.html#players" class="tsd-kind-icon">players</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_.screenuielement.html#positionx" class="tsd-kind-icon">positionX</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_api_.screenuielement.html#positiony" class="tsd-kind-icon">positionY</a></li>
@@ -128,7 +130,7 @@
 					<div class="tsd-signature tsd-kind-icon">anchorX<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L2299">index.d.ts:2299</a></li>
+							<li>Defined in index.d.ts:2311</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -144,7 +146,7 @@
 					<div class="tsd-signature tsd-kind-icon">anchorY<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L2304">index.d.ts:2304</a></li>
+							<li>Defined in index.d.ts:2316</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -160,12 +162,47 @@
 					<div class="tsd-signature tsd-kind-icon">height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L2284">index.d.ts:2284</a></li>
+							<li>Defined in index.d.ts:2296</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Height to use for rendering the UI. Can be in pixels or relative to the screen size. Default: 90</p>
+							<p>Height to use for rendering the UI. Can be in pixels or relative to the screen size. If either width
+							or height is 0, the desired size of the widget will be used. Default: 90</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="ownerindex" class="tsd-anchor"></a>
+					<h3>owner<wbr>Index</h3>
+					<div class="tsd-signature tsd-kind-icon">owner<wbr>Index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in index.d.ts:2332</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Index of the owning player. -1 when there is no owner.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="persiststate" class="tsd-anchor"></a>
+					<h3>persist<wbr>State</h3>
+					<div class="tsd-signature tsd-kind-icon">persist<wbr>State<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in index.d.ts:2328</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>If true, the current state of widgets in this UI will be restored automatically after loading a saved state,
+								copying the object, or reloading scripts. The state of the widget is what typically changes while playing
+								(user input for most widgets, progress value on the progress bar). The restoration of widget states happens after
+								global or object scripts run, but before <a href="_api_.gameobject.html#oncreated">GameObject.onCreated</a> or <a href="_api_.gameobject.html#onscriptreloaded">GameObject.onScriptReloaded</a>
+							is called.</p>
 						</div>
 					</div>
 				</section>
@@ -175,7 +212,7 @@
 					<div class="tsd-signature tsd-kind-icon">players<span class="tsd-signature-symbol">:</span> <a href="_api_.playerpermission.html" class="tsd-signature-type">PlayerPermission</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L2308">index.d.ts:2308</a></li>
+							<li>Defined in index.d.ts:2320</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -190,7 +227,7 @@
 					<div class="tsd-signature tsd-kind-icon">positionX<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L2262">index.d.ts:2262</a></li>
+							<li>Defined in index.d.ts:2272</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -205,7 +242,7 @@
 					<div class="tsd-signature tsd-kind-icon">positionY<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L2266">index.d.ts:2266</a></li>
+							<li>Defined in index.d.ts:2276</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -220,7 +257,7 @@
 					<div class="tsd-signature tsd-kind-icon">relative<wbr>Height<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L2294">index.d.ts:2294</a></li>
+							<li>Defined in index.d.ts:2306</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -236,7 +273,7 @@
 					<div class="tsd-signature tsd-kind-icon">relative<wbr>PositionX<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L2271">index.d.ts:2271</a></li>
+							<li>Defined in index.d.ts:2281</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -252,7 +289,7 @@
 					<div class="tsd-signature tsd-kind-icon">relative<wbr>PositionY<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L2276">index.d.ts:2276</a></li>
+							<li>Defined in index.d.ts:2286</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -268,7 +305,7 @@
 					<div class="tsd-signature tsd-kind-icon">relative<wbr>Width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L2289">index.d.ts:2289</a></li>
+							<li>Defined in index.d.ts:2301</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -284,7 +321,7 @@
 					<div class="tsd-signature tsd-kind-icon">widget<span class="tsd-signature-symbol">:</span> <a href="_api_.widget.html" class="tsd-signature-type">Widget</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L2258">index.d.ts:2258</a></li>
+							<li>Defined in index.d.ts:2268</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -299,12 +336,13 @@
 					<div class="tsd-signature tsd-kind-icon">width<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L2280">index.d.ts:2280</a></li>
+							<li>Defined in index.d.ts:2291</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Width to use for rendering the UI. Can be in pixels or relative to the screen size. Default: 160</p>
+							<p>Width to use for rendering the UI. Can be in pixels or relative to the screen size. If either width
+							or height is 0, the desired size of the widget will be used. Default: 160</p>
 						</div>
 					</div>
 				</section>
@@ -321,7 +359,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/plasticity-studios/tabletop-playground-api/blob/6fdfc35/index.d.ts#L2309">index.d.ts:2309</a></li>
+									<li>Defined in index.d.ts:2333</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_api_.screenuielement.html" class="tsd-signature-type">ScreenUIElement</a></h4>
@@ -356,6 +394,12 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_api_.screenuielement.html#height" class="tsd-kind-icon">height</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_api_.screenuielement.html#ownerindex" class="tsd-kind-icon">owner<wbr>Index</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_api_.screenuielement.html#persiststate" class="tsd-kind-icon">persist<wbr>State</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_api_.screenuielement.html#players" class="tsd-kind-icon">players</a>
