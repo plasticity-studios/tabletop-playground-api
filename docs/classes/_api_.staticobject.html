@@ -103,6 +103,7 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#adddrawingline" class="tsd-kind-icon">add<wbr>Drawing<wbr>Line</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#addsticker" class="tsd-kind-icon">add<wbr>Sticker</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#addui" class="tsd-kind-icon">addUI</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#attachui" class="tsd-kind-icon">attachUI</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#destroy" class="tsd-kind-icon">destroy</a></li>
@@ -118,6 +119,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getid" class="tsd-kind-icon">get<wbr>Id</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getmetallic" class="tsd-kind-icon">get<wbr>Metallic</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getname" class="tsd-kind-icon">get<wbr>Name</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getnumstickers" class="tsd-kind-icon">get<wbr>Num<wbr>Stickers</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getpackageid" class="tsd-kind-icon">get<wbr>Package<wbr>Id</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getpackagename" class="tsd-kind-icon">get<wbr>Package<wbr>Name</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#getposition" class="tsd-kind-icon">get<wbr>Position</a></li>
@@ -141,8 +143,11 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#isvalid" class="tsd-kind-icon">is<wbr>Valid</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#localpositiontoworld" class="tsd-kind-icon">local<wbr>Position<wbr>ToWorld</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#localrotationtoworld" class="tsd-kind-icon">local<wbr>Rotation<wbr>ToWorld</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#placesticker" class="tsd-kind-icon">place<wbr>Sticker</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#removeallstickers" class="tsd-kind-icon">remove<wbr>All<wbr>Stickers</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#removedrawingline" class="tsd-kind-icon">remove<wbr>Drawing<wbr>Line</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#removedrawinglineobject" class="tsd-kind-icon">remove<wbr>Drawing<wbr>Line<wbr>Object</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#removestickerat" class="tsd-kind-icon">remove<wbr>Sticker<wbr>At</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#removeui" class="tsd-kind-icon">removeUI</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#removeuielement" class="tsd-kind-icon">removeUIElement</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.staticobject.html#setbounciness" class="tsd-kind-icon">set<wbr>Bounciness</a></li>
@@ -181,7 +186,7 @@
 					<div class="tsd-signature tsd-kind-icon">on<wbr>Snapped<wbr>To<span class="tsd-signature-symbol">:</span> <a href="_api_.multicastdelegate.html" class="tsd-signature-type">MulticastDelegate</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">(</span>object<span class="tsd-signature-symbol">: </span><a href="_api_.gameobject.html" class="tsd-signature-type">GameObject</a>, player<span class="tsd-signature-symbol">: </span><a href="_api_.player.html" class="tsd-signature-type">Player</a>, snapPoint<span class="tsd-signature-symbol">: </span><a href="_api_.snappoint.html" class="tsd-signature-type">SnapPoint</a>, grabPosition<span class="tsd-signature-symbol">: </span><a href="_api_.vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>z<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span>, grabRotation<span class="tsd-signature-symbol">: </span><a href="_api_.rotator.html" class="tsd-signature-type">Rotator</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>pitch<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>yaw<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>roll<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in index.d.ts:1257</li>
+							<li>Defined in index.d.ts:1305</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -220,7 +225,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1588</li>
+									<li>Defined in index.d.ts:1669</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -243,6 +248,53 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="addsticker" class="tsd-anchor"></a>
+					<h3>add<wbr>Sticker</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Sticker<span class="tsd-signature-symbol">(</span>stickerTemplate<span class="tsd-signature-symbol">: </span><a href="_api_.stickertemplate.html" class="tsd-signature-type">StickerTemplate</a>, position<span class="tsd-signature-symbol">: </span><a href="_api_.vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>z<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span>, normal<span class="tsd-signature-symbol">: </span><a href="_api_.vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>z<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in index.d.ts:1661</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Add a sticker to the object. For an easier way to place a sticker directly on a surface of the object,
+									see <a href="_api_.staticobject.html#placesticker">placeSticker</a></p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>stickerTemplate: <a href="_api_.stickertemplate.html" class="tsd-signature-type">StickerTemplate</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The sticker template defining the image and size</p>
+									</div>
+								</li>
+								<li>
+									<h5>position: <a href="_api_.vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>z<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The position in object local space where the sticker should be placed</p>
+									</div>
+								</li>
+								<li>
+									<h5>normal: <a href="_api_.vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>z<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The surface normal in object local space at the placement position</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<ul>
+								<li>Whether the sticker was added successfully</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="addui" class="tsd-anchor"></a>
 					<h3>addUI</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -252,7 +304,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1580</li>
+									<li>Defined in index.d.ts:1652</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -286,7 +338,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1574</li>
+									<li>Defined in index.d.ts:1646</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -322,7 +374,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1568</li>
+									<li>Defined in index.d.ts:1640</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -344,7 +396,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1564</li>
+									<li>Defined in index.d.ts:1636</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -366,7 +418,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1560</li>
+									<li>Defined in index.d.ts:1632</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -390,7 +442,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1556</li>
+									<li>Defined in index.d.ts:1628</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -412,7 +464,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1552</li>
+									<li>Defined in index.d.ts:1624</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -434,7 +486,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1548</li>
+									<li>Defined in index.d.ts:1620</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -456,7 +508,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1544</li>
+									<li>Defined in index.d.ts:1616</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -472,13 +524,13 @@
 					<a name="getextent" class="tsd-anchor"></a>
 					<h3>get<wbr>Extent</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Extent<span class="tsd-signature-symbol">(</span>currentRotation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, includeGeometry<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.vector.html" class="tsd-signature-type">Vector</a></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Extent<span class="tsd-signature-symbol">(</span>currentRotation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, includeGeometry<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.vector.html" class="tsd-signature-type">Vector</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1533</li>
+									<li>Defined in index.d.ts:1605</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -496,7 +548,7 @@
 									</div>
 								</li>
 								<li>
-									<h5>includeGeometry: <span class="tsd-signature-type">boolean</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> includeGeometry: <span class="tsd-signature-type">boolean</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Determines whether visible geometry is included in the extent. If false, only colliders are used when determining the extent.</p>
 									</div>
@@ -510,13 +562,13 @@
 					<a name="getextentcenter" class="tsd-anchor"></a>
 					<h3>get<wbr>Extent<wbr>Center</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Extent<wbr>Center<span class="tsd-signature-symbol">(</span>currentRotation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, includeGeometry<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.vector.html" class="tsd-signature-type">Vector</a></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Extent<wbr>Center<span class="tsd-signature-symbol">(</span>currentRotation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, includeGeometry<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.vector.html" class="tsd-signature-type">Vector</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1526</li>
+									<li>Defined in index.d.ts:1598</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -537,7 +589,7 @@
 									</div>
 								</li>
 								<li>
-									<h5>includeGeometry: <span class="tsd-signature-type">boolean</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> includeGeometry: <span class="tsd-signature-type">boolean</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_api_.vector.html" class="tsd-signature-type">Vector</a></h4>
@@ -554,7 +606,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1519</li>
+									<li>Defined in index.d.ts:1591</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -576,7 +628,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1515</li>
+									<li>Defined in index.d.ts:1587</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -598,7 +650,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1511</li>
+									<li>Defined in index.d.ts:1583</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -620,7 +672,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1507</li>
+									<li>Defined in index.d.ts:1579</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -629,6 +681,28 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getnumstickers" class="tsd-anchor"></a>
+					<h3>get<wbr>Num<wbr>Stickers</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Num<wbr>Stickers<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in index.d.ts:1575</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the number of stickers on the object</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -642,7 +716,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1503</li>
+									<li>Defined in index.d.ts:1571</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -664,7 +738,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1499</li>
+									<li>Defined in index.d.ts:1567</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -686,7 +760,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1495</li>
+									<li>Defined in index.d.ts:1563</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -708,7 +782,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1491</li>
+									<li>Defined in index.d.ts:1559</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -730,7 +804,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1487</li>
+									<li>Defined in index.d.ts:1555</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -752,7 +826,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1483</li>
+									<li>Defined in index.d.ts:1551</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -774,7 +848,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1479</li>
+									<li>Defined in index.d.ts:1547</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -802,7 +876,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1475</li>
+									<li>Defined in index.d.ts:1543</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -824,7 +898,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1471</li>
+									<li>Defined in index.d.ts:1539</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -846,7 +920,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1467</li>
+									<li>Defined in index.d.ts:1535</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -868,7 +942,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1463</li>
+									<li>Defined in index.d.ts:1531</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -890,7 +964,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1459</li>
+									<li>Defined in index.d.ts:1527</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -913,7 +987,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1454</li>
+									<li>Defined in index.d.ts:1522</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -944,7 +1018,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1449</li>
+									<li>Defined in index.d.ts:1517</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -966,7 +1040,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1445</li>
+									<li>Defined in index.d.ts:1513</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -988,7 +1062,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1441</li>
+									<li>Defined in index.d.ts:1509</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1010,7 +1084,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1437</li>
+									<li>Defined in index.d.ts:1505</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1032,7 +1106,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1433</li>
+									<li>Defined in index.d.ts:1501</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1054,7 +1128,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1429</li>
+									<li>Defined in index.d.ts:1497</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1083,7 +1157,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1424</li>
+									<li>Defined in index.d.ts:1492</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1106,7 +1180,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1419</li>
+									<li>Defined in index.d.ts:1487</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1128,7 +1202,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1415</li>
+									<li>Defined in index.d.ts:1483</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1159,7 +1233,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1410</li>
+									<li>Defined in index.d.ts:1478</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1181,6 +1255,81 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="placesticker" class="tsd-anchor"></a>
+					<h3>place<wbr>Sticker</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">place<wbr>Sticker<span class="tsd-signature-symbol">(</span>stickerTemplate<span class="tsd-signature-symbol">: </span><a href="_api_.stickertemplate.html" class="tsd-signature-type">StickerTemplate</a>, start<span class="tsd-signature-symbol">: </span><a href="_api_.vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>z<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span>, end<span class="tsd-signature-symbol">: </span><a href="_api_.vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>z<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span>, rotation<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in index.d.ts:1473</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Place a sticker on this object by tracing a line from start to end against this object only.
+									For more control over the sticker location and rotation, see <a href="_api_.staticobject.html#addsticker">addSticker</a></p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>stickerTemplate: <a href="_api_.stickertemplate.html" class="tsd-signature-type">StickerTemplate</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The sticker template defining the image and size</p>
+									</div>
+								</li>
+								<li>
+									<h5>start: <a href="_api_.vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>z<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Start of the trace line in object local space</p>
+									</div>
+								</li>
+								<li>
+									<h5>end: <a href="_api_.vector.html" class="tsd-signature-type">Vector</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">[</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span>z<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>End of the trace line in object local space</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> rotation: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Rotation of the sticker around the surface normal in degrees. Default: 0</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<ul>
+								<li>Whether the sticker was placed successfully</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="removeallstickers" class="tsd-anchor"></a>
+					<h3>remove<wbr>All<wbr>Stickers</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>All<wbr>Stickers<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in index.d.ts:1463</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Remove all stickers from the object</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="removedrawingline" class="tsd-anchor"></a>
 					<h3>remove<wbr>Drawing<wbr>Line</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1190,7 +1339,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1405</li>
+									<li>Defined in index.d.ts:1459</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1218,7 +1367,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1401</li>
+									<li>Defined in index.d.ts:1455</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1237,6 +1386,40 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="removestickerat" class="tsd-anchor"></a>
+					<h3>remove<wbr>Sticker<wbr>At</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Sticker<wbr>At<span class="tsd-signature-symbol">(</span>index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in index.d.ts:1451</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Remove a sticker at the given index from the object</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>index: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Index of the sticker to remove</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<ul>
+								<li>Whether the sticker was removed successfully</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="removeui" class="tsd-anchor"></a>
 					<h3>removeUI</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1246,7 +1429,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1397</li>
+									<li>Defined in index.d.ts:1445</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1277,7 +1460,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1392</li>
+									<li>Defined in index.d.ts:1440</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1305,7 +1488,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1387</li>
+									<li>Defined in index.d.ts:1435</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1336,7 +1519,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1382</li>
+									<li>Defined in index.d.ts:1430</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1367,7 +1550,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1377</li>
+									<li>Defined in index.d.ts:1425</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1399,7 +1582,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1371</li>
+									<li>Defined in index.d.ts:1419</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1430,7 +1613,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1366</li>
+									<li>Defined in index.d.ts:1414</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1459,7 +1642,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1360</li>
+									<li>Defined in index.d.ts:1408</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1490,7 +1673,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1355</li>
+									<li>Defined in index.d.ts:1403</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1521,7 +1704,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1350</li>
+									<li>Defined in index.d.ts:1398</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1560,7 +1743,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1342</li>
+									<li>Defined in index.d.ts:1390</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1591,7 +1774,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1337</li>
+									<li>Defined in index.d.ts:1385</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1630,7 +1813,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1329</li>
+									<li>Defined in index.d.ts:1377</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1661,7 +1844,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1324</li>
+									<li>Defined in index.d.ts:1372</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1699,7 +1882,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1315</li>
+									<li>Defined in index.d.ts:1363</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1730,7 +1913,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1310</li>
+									<li>Defined in index.d.ts:1358</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1773,7 +1956,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1298</li>
+									<li>Defined in index.d.ts:1346</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1804,7 +1987,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1293</li>
+									<li>Defined in index.d.ts:1341</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1832,7 +2015,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1288</li>
+									<li>Defined in index.d.ts:1336</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1860,7 +2043,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1284</li>
+									<li>Defined in index.d.ts:1332</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1891,7 +2074,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1278</li>
+									<li>Defined in index.d.ts:1326</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1913,7 +2096,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1274</li>
+									<li>Defined in index.d.ts:1322</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1943,7 +2126,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1267</li>
+									<li>Defined in index.d.ts:1315</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1974,7 +2157,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1262</li>
+									<li>Defined in index.d.ts:1310</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2005,7 +2188,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1540</li>
+									<li>Defined in index.d.ts:1612</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -2045,6 +2228,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.staticobject.html#adddrawingline" class="tsd-kind-icon">add<wbr>Drawing<wbr>Line</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#addsticker" class="tsd-kind-icon">add<wbr>Sticker</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.staticobject.html#addui" class="tsd-kind-icon">addUI</a>
@@ -2090,6 +2276,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.staticobject.html#getname" class="tsd-kind-icon">get<wbr>Name</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#getnumstickers" class="tsd-kind-icon">get<wbr>Num<wbr>Stickers</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.staticobject.html#getpackageid" class="tsd-kind-icon">get<wbr>Package<wbr>Id</a>
@@ -2161,10 +2350,19 @@
 								<a href="_api_.staticobject.html#localrotationtoworld" class="tsd-kind-icon">local<wbr>Rotation<wbr>ToWorld</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#placesticker" class="tsd-kind-icon">place<wbr>Sticker</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#removeallstickers" class="tsd-kind-icon">remove<wbr>All<wbr>Stickers</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.staticobject.html#removedrawingline" class="tsd-kind-icon">remove<wbr>Drawing<wbr>Line</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.staticobject.html#removedrawinglineobject" class="tsd-kind-icon">remove<wbr>Drawing<wbr>Line<wbr>Object</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.staticobject.html#removestickerat" class="tsd-kind-icon">remove<wbr>Sticker<wbr>At</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.staticobject.html#removeui" class="tsd-kind-icon">removeUI</a>

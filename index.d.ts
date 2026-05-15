@@ -967,7 +967,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		setDrawingThickness(thickness: number): void;
 		/**
-		 * Set the whether lines drawn by this player should be glowing
+		 * Set whether lines drawn by this player should be glowing
 		*/
 		setDrawingGlow(glow: boolean): void;
 		/**
@@ -999,6 +999,11 @@ declare module '@tabletop-playground/api' {
 		*/
 		isScriptKeyDown(index: number): boolean;
 		/**
+		 * Return whether this player was added as a hot seat player. The primary player of a client always returns false,
+		 * even in a game that uses hot seat. Always returns false when no hot seat players exist.
+		*/
+		isHotSeat(): boolean;
+		/**
 		 * Return whether this player is the host of the current game
 		*/
 		isHost(): boolean;
@@ -1018,6 +1023,12 @@ declare module '@tabletop-playground/api' {
 		 * Return whether the player is currently blindfolded
 		*/
 		isBlindfolded(): boolean;
+		/**
+		 * Return whether this player is currently the active player for its client. A client can have several hot seat
+		 * players associated with it, but only one is active at a time. Always returns true when the client has no
+		 * hot seat players.
+		*/
+		isActive(): boolean;
 		/**
 		 * Return the player's team (1-8). 0 means no team. To switch teams, use {@link GameWorld.setSlotTeam} for the player's slot.
 		*/
@@ -1085,6 +1096,16 @@ declare module '@tabletop-playground/api' {
 		 * Return the player's cursor position
 		*/
 		getCursorPosition(): Vector;
+		/**
+		 * Return all players that share a client with this player: the client's primary player followed by all of its
+		 * hot seat players, including this player. Returns an array containing only this player when the client has no
+		 * hot seat players.
+		*/
+		getClientPlayers(): Player[];
+		/**
+		 * Return the currently active player among the players that share a client with this player (see {@link Player.getClientPlayers}).
+		*/
+		getActivePlayer(): Player;
 	}
 
 	/**
@@ -1238,6 +1259,33 @@ declare module '@tabletop-playground/api' {
 		*/
 		players: PlayerPermission;
 		clone() : DrawingLine;
+	}
+
+	/**
+	 * Sticker Template
+	*/
+	class StickerTemplate { 
+		/**
+		 * Display name
+		*/
+		name: string;
+		/**
+		 * Image path in package or URL
+		*/
+		imagePath: string;
+		/**
+		 * GUID of the package where the image is located (empty for URLs).
+		*/
+		packageId: string;
+		/**
+		 * Default width in cm
+		*/
+		width: number;
+		/**
+		 * Default height in cm
+		*/
+		height: number;
+		clone() : StickerTemplate;
 	}
 
 	/**
@@ -1396,6 +1444,12 @@ declare module '@tabletop-playground/api' {
 		*/
 		removeUI(index: number): void;
 		/**
+		 * Remove a sticker at the given index from the object
+		 * @param {number} index - Index of the sticker to remove
+		 * @returns {boolean} - Whether the sticker was removed successfully
+		*/
+		removeStickerAt(index: number): boolean;
+		/**
 		 * Remove a drawn line from the object.
 		*/
 		removeDrawingLineObject(line: DrawingLine): void;
@@ -1403,6 +1457,20 @@ declare module '@tabletop-playground/api' {
 		 * Remove the drawn line at the given index from the object
 		*/
 		removeDrawingLine(index: number): void;
+		/**
+		 * Remove all stickers from the object
+		*/
+		removeAllStickers(): void;
+		/**
+		 * Place a sticker on this object by tracing a line from start to end against this object only.
+		 * For more control over the sticker location and rotation, see {@link addSticker}
+		 * @param {StickerTemplate} stickerTemplate - The sticker template defining the image and size
+		 * @param {Vector} start - Start of the trace line in object local space
+		 * @param {Vector} end - End of the trace line in object local space
+		 * @param {number} rotation - Rotation of the sticker around the surface normal in degrees. Default: 0
+		 * @returns {boolean} - Whether the sticker was placed successfully
+		*/
+		placeSticker(stickerTemplate: StickerTemplate, start: Vector | [x: number, y: number, z: number], end: Vector | [x: number, y: number, z: number], rotation?: number): boolean;
 		/**
 		 * Transform an object rotation to a world rotation
 		 * @param {Rotator} rotation - The rotation relative to the object center to transform to world space
@@ -1502,6 +1570,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		getPackageId(): string;
 		/**
+		 * Return the number of stickers on the object
+		*/
+		getNumStickers(): number;
+		/**
 		 * Return the object's user visible name
 		*/
 		getName(): string;
@@ -1523,14 +1595,14 @@ declare module '@tabletop-playground/api' {
 		 * @param {boolean} currentRotation - If true, return the extent of an axis-aligned bounding box around the object at its current rotation. If false, return for the default rotation.
 		 * * @param {boolean} includeGeometry - Determines whether visible geometry is included in the extent. If false, only colliders are used when determining the extent.
 		*/
-		getExtentCenter(currentRotation: boolean, includeGeometry: boolean): Vector;
+		getExtentCenter(currentRotation: boolean, includeGeometry?: boolean): Vector;
 		/**
 		 * Get the object extent: half-size of an axis-aligned bounding box encompassing the object.
 		 * Adding this vector to the position returned by {@link getExtentCenter} gives a corner of the bounding box.
 		 * @param {boolean} currentRotation - If true, return the extent of an axis-aligned bounding box around the object at its current rotation. If false, return for the default rotation.
 		 * @param {boolean} includeGeometry - Determines whether visible geometry is included in the extent. If false, only colliders are used when determining the extent.
 		*/
-		getExtent(currentRotation: boolean, includeGeometry: boolean): Vector;
+		getExtent(currentRotation: boolean, includeGeometry?: boolean): Vector;
 		/**
 		 * Used when executing an object script to determine why it was executed. Possible return values:<br>
 		 * "Create" - The object was newly created, for example from the object library or through copy and paste<br>
@@ -1578,6 +1650,15 @@ declare module '@tabletop-playground/api' {
 		 * @returns {number} - The index of the attached UI element
 		*/
 		addUI(element: UIElement): number;
+		/**
+		 * Add a sticker to the object. For an easier way to place a sticker directly on a surface of the object,
+		 * see {@link placeSticker}
+		 * @param {StickerTemplate} stickerTemplate - The sticker template defining the image and size
+		 * @param {Vector} position - The position in object local space where the sticker should be placed
+		 * @param {Vector} normal - The surface normal in object local space at the placement position
+		 * @returns {boolean} - Whether the sticker was added successfully
+		*/
+		addSticker(stickerTemplate: StickerTemplate, position: Vector | [x: number, y: number, z: number], normal: Vector | [x: number, y: number, z: number]): boolean;
 		/**
 		 * Add a drawn line to the object. Lines are geometry and can increase the size of the object returned by
 		 * {@link getSize} and {@link getExtent}.
@@ -1921,9 +2002,19 @@ declare module '@tabletop-playground/api' {
 		*/
 		snapToGround(): void;
 		/**
+		 * Snap the object to the specified snap point
+		 * Snapping in this way does not trigger the onSnapped callback.
+		 * Optionally show an animation of the object moving toward the new location and rotation.
+		 * The animation is only visual, the physical rotation of the object is changed instantly.
+		 * Does not have an effect if a player is currently holding the object.
+		 * @param {SnapPoint} snapPoint - The snap point to snap to
+		 * @param {number} animationSpeed - If larger than 0, show animation. A value of 1 gives a reasonable, quick animation. Value range clamped to [0.1, 5.0]. Default: 0
+		*/
+		snapTo(snapPoint: SnapPoint, animationSpeed?: number): void;
+		/**
 		 * Snap the object as if it was dropped at its current position. Does nothing if no snap point is in range below the object.
 		 * Snapping in this way does not trigger the onSnapped callback. Returns the snapped point if the object was snapped.
-		 * Optionally show an animation of the object rotating toward the new orientation.
+		 * Optionally show an animation of the object moving toward the new location and rotation.
 		 * The animation is only visual, the physical rotation of the object is changed instantly.
 		 * Does not have an effect if a player is currently holding the object.
 		 * @param {number} animationSpeed - If larger than 0, show animation. A value of 1 gives a reasonable, quick animation. Value range clamped to [0.1, 5.0]. Default: 0
@@ -2107,10 +2198,6 @@ declare module '@tabletop-playground/api' {
 	*/
 	class Widget { 
 		/**
-		 * Name of this widget. Automatically set on widgets created from template UIs.
-		*/
-		name: string;
-		/**
 		 * Set whether the widget is visible. When a widget that contains other widgets (like {@link VerticalBox}) is
 		 * invisible, all its children are invisible, too. The layout of widgets is updated when visibility changes,
 		 * and invisible widgets are treated as if they don't exist.
@@ -2244,7 +2331,8 @@ declare module '@tabletop-playground/api' {
 		*/
 		persistState: boolean;
 		/**
-		 * Index of the owning player. -1 when there is no owner.
+		 * Index of the owning player. -1 when there is no owner. For UI elements attached to objects, will be overridden
+		 * by the object owner.
 		*/
 		ownerIndex: number;
 		clone() : UIElement;
@@ -2603,7 +2691,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		onTurnChanged: MulticastDelegate<(previousTurn: number, previousPhase: number, previousRound: number) => void>;
 		/**
-		 * Set configured phases
+		 * Set configured phases. Will change the current turn to the first valid player in the new current phase if the previous turn is no longer valid.
 		*/
 		setPhases(phases: PhaseDetails[]): void;
 		/**
@@ -2615,7 +2703,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		setCurrentRound(round: number): void;
 		/**
-		 * Set the current phase index
+		 * Set the current phase index. Will change the current turn to the first valid player in the new phase.
 		*/
 		setCurrentPhaseIndex(phase: number): void;
 		/**
@@ -3225,6 +3313,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		removeUI(index: number): void;
 		/**
+		 * Remove the sticker template at the given index. Server only.
+		*/
+		removeStickerTemplate(index: number): void;
+		/**
 		 * Remove a screen UI element.
 		 * @param {UIElement} - The UI element to be removed
 		*/
@@ -3248,11 +3340,11 @@ declare module '@tabletop-playground/api' {
 		*/
 		removeCustomAction(identifier: string): void;
 		/**
-		 * @deprecated Synonym for for {@link TurnSystem.previousTurn}
+		 * @deprecated Synonym for {@link TurnSystem.previousTurn}
 		*/
 		previousTurn(): void;
 		/**
-		 * @deprecated Synonym for for {@link TurnSystem.nextTurn}
+		 * @deprecated Synonym for {@link TurnSystem.nextTurn}
 		*/
 		nextTurn(): void;
 		/**
@@ -3334,6 +3426,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		getTableHeight(position?: Vector | [x: number, y: number, z: number]): number;
 		/**
+		 * Return all sticker templates available in the current session
+		*/
+		getStickerTemplates(): StickerTemplate[];
+		/**
 		 * Return the team (1-8) of a player slot. Returns 0 if the player slot is not associated to a team.
 		 * @param {number} slot - The player slot (0-19)
 		*/
@@ -3363,12 +3459,12 @@ declare module '@tabletop-playground/api' {
 		*/
 		getSavedData(key?: string): string;
 		/**
-		 * Return the player occupying the specified slot
+		 * Return the player occupying the specified slot. This can be an inactive hot seat player.
 		 * @param {number} slot - The player slot (0-19)
 		*/
 		getPlayerBySlot(slot: number): Player | undefined;
 		/**
-		 * Return the player with the given name
+		 * Return the player with the given name. Hot seat players are matched by their own name.
 		 * @param {name} name - The name of the player
 		*/
 		getPlayerByName(name: string): Player | undefined;
@@ -3445,7 +3541,7 @@ declare module '@tabletop-playground/api' {
 		*/
 		getAllTables(): StaticObject[];
 		/**
-		 * Return all players currently in the game
+		 * Return all players currently in the game, including all hot seat players (even ones that are not currently active).
 		*/
 		getAllPlayers(): Player[];
 		/**
@@ -3463,6 +3559,11 @@ declare module '@tabletop-playground/api' {
 		 * Get all labels currently in the game
 		*/
 		getAllLabels(): Label[];
+		/**
+		 * Return one player per connected client: that client's currently active player. When the game doesn't use hot seat,
+		 * this returns the same players as {@link GameWorld.getAllPlayers}.
+		*/
+		getActivePlayers(): Player[];
 		/**
 		 * Draw a point. The sphere will only be visible on for the host!
 		 * @param {Vector} position - Position of the point
@@ -3580,6 +3681,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		addUI(element: UIElement): number;
 		/**
+		 * Add a new sticker template to the session. Server only.
+		*/
+		addStickerTemplate(template: StickerTemplate): void;
+		/**
 		 * Add a new global UI element to the screen
 		 * @param {UIElement} element - The UI element to add
 		 * @returns {number} - The index of the added UI element
@@ -3662,6 +3767,13 @@ declare module '@tabletop-playground/api' {
 		 * @param {number} oldSlot - Previous player slot
 		*/
 		onPlayerSwitchedSlots: MulticastDelegate<(player: Player, index: number) => void>;
+		/**
+		 * Called when the active player for a client changes because of a hot seat switch. A client can have several
+		 * hot seat players associated with it, but only one is active at a time.
+		 * @param {Player} oldPlayer - The player that was active before the switch
+		 * @param {Player} newPlayer - The player that is active after the switch
+		*/
+		onActivePlayerSwitched: MulticastDelegate<(oldPlayer: Player, newPlayer: Player) => void>;
 		/**
 		 * Called when an object is created (from the object library, loading a game, copy & paste, dragging from a container or stack...)
 		 * @param {GameObject} object - The new object
@@ -4695,6 +4807,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		onTextCommitted: MulticastDelegate<(textBox: this, player: Player, text: string) => void>;
 		/**
+		 * Set whether the color of the owning player should override the background color
+		*/
+		setUseOwnerColorAsBackgroundColor(useOwnerColor: boolean): MultilineTextBox;
+		/**
 		 * Set the edited text.
 		 * @param {string} text - The new text
 		*/
@@ -4711,10 +4827,18 @@ declare module '@tabletop-playground/api' {
 		*/
 		setBackgroundTransparent(transparent: boolean): MultilineTextBox;
 		/**
+		 * Set the color of the background
+		*/
+		setBackgroundColor(color: Color | [r: number, g: number, b: number, a: number]): MultilineTextBox;
+		/**
 		 * Set whether the textbox automatically wraps text
 		 * @param {boolean} autoWrap - Set to true to wrap words at the size of the text box
 		*/
 		setAutoWrap(autoWrap: boolean): MultilineTextBox;
+		/**
+		 * Return whether the color of the owning player overrides the background color
+		*/
+		isUsingOwnerColorAsBackgroundColor(): boolean;
 		/**
 		 * Return if the background is transparent
 		*/
@@ -4731,6 +4855,10 @@ declare module '@tabletop-playground/api' {
 		 * Return the maximum number of characters allowed for this text box
 		*/
 		getMaxLength(): number;
+		/**
+		 * Get the color of the background
+		*/
+		getBackgroundColor(): Color;
 	}
 
 	/**
@@ -5013,6 +5141,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		setValue(value: number): Slider;
 		/**
+		 * Set whether the color of the owning player should override the text box color
+		*/
+		setUseOwnerColorAsTextBoxBackgroundColor(useOwnerColor: boolean): Slider;
+		/**
 		 * Set whether the color of the owning player should override the slider highlighted color
 		*/
 		setUseOwnerColorAsSliderHighlightedColor(useOwnerColor: boolean): Slider;
@@ -5024,6 +5156,10 @@ declare module '@tabletop-playground/api' {
 		 * Set the width of the text box. Can be set to 0 to hide the text box.
 		*/
 		setTextBoxWidth(width: number): Slider;
+		/**
+		 * Set the background color of the text box.
+		*/
+		setTextBoxBackgroundColor(color: Color | [r: number, g: number, b: number, a: number]): Slider;
 		/**
 		 * Set the slider step size. Default: 0.01
 		*/
@@ -5047,6 +5183,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		setMaxValue(maxValue: number): Slider;
 		/**
+		 * Return whether the color of the owning player overrides the text box color
+		*/
+		isUsingOwnerColorAsTextBoxBackgroundColor(): boolean;
+		/**
 		 * Return whether the color of the owning player overrides the slider highlighted color
 		*/
 		isUsingOwnerColorAsSliderHighlightedColor(): boolean;
@@ -5062,6 +5202,10 @@ declare module '@tabletop-playground/api' {
 		 * Return the width of the text box. Default: 35
 		*/
 		getTextBoxWidth(): number;
+		/**
+		 * Get the color of the text box.
+		*/
+		getTextBoxBackgroundColor(): Color;
 		/**
 		 * Return the slider step size
 		*/
@@ -5138,6 +5282,10 @@ declare module '@tabletop-playground/api' {
 		*/
 		onTextCommitted: MulticastDelegate<(textBox: this, player: Player, text: string, usingEnter: boolean) => void>;
 		/**
+		 * Set whether the color of the owning player should override the background color
+		*/
+		setUseOwnerColorAsBackgroundColor(useOwnerColor: boolean): TextBox;
+		/**
 		 * Set the edited text.
 		 * @param {string} text - The new text
 		*/
@@ -5169,6 +5317,14 @@ declare module '@tabletop-playground/api' {
 		*/
 		setBackgroundTransparent(transparent: boolean): TextBox;
 		/**
+		 * Set the color of the background
+		*/
+		setBackgroundColor(color: Color | [r: number, g: number, b: number, a: number]): TextBox;
+		/**
+		 * Return whether the color of the owning player overrides the background color
+		*/
+		isUsingOwnerColorAsBackgroundColor(): boolean;
+		/**
 		 * Return whether the whole text should be selected when the TextBox receives focus
 		*/
 		isSelectTextOnFocus(): boolean;
@@ -5193,6 +5349,10 @@ declare module '@tabletop-playground/api' {
 		 * 4 - Whole numbers, positive only
 		*/
 		getInputType(): number;
+		/**
+		 * Get the color of the background
+		*/
+		getBackgroundColor(): Color;
 	}
 
 	/**

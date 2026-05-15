@@ -26,6 +26,7 @@ module.exports = {
 	SnapPoint: 'readonly',
 	DrawingLine: 'readonly',
 	PlayerPermission: 'readonly',
+	StickerTemplate: 'readonly',
 	Switcher: 'readonly',
 	Container: 'readonly',
 	ScreenUIElement: 'readonly',

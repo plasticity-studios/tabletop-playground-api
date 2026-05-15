@@ -89,6 +89,8 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.player.html#getactiveplayer" class="tsd-kind-icon">get<wbr>Active<wbr>Player</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.player.html#getclientplayers" class="tsd-kind-icon">get<wbr>Client<wbr>Players</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.player.html#getcursorposition" class="tsd-kind-icon">get<wbr>Cursor<wbr>Position</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.player.html#getcursorvelocity" class="tsd-kind-icon">get<wbr>Cursor<wbr>Velocity</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.player.html#gethandcards" class="tsd-kind-icon">get<wbr>Hand<wbr>Cards</a></li>
@@ -105,11 +107,13 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.player.html#getselectedobjects" class="tsd-kind-icon">get<wbr>Selected<wbr>Objects</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.player.html#getslot" class="tsd-kind-icon">get<wbr>Slot</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.player.html#getteam" class="tsd-kind-icon">get<wbr>Team</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.player.html#isactive" class="tsd-kind-icon">is<wbr>Active</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.player.html#isblindfolded" class="tsd-kind-icon">is<wbr>Blindfolded</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.player.html#isgamemaster" class="tsd-kind-icon">is<wbr>Game<wbr>Master</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.player.html#isholding" class="tsd-kind-icon">is<wbr>Holding</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.player.html#isholdingobject" class="tsd-kind-icon">is<wbr>Holding<wbr>Object</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.player.html#ishost" class="tsd-kind-icon">is<wbr>Host</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.player.html#ishotseat" class="tsd-kind-icon">is<wbr>Hot<wbr>Seat</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.player.html#isscriptkeydown" class="tsd-kind-icon">is<wbr>Script<wbr>Key<wbr>Down</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.player.html#isspectator" class="tsd-kind-icon">is<wbr>Spectator</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_api_.player.html#isusingvr" class="tsd-kind-icon">is<wbr>UsingVR</a></li>
@@ -134,6 +138,52 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getactiveplayer" class="tsd-anchor"></a>
+					<h3>get<wbr>Active<wbr>Player</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Active<wbr>Player<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.player.html" class="tsd-signature-type">Player</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in index.d.ts:1108</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the currently active player among the players that share a client with this player (see <a href="_api_.player.html#getclientplayers">Player.getClientPlayers</a>).</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.player.html" class="tsd-signature-type">Player</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getclientplayers" class="tsd-anchor"></a>
+					<h3>get<wbr>Client<wbr>Players</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Client<wbr>Players<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_api_.player.html" class="tsd-signature-type">Player</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in index.d.ts:1104</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return all players that share a client with this player: the client&#39;s primary player followed by all of its
+										hot seat players, including this player. Returns an array containing only this player when the client has no
+									hot seat players.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="_api_.player.html" class="tsd-signature-type">Player</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="getcursorposition" class="tsd-anchor"></a>
 					<h3>get<wbr>Cursor<wbr>Position</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -143,7 +193,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1087</li>
+									<li>Defined in index.d.ts:1098</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -165,7 +215,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1083</li>
+									<li>Defined in index.d.ts:1094</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -187,7 +237,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1079</li>
+									<li>Defined in index.d.ts:1090</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -209,7 +259,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1075</li>
+									<li>Defined in index.d.ts:1086</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -231,7 +281,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1071</li>
+									<li>Defined in index.d.ts:1082</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -254,7 +304,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1066</li>
+									<li>Defined in index.d.ts:1077</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -276,7 +326,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1062</li>
+									<li>Defined in index.d.ts:1073</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -298,7 +348,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1058</li>
+									<li>Defined in index.d.ts:1069</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -320,7 +370,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1054</li>
+									<li>Defined in index.d.ts:1065</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -342,7 +392,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1050</li>
+									<li>Defined in index.d.ts:1061</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -364,7 +414,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1046</li>
+									<li>Defined in index.d.ts:1057</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -386,7 +436,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1042</li>
+									<li>Defined in index.d.ts:1053</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -408,7 +458,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1038</li>
+									<li>Defined in index.d.ts:1049</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -430,7 +480,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1034</li>
+									<li>Defined in index.d.ts:1045</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -452,7 +502,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1030</li>
+									<li>Defined in index.d.ts:1041</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -476,7 +526,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1024</li>
+									<li>Defined in index.d.ts:1035</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -485,6 +535,30 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="isactive" class="tsd-anchor"></a>
+					<h3>is<wbr>Active</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Active<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in index.d.ts:1031</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return whether this player is currently the active player for its client. A client can have several hot seat
+										players associated with it, but only one is active at a time. Always returns true when the client has no
+									hot seat players.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -498,7 +572,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1020</li>
+									<li>Defined in index.d.ts:1025</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -520,7 +594,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1016</li>
+									<li>Defined in index.d.ts:1021</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -542,7 +616,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1012</li>
+									<li>Defined in index.d.ts:1017</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -564,7 +638,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1008</li>
+									<li>Defined in index.d.ts:1013</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -592,12 +666,35 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in index.d.ts:1004</li>
+									<li>Defined in index.d.ts:1009</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Return whether this player is the host of the current game</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="ishotseat" class="tsd-anchor"></a>
+					<h3>is<wbr>Hot<wbr>Seat</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Hot<wbr>Seat<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in index.d.ts:1005</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return whether this player was added as a hot seat player. The primary player of a client always returns false,
+									even in a game that uses hot seat. Always returns false when no hot seat players exist.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -800,7 +897,7 @@
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Set the whether lines drawn by this player should be glowing</p>
+									<p>Set whether lines drawn by this player should be glowing</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1072,6 +1169,12 @@
 						<a href="_api_.player.html" class="tsd-kind-icon">Player</a>
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.player.html#getactiveplayer" class="tsd-kind-icon">get<wbr>Active<wbr>Player</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.player.html#getclientplayers" class="tsd-kind-icon">get<wbr>Client<wbr>Players</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.player.html#getcursorposition" class="tsd-kind-icon">get<wbr>Cursor<wbr>Position</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -1120,6 +1223,9 @@
 								<a href="_api_.player.html#getteam" class="tsd-kind-icon">get<wbr>Team</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.player.html#isactive" class="tsd-kind-icon">is<wbr>Active</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.player.html#isblindfolded" class="tsd-kind-icon">is<wbr>Blindfolded</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -1133,6 +1239,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.player.html#ishost" class="tsd-kind-icon">is<wbr>Host</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_api_.player.html#ishotseat" class="tsd-kind-icon">is<wbr>Hot<wbr>Seat</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_api_.player.html#isscriptkeydown" class="tsd-kind-icon">is<wbr>Script<wbr>Key<wbr>Down</a>
